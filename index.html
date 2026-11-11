@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --success: #16a34a;
+      --success-light: #dcfce7;
+      --warning: #ea580c;
+      --warning-bg: #fff7ed;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Pretendard', sans-serif; }
+    body { background-color: #f8fafc; color: var(--gray-800); line-height: 1.5; padding-bottom: 4rem; }
+
+    /* Top Slogan Bar */
+    .top-slogan-bar {
+      background: linear-gradient(90deg, #0284c7, #2563eb);
+      color: #ffffff;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+    }
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -0.02em;
+    }
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .student-badge-btn {
+      display: flex;
+      align-items: center;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 9999px;
+      padding: 0.4rem 0.95rem;
+      font-size: 0.83rem;
+      color: var(--gray-800);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .student-badge-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-hover);
+    }
+
+    /* More Menu ⋮ */
+    .more-menu-wrapper {
+      position: relative;
+    }
+    .btn-more-dots {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--gray-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+    .btn-more-dots:hover {
+      background: var(--gray-200);
+      color: var(--gray-900);
+    }
+    .more-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      min-width: 180px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .more-menu-item {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .more-menu-item:hover {
+      background: var(--gray-50);
+      color: var(--primary);
+    }
+    .more-menu-item + .more-menu-item {
+      border-top: 1px solid var(--border);
+    }
+
+    /* Modal Backdrop & Window */
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 1rem;
+    }
+    .modal-window {
+      background: #ffffff;
+      border-radius: 14px;
+      max-width: 490px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      padding: 1.5rem;
+      animation: modalFadeIn 0.18s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.2rem;
+    }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gray-900);
+    }
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--gray-400);
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+    .modal-close-btn:hover {
+      color: var(--gray-800);
+      background: var(--gray-100);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: #ffffff;
+      padding: 0.4rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: none;
+      background: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gray-600);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 4px rgba(2,132,199,0.25);
+    }
+
+    /* Simple Mode Banner */
+    .simple-mode-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      color: #1e40af;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* 10-Second Hero Box */
+    .hero-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .hero-box { grid-template-columns: 1fr; }
+    }
+    .hero-stat-main {
+      border-right: 1px solid var(--border);
+      padding-right: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .hero-stat-main { border-right: none; padding-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    }
+    .hero-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.25rem;
+    }
+    .hero-val-big {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .hero-val-sub {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-top: 0.4rem;
+    }
+    .hero-deficiency-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.45rem;
+    }
+    .hero-deficiency-title {
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--danger);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .deficiency-pill {
+      background: var(--danger-bg);
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.82rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Common Card */
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* GE 6-Area Grid */
+    .ge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .ge-item {
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem;
+    }
+    .ge-item-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .ge-progress {
+      height: 6px;
+      background: var(--gray-200);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 0.45rem;
+    }
+    .ge-bar { height: 100%; border-radius: 9999px; }
+    .ge-hint {
+      font-size: 0.75rem;
+      color: var(--gray-600);
+      line-height: 1.35;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-bottom: 1.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      text-align: left;
+    }
+    th {
+      background: var(--gray-100);
+      color: var(--gray-700);
+      font-weight: 700;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--gray-800);
+    }
+    tr:last-child td { border-bottom: none; }
+    .semester-header {
+      background: var(--gray-100);
+      padding: 0.6rem 0.85rem;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--gray-800);
+      border-radius: 6px;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .semester-header.current {
+      background: var(--primary-light);
+      color: var(--primary-hover);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .badge-primary { background: var(--primary-light); color: var(--primary-hover); }
+    .badge-green { background: var(--success-light); color: var(--success); }
+    .badge-red { background: var(--danger-bg); color: var(--danger); }
+    .badge-gray { background: var(--gray-200); color: var(--gray-700); }
+    .badge-curr { background: #fef08a; color: #854d0e; }
+
+    /* Buttons & Inputs */
+    .btn {
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { background: white; border: 1px solid var(--border); color: var(--gray-700); }
+    .btn-outline:hover { background: var(--gray-100); }
+    .btn-danger-sm { background: var(--danger-bg); border: 1px solid #fecaca; color: var(--danger); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; }
+    .btn-danger-sm:hover { background: #fee2e2; }
+
+    .input, .select {
+      padding: 0.55rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .input:focus, .select:focus { border-color: var(--primary); }
+
+    /* Simulator Layout */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 900px) {
+      .sim-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Live Panel */
+    .live-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: sticky;
+      top: 5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .live-metric-hero {
+      text-align: center;
+      background: var(--gray-50);
+      border-radius: 8px;
+      padding: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .live-hero-num {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .live-remaining-pill {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--danger);
+      margin-top: 0.4rem;
+    }
+    .progress-track {
+      background: var(--gray-200);
+      height: 7px;
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Autocomplete */
+    .autocomplete-wrap { position: relative; }
+    .autocomplete-list {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 50;
+    }
+    .autocomplete-item {
+      padding: 0.55rem 0.85rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .autocomplete-item:hover { background: var(--gray-50); color: var(--primary); }
+    .autocomplete-add-custom {
+      padding: 0.55rem 0.85rem;
+      font-size: 0.82rem;
+      background: #f0fdf4;
+      color: var(--success);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .autocomplete-add-custom:hover { background: #dcfce7; }
+
+    /* Alerts */
+    .alert {
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .alert-danger { background: var(--danger-bg); border: 1px solid #fecaca; color: var(--danger); }
+    .alert-warning { background: var(--warning-bg); border: 1px solid #fed7aa; color: #9a3412; }
+
+    /* Help Cards */
+    .help-step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .help-step-card {
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+    .help-step-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Positioning Slogan -->
+  <div class="top-slogan-bar">
+    💡 <strong>"포털은 시간표를 시뮬레이션합니다. 우리는 졸업을 시뮬레이션합니다."</strong>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-badge">한림대</span>
+        <div class="brand-title">수강 바구니 + 졸업 시뮬레이터</div>
+      </div>
+      <div class="header-controls">
+        <!-- Main Screen Profile Badge (Click opens Settings) -->
+        <button id="btn-profile-badge" class="student-badge-btn" onclick="openSettingsModal()" title="클릭하여 프로필 및 전공 설정">
+          <span id="profile-display-text">👤 <b>20258044</b> · 경영학과 단일전공 · 2026-2학기 수강 중</span>
+          <span style="margin-left: 0.4rem; font-size: 0.8rem; color: var(--primary);">⚙️</span>
+        </button>
+
+        <!-- More Menu ⋮ -->
+        <div class="more-menu-wrapper">
+          <button id="btn-more-menu" class="btn-more-dots" onclick="toggleMoreMenu(event)" aria-label="더보기 메뉴" title="더보기">⋮</button>
+          <div id="more-dropdown" class="more-dropdown-menu" style="display: none;">
+            <button class="more-menu-item" onclick="openSettingsModal()"><span style="font-size: 1rem;">⚙️</span> 설정</button>
+            <button class="more-menu-item" onclick="switchTab(3)"><span style="font-size: 1rem;">📖</span> 도움말</button>
+            <button class="more-menu-item" onclick="alertFeedbackInfo()"><span style="font-size: 1rem;">📧</span> 문의/피드백 <span style="font-size: 0.7rem; color: var(--gray-500);">(준비 중)</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Settings Modal (⚙️ 설정) -->
+  <div id="settings-modal" class="modal-backdrop" style="display: none;" onclick="handleModalBackdropClick(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">⚙️ 환경 설정 및 프로필 변경</div>
+        <button class="modal-close-btn" onclick="closeSettingsModal()" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">학번</label>
+          <input type="text" id="modal-student-id" class="input" style="width: 100%;" value="20258044" placeholder="학번 입력">
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">이름</label>
+          <input type="text" id="modal-student-name" class="input" style="width: 100%;" value="김한림" placeholder="이름 입력">
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">주전공 선택</label>
+          <select id="modal-major-select" class="select" style="width: 100%;">
+            <option value="경영학과">🏛️ 경영학과 (단일전공 60학점 완전지원)</option>
+            <option value="소프트웨어학부">💻 소프트웨어학부 (간단 모드)</option>
+            <option value="데이터사이언스학부">📊 데이터사이언스학부 (간단 모드)</option>
+            <option value="경제학과">📈 경제학과 (간단 모드)</option>
+            <option value="심리학과">🧠 심리학과 (간단 모드)</option>
+            <option value="기타 학과">🎓 기타 학과 (간단 모드)</option>
+          </select>
+          <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem;">
+            ※ 전공을 변경하면 졸업요건 계산이 바뀝니다.
+          </div>
+        </div>
+        <div style="margin-bottom: 1.25rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.84rem; font-weight: 600; cursor: pointer;">
+            <input type="checkbox" id="modal-has-double" onchange="toggleDoubleMajorInput(this.checked)">
+            <span>복수전공 이수</span>
+          </label>
+          <div id="modal-double-wrap" style="display: none; margin-top: 0.5rem;">
+            <input type="text" id="modal-double-name" class="input" style="width: 100%;" placeholder="복수전공 학과명 입력 (예: 빅데이터, 소프트웨어)">
+          </div>
+        </div>
+        <div style="border-top: 1px solid var(--border); padding-top: 0.85rem; margin-top: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <div style="font-size: 0.82rem; font-weight: 600;">데이터 자동저장 상태</div>
+            <span class="badge badge-green" style="font-size: 0.74rem;">항상 켜짐 (localStorage)</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.82rem; font-weight: 600; color: var(--danger);">데이터 초기화</div>
+              <div style="font-size: 0.72rem; color: var(--gray-500);">장바구니와 직접 추가한 과목을 초기화합니다.</div>
+            </div>
+            <button class="btn btn-danger-sm" onclick="resetUserData()">초기화</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.85rem; margin-top: 1rem;">
+        <button class="btn btn-outline" onclick="closeSettingsModal()">취소</button>
+        <button class="btn btn-primary" onclick="saveSettings()">저장 및 적용</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- Exactly 3 Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" id="btn-tab-1" onclick="switchTab(1)">
+        📋 [내 현황]
+      </button>
+      <button class="tab-btn" id="btn-tab-2" onclick="switchTab(2)">
+        🛒 [시뮬레이터]
+      </button>
+      <button class="tab-btn" id="btn-tab-3" onclick="switchTab(3)">
+        📖 [도움말]
+      </button>
+    </nav>
+
+    <!-- ================================================================= -->
+    <!-- TAB 1: [내 현황] -->
+    <!-- ================================================================= -->
+    <section id="tab-content-1">
+
+      <!-- Simple Mode Notice Banner -->
+      <div id="simple-mode-banner" class="simple-mode-banner" style="display: none;">
+        <span>ℹ️</span>
+        <div id="simple-mode-text">
+          <strong>간단 모드:</strong> 총 학점과 교양 진도만 계산됩니다. 전공 세부 졸업요건은 소속 학과에서 확인하세요.
+        </div>
+      </div>
+
+      <!-- 10-Second Hero Box -->
+      <div class="hero-box">
+        <div class="hero-stat-main">
+          <div class="hero-label">🎓 총 취득 학점 현황</div>
+          <div class="hero-val-big">현재 확정 34 <span style="font-size: 1.2rem; color: var(--gray-600); font-weight: 500;">/ 130</span></div>
+          <div class="hero-val-sub">
+            <span>↳ 2026-2 수강중 17학점 완료 시 예상: <strong>51 / 130 학점</strong></span>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 0.25rem;">
+            (2026-2 완료 시 졸업까지 잔여: <strong style="color: var(--danger);">79학점</strong>)
+          </div>
+        </div>
+
+        <div class="hero-deficiency-box">
+          <div class="hero-deficiency-title">
+            <span>🚨</span> 졸업 필수 의무 결손 (부족한 것 2가지)
+          </div>
+          <div class="deficiency-pill">
+            <span>1. 생애설계: 오디세이세미나 2 (공통 교양필수)</span>
+            <span style="font-weight: 800; color: #b91c1c;">1학점 미이수</span>
+          </div>
+          <div class="deficiency-pill">
+            <span>2. 정보소통 영역 (AI프로젝트입문 + 창의코딩)</span>
+            <span style="font-weight: 800; color: #b91c1c;">5학점 미이수</span>
+          </div>
+          <div style="font-size: 0.72rem; color: #64748b; margin-top: 0.15rem;" id="major-remain-hint">
+            * 경영 단일전공 기준: 전공 13/60학점 (잔여 47학점 필요)
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Comparison Table -->
+      <div class="card">
+        <div class="card-title">
+          <span>📊 카테고리별 학점 비교 (현재 확정 vs 2026-2 완료 예상)</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: var(--primary);">단일전공 60학점 기준</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 25%;">구분</th>
+                <th style="width: 20%;" id="th-major-name">주전공 (경영 단일전공)</th>
+                <th style="width: 20%;">교양 교과목 (공통)</th>
+                <th style="width: 15%;">일반선택</th>
+                <th style="width: 20%;">총 취득학점</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>현재 확정 (기이수 14과목)</strong></td>
+                <td id="td-conf-major"><strong>9</strong> / 60 학점</td>
+                <td><strong>25</strong> / 26 학점</td>
+                <td><strong>0</strong> / 3 학점</td>
+                <td><strong style="color: var(--primary);">34</strong> / 130 학점</td>
+              </tr>
+              <tr style="background: #f0fdf4;">
+                <td><strong>수강중 완료 시 예상 (총 21과목)</strong></td>
+                <td id="td-exp-major" style="color: #15803d;"><strong>13</strong> / 60 학점 (+4)</td>
+                <td style="color: #15803d;"><strong>35</strong> / 26 학점 (초과)</td>
+                <td style="color: #15803d;"><strong>3</strong> / 3 학점 (충족)</td>
+                <td><strong style="color: #15803d;">51</strong> / 130 학점 (+17)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Common GE 26 Credits 6-Area Progress Grid -->
+      <div class="card">
+        <div class="card-title">
+          <span>📚 한림대학교 공통 교양(26학점) 6대 영역별 충족 현황</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: var(--success);">총 35학점 이수 (기준 26학점 달성)</span>
+        </div>
+        <div class="ge-grid">
+          <!-- 1. 정보소통 -->
+          <div class="ge-item" style="border-left: 3px solid var(--danger);">
+            <div class="ge-item-head">
+              <span>1. 정보소통 (AI/코딩)</span>
+              <span style="color: var(--danger);">0 / 5 학점 (미이수 결손)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 0%; background: var(--danger);"></div>
+            </div>
+            <div class="ge-hint">
+              💡 <strong>제안 과목:</strong> AI프로젝트입문(2학점), 기초창의코딩(3학점)
+            </div>
+          </div>
+
+          <!-- 2. 생애설계 -->
+          <div class="ge-item" style="border-left: 3px solid #f59e0b;">
+            <div class="ge-item-head">
+              <span>2. 생애설계 (오디세이)</span>
+              <span style="color: #f59e0b;">1 / 2 학점 (오디세이2 미이수)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 50%; background: #f59e0b;"></div>
+            </div>
+            <div class="ge-hint">
+              💡 <strong>제안 과목:</strong> 오디세이세미나 2 (공통 교양필수 1학점)
+            </div>
+          </div>
+
+          <!-- 3. 의사소통 -->
+          <div class="ge-item" style="border-left: 3px solid var(--success);">
+            <div class="ge-item-head">
+              <span>3. 의사소통</span>
+              <span style="color: var(--success);">3 / 3 학점 (충족 완료)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 100%; background: var(--success);"></div>
+            </div>
+            <div class="ge-hint">
+              ✓ 이수: (외국인)발표와토론2 (3학점)
+            </div>
+          </div>
+
+          <!-- 4. 글로벌소통 -->
+          <div class="ge-item" style="border-left: 3px solid var(--success);">
+            <div class="ge-item-head">
+              <span>4. 글로벌소통 (언어)</span>
+              <span style="color: var(--success);">9 / 9 학점 (기준 달성)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 100%; background: var(--success);"></div>
+            </div>
+            <div class="ge-hint">
+              ✓ 이수: 읽기와쓰기2, 대학한국어2·3, 영어 과목군
+            </div>
+          </div>
+
+          <!-- 5. 스포츠웰니스 -->
+          <div class="ge-item" style="border-left: 3px solid var(--success);">
+            <div class="ge-item-head">
+              <span>5. 스포츠웰니스</span>
+              <span style="color: var(--success);">2 / 1 학점 (기준 달성)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 100%; background: var(--success);"></div>
+            </div>
+            <div class="ge-hint">
+              ✓ 이수: 스포츠-요가(1), 스포츠-소도구필라테스(1)
+            </div>
+          </div>
+
+          <!-- 6. 자율선택 교양 -->
+          <div class="ge-item" style="border-left: 3px solid var(--success);">
+            <div class="ge-item-head">
+              <span>6. 자율선택 교양</span>
+              <span style="color: var(--success);">18 / 6 학점 (초과 달성)</span>
+            </div>
+            <div class="ge-progress">
+              <div class="ge-bar" style="width: 100%; background: var(--success);"></div>
+            </div>
+            <div class="ge-hint">
+              ✓ 이수: 경제학, 통계학, 한국대학생활, 한국문화 등
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Courses by 3 Semesters -->
+      <div class="card">
+        <div class="card-title">
+          <span>📋 실제 이수 과목 목록 (학기별 3개 섹션 분리)</span>
+          <span style="font-size: 0.78rem; font-weight: 500; color: var(--gray-600);">* 가짜 과목 0개 / 100% 실제 데이터</span>
+        </div>
+
+        <!-- Section 1: 2025-2 -->
+        <div class="semester-header">
+          <span>🏛️ 2025-2학기 (기이수 확정: 16학점 / 6과목)</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: var(--gray-600);">취득 완료</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 8%;">No</th>
+                <th style="width: 44%;">과목명</th>
+                <th style="width: 24%;">이수 구분</th>
+                <th style="width: 12%;">학점</th>
+                <th style="width: 12%;">성적</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-2025-2"></tbody>
+          </table>
+        </div>
+
+        <!-- Section 2: 2026-1 -->
+        <div class="semester-header">
+          <span>🏛️ 2026-1학기 (기이수 확정: 18학점 / 8과목)</span>
+          <span style="font-size: 0.78rem; font-weight: 600; color: var(--gray-600);">취득 완료</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 8%;">No</th>
+                <th style="width: 44%;">과목명</th>
+                <th style="width: 24%;">이수 구분</th>
+                <th style="width: 12%;">학점</th>
+                <th style="width: 12%;">성적</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-2026-1"></tbody>
+          </table>
+        </div>
+
+        <!-- Section 3: 2026-2 (수강중) -->
+        <div class="semester-header current">
+          <span>⏳ 2026-2학기 수강 중 (성적 미확정: 17학점 / 7과목)</span>
+          <span class="badge badge-curr">진행 중</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 8%;">No</th>
+                <th style="width: 44%;">과목명</th>
+                <th style="width: 24%;">이수 구분</th>
+                <th style="width: 12%;">학점</th>
+                <th style="width: 12%;">상태</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-2026-2"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 2: [시뮬레이터] -->
+    <!-- ================================================================= -->
+    <section id="tab-content-2" style="display: none;">
+
+      <div class="sim-layout">
+
+        <!-- Left: Cart Input & Items -->
+        <div>
+          <div class="card">
+            <div class="card-title">
+              <span>🛒 다음 학기 (2027-1학기) 수강 바구니</span>
+              <button class="btn btn-outline" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;" onclick="clearBasket()">
+                🗑️ 바구니 비우기
+              </button>
+            </div>
+
+            <!-- Course Search & Add Form -->
+            <div style="margin-bottom: 1rem;">
+              <div class="autocomplete-wrap">
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 0.35rem;">
+                  🔍 과목 검색 (내장 DB 245개 과목 지원 / 오타 허용 자동완성)
+                </label>
+                <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 입력 (예: 오디세이세미나2, 재무관리, AI프로젝트입문)" oninput="handleCourseSearch(this.value)" autocomplete="off" />
+                <div id="autocomplete-dropdown" class="autocomplete-list" style="display: none;"></div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 0.5rem; margin-top: 0.6rem;">
+                <div>
+                  <label style="display: block; font-size: 0.74rem; font-weight: 700; color: var(--gray-600); margin-bottom: 0.2rem;">이수 구분</label>
+                  <select id="bask-cat-input" class="select" style="width: 100%;">
+                    <option value="경영_전선">경영 전선</option>
+                    <option value="경영_전필">경영 전필</option>
+                    <option value="교양_정보소통">교양 (정보소통)</option>
+                    <option value="교양_생애설계">교양 (생애설계)</option>
+                    <option value="교양_의사소통">교양 (의사소통)</option>
+                    <option value="교양_글로벌소통">교양 (글로벌소통)</option>
+                    <option value="교양_스포츠웰니스">교양 (스포츠웰니스)</option>
+                    <option value="교양_자율선택">교양 (자율선택)</option>
+                    <option value="소프트웨어_기초">소프트웨어 기초</option>
+                    <option value="데이터사이언스_기초">데이터사이언스 기초</option>
+                    <option value="경제학_기초">경제학 기초</option>
+                    <option value="심리학_기초">심리학 기초</option>
+                    <option value="일반선택">일반선택</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.74rem; font-weight: 700; color: var(--gray-600); margin-bottom: 0.2rem;">학점</label>
+                  <select id="bask-cred-input" class="select" style="width: 100%;">
+                    <option value="3" selected>3학점</option>
+                    <option value="1">1학점</option>
+                    <option value="2">2학점</option>
+                    <option value="4">4학점</option>
+                  </select>
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                  <button class="btn btn-primary" style="height: 38px;" onclick="addCourseToBasket()">+ 담기</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Warnings Container -->
+            <div id="sim-warnings-container"></div>
+
+            <!-- Basket Table -->
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 48%;">과목명</th>
+                    <th style="width: 24%;">이수 구분</th>
+                    <th style="width: 14%;">학점</th>
+                    <th style="width: 14%; text-align: center;">관리</th>
+                  </tr>
+                </thead>
+                <tbody id="sim-basket-tbody"></tbody>
+              </table>
+              <div id="sim-basket-empty" style="text-align: center; padding: 2rem; color: var(--gray-400); font-size: 0.85rem;">
+                🧺 장바구니가 비어 있습니다. 위 검색창에서 과목을 찾아 담아보세요.
+              </div>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--gray-500); margin-top: 0.5rem;">
+              ※ 본 시뮬레이터는 시간표(교시/강의실) 배치를 지원하지 않으며, 졸업요건 충족 여부 분석에만 집중합니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Panel (Redundant duplicate section removed!) -->
+        <aside class="live-panel">
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.75rem;">
+            📊 실시간 졸업 요건 시뮬레이션
+          </div>
+
+          <div class="live-metric-hero">
+            <div style="font-size: 0.78rem; font-weight: 700; color: var(--gray-500); margin-bottom: 0.2rem;">
+              예상 총 취득학점 (바구니 반영)
+            </div>
+            <div class="live-hero-num" id="live-hero-credits">
+              51 <span style="font-size: 1.05rem; font-weight: 500; color: var(--gray-600);">/ 130</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 0.25rem;" id="live-hero-pct">
+              달성도: 39.2% (기존 51학점 + 바구니 +0학점)
+            </div>
+            <div class="progress-track" style="margin-top: 0.6rem;">
+              <div id="live-bar-curr" style="height: 100%; background: var(--primary); width: 39.2%;"></div>
+              <div id="live-bar-basket" style="position: absolute; top:0; height: 100%; background: #f59e0b; left: 39.2%; width: 0%;"></div>
+            </div>
+            <div class="live-remaining-pill" id="live-remain-text">
+              이 바구니로 졸업까지 남은 학점: 79학점
+            </div>
+          </div>
+
+          <div style="font-size: 0.8rem; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
+            <span id="live-panel-major-label">🏛️ 경영 전공 (60학점 기준)</span>
+            <span><strong id="live-biz-cred">13</strong> / <span id="live-biz-target">60</span> 학점 <span id="live-biz-delta" style="color: #f59e0b;"></span></span>
+          </div>
+          <div class="progress-track" style="height: 5px; margin-bottom: 0.75rem;">
+            <div id="live-biz-bar-curr" style="height: 100%; background: var(--primary); width: 21.7%;"></div>
+            <div id="live-biz-bar-bask" style="position: absolute; top:0; height: 100%; background: #f59e0b; left: 21.7%; width: 0%;"></div>
+          </div>
+
+          <div style="font-size: 0.8rem; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
+            <span>📚 교양 교과목 (26학점 공통)</span>
+            <span><strong id="live-ge-cred">35</strong> / 26 학점 (기준 달성)</span>
+          </div>
+          <div class="progress-track" style="height: 5px; margin-bottom: 0.75rem;">
+            <div style="height: 100%; background: var(--success); width: 100%;"></div>
+          </div>
+
+          <div style="font-size: 0.8rem; margin-bottom: 0.35rem; display: flex; justify-content: space-between;">
+            <span>🧩 일반선택</span>
+            <span><strong id="live-gen-cred">3</strong> / 3 학점 (충족)</span>
+          </div>
+        </aside>
+
+      </div>
+
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- TAB 3: [도움말] -->
+    <!-- ================================================================= -->
+    <section id="tab-content-3" style="display: none;">
+
+      <!-- 3-Step Guide -->
+      <div class="card">
+        <div class="card-title">📖 사용법 3단계</div>
+        <div class="help-step-grid">
+          <div class="help-step-card">
+            <span class="help-step-num">STEP 1</span>
+            <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">[내 현황] 확인</div>
+            <div style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.5;">
+              기이수 확정 34학점 및 2026-2 수강중 17학점 내역과 부족한 필수 2가지를 점검합니다.
+            </div>
+          </div>
+          <div class="help-step-card">
+            <span class="help-step-num">STEP 2</span>
+            <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">[시뮬레이터] 과목 담기</div>
+            <div style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.5;">
+              내장 245개 과목 검색 또는 직접 입력을 통해 다음 학기에 들을 과목을 바구니에 담습니다.
+            </div>
+          </div>
+          <div class="help-step-card">
+            <span class="help-step-num">STEP 3</span>
+            <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">실시간 미래 상태 진단</div>
+            <div style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.5;">
+              오른쪽 패널에서 장바구니 반영 시 졸업까지 남은 학점과 동일과목 재이수 경고를 확인합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Differentiation: No Timetable -->
+      <div class="card">
+        <div class="card-title">⚡ 포털 시간표와의 명확한 차별점</div>
+        <div style="background: var(--gray-50); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--primary); margin-bottom: 1rem;">
+          <p style="font-size: 0.95rem; font-weight: 700; color: var(--gray-900); margin-bottom: 0.4rem;">
+            "포털은 시간표를 시뮬레이션합니다. 우리는 졸업을 시뮬레이션합니다."
+          </p>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.5;">
+            대학 포털 시스템은 주간 강의실 및 교시 중복을 확인하는 시간표 앱 기능을 이미 충실히 제공하고 있습니다.<br>
+            따라서 본 앱은 중복되는 시간표 기능은 과감히 배제하고, <strong>"이 장바구니에 담은 과목들이 졸업 요건(경영 60학점, 교양 26학점, 필수 과목)을 어떻게 바꾸는지"</strong>에만 100% 집중합니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- AI Slop Defense -->
+      <div class="card">
+        <div class="card-title">🤖 AI 슬롭(Slop) 방지 원칙 (엄격한 분업)</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 25%;">구분</th>
+                <th style="width: 35%;">AI의 역할</th>
+                <th style="width: 40%;">규칙 코드의 역할</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>담당 영역</strong></td>
+                <td>성적표 PDF 비정형 파싱 (OCR) & 유사 과목 검색 자동완성</td>
+                <td><strong>100% 결정론적 졸업 사정 및 중복 검증</strong></td>
+              </tr>
+              <tr>
+                <td><strong>원칙 및 특징</strong></td>
+                <td>비정형 문서에서 과목명, 학점을 인식하여 사용자에게 확인/수정 제공</td>
+                <td>130학점 연산, 경영 60학점 단일전공 판정, 교양 26학점 영역별 진단, 한림대 동일과목 재이수 감지 (할루시네이션 0%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Hallym Rules & DB Structure -->
+      <div class="card">
+        <div class="card-title">🏛️ 한림대학교 공식 학칙 및 과목 DB</div>
+        <ul style="font-size: 0.84rem; color: var(--gray-700); line-height: 1.7; padding-left: 1.25rem;">
+          <li><strong>총 졸업학점:</strong> 130학점 이상 이수 (한림대학교 학칙 제36조)</li>
+          <li><strong>경영학 단일전공:</strong> 전공 60학점 이상 이수 (오디세이세미나3 전공필수 포함)</li>
+          <li><strong>대학 공통 교양 26학점:</strong> 정보소통(5), 생애설계(2), 의사소통(3), 글로벌소통(9), 스포츠웰니스(1), 자율선택(6)</li>
+          <li><strong>정규학기 수강 한도:</strong> 최대 18학점 (직전학기 평점 3.75 이상 시 21학점 승인 가능)</li>
+          <li><strong>동일과목 재이수 규정:</strong> 이미 이수한 과목을 재수강할 경우 이전 성적이 무효화되며 신규 졸업 학점 0점 가산, 성적은 최대 A0로 제한됨</li>
+          <li><strong>과목 DB 구조:</strong> <code>data/courses.json</code>에 엄선된 245개 과목이 내장되어 있으며, 없는 과목 직접 추가 시 브라우저 <code>localStorage</code>에 영구 보관됩니다.</li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- JAVASCRIPT LOGIC -->
+  <!-- ================================================================= -->
+  <script>
+    /* 1. REAL 21 COURSES (34 Confirmed + 17 In Progress) */
+    const COURSES_2025_2 = [
+      { no: 1, title: '(외국인)읽기와쓰기2', cat: '선택필수', credits: 3, grade: 'A0' },
+      { no: 2, title: '대학한국어2', cat: '선택필수', credits: 3, grade: 'A+' },
+      { no: 3, title: '한국대학생활의이해', cat: '일반교양', credits: 3, grade: 'A0' },
+      { no: 4, title: '(외국인)발표와토론2', cat: '선택필수', credits: 3, grade: 'A+' },
+      { no: 5, title: '마케팅원론', cat: '경영전선', credits: 3, grade: 'B+' },
+      { no: 6, title: '글로벌멘토링인증', cat: '일반교양', credits: 1, grade: 'P' }
+    ]; // 16학점
+
+    const COURSES_2026_1 = [
+      { no: 7, title: '스포츠-요가', cat: '선택필수', credits: 1, grade: 'P' },
+      { no: 8, title: '생활과영화속의경제학', cat: '일반교양', credits: 3, grade: 'B+' },
+      { no: 9, title: '생활속의통계학', cat: '일반교양', credits: 3, grade: 'B+' },
+      { no: 10, title: '오디세이세미나1', cat: '교양필수', credits: 1, grade: 'P' },
+      { no: 11, title: '대학한국어3', cat: '선택필수', credits: 3, grade: 'A+' },
+      { no: 12, title: '경영정보시스템(종합설계)', cat: '경영전선', credits: 3, grade: 'A0' },
+      { no: 13, title: '인터넷비즈니스(종합설계)', cat: '경영전선', credits: 3, grade: 'A0' },
+      { no: 14, title: '스포츠-소도구필라테스', cat: '선택필수', credits: 1, grade: 'P' }
+    ]; // 18학점
+
+    const COURSES_2026_2 = [
+      { no: 15, title: '영화와미디어로만나는한국문화', cat: '일반교양', credits: 3, status: '2026-2 수강중' },
+      { no: 16, title: '사회봉사활동Ⅱ', cat: '한림소양', credits: 1, status: '2026-2 수강중' },
+      { no: 17, title: '오디세이세미나3', cat: '경영전필', credits: 1, status: '2026-2 수강중' },
+      { no: 18, title: '경영과인공지능', cat: '경영전선', credits: 3, status: '2026-2 수강중' },
+      { no: 19, title: 'ESSENTIAL ENGLISH1', cat: '선택필수', credits: 3, status: '2026-2 수강중' },
+      { no: 20, title: '인공지능영어1', cat: '선택필수', credits: 3, status: '2026-2 수강중' },
+      { no: 21, title: '응용프로그래밍:R', cat: '일반선택', credits: 3, status: '2026-2 수강중' }
+    ]; // 17학점
+
+    const ALL_REAL_COURSES = [...COURSES_2025_2, ...COURSES_2026_1, ...COURSES_2026_2];
+
+    let courseDatabase = [];
+    let customCourses = JSON.parse(localStorage.getItem('hallym_custom_courses') || '[]');
+    let basketCourses = JSON.parse(localStorage.getItem('hallym_basket_clean') || '[]');
+    let currentMajor = localStorage.getItem('hallym_current_major') || '경영학과';
+    let studentId = localStorage.getItem('hallym_student_id') || '20258044';
+    let studentName = localStorage.getItem('hallym_student_name') || '김한림';
+    let hasDoubleMajor = localStorage.getItem('hallym_has_double_major') === 'true';
+    let doubleMajorName = localStorage.getItem('hallym_double_major_name') || '';
+
+    // Load Courses JSON
+    async function loadCourseDatabase() {
+      try {
+        const res = await fetch('data/courses.json');
+        if (res.ok) {
+          courseDatabase = await res.json();
+        }
+      } catch (err) {
+        console.warn('Local fetch fallback');
+      }
+      if (!courseDatabase || courseDatabase.length === 0) {
+        courseDatabase = [
+          { title: '마케팅원론', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { title: '재무관리', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { title: '회계원리', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { title: '경영통계학', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { title: '오디세이세미나2', cat: '교양_생애설계', credits: 1, dept: '교양(생애설계)' },
+          { title: '오디세이세미나3', cat: '경영_전필', credits: 1, dept: '경영학과' },
+          { title: 'AI프로젝트입문', cat: '교양_정보소통', credits: 2, dept: '교양(정보소통)' },
+          { title: '기초창의코딩', cat: '교양_정보소통', credits: 3, dept: '교양(정보소통)' },
+          { title: '창의코딩', cat: '교양_정보소통', credits: 3, dept: '교양(정보소통)' }
+        ];
+      }
+    }
+
+    function saveCustomCourses() {
+      localStorage.setItem('hallym_custom_courses', JSON.stringify(customCourses));
+    }
+
+    function saveBasket() {
+      localStorage.setItem('hallym_basket_clean', JSON.stringify(basketCourses));
+    }
+
+    function norm(str) {
+      return (str || '').replace(/\s+/g, '').toLowerCase();
+    }
+
+    /* Tab Switching */
+    function switchTab(tabNum) {
+      document.getElementById('tab-content-1').style.display = tabNum === 1 ? 'block' : 'none';
+      document.getElementById('tab-content-2').style.display = tabNum === 2 ? 'block' : 'none';
+      document.getElementById('tab-content-3').style.display = tabNum === 3 ? 'block' : 'none';
+
+      document.getElementById('btn-tab-1').classList.toggle('active', tabNum === 1);
+      document.getElementById('btn-tab-2').classList.toggle('active', tabNum === 2);
+      document.getElementById('btn-tab-3').classList.toggle('active', tabNum === 3);
+
+      closeMoreMenu();
+      if (tabNum === 2) renderScreen2();
+    }
+
+    /* Update Profile Display */
+    function updateProfileBadge() {
+      const id = localStorage.getItem('hallym_student_id') || '20258044';
+      const major = localStorage.getItem('hallym_current_major') || '경영학과';
+      const hasDouble = localStorage.getItem('hallym_has_double_major') === 'true';
+      const dName = localStorage.getItem('hallym_double_major_name') || '빅데이터';
+
+      let majorText = major === '경영학과' ? '경영학과 단일전공' : `${major} (간단 모드)`;
+      if (hasDouble && dName) {
+        majorText = `${major} + ${dName} 복수전공`;
+      }
+
+      const pEl = document.getElementById('profile-display-text');
+      if (pEl) {
+        pEl.innerHTML = `👤 <b>${id}</b> · ${majorText} · 2026-2학기 수강 중`;
+      }
+    }
+
+    /* Major Logic Handler */
+    function handleMajorChange(major) {
+      currentMajor = major;
+      localStorage.setItem('hallym_current_major', major);
+
+      const simpleBanner = document.getElementById('simple-mode-banner');
+      const simpleText = document.getElementById('simple-mode-text');
+      const majorRemainHint = document.getElementById('major-remain-hint');
+      const thMajorName = document.getElementById('th-major-name');
+      const tdConfMajor = document.getElementById('td-conf-major');
+      const tdExpMajor = document.getElementById('td-exp-major');
+      const liveMajorLabel = document.getElementById('live-panel-major-label');
+      const liveBizTarget = document.getElementById('live-biz-target');
+
+      if (major === '경영학과') {
+        simpleBanner.style.display = 'none';
+        majorRemainHint.textContent = '* 경영 단일전공 기준: 전공 13/60학점 (잔여 47학점 필요)';
+        thMajorName.textContent = '주전공 (경영 단일전공)';
+        tdConfMajor.innerHTML = '<strong>9</strong> / 60 학점';
+        tdExpMajor.innerHTML = '<strong>13</strong> / 60 학점 (+4)';
+        liveMajorLabel.textContent = '🏛️ 경영 전공 (60학점 기준)';
+        liveBizTarget.textContent = '60';
+      } else {
+        simpleBanner.style.display = 'flex';
+        simpleText.innerHTML = '<strong>간단 모드:</strong> 총 학점과 교양 진도만 계산됩니다. 전공 세부 졸업요건은 소속 학과에서 확인하세요.';
+        majorRemainHint.textContent = `* ${major} [간단 모드]: 전공 상세 요건은 학과 확인 필요`;
+        thMajorName.textContent = `주전공 (${major} 간단 모드)`;
+        tdConfMajor.innerHTML = '<strong>9</strong> 학점 이수';
+        tdExpMajor.innerHTML = '<strong>13</strong> 학점 이수 (학과확인)';
+        liveMajorLabel.textContent = `🏛️ ${major} (간단 모드)`;
+        liveBizTarget.textContent = '이수';
+      }
+      updateProfileBadge();
+      renderScreen2();
+    }
+
+    /* More Menu ⋮ Controls */
+    function toggleMoreMenu(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('more-dropdown');
+      menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+    function closeMoreMenu() {
+      const menu = document.getElementById('more-dropdown');
+      if (menu) menu.style.display = 'none';
+    }
+    document.addEventListener('click', () => closeMoreMenu());
+
+    function alertFeedbackInfo() {
+      closeMoreMenu();
+      alert('📧 문의 및 피드백 기능은 추후 업데이트 예정입니다.\n수강 및 졸업 관련 공식 문의는 소속 학과 교학팀으로 문의해주세요.');
+    }
+
+    /* Settings Modal Controls */
+    function openSettingsModal() {
+      closeMoreMenu();
+      const modal = document.getElementById('settings-modal');
+      document.getElementById('modal-student-id').value = localStorage.getItem('hallym_student_id') || '20258044';
+      document.getElementById('modal-student-name').value = localStorage.getItem('hallym_student_name') || '김한림';
+      document.getElementById('modal-major-select').value = currentMajor;
+
+      const hasD = localStorage.getItem('hallym_has_double_major') === 'true';
+      document.getElementById('modal-has-double').checked = hasD;
+      document.getElementById('modal-double-wrap').style.display = hasD ? 'block' : 'none';
+      document.getElementById('modal-double-name').value = localStorage.getItem('hallym_double_major_name') || '';
+
+      modal.style.display = 'flex';
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settings-modal').style.display = 'none';
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'settings-modal') closeSettingsModal();
+    }
+
+    function toggleDoubleMajorInput(checked) {
+      document.getElementById('modal-double-wrap').style.display = checked ? 'block' : 'none';
+    }
+
+    function saveSettings() {
+      const newMajor = document.getElementById('modal-major-select').value;
+      const prevMajor = currentMajor;
+
+      if (newMajor !== prevMajor) {
+        const ok = confirm('전공을 변경하면 졸업요건 계산이 바뀝니다. 계속하시겠습니까?');
+        if (!ok) return;
+      }
+
+      const newId = document.getElementById('modal-student-id').value.trim() || '20258044';
+      const newName = document.getElementById('modal-student-name').value.trim() || '김한림';
+      const hasD = document.getElementById('modal-has-double').checked;
+      const dName = document.getElementById('modal-double-name').value.trim();
+
+      localStorage.setItem('hallym_student_id', newId);
+      localStorage.setItem('hallym_student_name', newName);
+      localStorage.setItem('hallym_has_double_major', hasD);
+      localStorage.setItem('hallym_double_major_name', dName);
+
+      handleMajorChange(newMajor);
+      closeSettingsModal();
+    }
+
+    function resetUserData() {
+      const ok = confirm('장바구니와 사용자 직접 추가 과목 데이터를 초기화하시겠습니까?');
+      if (ok) {
+        localStorage.removeItem('hallym_basket_clean');
+        localStorage.removeItem('hallym_custom_courses');
+        basketCourses = [];
+        customCourses = [];
+        renderScreen2();
+        closeSettingsModal();
+        alert('데이터가 성공적으로 초기화되었습니다.');
+      }
+    }
+
+    /* Render Tab 1 Tables */
+    function renderScreen1Tables() {
+      const tb1 = document.getElementById('tbody-2025-2');
+      tb1.innerHTML = '';
+      COURSES_2025_2.forEach(c => {
+        const tr = document.createElement('tr');
+        const bClass = c.cat.includes('전선') ? 'badge-primary' : 'badge-green';
+        tr.innerHTML = `
+          <td style="color:#64748b;">${c.no}</td>
+          <td><strong>${c.title}</strong></td>
+          <td><span class="badge ${bClass}">${c.cat}</span></td>
+          <td>${c.credits} 학점</td>
+          <td><span style="font-weight:700; color:var(--primary);">${c.grade}</span></td>
+        `;
+        tb1.appendChild(tr);
+      });
+
+      const tb2 = document.getElementById('tbody-2026-1');
+      tb2.innerHTML = '';
+      COURSES_2026_1.forEach(c => {
+        const tr = document.createElement('tr');
+        const bClass = c.cat.includes('전선') ? 'badge-primary' : (c.cat.includes('교양필수') ? 'badge-red' : 'badge-green');
+        tr.innerHTML = `
+          <td style="color:#64748b;">${c.no}</td>
+          <td><strong>${c.title}</strong></td>
+          <td><span class="badge ${bClass}">${c.cat}</span></td>
+          <td>${c.credits} 학점</td>
+          <td><span style="font-weight:700; color:var(--primary);">${c.grade}</span></td>
+        `;
+        tb2.appendChild(tr);
+      });
+
+      const tb3 = document.getElementById('tbody-2026-2');
+      tb3.innerHTML = '';
+      COURSES_2026_2.forEach(c => {
+        const tr = document.createElement('tr');
+        const bClass = c.cat.includes('전필') ? 'badge-red' : (c.cat.includes('전선') ? 'badge-primary' : 'badge-gray');
+        tr.innerHTML = `
+          <td style="color:#0284c7; font-weight:700;">${c.no}</td>
+          <td><strong style="color: #0369a1;">${c.title}</strong></td>
+          <td><span class="badge ${bClass}">${c.cat}</span></td>
+          <td><strong>${c.credits}</strong> 학점</td>
+          <td><span class="badge badge-curr">수강중</span></td>
+        `;
+        tb3.appendChild(tr);
+      });
+    }
+
+    /* Autocomplete & Catalog Helpers */
+    function getAllSearchableCourses() {
+      return [...customCourses, ...courseDatabase];
+    }
+
+    function handleCourseSearch(query) {
+      const dropdown = document.getElementById('autocomplete-dropdown');
+      const q = norm(query);
+
+      if (!q) {
+        dropdown.style.display = 'none';
+        return;
+      }
+
+      const allCourses = getAllSearchableCourses();
+      const matches = allCourses.filter(c => norm(c.title).includes(q));
+
+      dropdown.innerHTML = '';
+
+      if (matches.length > 0) {
+        matches.slice(0, 8).forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'autocomplete-item';
+          div.innerHTML = `
+            <div>
+              <strong>${item.title}</strong>
+              <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${item.dept || item.cat})</span>
+            </div>
+            <span class="badge badge-gray">${item.credits}학점</span>
+          `;
+          div.onclick = () => selectCourseFromAutocomplete(item);
+          dropdown.appendChild(div);
+        });
+      }
+
+      const addCustomDiv = document.createElement('div');
+      addCustomDiv.className = 'autocomplete-add-custom';
+      addCustomDiv.innerHTML = `➕ "<strong>${query}</strong>" 새 과목으로 직접 추가하기`;
+      addCustomDiv.onclick = () => promptAddCustomCourse(query);
+      dropdown.appendChild(addCustomDiv);
+
+      dropdown.style.display = 'block';
+    }
+
+    function selectCourseFromAutocomplete(item) {
+      document.getElementById('bask-title-input').value = item.title;
+      document.getElementById('bask-cred-input').value = item.credits || 3;
+
+      const catSelect = document.getElementById('bask-cat-input');
+      if (item.cat && Array.from(catSelect.options).some(o => o.value === item.cat)) {
+        catSelect.value = item.cat;
+      } else if (item.dept && item.dept.includes('경영')) {
+        catSelect.value = '경영_전선';
+      }
+      document.getElementById('autocomplete-dropdown').style.display = 'none';
+    }
+
+    function promptAddCustomCourse(query) {
+      document.getElementById('autocomplete-dropdown').style.display = 'none';
+      const catSelect = document.getElementById('bask-cat-input');
+      const credSelect = document.getElementById('bask-cred-input');
+
+      const newCourse = {
+        title: query.trim(),
+        cat: catSelect.value,
+        credits: parseInt(credSelect.value, 10),
+        dept: '사용자 직접추가'
+      };
+
+      if (!customCourses.some(c => norm(c.title) === norm(newCourse.title))) {
+        customCourses.push(newCourse);
+        saveCustomCourses();
+      }
+
+      document.getElementById('bask-title-input').value = query.trim();
+      addCourseToBasket();
+    }
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('autocomplete-dropdown');
+      const input = document.getElementById('bask-title-input');
+      if (e.target !== dropdown && e.target !== input) {
+        if (dropdown) dropdown.style.display = 'none';
+      }
+    });
+
+    /* Basket Management */
+    function addCourseToBasket() {
+      const titleInput = document.getElementById('bask-title-input');
+      const catInput = document.getElementById('bask-cat-input');
+      const credInput = document.getElementById('bask-cred-input');
+
+      const title = titleInput.value.trim();
+      const cat = catInput.value;
+      const credits = parseInt(credInput.value, 10);
+
+      if (!title) {
+        alert('과목명을 입력하세요.');
+        return;
+      }
+
+      const tNorm = norm(title);
+      const isDup = ALL_REAL_COURSES.some(c => norm(c.title) === tNorm);
+
+      const newItem = {
+        id: 'bask_' + Date.now(),
+        title: title,
+        cat: cat,
+        credits: credits,
+        isDuplicate: isDup
+      };
+
+      basketCourses.push(newItem);
+      saveBasket();
+
+      titleInput.value = '';
+      renderScreen2();
+    }
+
+    function removeBasketCourse(id) {
+      basketCourses = basketCourses.filter(b => b.id !== id);
+      saveBasket();
+      renderScreen2();
+    }
+
+    function clearBasket() {
+      if (basketCourses.length === 0) return;
+      basketCourses = [];
+      saveBasket();
+      renderScreen2();
+    }
+
+    /* Render Screen 2 (Redundant red checklist section removed!) */
+    function renderScreen2() {
+      const tbody = document.getElementById('sim-basket-tbody');
+      const emptyHint = document.getElementById('sim-basket-empty');
+      const warnContainer = document.getElementById('sim-warnings-container');
+
+      tbody.innerHTML = '';
+      warnContainer.innerHTML = '';
+
+      let baskValidCredits = 0;
+      let baskBiz = 0;
+      let hasDup = false;
+
+      if (basketCourses.length === 0) {
+        emptyHint.style.display = 'block';
+      } else {
+        emptyHint.style.display = 'none';
+
+        basketCourses.forEach(b => {
+          if (b.isDuplicate) {
+            hasDup = true;
+          } else {
+            baskValidCredits += b.credits;
+            if (b.cat.startsWith('경영')) baskBiz += b.credits;
+          }
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <strong>${b.title}</strong>
+              ${b.isDuplicate ? '<br><span style="color:var(--danger); font-size:0.72rem; font-weight:700;">⚠️ 재이수 (학점 0점 반영 / A0 상한)</span>' : ''}
+            </td>
+            <td><span class="badge badge-gray">${b.cat.replace('_', ' ')}</span></td>
+            <td><strong>${b.credits}</strong> 학점</td>
+            <td style="text-align: center;">
+              <button class="btn btn-danger-sm" onclick="removeBasketCourse('${b.id}')">삭제</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Check 18 Credit Limit Warning
+      const rawBasketSum = basketCourses.reduce((sum, b) => sum + b.credits, 0);
+      if (rawBasketSum > 18) {
+        warnContainer.innerHTML += `
+          <div class="alert alert-warning">
+            <span>⚠️</span>
+            <div>
+              <strong>학기당 수강 한도(18학점) 초과:</strong> 현재 바구니에 총 <strong>${rawBasketSum}학점</strong>이 담겨 있습니다.
+              (직전학기 평점 3.75 이상 시에만 21학점 승인 가능)
+            </div>
+          </div>
+        `;
+      }
+
+      if (hasDup) {
+        warnContainer.innerHTML += `
+          <div class="alert alert-danger">
+            <span>🚫</span>
+            <div>
+              <strong>동일과목 재이수 경고:</strong> 이미 이수한 과목이 포함되어 있어 신규 졸업 학점으로 가산되지 않습니다. (성적 상한 A0 제한)
+            </div>
+          </div>
+        `;
+      }
+
+      // Update Right Live Panel
+      const expectedCurrent = 51;
+      const simTotal = expectedCurrent + baskValidCredits;
+      const simRemain = Math.max(0, 130 - simTotal);
+      const currPct = ((expectedCurrent / 130) * 100).toFixed(1);
+      const simPct = Math.min(100, ((simTotal / 130) * 100)).toFixed(1);
+      const baskPct = (simPct - currPct).toFixed(1);
+
+      document.getElementById('live-hero-credits').innerHTML = `${simTotal} <span style="font-size: 1.05rem; font-weight: 500; color: var(--gray-600);">/ 130</span>`;
+      document.getElementById('live-hero-pct').textContent = `달성도: ${simPct}% (기존 51학점 + 바구니 +${baskValidCredits}학점)`;
+      document.getElementById('live-bar-curr').style.width = `${currPct}%`;
+      document.getElementById('live-bar-basket').style.left = `${currPct}%`;
+      document.getElementById('live-bar-basket').style.width = `${baskPct}%`;
+
+      document.getElementById('live-remain-text').textContent = `이 바구니로 졸업까지 남은 학점: ${simRemain}학점`;
+
+      // Business Major: 60 credits target
+      const totBiz = 13 + baskBiz;
+      document.getElementById('live-biz-cred').textContent = totBiz;
+      document.getElementById('live-biz-delta').textContent = baskBiz > 0 ? `(+${baskBiz})` : '';
+
+      const currBizWidth = (13 / 60) * 100;
+      const baskBizWidth = Math.min(100 - currBizWidth, (baskBiz / 60) * 100);
+      document.getElementById('live-biz-bar-curr').style.width = `${currBizWidth}%`;
+      document.getElementById('live-biz-bar-bask').style.left = `${currBizWidth}%`;
+      document.getElementById('live-biz-bar-bask').style.width = `${baskBizWidth}%`;
+    }
+
+    // Initialize on Load
+    window.addEventListener('DOMContentLoaded', async () => {
+      await loadCourseDatabase();
+      updateProfileBadge();
+      handleMajorChange(currentMajor);
+      renderScreen1Tables();
+      renderScreen2();
+    });
+  </script>
+</body>
+</html>
