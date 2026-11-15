@@ -79,6 +79,8 @@ if "student_id" not in st.session_state:
     st.session_state.student_id = "20258044"
 if "student_name" not in st.session_state:
     st.session_state.student_name = "김한림"
+if "student_type" not in st.session_state:
+    st.session_state.student_type = "재학생"
 if "has_double_major" not in st.session_state:
     st.session_state.has_double_major = False
 
@@ -95,12 +97,13 @@ col_head1, col_head2 = st.columns([2.5, 1.5])
 with col_head1:
     st.title("🎓 한림 수강 바구니 + 졸업 시뮬레이터")
     major_label = "경영학과 단일전공" if "경영학과" in st.session_state.major_mode else st.session_state.major_mode.split()[0]
-    st.markdown(f"##### 👤 **{st.session_state.student_id}** · {major_label} · **2026-2학기 수강 중**")
+    st.markdown(f"##### 👤 **{st.session_state.student_id}** {st.session_state.student_name} · {major_label} · **{st.session_state.student_type}**")
 
 with col_head2:
     with st.expander("⚙️ **설정 / 프로필 변경 (⋮)**", expanded=False):
         new_id = st.text_input("학번", value=st.session_state.student_id)
         new_name = st.text_input("이름", value=st.session_state.student_name)
+        new_type = st.selectbox("학생 구분", ["재학생", "편입생"], index=0 if st.session_state.student_type == "재학생" else 1)
         new_major = st.selectbox(
             "주전공 선택",
             ["경영학과 (단일전공 60학점 완전지원)", "소프트웨어학부 (간단 모드)", "데이터사이언스학부 (간단 모드)", "경제학과 (간단 모드)", "심리학과 (간단 모드)", "기타 학과 (간단 모드)"],
@@ -113,6 +116,7 @@ with col_head2:
         if col_btn1.button("💾 설정 저장"):
             st.session_state.student_id = new_id
             st.session_state.student_name = new_name
+            st.session_state.student_type = new_type
             st.session_state.major_mode = new_major
             st.success("설정이 저장되었습니다.")
             st.rerun()
