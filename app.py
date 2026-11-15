@@ -84,6 +84,9 @@ if "student_type" not in st.session_state:
 if "has_double_major" not in st.session_state:
     st.session_state.has_double_major = False
 
+if "user_courses" not in st.session_state:
+    st.session_state.user_courses = list(ALL_REAL_COURSES)
+
 def norm(text):
     return text.replace(" ", "").lower()
 
@@ -129,8 +132,61 @@ with col_head2:
 
         st.caption("자동저장 상태: **항상 켜짐 (세션 유지)**")
 
-# Exactly 3 Tabs
-tab1, tab2, tab3 = st.tabs(["📋 [내 현황]", "🛒 [시뮬레이터]", "📖 [도움말]"])
+# 4 Tabs (내 정보, 내 현황, 시뮬레이터, 도움말)
+tab0, tab1, tab2, tab3 = st.tabs(["👤 [내 정보]", "📊 [내 현황]", "🛒 [시뮬레이터]", "📖 [도움말]"])
+
+# =============================================================================
+# TAB 0: [내 정보] (사용자 정보 + 기이수 과목 관리)
+# =============================================================================
+with tab0:
+    st.write("#### 👤 내 기본 학적 정보")
+    c_info1, c_info2, c_info3, c_info4 = st.columns(4)
+    c_info1.metric("학번", st.session_state.student_id)
+    c_info2.metric("이름", st.session_state.student_name)
+    c_info3.metric("학적 구분", st.session_state.student_type)
+    c_info4.metric("주전공", st.session_state.major_mode.split()[0])
+
+    st.markdown("---")
+
+    # AI & Code Role Badges
+    st.markdown(
+        "<div style='display:flex; gap:0.5rem; margin-bottom:1rem;'>"
+        "<span style='background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:0.25rem 0.5rem; border-radius:4px; font-size:0.8rem; font-weight:700;'>⚙️ 학점 집계: 규칙 코드 처리 (100% 신뢰)</span>"
+        "<span style='background:#faf5ff; color:#7e22ce; border:1px solid #d8b4fe; padding:0.25rem 0.5rem; border-radius:4px; font-size:0.8rem; font-weight:700;'>🤖 성적표 인식: AI 처리 예정</span>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+
+    with st.expander("➕ **과목 직접 추가**", expanded=False):
+        c_add1, c_add2, c_add3, c_add4 = st.columns([2, 1, 1, 1])
+        new_c_title = c_add1.text_input("과목명", placeholder="예: 회계원리")
+        new_c_cat = c_add2.selectbox("이수구분", ["경영전선", "경영전필", "일반교양", "교양필수", "선택필수", "일반선택"])
+        new_c_cred = c_add3.selectbox("학점", [1, 2, 3, 4], index=2)
+        new_c_sem = c_add4.text_input("이수학기", value="2026-2")
+
+        if st.button("➕ 과목 추가 저장"):
+            if new_c_title.strip():
+                new_item = {
+                    "No": len(st.session_state.user_courses) + 1,
+                    "학기": new_c_sem,
+                    "과목명": new_c_title.strip(),
+                    "구분": new_c_cat,
+                    "학점": new_c_cred,
+                    "성적/상태": "수강중 (미확정)",
+                    "area": "전공" if "경영" in new_c_cat else "자율선택"
+                }
+                st.session_state.user_courses.append(new_item)
+                st.success(f"'{new_c_title}' 과목이 추가되었습니다.")
+                st.rerun()
+            else:
+                st.error("과목명을 입력해주세요.")
+
+    st.write(f"##### 📋 등록된 과목 목록 (총 {len(st.session_state.user_courses)}과목)")
+    df_user_courses = pd.DataFrame(st.session_state.user_courses)
+    if not df_user_courses.empty:
+        st.dataframe(df_user_courses[["학기", "과목명", "구분", "학점", "성적/상태"]], use_container_width=True, hide_index=True)
+    else:
+        st.info("등록된 이수 과목이 없습니다. 과목을 추가해주세요.")
 
 # =============================================================================
 # TAB 1: [내 현황]
