@@ -20,11 +20,12 @@
   {
     "code": "904610",
     "id": "904610",
-    "title": "전공선택프로젝트(PBL)",
+    "title": "전공선택프로젝트(PBL)-지역관광과축제의세계화",
     "credits": 3,
     "cat": "전공",
     "dept": "자유전공학부",
-    "semester": "1학기"
+    "semester": "1학기",
+    "desc": "지역관광과 축제의 글로벌화 프로젝트 (자유전공학부 PBL)"
   },
   {
     "code": "006175",
@@ -9810,5 +9811,355 @@
     "dept": "심리학과",
     "semester": "2학기",
     "desc": "소비자의 무의식적 구매 동기와 광고 효과 측정"
+  },
+  {
+    "code": "903117",
+    "id": "903117",
+    "title": "Presentation Skills",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "2학기",
+    "desc": "선택필수 글로벌소통 영역 (영어발표와토론 대체 과목, 공인영어 학점대체 인증 대상)"
+  },
+  {
+    "code": "903155",
+    "id": "903155",
+    "title": "World English: Speaking, Listening & Presenting",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "2학기",
+    "desc": "선택필수 글로벌소통 영역 (실용영어회화 대체 과목, 공인영어 학점대체 인증 대상)"
+  },
+  {
+    "code": "903121",
+    "id": "903121",
+    "title": "Understanding Cultures through Cinematic Representation",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "2학기",
+    "desc": "선택필수 글로벌소통 영역 (스크린영어 대체 과목, 공인영어 학점대체 인증 대상)"
+  },
+  {
+    "code": "006119",
+    "id": "006119",
+    "title": "영작문2",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "2학기",
+    "desc": "기초 어문 및 글로벌소통 영역 교과목 (Technical Writing in a Technological Era와 상호대체)"
+  },
+  {
+    "code": "001039",
+    "id": "001039",
+    "title": "영어발표와토론",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "1학기",
+    "desc": "글로벌소통 필수 영역 교과목 (Presentation Skills와 상호대체)"
+  },
+  {
+    "code": "006059",
+    "id": "006059",
+    "title": "스크린영어",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "2학기",
+    "desc": "글로벌소통 선택 영역 교과목 (영화 매체 기반 영어 학습)"
+  },
+  {
+    "code": "001038",
+    "id": "001038",
+    "title": "실용영어회화",
+    "credits": 3,
+    "cat": "교양_글로벌소통",
+    "dept": "일송자유교양대학",
+    "semester": "1학기",
+    "desc": "글로벌소통 선택 영역 교과목 (실무 영어 회화 및 의사소통)"
+  },
+  {
+    "code": "210112",
+    "id": "210112",
+    "title": "캡스톤디자인",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "경영학과",
+    "semester": "2학기",
+    "desc": "경영학과 종합설계 캡스톤디자인 (B0 이상 취득 시 졸업시험 1개 분야 면제)"
+  },
+  {
+    "code": "eng_pol_01",
+    "id": "eng_pol_01",
+    "title": "Introduction to Public Policy",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기",
+    "desc": "공공정책학 입문 및 정책분석 기본 이론 (행정학 심화 과목)"
+  },
+  {
+    "code": "eng_adv_01",
+    "id": "eng_adv_01",
+    "title": "Advertising Management",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "2학기",
+    "desc": "광고 기획 및 매체 관리 전략 (IAA International Communication 상호대체 과목)"
+  },
+  {
+    "code": "eng_fin_01",
+    "id": "eng_fin_01",
+    "title": "Business Finance",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "금융재무학과",
+    "semester": "1학기",
+    "desc": "기업재무론 및 재무관리 원리 (FinanceⅠ과 상호대체)"
+  },
+  {
+    "code": "eng_fin_02",
+    "id": "eng_fin_02",
+    "title": "Introduction to Finance",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "금융재무학과",
+    "semester": "1학기",
+    "desc": "재무학원론 및 자본시장 기초 이론"
+  },
+  {
+    "code": "eng_biz_01",
+    "id": "eng_biz_01",
+    "title": "Management Principles",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "경영학 원론 및 글로벌 조직 운영 기본 원리"
+  },
+  {
+    "code": "eng_biz_02",
+    "id": "eng_biz_02",
+    "title": "Marketing Principles",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "마케팅 원론 및 글로벌 시장 전략 분석"
+  },
+  {
+    "code": "eng_biz_03",
+    "id": "eng_biz_03",
+    "title": "Introduction to Financial Accounting",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "재무회계 기초 및 글로벌 회계 정보 분석"
+  },
+  {
+    "code": "eng_biz_04",
+    "id": "eng_biz_04",
+    "title": "Quantitative Data Analysis",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "비즈니스 계량 데이터 분석 및 통계 모델링"
+  },
+  {
+    "code": "eng_econ_01",
+    "id": "eng_econ_01",
+    "title": "Intermediate MicroeconomicsⅠ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "중급 미시경제학 이론 및 소비자·기업 행동 분석"
+  },
+  {
+    "code": "eng_econ_03",
+    "id": "eng_econ_03",
+    "title": "Intermediate MacroeconomicsⅠ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "중급 거시경제학 이론 및 국민소득 결정 모형"
+  },
+  {
+    "code": "eng_biz_05",
+    "id": "eng_biz_05",
+    "title": "Financial ManagementⅠ",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "글로벌 재무관리 기초 및 기업 자본예산 편성"
+  },
+  {
+    "code": "eng_biz_06",
+    "id": "eng_biz_06",
+    "title": "Business Statistics",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "경영통계학 기초 및 가설검정 실습"
+  },
+  {
+    "code": "eng_econ_05",
+    "id": "eng_econ_05",
+    "title": "Microeconomic Analysis",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "미시경제 분석론 (Intermediate Microeconomics 대체 과목)"
+  },
+  {
+    "code": "eng_econ_06",
+    "id": "eng_econ_06",
+    "title": "Macroeconomic Analysis",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "거시경제 분석론 (Intermediate Macroeconomics 대체 과목)"
+  },
+  {
+    "code": "eng_adv_02",
+    "id": "eng_adv_02",
+    "title": "Principles of Advertising/Promotion",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "광고 및 프로모션 원론과 브랜드 커뮤니케이션"
+  },
+  {
+    "code": "eng_adv_03",
+    "id": "eng_adv_03",
+    "title": "Int'l Communication",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "국제 커뮤니케이션 및 다문화 상호작용 분석"
+  },
+  {
+    "code": "eng_biz_07",
+    "id": "eng_biz_07",
+    "title": "Consumer Behavior",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "글로벌 소비자 행동론 및 의사결정 심리 분석"
+  },
+  {
+    "code": "eng_biz_08",
+    "id": "eng_biz_08",
+    "title": "Research Design in Business&Marketing",
+    "credits": 3,
+    "cat": "경영_전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "비즈니스 및 마케팅 조사방법론 실무"
+  },
+  {
+    "code": "eng_adv_04",
+    "id": "eng_adv_04",
+    "title": "Integrated Marketing Communication Campaign",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "통합 마케팅 커뮤니케이션 캠페인 캡스톤디자인"
+  },
+  {
+    "code": "eng_cs_01",
+    "id": "eng_cs_01",
+    "title": "Object Oriented Programming",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기",
+    "desc": "객체지향 프로그래밍 원리 및 실습 (C++/Java 기반)"
+  },
+  {
+    "code": "eng_law_01",
+    "id": "eng_law_01",
+    "title": "Criminal Law",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기",
+    "desc": "형법총론 및 과학수사 법적 근거 분석"
+  },
+  {
+    "code": "eng_fs_01",
+    "id": "eng_fs_01",
+    "title": "Introduction to Forensic Science",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기",
+    "desc": "과학수사 개론 및 디지털·바이오 포렌식 기초"
+  },
+  {
+    "code": "eng_cs_02",
+    "id": "eng_cs_02",
+    "title": "Computer Networking",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "2학기",
+    "desc": "컴퓨터 네트워크 원리 및 네트워크 포렌식 기초"
+  },
+  {
+    "code": "eng_cs_03",
+    "id": "eng_cs_03",
+    "title": "Computer Algorithms",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "2학기",
+    "desc": "자료구조 및 컴퓨터 알고리즘 설계와 분석"
+  },
+  {
+    "code": "eng_law_02",
+    "id": "eng_law_02",
+    "title": "Criminal Procedure Law",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "2학기",
+    "desc": "형사소송법 및 증거 채택과 수사 절차"
+  },
+  {
+    "code": "eng_biz_09",
+    "id": "eng_biz_09",
+    "title": "Information Technology for Global Business",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기",
+    "desc": "글로벌 비즈니스를 위한 정보기술 및 디지털 전략"
+  },
+  {
+    "code": "eng_biz_10",
+    "id": "eng_biz_10",
+    "title": "Capstone Design Seminar",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기",
+    "desc": "글로벌 비즈니스 캡스톤 디자인 세미나 및 종합 프로젝트"
   }
 ]
