@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
+  <!-- Course Database (1,098 Courses) for offline & local file:// support -->
+  <script src="data/courses.js"></script>
   <style>
     :root {
       --primary: #0284c7;
@@ -1471,9 +1473,9 @@
               <div style="margin-bottom: 1rem;">
                 <div class="autocomplete-wrap">
                   <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 0.35rem;">
-                    🔍 과목 검색 (내장 DB 245개 과목 지원 / 오타 허용 자동완성)
+                    🔍 과목 검색 (내장 DB <span id="course-count-badge">1,098</span>개 과목 지원 / 오타·영문 허용 자동완성)
                   </label>
-                  <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 입력 (예: 오디세이세미나2, 재무관리, AI프로젝트입문)" oninput="handleCourseSearch(this.value)" autocomplete="off" />
+                  <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 또는 코드 입력 (예: 마케팅원론, Essential English, 903178)" oninput="handleCourseSearch(this.value)" autocomplete="off" />
                   <div id="autocomplete-dropdown" class="autocomplete-list" style="display: none;"></div>
                 </div>
 
@@ -1617,7 +1619,7 @@
               <span class="help-step-num">STEP 3</span>
               <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem;">[시뮬레이터] 다음 학기 바구니</div>
               <div style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.5;">
-                내장 245개 과목에서 들을 과목을 바구니에 담아 중복과 18학점 초과를 예방하고 졸업 가능 여부를 확인합니다.
+                내장 1,098개 과목에서 들을 과목을 바구니에 담아 중복과 18학점 초과를 예방하고 졸업 가능 여부를 확인합니다.
               </div>
             </div>
           </div>
@@ -1694,7 +1696,7 @@
               <div id="modal-autocomplete-dropdown" class="autocomplete-list" style="display: none;"></div>
             </div>
             <div style="font-size: 0.73rem; color: var(--gray-500); margin-top: 0.25rem;">
-              ※ 내장 DB 245개 과목 자동완성 지원
+              ※ 내장 DB 1,098개 과목 자동완성 지원
             </div>
           </div>
 
@@ -1828,6 +1830,7 @@
   <!-- ================================================================= -->
   <!-- JAVASCRIPT LOGIC -->
   <!-- ================================================================= -->
+  <script src="data/courses.js"></script>
   <script>
     /* =========================================================================
        1. DEMO & INITIAL DATA (20258044 김한림 실제 이수 과목 21개)
@@ -1994,31 +1997,47 @@
 
     // Load Courses JSON
     async function loadCourseDatabase() {
+      // 1. Preloaded data/courses.js (CORS-safe for offline & local file://)
+      if (window.HALLYM_COURSES && Array.isArray(window.HALLYM_COURSES) && window.HALLYM_COURSES.length > 0) {
+        courseDatabase = window.HALLYM_COURSES;
+        updateCourseCountDisplay();
+        return;
+      }
+
+      // 2. Fetch data/courses.json (when running on HTTP/HTTPS server)
       try {
         const res = await fetch('data/courses.json');
         if (res.ok) {
           courseDatabase = await res.json();
+          updateCourseCountDisplay();
+          return;
         }
       } catch (err) {
-        console.warn('Local fetch fallback');
+        console.warn('Local fetch fallback:', err);
       }
+
+      // 3. Fallback
       if (!courseDatabase || courseDatabase.length === 0) {
         courseDatabase = [
-          { title: '마케팅원론', cat: '경영_전선', credits: 3, dept: '경영학과' },
-          { title: '재무관리', cat: '경영_전선', credits: 3, dept: '경영학과' },
-          { title: '회계원리', cat: '경영_전선', credits: 3, dept: '경영학과' },
-          { title: '경영통계학', cat: '경영_전선', credits: 3, dept: '경영학과' },
-          { title: '오디세이세미나2', cat: '교양_생애설계', credits: 1, dept: '교양(생애설계)' },
-          { title: '오디세이세미나3', cat: '경영_전필', credits: 1, dept: '경영학과' },
-          { title: 'AI프로젝트입문', cat: '교양_정보소통', credits: 2, dept: '교양(정보소통)' },
-          { title: '기초창의코딩', cat: '교양_정보소통', credits: 3, dept: '교양(정보소통)' },
-          { title: '창의코딩', cat: '교양_정보소통', credits: 3, dept: '교양(정보소통)' }
+          { code: '205303', title: '마케팅원론', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { code: 'biz_elec_06', title: '회계원리', cat: '경영_전선', credits: 3, dept: '경영학과' },
+          { code: '903178', title: 'ESSENTIAL ENGLISH1', cat: '교양_글로벌소통', credits: 3, dept: '일송자유교양대학' },
+          { code: '903179', title: 'ESSENTIAL ENGLISH2', cat: '교양_글로벌소통', credits: 3, dept: '일송자유교양대학' },
+          { code: 'eng_biz_03', title: 'Introduction to Financial Accounting', cat: '경영_전선', credits: 3, dept: '글로벌비즈니스전공' }
         ];
+      }
+      updateCourseCountDisplay();
+    }
+
+    function updateCourseCountDisplay() {
+      const el = document.getElementById('course-count-badge');
+      if (el && courseDatabase && courseDatabase.length) {
+        el.textContent = courseDatabase.length.toLocaleString();
       }
     }
 
     function norm(str) {
-      return (str || '').replace(/\s+/g, '').toLowerCase();
+      return (str || '').replace(/[\s\-_:.]+/g, '').toLowerCase();
     }
 
     /* =========================================================================
@@ -2168,6 +2187,7 @@
       document.getElementById('auth-container').style.display = 'none';
       document.getElementById('main-app-container').style.display = 'block';
 
+      updateCourseCountDisplay();
       updateProfileBadge();
       renderMyInfoTab();
       renderScreen1Tables();
@@ -2517,27 +2537,35 @@
       }
 
       const all = getAllSearchableCourses();
-      const matches = all.filter(c => norm(c.title).includes(q));
+      const matches = all.filter(c => 
+        (c.title && norm(c.title).includes(q)) || 
+        (c.code && norm(c.code).includes(q)) ||
+        (c.desc && norm(c.desc).includes(q))
+      );
 
       dropdown.innerHTML = '';
       if (matches.length > 0) {
-        matches.slice(0, 6).forEach(item => {
+        matches.slice(0, 8).forEach(item => {
           const div = document.createElement('div');
           div.className = 'autocomplete-item';
           div.innerHTML = `
             <div>
               <strong>${item.title}</strong>
               <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${item.dept || item.cat})</span>
+              ${item.desc ? `<div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${item.desc}</div>` : ''}
             </div>
             <span class="badge badge-gray">${item.credits}학점</span>
           `;
           div.onclick = () => {
             document.getElementById('course-title-input').value = item.title;
             document.getElementById('course-credits-input').value = item.credits || 3;
-            if (item.cat && Array.from(document.getElementById('course-cat-input').options).some(o => o.value === item.cat)) {
-              document.getElementById('course-cat-input').value = item.cat;
-            } else if (item.dept && item.dept.includes('경영')) {
-              document.getElementById('course-cat-input').value = '경영_전선';
+            const modalCat = document.getElementById('course-cat-input');
+            if (item.cat && Array.from(modalCat.options).some(o => o.value === item.cat)) {
+              modalCat.value = item.cat;
+            } else if (item.cat === '전선' || (item.dept && item.dept.includes('경영'))) {
+              modalCat.value = '경영_전선';
+            } else if (item.cat === '전필') {
+              modalCat.value = '경영_전필';
             }
             dropdown.style.display = 'none';
           };
@@ -2815,18 +2843,23 @@
       }
 
       const allCourses = getAllSearchableCourses();
-      const matches = allCourses.filter(c => norm(c.title).includes(q));
+      const matches = allCourses.filter(c => 
+        (c.title && norm(c.title).includes(q)) || 
+        (c.code && norm(c.code).includes(q)) ||
+        (c.desc && norm(c.desc).includes(q))
+      );
 
       dropdown.innerHTML = '';
 
       if (matches.length > 0) {
-        matches.slice(0, 8).forEach(item => {
+        matches.slice(0, 10).forEach(item => {
           const div = document.createElement('div');
           div.className = 'autocomplete-item';
           div.innerHTML = `
             <div>
               <strong>${item.title}</strong>
               <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${item.dept || item.cat})</span>
+              ${item.desc ? `<div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${item.desc}</div>` : ''}
             </div>
             <span class="badge badge-gray">${item.credits}학점</span>
           `;
@@ -2851,8 +2884,10 @@
       const catSelect = document.getElementById('bask-cat-input');
       if (item.cat && Array.from(catSelect.options).some(o => o.value === item.cat)) {
         catSelect.value = item.cat;
-      } else if (item.dept && item.dept.includes('경영')) {
+      } else if (item.cat === '전선' || (item.dept && item.dept.includes('경영'))) {
         catSelect.value = '경영_전선';
+      } else if (item.cat === '전필') {
+        catSelect.value = '경영_전필';
       }
       document.getElementById('autocomplete-dropdown').style.display = 'none';
     }

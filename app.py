@@ -317,12 +317,12 @@ with tab2:
         st.subheader("🛒 다음 학기 (2027-1학기) 수강 바구니")
         st.caption("과목을 검색하거나 직접 추가하여 바구니에 담으세요. 오른쪽 패널이 즉시 실시간 갱신됩니다.")
 
-        # Combined Catalog: 245 Builtin + Custom
+        # Combined Catalog: 1,098 Builtin + Custom
         all_catalog = BUILTIN_COURSES + st.session_state.custom_courses
         catalog_names = [f"[{c.get('cat', '과목')}] {c.get('title')} ({c.get('credits')}학점)" for c in all_catalog]
 
         # Method 1: Search & Autocomplete
-        with st.expander("🔍 **과목 검색 및 자동완성 (내장 DB 245개 과목 지원)**", expanded=True):
+        with st.expander("🔍 **과목 검색 및 자동완성 (내장 DB 1,098개 과목 지원)**", expanded=True):
             selected_cat_item = st.selectbox("과목을 선택하거나 검색어를 입력하세요", ["(직접 선택)"] + catalog_names)
             if st.button("선택한 과목 바구니에 담기", use_container_width=True) and selected_cat_item != "(직접 선택)":
                 idx = catalog_names.index(selected_cat_item)
@@ -441,7 +441,7 @@ with tab3:
     st.markdown("### 1. 사용법 3단계")
     c_s1, c_s2, c_s3 = st.columns(3)
     c_s1.info("**STEP 1: [내 현황] 확인**\n\n기이수 확정 34학점 및 2026-2 수강중 17학점을 확인하고, 부족한 필수 2가지를 점검합니다.")
-    c_s2.info("**STEP 2: [시뮬레이터] 담기**\n\n내장 245개 과목 검색 또는 직접 입력을 통해 다음 학기에 들을 과목을 바구니에 담습니다.")
+    c_s2.info("**STEP 2: [시뮬레이터] 담기**\n\n내장 1,098개 과목 검색 또는 직접 입력을 통해 다음 학기에 들을 과목을 바구니에 담습니다.")
     c_s3.info("**STEP 3: 미래 상태 확인**\n\n우측 패널에서 잔여 학점과 중복/18학점 초과 경고를 실시간 확인합니다.")
 
     st.markdown("---")
