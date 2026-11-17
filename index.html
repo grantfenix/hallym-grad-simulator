@@ -1091,7 +1091,7 @@
         </div>
 
         <button type="button" class="btn-demo" onclick="handleDemoLogin()">
-          <span>🚀</span> 데모 계정(20258044 김한림)으로 바로 체험하기
+          <span>🚀</span> 데모 계정 (20258044 유아미)으로 바로 체험하기
         </button>
       </form>
 
@@ -1212,7 +1212,7 @@
         <div class="header-controls">
           <!-- Main Screen Profile Badge (Click opens Settings) -->
           <button id="btn-profile-badge" class="student-badge-btn" onclick="openSettingsModal()" title="클릭하여 프로필 및 전공 설정">
-            <span id="profile-display-text">👤 <b>20258044</b> · 경영학과 단일전공 · 재학생</span>
+            <span id="profile-display-text">👤 사용자 정보 로딩 중...</span>
             <span style="margin-left: 0.4rem; font-size: 0.8rem; color: var(--primary);">⚙️</span>
           </button>
 
@@ -1839,7 +1839,7 @@
             <div>
               <span style="font-size: 0.78rem; color: var(--gray-500); font-weight: 600;">현재 적용 중인 학생 기준 (실시간 동적 연동)</span>
               <div style="font-size: 1.05rem; font-weight: 800; color: var(--gray-900); margin-top: 0.15rem;" id="help-profile-badge">
-                🏛️ 경영학과 · 2025학번 · 단일전공
+                🏛️ 학생 정보 실시간 분석 중...
               </div>
             </div>
             <div style="font-size: 0.78rem; color: var(--gray-500);">
@@ -1852,7 +1852,7 @@
         <div class="card">
           <div class="card-title">
             <span>🏛️ 한림대학교 공식 학칙 및 학과별 졸업 기준</span>
-            <span class="badge badge-primary" id="help-rule-badge">경영학과 기준</span>
+            <span class="badge badge-primary" id="help-rule-badge">학과별 졸업 기준</span>
           </div>
           <ul id="help-rules-list" style="font-size: 0.84rem; color: var(--gray-700); line-height: 1.75; padding-left: 1.25rem;">
             <!-- Dynamically rendered via renderHelpTab() -->
@@ -2171,7 +2171,7 @@
   <!-- ================================================================= -->
   <script>
     /* =========================================================================
-       1. DEMO & INITIAL DATA (20258044 김한림 실제 이수 과목 21개)
+       1. DEMO & INITIAL DATA (20258044 유아미 실제 이수 과목 21개)
        ========================================================================= */
     const DEMO_COURSES_20258044 = [
       // 2025-1학기 (16학점, 확정)
@@ -2278,7 +2278,7 @@
       if (!users['20258044']) {
         users['20258044'] = {
           studentId: '20258044',
-          name: '김한림',
+          name: '유아미',
           password: '1234',
           admissionYear: 2025,
           major: '경영학과',
@@ -2288,9 +2288,17 @@
           createdAt: new Date().toISOString()
         };
         saveUsers(users);
-      } else if (!users['20258044'].admissionYear) {
-        users['20258044'].admissionYear = 2025;
-        saveUsers(users);
+      } else {
+        let changed = false;
+        if (users['20258044'].name === '김한림') {
+          users['20258044'].name = '유아미';
+          changed = true;
+        }
+        if (!users['20258044'].admissionYear) {
+          users['20258044'].admissionYear = 2025;
+          changed = true;
+        }
+        if (changed) saveUsers(users);
       }
     }
 
@@ -2616,6 +2624,9 @@
     }
 
     function completeLogin(user) {
+      if (user && user.studentId === '20258044' && user.name === '김한림') {
+        user.name = '유아미';
+      }
       currentUser = user;
       localStorage.setItem('hallym_current_user_id', user.studentId);
 

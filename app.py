@@ -78,7 +78,7 @@ if "major_mode" not in st.session_state:
 if "student_id" not in st.session_state:
     st.session_state.student_id = "20258044"
 if "student_name" not in st.session_state:
-    st.session_state.student_name = "김한림"
+    st.session_state.student_name = "유아미"
 if "student_type" not in st.session_state:
     st.session_state.student_type = "재학생"
 if "has_double_major" not in st.session_state:
