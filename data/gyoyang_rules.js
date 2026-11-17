@@ -1,6 +1,6 @@
 // Hallym University General Education Rules DB
 // Auto-generated for offline & local file:// access
-window.HALLYM_GYOYANG_RULES = {
+(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_GYOYANG_RULES = {
   "since_2023": {
     "cohort_name": "2023학번 이후 (2023~현재 재학생, 25학번 포함)",
     "cohort_range": "2023학번 ~",
@@ -330,3 +330,7 @@ window.HALLYM_GYOYANG_RULES = {
     "korean_3_mandatory": "대학한국어3 필수 이수는 2025년 8월 졸업대상자부터 반영."
   }
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = (typeof window !== 'undefined' && window.HALLYM_GYOYANG_RULES) ? window.HALLYM_GYOYANG_RULES : (typeof HALLYM_GYOYANG_RULES !== 'undefined' ? HALLYM_GYOYANG_RULES : {});
+}

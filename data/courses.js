@@ -1,6 +1,6 @@
 // Hallym University Course Database (1,098 Courses)
 // Auto-generated for offline and local file:// access
-window.HALLYM_COURSES = [
+(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
     "code": "904608",
     "id": "904608",
@@ -10165,3 +10165,7 @@ window.HALLYM_COURSES = [
     "desc": "글로벌 비즈니스 캡스톤 디자인 세미나 및 종합 프로젝트"
   }
 ];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = (typeof window !== 'undefined' && window.HALLYM_COURSES) ? window.HALLYM_COURSES : (typeof HALLYM_COURSES !== 'undefined' ? HALLYM_COURSES : []);
+}

@@ -1,6 +1,6 @@
 // Hallym University Graduation Rules DB (23 Departments)
 // Auto-generated for offline & local file:// access
-window.HALLYM_GRADUATION_RULES = {
+(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_GRADUATION_RULES = {
   "경영학과": {
     "department": "경영학과",
     "college": "경영대학",
@@ -1059,3 +1059,7 @@ window.HALLYM_GRADUATION_RULES = {
     }
   }
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = (typeof window !== 'undefined' && window.HALLYM_GRADUATION_RULES) ? window.HALLYM_GRADUATION_RULES : (typeof HALLYM_GRADUATION_RULES !== 'undefined' ? HALLYM_GRADUATION_RULES : {});
+}
