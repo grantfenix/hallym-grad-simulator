@@ -8,6 +8,10 @@
   <script src="data/courses.js"></script>
   <script src="data/graduation_rules.js"></script>
   <script src="data/gyoyang_rules.js"></script>
+  <!-- PDF.js Engine for offline & local PDF text layer extraction -->
+  <script src="lib/pdf.min.js"></script>
+  <!-- Tesseract.js OCR Engine for scanned PDF optical character recognition -->
+  <script src="lib/tesseract.min.js"></script>
   <style>
     :root {
       --primary: #0284c7;
@@ -1295,8 +1299,8 @@
 
           <div style="display: flex; gap: 0.5rem;">
             <!-- PDF Upload Button (AI) -->
-            <button class="btn btn-outline" style="border-color: #d8b4fe; color: #7e22ce;" onclick="openPdfModal()" title="성적증명서 PDF를 올리면 AI가 자동으로 읽어옵니다">
-              <span>📄</span> 성적증명서 PDF 업로드 <span class="badge-ai" style="font-size: 0.65rem; padding: 0.15rem 0.35rem;">AI 처리</span>
+            <button class="btn btn-outline" style="border-color: #c084fc; color: #6b21a8; background: #faf5ff; font-weight: 600;" onclick="openPdfModal()" title="성적증명서 PDF를 올리면 AI가 자동으로 읽어옵니다">
+              <span>📄</span> 성적증명서 PDF 업로드 <span class="badge-ai" style="font-size: 0.65rem; padding: 0.15rem 0.35rem; margin-left: 0.2rem;">🤖 AI 인식</span>
             </button>
 
             <!-- Add Course Button -->
@@ -1329,11 +1333,16 @@
                 등록된 이수 과목이 없습니다.
               </div>
               <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.2rem;">
-                [➕ 과목 직접 추가]를 눌러 과목을 등록하거나, [📄 성적증명서 PDF 업로드]를 이용해보세요.
+                [📄 성적증명서 PDF 업로드]를 통해 한 번에 등록하거나, [➕ 과목 직접 추가]를 이용해보세요.
               </div>
-              <button class="btn btn-primary" onclick="openAddCourseModal()">
-                ➕ 첫 과목 직접 추가하기
-              </button>
+              <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-outline" style="border-color: #c084fc; color: #6b21a8; background: #faf5ff; font-weight: 600;" onclick="openPdfModal()">
+                  📄 성적증명서 PDF 업로드 <span class="badge-ai" style="font-size: 0.65rem; padding: 0.15rem 0.35rem; margin-left: 0.25rem;">🤖 AI 인식</span>
+                </button>
+                <button class="btn btn-primary" onclick="openAddCourseModal()">
+                  ➕ 첫 과목 직접 추가하기
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1788,33 +1797,100 @@
     <!-- MODAL 2: 성적증명서 PDF 업로드 모달 (#pdf-upload-modal) -->
     <!-- ================================================================= -->
     <div id="pdf-upload-modal" class="modal-backdrop" style="display: none;" onclick="handlePdfModalBackdrop(event)">
-      <div class="modal-window" onclick="event.stopPropagation()">
+      <div class="modal-window" onclick="event.stopPropagation()" style="max-width: 580px;">
         <div class="modal-header">
           <div class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
             <span>📄 성적증명서 PDF 업로드</span>
-            <span class="badge-ai">🤖 AI 처리</span>
+            <span class="badge-ai">🤖 AI 처리 (OCR)</span>
           </div>
           <button class="modal-close-btn" onclick="closePdfModal()" aria-label="닫기">✕</button>
         </div>
         <div class="modal-body">
-          <div style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.2rem 1.5rem; text-align: center; background: #f8fafc; margin-bottom: 1rem;">
-            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📑</div>
-            <div style="font-weight: 700; font-size: 0.95rem; color: var(--gray-800); margin-bottom: 0.35rem;">
-              한림대학교 성적증명서 PDF를 선택하세요
+          <!-- Drop Zone (Drag & Drop Support) -->
+          <div id="pdf-drop-zone" 
+               style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.2rem 1.5rem; text-align: center; background: #f8fafc; margin-bottom: 1rem; cursor: pointer; transition: all 0.2s ease;"
+               ondragover="handlePdfDragOver(event)"
+               ondragleave="handlePdfDragLeave(event)"
+               ondrop="handlePdfDrop(event)"
+               onclick="document.getElementById('pdf-file-input').click()">
+            
+            <!-- Default Prompt when no file is chosen -->
+            <div id="pdf-drop-prompt">
+              <div style="font-size: 2.6rem; margin-bottom: 0.5rem;">📑</div>
+              <div style="font-weight: 700; font-size: 0.98rem; color: var(--gray-800); margin-bottom: 0.35rem;">
+                한림대학교 성적증명서 PDF를 끌어다 놓거나 클릭하세요
+              </div>
+              <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.1rem; line-height: 1.45;">
+                포털(학사정보시스템)에서 발급받은 <strong>성적증명서 PDF</strong>를 업로드하면<br>
+                AI가 과목명, 학기, 이수구분, 학점, 성적을 자동으로 파싱합니다.
+              </div>
+              <button type="button" class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('pdf-file-input').click()">
+                📂 PDF 파일 선택
+              </button>
+              <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 0.75rem;">
+                ※ 파일 형식: .pdf (드래그 앤 드롭 또는 파일 탐색기 선택 지원)
+              </div>
             </div>
-            <div style="font-size: 0.78rem; color: var(--gray-500); margin-bottom: 1rem;">
-              포털에서 다운로드한 성적표 PDF를 올리면 AI가 과목명/학점/이수구분을 자동으로 추출합니다.
+
+            <!-- File Selected Preview Card -->
+            <div id="pdf-file-preview" style="display: none; padding: 0.5rem 0;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.35rem;">📄</div>
+              <div style="font-weight: 800; font-size: 1rem; color: #1e293b;" id="pdf-preview-filename">transcript.pdf</div>
+              <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="pdf-preview-filesize">0 KB</div>
+              <div style="display: inline-block; margin-top: 0.6rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 700; color: #047857;">
+                ✓ 성적증명서 PDF 파일 준비 완료
+              </div>
+              <div style="margin-top: 1.25rem; display: flex; gap: 0.5rem; justify-content: center;">
+                <button type="button" class="btn btn-outline" style="font-size: 0.82rem;" onclick="event.stopPropagation(); resetPdfSelection();">
+                  🔄 다른 파일 선택
+                </button>
+                <button type="button" class="btn btn-primary" style="background: #7c3aed; border-color: #6d28d9; font-weight: 700;" onclick="event.stopPropagation(); startPdfAiParsing();">
+                  🤖 AI 성적표 자동 분석 시작
+                </button>
+              </div>
             </div>
-            <input type="file" id="pdf-file-input" accept=".pdf" style="display: none;" onchange="handlePdfSelected(event)" />
-            <button class="btn btn-primary" onclick="document.getElementById('pdf-file-input').click()">
-              📂 PDF 파일 선택
-            </button>
+
+            <input type="file" id="pdf-file-input" accept=".pdf,application/pdf" style="display: none;" onchange="handlePdfSelected(event)" />
+          </div>
+
+          <!-- Status / Progress container -->
+          <div id="pdf-parsing-status" style="display: none; margin-bottom: 1rem; padding: 0.85rem 1rem; border-radius: 8px; background: #faf5ff; border: 1px solid #e9d5ff;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <div style="font-size: 1.3rem;" id="pdf-status-icon">⏳</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 0.86rem; color: #6b21a8;" id="pdf-status-title">AI 성적표 분석 준비 중...</div>
+                <div style="font-size: 0.75rem; color: #7e22ce; margin-top: 2px;" id="pdf-status-desc">PDF 텍스트 레이어 및 광학 인식(OCR)을 준비하고 있습니다.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extracted Text Layer Result Box (1단계 결과 미리보기) -->
+          <div id="pdf-extracted-container" style="display: none; margin-bottom: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: #ffffff; padding: 0.85rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.35rem;">
+              <span style="font-weight: 700; font-size: 0.85rem; color: #1e293b; display: flex; align-items: center; gap: 0.35rem;">
+                <span>📑</span> 추출된 텍스트 레이어 <span id="pdf-extracted-stats" style="font-weight: normal; font-size: 0.78rem; color: #64748b;">(0 페이지, 0자)</span>
+              </span>
+              <span id="pdf-scanned-badge" style="display: none; font-size: 0.72rem; padding: 2px 8px; border-radius: 9999px; background: #fef3c7; color: #92400e; font-weight: 700; border: 1px solid #fde68a;">
+                📷 스캔 이미지 (OCR 광학인식 모드)
+              </span>
+            </div>
+            <div id="pdf-extracted-preview" style="max-height: 140px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.6rem 0.8rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.76rem; color: #334155; white-space: pre-wrap; line-height: 1.45; word-break: break-all;">
+            </div>
+            <div id="pdf-step1-success-actions" style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #e2e8f0; padding-top: 0.6rem;">
+              <div style="font-size: 0.75rem; color: #16a34a; font-weight: 700;">
+                ✅ 1단계: PDF 텍스트 추출 완료!
+              </div>
+              <button type="button" class="btn btn-outline" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;" onclick="toggleExtractedTextPreview()">
+                텍스트 접기/펼치기
+              </button>
+            </div>
           </div>
 
           <div class="alert alert-info" style="font-size: 0.78rem;">
             <span>ℹ️</span>
             <div>
-              <strong>안내:</strong> AI 광학인식(OCR) 엔진이 과목명, 학기, 이수구분, 학점을 분석합니다. AI 인식 결과는 사용자가 직접 확인하고 수정할 수 있습니다.
+              <div style="font-weight: 700; margin-bottom: 2px;">안내: AI 인식 + 사용자 확인 안심 프로세스</div>
+              <div>AI가 추출한 과목 목록은 다음 화면에서 사용자가 직접 확인하고 수정/삭제한 후 안전하게 내 목록에 반영됩니다.</div>
             </div>
           </div>
         </div>
@@ -1832,6 +1908,8 @@
   <script src="data/courses.js"></script>
   <script src="data/graduation_rules.js"></script>
   <script src="data/gyoyang_rules.js"></script>
+  <script src="lib/pdf.min.js"></script>
+  <script src="lib/tesseract.min.js"></script>
   <script>
     /* =========================================================================
        1. DEMO & INITIAL DATA (20258044 김한림 실제 이수 과목 21개)
@@ -2683,22 +2761,805 @@
       }
     }
 
-    /* PDF Modal */
+    /* =========================================================================
+       4.4 성적증명서 PDF 업로드 & 드래그 앤 드롭 핸들러
+       ========================================================================= */
+    let selectedPdfFile = null;
+    window.getSelectedPdfFile = () => selectedPdfFile;
+
     function openPdfModal() {
+      resetPdfSelection();
       document.getElementById('pdf-upload-modal').style.display = 'flex';
     }
+
     function closePdfModal() {
       document.getElementById('pdf-upload-modal').style.display = 'none';
+      resetPdfSelection();
     }
+
     function handlePdfModalBackdrop(e) {
       if (e.target.id === 'pdf-upload-modal') closePdfModal();
     }
-    function handlePdfSelected(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      alert(`📄 [${file.name}] 성적표가 선택되었습니다.\nAI 성적표 자동 인식 엔진 연동 준비 완료! (다음 단계에서 연결됩니다.)\n현재는 [➕ 과목 직접 추가]를 통해 과목을 등록 및 수정하실 수 있습니다.`);
-      closePdfModal();
+
+    function handlePdfDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const zone = document.getElementById('pdf-drop-zone');
+      if (zone) {
+        zone.style.borderColor = '#7c3aed';
+        zone.style.background = '#f5f3ff';
+      }
     }
+
+    function handlePdfDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const zone = document.getElementById('pdf-drop-zone');
+      if (zone) {
+        zone.style.borderColor = '#cbd5e1';
+        zone.style.background = '#f8fafc';
+      }
+    }
+
+    function handlePdfDrop(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const zone = document.getElementById('pdf-drop-zone');
+      if (zone) {
+        zone.style.borderColor = '#cbd5e1';
+        zone.style.background = '#f8fafc';
+      }
+      const files = e.dataTransfer.files;
+      if (files && files.length > 0) {
+        processSelectedPdfFile(files[0]);
+      }
+    }
+
+    function handlePdfSelected(e) {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        processSelectedPdfFile(file);
+      }
+    }
+
+    function processSelectedPdfFile(file) {
+      if (!file) return;
+
+      // File validation: PDF check
+      const isPdf = file.name.toLowerCase().endsWith('.pdf') || (file.type && file.type.includes('pdf'));
+      if (!isPdf) {
+        alert(`⚠️ [${file.name}]은(는) PDF 파일이 아닙니다.\n성적증명서 PDF 파일(.pdf)을 선택해주세요.`);
+        resetPdfSelection();
+        return;
+      }
+
+      selectedPdfFile = file;
+
+      // Update UI with file details
+      const filenameEl = document.getElementById('pdf-preview-filename');
+      const filesizeEl = document.getElementById('pdf-preview-filesize');
+      const promptEl = document.getElementById('pdf-drop-prompt');
+      const previewEl = document.getElementById('pdf-file-preview');
+
+      if (filenameEl) filenameEl.textContent = file.name;
+      if (filesizeEl) {
+        const sizeKb = (file.size / 1024).toFixed(1);
+        filesizeEl.textContent = `${sizeKb} KB (성적증명서)`;
+      }
+
+      if (promptEl) promptEl.style.display = 'none';
+      if (previewEl) previewEl.style.display = 'block';
+    }
+
+    function resetPdfSelection() {
+      selectedPdfFile = null;
+      window.lastExtractedPdfData = null;
+      const fileInput = document.getElementById('pdf-file-input');
+      if (fileInput) fileInput.value = '';
+
+      const promptEl = document.getElementById('pdf-drop-prompt');
+      const previewEl = document.getElementById('pdf-file-preview');
+      const statusEl = document.getElementById('pdf-parsing-status');
+      const extractedContainer = document.getElementById('pdf-extracted-container');
+      const extractedPreview = document.getElementById('pdf-extracted-preview');
+      const scannedBadge = document.getElementById('pdf-scanned-badge');
+
+      if (promptEl) promptEl.style.display = 'block';
+      if (previewEl) previewEl.style.display = 'none';
+      if (statusEl) statusEl.style.display = 'none';
+      if (extractedContainer) extractedContainer.style.display = 'none';
+      if (extractedPreview) extractedPreview.textContent = '';
+      if (scannedBadge) scannedBadge.style.display = 'none';
+    }
+
+    /* =========================================================================
+       4.4.1 PDF 텍스트 추출 엔진 (PDF.js 로컬/오프라인 지원)
+       ========================================================================= */
+    if (typeof window !== 'undefined' && typeof pdfjsLib !== 'undefined') {
+      try {
+        if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'lib/pdf.worker.min.js';
+        }
+      } catch (e) {
+        console.warn('PDF.js worker initialization notice:', e);
+      }
+    }
+
+    /**
+     * PDF 파일(File or ArrayBuffer)로부터 텍스트 레이어를 페이지별로 정밀 추출합니다.
+     * Y좌표(행) 및 X좌표(열) 정렬을 통해 한림대 성적표 서식을 보존합니다.
+     */
+    async function extractTextFromPdf(fileOrBuffer, onProgress) {
+      if (typeof pdfjsLib === 'undefined') {
+        throw new Error('PDF.js 라이브러리가 로드되지 않았습니다. lib/pdf.min.js를 확인해주세요.');
+      }
+
+      // 1. ArrayBuffer 확보
+      let arrayBuffer;
+      if (fileOrBuffer instanceof ArrayBuffer) {
+        arrayBuffer = fileOrBuffer;
+      } else if (fileOrBuffer && typeof fileOrBuffer.arrayBuffer === 'function') {
+        arrayBuffer = await fileOrBuffer.arrayBuffer();
+      } else if (fileOrBuffer && fileOrBuffer.buffer instanceof ArrayBuffer) {
+        arrayBuffer = fileOrBuffer.buffer;
+      } else if (typeof FileReader !== 'undefined') {
+        arrayBuffer = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = (e) => reject(new Error('파일 데이터를 읽는 중 오류가 발생했습니다.'));
+          reader.readAsArrayBuffer(fileOrBuffer);
+        });
+      } else {
+        throw new Error('지원되지 않는 파일 데이터 형식입니다.');
+      }
+
+      // 2. 문서 로드
+      const loadingTask = pdfjsLib.getDocument({
+        data: new Uint8Array(arrayBuffer)
+      });
+
+      const pdfDoc = await loadingTask.promise;
+      const numPages = pdfDoc.numPages;
+      const extractedPages = [];
+      let totalChars = 0;
+      let fullText = '';
+
+      for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        if (typeof onProgress === 'function') {
+          onProgress(pageNum, numPages);
+        }
+
+        const page = await pdfDoc.getPage(pageNum);
+        const textContent = await page.getTextContent();
+        const items = textContent.items || [];
+
+        // 3. Y좌표 기반 행(Line) 그룹화 (오차범위 4px)
+        const yGroups = [];
+        const TOLERANCE = 4.0;
+
+        for (const item of items) {
+          const str = (item.str || '').trim();
+          if (!str) continue;
+
+          const y = item.transform ? item.transform[5] : 0;
+          const x = item.transform ? item.transform[4] : 0;
+
+          let matchedGroup = null;
+          for (const group of yGroups) {
+            if (Math.abs(group.y - y) <= TOLERANCE) {
+              matchedGroup = group;
+              break;
+            }
+          }
+
+          if (matchedGroup) {
+            matchedGroup.items.push({ text: item.str, x, y, width: item.width || 0 });
+          } else {
+            yGroups.push({
+              y,
+              items: [{ text: item.str, x, y, width: item.width || 0 }]
+            });
+          }
+        }
+
+        // PDF 좌표계는 좌하단 원점이므로 Y 내림차순 정렬
+        yGroups.sort((a, b) => b.y - a.y);
+
+        // 각 행 내부에서는 X 오름차순(좌->우) 정렬
+        const lines = [];
+        for (const group of yGroups) {
+          group.items.sort((a, b) => a.x - b.x);
+          const lineStr = group.items.map(i => i.text).join(' ').replace(/\s+/g, ' ').trim();
+          if (lineStr) {
+            lines.push(lineStr);
+          }
+        }
+
+        const pageRawText = lines.join('\n');
+        totalChars += pageRawText.length;
+        fullText += (fullText ? '\n--- PAGE BREAK ---\n' : '') + pageRawText;
+
+        extractedPages.push({
+          pageNumber: pageNum,
+          lines,
+          rawText: pageRawText,
+          hasText: lines.length > 0 && pageRawText.length > 20
+        });
+      }
+
+      // 텍스트 레이어가 30자 미만이면 스캔 이미지 문서로 판정
+      const isScanned = totalChars < 30;
+
+      return {
+        success: true,
+        numPages,
+        totalChars,
+        isScanned,
+        pages: extractedPages,
+        fullText,
+        pdfDoc
+      };
+    }
+
+    /**
+     * 스캔된 PDF 페이지를 캔버스 이미지로 렌더링 (OCR 전처리용)
+     */
+    async function renderPdfPageToCanvas(pdfDoc, pageNum, scale = 2.0) {
+      const page = await pdfDoc.getPage(pageNum);
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      return canvas;
+    }
+
+    /**
+     * 스캔 이미지 PDF의 각 페이지를 Canvas로 렌더링한 후 Tesseract.js로 한국어+영어 OCR을 수행합니다.
+     */
+    async function performOcrOnPdf(pdfDoc, onOcrProgress) {
+      if (typeof Tesseract === 'undefined') {
+        throw new Error('Tesseract OCR 라이브러리가 로드되지 않았습니다.');
+      }
+
+      const numPages = pdfDoc.numPages;
+      const ocrPages = [];
+      let fullOcrText = '';
+      let totalChars = 0;
+
+      const isHttp = (typeof window !== 'undefined' && window.location && window.location.protocol.startsWith('http'));
+      const tesseractOptions = {
+        workerPath: isHttp ? 'lib/tesseract.worker.min.js' : 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js',
+        corePath: isHttp ? 'lib/tesseract-core-simd-lstm.wasm.js' : 'https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.1.0/tesseract-core-simd-lstm.wasm.js',
+        langPath: isHttp ? 'lib/lang-data' : 'https://tessdata.projectnaptha.com/4.0.0_fast'
+      };
+
+      for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        if (typeof onOcrProgress === 'function') {
+          onOcrProgress(pageNum, numPages, 0, '페이지 고해상도 렌더링 중...');
+        }
+
+        // 1. PDF 페이지를 고해상도 Canvas로 렌더링 (scale 2.0으로 가독성 최적화)
+        const canvas = await renderPdfPageToCanvas(pdfDoc, pageNum, 2.0);
+
+        // 2. Tesseract OCR 인식 실행 (한국어 + 영어)
+        const ocrResult = await Tesseract.recognize(
+          canvas,
+          'kor+eng',
+          {
+            ...tesseractOptions,
+            logger: m => {
+              if (m.status === 'recognizing text' && typeof onOcrProgress === 'function') {
+                const pct = Math.round((m.progress || 0) * 100);
+                onOcrProgress(pageNum, numPages, pct, `문자 광학 인식 중 (${pct}%)`);
+              }
+            }
+          }
+        );
+
+        const pageText = (ocrResult.data && ocrResult.data.text) ? ocrResult.data.text.trim() : '';
+        const lines = pageText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+        totalChars += pageText.length;
+        fullOcrText += (fullOcrText ? '\n--- PAGE BREAK ---\n' : '') + pageText;
+
+        ocrPages.push({
+          pageNumber: pageNum,
+          lines,
+          rawText: pageText,
+          hasText: lines.length > 0
+        });
+      }
+
+      return {
+        success: totalChars > 0,
+        numPages,
+        totalChars,
+        isScanned: true,
+        isOcr: true,
+        pages: ocrPages,
+        fullText: fullOcrText
+      };
+    }
+
+    function toggleExtractedTextPreview() {
+      const previewEl = document.getElementById('pdf-extracted-preview');
+      if (!previewEl) return;
+      if (previewEl.style.display === 'none') {
+        previewEl.style.display = 'block';
+      } else {
+        previewEl.style.display = 'none';
+      }
+    }
+
+    async function startPdfAiParsing() {
+      if (!selectedPdfFile) {
+        alert('업로드할 PDF 파일을 먼저 선택해주세요.');
+        return;
+      }
+
+      const statusEl = document.getElementById('pdf-parsing-status');
+      const iconEl = document.getElementById('pdf-status-icon');
+      const titleEl = document.getElementById('pdf-status-title');
+      const descEl = document.getElementById('pdf-status-desc');
+      const extractedContainer = document.getElementById('pdf-extracted-container');
+      const extractedStats = document.getElementById('pdf-extracted-stats');
+      const extractedPreview = document.getElementById('pdf-extracted-preview');
+      const scannedBadge = document.getElementById('pdf-scanned-badge');
+
+      if (statusEl) statusEl.style.display = 'block';
+      if (iconEl) iconEl.textContent = '⏳';
+      if (titleEl) titleEl.textContent = '1단계: PDF 텍스트 레이어 고속 추출 중...';
+      if (descEl) descEl.textContent = 'PDF.js 엔진으로 파일의 텍스트와 좌표 정보를 추출하고 있습니다.';
+
+      try {
+        const extractFn = (window.extractTextFromPdf || extractTextFromPdf);
+        let extractResult = await extractFn(selectedPdfFile, (curPage, totalPages) => {
+          if (descEl) {
+            descEl.textContent = `PDF 페이지 텍스트 추출 중... (${curPage} / ${totalPages} 페이지)`;
+          }
+        });
+
+        // 스캔 이미지 문서 감지 시: Tesseract OCR 엔진 자동 가동
+        if (extractResult.isScanned) {
+          if (scannedBadge) {
+            scannedBadge.style.display = 'inline-block';
+            scannedBadge.textContent = '📷 스캔 이미지 (OCR 광학인식 중...)';
+          }
+          if (iconEl) iconEl.textContent = '🔍';
+          if (titleEl) titleEl.textContent = '스캔 PDF 감지: OCR 광학 문자 인식 진행 중...';
+          if (descEl) descEl.textContent = '텍스트 레이어가 없는 스캔 이미지 문서입니다. Tesseract OCR 엔진으로 텍스트를 추출합니다.';
+
+          try {
+            const ocrFn = (window.performOcrOnPdf || performOcrOnPdf);
+            const ocrResult = await ocrFn(extractResult.pdfDoc, (curPage, totalPages, pct, stepDesc) => {
+              if (descEl) {
+                descEl.textContent = `OCR 인식 중... ${curPage}/${totalPages}페이지 (${pct}%) - ${stepDesc}`;
+              }
+            });
+
+            if (ocrResult.success && ocrResult.totalChars > 0) {
+              extractResult = ocrResult;
+            } else {
+              throw new Error('스캔 이미지에서 텍스트를 인식하지 못했습니다.');
+            }
+          } catch (ocrErr) {
+            console.warn('OCR processing error:', ocrErr);
+            if (iconEl) iconEl.textContent = '⚠️';
+            if (titleEl) titleEl.textContent = '스캔 문서 OCR 인식 실패';
+            if (descEl) {
+              descEl.textContent = '스캔된 이미지에서 텍스트를 읽지 못했습니다. 직접 입력해주세요.';
+            }
+            alert('⚠️ 스캔 이미지 성적표에서 텍스트를 인식하지 못했습니다.\n[➕ 과목 직접 추가]를 이용해 과목을 직접 입력해주세요.');
+            return;
+          }
+        }
+
+        window.lastExtractedPdfData = extractResult;
+
+        // 1단계 텍스트 추출 또는 OCR 완료 안내
+        if (extractedContainer) extractedContainer.style.display = 'block';
+        if (extractedStats) {
+          const modeLabel = extractResult.isOcr ? '📷 OCR 추출' : '📄 텍스트 레이어';
+          extractedStats.textContent = `(${extractResult.numPages}페이지, ${extractResult.totalChars.toLocaleString()}자 - ${modeLabel})`;
+        }
+
+        if (extractResult.isOcr) {
+          if (scannedBadge) {
+            scannedBadge.style.display = 'inline-block';
+            scannedBadge.textContent = '📷 OCR 광학인식 완료';
+            scannedBadge.style.background = '#f3e8ff';
+            scannedBadge.style.color = '#7e22ce';
+            scannedBadge.style.borderColor = '#d8b4fe';
+          }
+        } else {
+          if (scannedBadge) scannedBadge.style.display = 'none';
+        }
+
+        if (extractedPreview) {
+          const previewLines = extractResult.fullText.split('\n').slice(0, 35).join('\n');
+          extractedPreview.textContent = previewLines + (extractResult.fullText.split('\n').length > 35 ? '\n... (이하 생략)' : '');
+        }
+
+        // 2단계: 성적증명서 과목 파싱 엔진 실행
+        if (titleEl) titleEl.textContent = '2단계: 성적증명서 과목 정보 파싱 중...';
+        if (descEl) descEl.textContent = '내장 1,098개 과목 데이터베이스와 대조하여 학기, 과목명, 학점, 성적을 분석하고 있습니다.';
+
+        const userMajor = (currentUser && currentUser.major) ? currentUser.major : '경영학과';
+        const parseResult = parseTranscriptText(extractResult.fullText, userMajor);
+        window.lastParsedCourses = parseResult.courses;
+
+        if (parseResult.success) {
+          if (iconEl) iconEl.textContent = '✅';
+          const ocrNotice = extractResult.isOcr ? ' (OCR 인식)' : '';
+          if (titleEl) titleEl.textContent = `2단계 완료: 총 ${parseResult.count}개 과목 파싱 성공!${ocrNotice}`;
+          if (descEl) {
+            descEl.textContent = `과목 분석 완료: ${parseResult.count}개 과목 감지됨 (고신뢰도: ${parseResult.highConfidenceCount}개, 확인 권장: ${parseResult.reviewCount}개)`;
+          }
+        } else {
+          if (iconEl) iconEl.textContent = '⚠️';
+          if (titleEl) titleEl.textContent = '과목 정보 수동 확인 필요';
+          if (descEl) {
+            descEl.textContent = '텍스트는 추출되었으나 정형 성적표 과목 행을 자동으로 찾지 못했습니다. [➕ 과목 직접 추가]를 이용해주세요.';
+          }
+        }
+      } catch (err) {
+        console.error('PDF text extraction error:', err);
+        if (iconEl) iconEl.textContent = '❌';
+        if (titleEl) titleEl.textContent = 'PDF 텍스트 추출 실패';
+        if (descEl) {
+          descEl.textContent = 'PDF 파일에서 텍스트를 읽을 수 없습니다. 정상적인 성적증명서 PDF인지 확인해주세요.';
+        }
+        alert(`⚠️ PDF 텍스트 추출 중 오류가 발생했습니다:\n${err.message || err}\n\n다른 PDF 파일을 선택하시거나 [➕ 과목 직접 추가]를 이용해주세요.`);
+      }
+    }
+
+    /* =========================================================================
+       4.4.2 성적증명서 텍스트 파싱 엔진 (한림대 전용 규칙 기반 & AI 보조)
+       ========================================================================= */
+    let courseLookupIndex = null;
+
+    function getCourseLookupIndex() {
+      if (courseLookupIndex) return courseLookupIndex;
+      const byCode = {};
+      const byTitleNorm = {};
+      const list = (courseDatabase && courseDatabase.length > 0) ? courseDatabase : (window.HALLYM_COURSES || []);
+      
+      for (const c of list) {
+        if (c.code) byCode[c.code] = c;
+        const tn = norm(c.title);
+        if (tn) byTitleNorm[tn] = c;
+      }
+      const sortedTitles = Object.keys(byTitleNorm).sort((a, b) => b.length - a.length);
+      courseLookupIndex = { byCode, byTitleNorm, sortedTitles };
+      return courseLookupIndex;
+    }
+
+    /**
+     * 성적/등급 표기를 한림대 공식 등급 체계로 정규화
+     */
+    function normalizeGrade(rawGrade) {
+      if (!rawGrade) return '수강중';
+      const g = rawGrade.toString().trim().toUpperCase();
+      if (['A+', 'A0', 'A', 'B+', 'B0', 'B', 'C+', 'C0', 'C', 'D+', 'D0', 'D', 'F', 'P', 'NP'].includes(g)) {
+        if (g === 'A') return 'A0';
+        if (g === 'B') return 'B0';
+        if (g === 'C') return 'C0';
+        if (g === 'D') return 'D0';
+        return g;
+      }
+      if (g.includes('수강') || g === 'ING' || g === 'PROGRESS') return '수강중';
+      if (g === 'PASS' || g === 'S') return 'P';
+      if (g === 'FAIL' || g === 'U' || g === 'N/P') return 'F';
+      return g;
+    }
+
+    /**
+     * 원문 이수구분 및 과목명을 분석하여 내부 이수구분 코드로 매핑
+     */
+    function classifyCategory(rawCat, title, userMajor = '경영학과') {
+      const rc = (rawCat || '').trim();
+      const tn = norm(title);
+      const majorPrefix = (userMajor || '경영').replace(/학과|학부/, '');
+
+      // 1. 과목명 기반 교양 6대 영역 자동 분류
+      if (tn.includes('컴퓨팅사고') || tn.includes('창의코딩') || tn.includes('창의적문제해결') || tn.includes('파이썬') || tn.includes('python') || tn.includes('ai와데이터센싱')) {
+        return '교양_정보소통';
+      }
+      if (tn.includes('오디세이세미나1') || tn.includes('오디세이세미나2') || tn.includes('오딧세이세미나1') || tn.includes('오딧세이세미나2') || tn.includes('생애설계')) {
+        return '교양_생애설계';
+      }
+      if (tn.includes('글쓰기') || tn.includes('말하기') || tn.includes('발표와토론') || tn.includes('의사소통') || tn.includes('논리적사고')) {
+        return '교양_의사소통';
+      }
+      if (tn.includes('essentialenglish') || tn.includes('대학영어') || tn.includes('careerenglish') || tn.includes('aienglish') || tn.includes('인공지능영어') || tn.includes('대학한국어') || tn.includes('읽기와쓰기')) {
+        return '교양_글로벌소통';
+      }
+      if (tn.includes('스포츠') || tn.includes('요가') || tn.includes('필라테스') || tn.includes('수영') || tn.includes('골프') || tn.includes('배드민턴') || tn.includes('건강과운동')) {
+        return '교양_스포츠웰니스';
+      }
+
+      // 2. 원문 이수구분 텍스트 기반 분류
+      if (rc.includes('전필') || rc.includes('전공필수')) {
+        return `${majorPrefix}_전필`;
+      }
+      if (rc.includes('전선') || rc.includes('전공선택') || rc.includes('전공')) {
+        return `${majorPrefix}_전선`;
+      }
+      if (rc.includes('일선') || rc.includes('일반선택') || rc.includes('자유선택')) {
+        return '일반선택';
+      }
+      if (rc.includes('교선') || rc.includes('교필') || rc.includes('교양') || rc.includes('균특') || rc.includes('자율선택')) {
+        return '교양_자율선택';
+      }
+
+      // 기본값: 전공선택
+      return `${majorPrefix}_전선`;
+    }
+
+    /**
+     * 텍스트 라인에서 교과목 DB와 대조하여 일치하는 과목 객체 탐색
+     */
+    function findMatchingCourse(line, code) {
+      const idx = getCourseLookupIndex();
+      const normLine = norm(line);
+
+      // 1. 긴 과목명부터 우선 매칭 (정확도 극대화)
+      for (const tn of idx.sortedTitles) {
+        if (tn.length >= 3 && normLine.includes(tn)) {
+          return idx.byTitleNorm[tn];
+        }
+      }
+
+      // 2. 과목코드/학수번호로 매칭
+      if (code && idx.byCode[code]) {
+        return idx.byCode[code];
+      }
+
+      return null;
+    }
+
+    /**
+     * 추출된 PDF 텍스트에서 한림대 성적증명서 형식의 과목들을 정규표현식 및 규칙으로 파싱
+     */
+    function parseTranscriptText(rawText, userMajor = '경영학과') {
+      if (!rawText || typeof rawText !== 'string') {
+        return { success: false, courses: [], count: 0, highConfidenceCount: 0, reviewCount: 0, message: '추출된 텍스트가 없습니다.' };
+      }
+
+      const lines = rawText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+      const parsedCourses = [];
+      let currentSemester = '기타';
+
+      // 학기 헤더 정규식 (예: [ 2025학년도 제 1학기 ], 2025-1 등)
+      const reSemesterHeader = /(?:\[\s*)?((?:19[9\d]|20[0-3]\d))\s*(?:학년도|\s|년도)?\s*(?:제\s*)?([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?(?:\s*\])?/i;
+      const reInLineSemester = /(?:^|\s)((?:19[9\d]|20[0-3]\d))\s*[-/.년]\s*([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?(?=\s|$)/;
+
+      // 성적 등급 정규식 (A+, A0, B+, B0, C+, C0, D+, D0, F, P, NP, 수강중 등)
+      const reGrade = /(?:^|\s)(A\+|A0|A|B\+|B0|B|C\+|C0|C|D\+|D0|D|F|P|NP|N\/P|S|U|수강중|수강)(?=\s|$)/i;
+      // 학점 정규식 (0.5 ~ 6.0 학점)
+      const reCredit = /(?:^|\s)([0-6](?:\.0|\.5)?)(?:\s*학점)?(?=\s|$)/;
+      // 학수번호/과목코드 정규식 (5~7자리 숫자 또는 알파벳+숫자)
+      const reCode = /(?:^|\s)([0-9]{5,7}|[A-Z]{2,4}[0-9]{3,4})(?=\s|$)/;
+      // 이수구분 키워드
+      const reCat = /(전필|전공필수|전선|전공선택|전공|교필|교양필수|교선|교양선택|교양|균특|일선|일반선택|자율선택|기초교양|심화교양)/;
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // 1. 학기 블록 헤더 감지
+        const semMatch = line.match(reSemesterHeader);
+        if (semMatch && !line.match(reGrade)) {
+          const year = semMatch[1];
+          let term = semMatch[2].replace('학기', '');
+          if (term === '하계') term = '여름';
+          if (term === '동계') term = '겨울';
+          currentSemester = `${year}-${term}`;
+          continue;
+        }
+
+        // 2. 표 헤더 및 서식 안내 문구 필터링
+        if (line.includes('이수년도') || line.includes('교과목명') || line.includes('학수번호') ||
+            line.includes('취득학점계') || line.includes('평점평균') || line.includes('신청학점') ||
+            line.includes('한림대학교') || line.includes('성적증명서') || line.includes('총이수학점') ||
+            line.includes('직인생략') || line.includes('발급번호') || line.includes('PAGE BREAK')) {
+          continue;
+        }
+
+        // 3. 과목 행 파싱
+        const gradeMatch = line.match(reGrade);
+        const creditMatch = line.match(reCredit);
+        const codeMatch = line.match(reCode);
+        const catMatch = line.match(reCat);
+
+        const codeCandidate = codeMatch ? codeMatch[1].trim() : null;
+        const foundInDb = findMatchingCourse(line, codeCandidate);
+
+        // 인라인 학기 표기 확인
+        let lineSemester = currentSemester;
+        const inLineSem = line.match(reInLineSemester);
+        if (inLineSem) {
+          let t = inLineSem[2].replace('학기', '');
+          if (t === '하계') t = '여름';
+          if (t === '동계') t = '겨울';
+          lineSemester = `${inLineSem[1]}-${t}`;
+        }
+
+        // 과목 행 판정 조건: DB 매칭 또는 (성적 + (학점 또는 이수구분))
+        if (foundInDb || (gradeMatch && (creditMatch || catMatch))) {
+          const code = codeCandidate || (foundInDb ? foundInDb.code : '');
+          const rawGrade = gradeMatch ? gradeMatch[1] : '수강중';
+          const grade = normalizeGrade(rawGrade);
+
+          let credits = 3;
+          if (foundInDb && foundInDb.credits) {
+            credits = foundInDb.credits;
+          } else if (creditMatch) {
+            credits = parseFloat(creditMatch[1]) || 3;
+          }
+
+          const rawCat = catMatch ? catMatch[1] : (foundInDb ? foundInDb.cat : '전선');
+
+          // 과목명 확정
+          let title = '';
+          if (foundInDb) {
+            title = foundInDb.title;
+          } else {
+            // 토큰 제거 후 과목명 추출
+            let rem = line;
+            if (inLineSem) rem = rem.replace(inLineSem[0], '');
+            if (codeMatch) rem = rem.replace(codeMatch[0], '');
+            if (catMatch) rem = rem.replace(catMatch[0], '');
+            if (gradeMatch) rem = rem.replace(gradeMatch[0], '');
+            if (creditMatch) rem = rem.replace(creditMatch[0], '');
+            rem = rem.replace(/\b[0-4]\.[0-9]\b/g, ''); // 평점 제거
+            rem = rem.replace(/[\[\]]/g, '').trim();
+            title = rem;
+          }
+
+          if (title && title.length >= 2) {
+            const cat = classifyCategory(rawCat, title, userMajor);
+
+            parsedCourses.push({
+              id: `parsed_${parsedCourses.length + 1}`,
+              code: code || '',
+              title: title.trim(),
+              semester: lineSemester,
+              cat: cat,
+              catRaw: rawCat,
+              credits: Math.round(credits),
+              grade: grade,
+              confidence: foundInDb ? 'high' : 'medium',
+              source: 'rule',
+              needsReview: (!foundInDb || grade === '수강중')
+            });
+          }
+        }
+      }
+
+      return {
+        success: parsedCourses.length > 0,
+        courses: parsedCourses,
+        count: parsedCourses.length,
+        highConfidenceCount: parsedCourses.filter(c => c.confidence === 'high').length,
+        reviewCount: parsedCourses.filter(c => c.needsReview).length,
+        message: parsedCourses.length > 0 ? `${parsedCourses.length}개 과목 파싱 성공` : '인식 가능한 과목 정보를 찾지 못했습니다.'
+      };
+    }
+
+    /**
+     * AI 보조 파싱 (Gemini 또는 OpenAI API를 통한 정밀 추출)
+     */
+    async function parseTranscriptWithAi(rawText, apiKey, provider = 'gemini') {
+      if (!apiKey) {
+        throw new Error('AI API 키가 필요합니다.');
+      }
+
+      const prompt = `한림대학교 성적증명서 텍스트에서 이수한 모든 교과목 목록을 순수 JSON 배열로 파싱해주세요.
+각 객체 속성:
+- code: 과목코드 또는 학수번호 (문자열, 없으면 "")
+- title: 교과목명 (문자열)
+- semester: 이수학기 (예: "2025-1", "2026-1", "2026-2")
+- cat: 이수구분 (예: "전필", "전선", "교필", "교선", "일선")
+- credits: 학점 (숫자, 1, 2, 3 등)
+- grade: 성적 (예: "A+", "A0", "B+", "B0", "P", "수강중")
+
+반드시 마크다운 포맷(백틱 등) 없이 순수 JSON 배열만 응답하세요.
+텍스트 원문:
+${rawText}`;
+
+      if (provider === 'gemini') {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: 'application/json' }
+          })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(`Gemini API 오류 (${res.status}): ${err.error?.message || res.statusText}`);
+        }
+        const data = await res.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
+        const rawList = JSON.parse(text.replace(/```json/g, '').replace(/```/g, '').trim());
+
+        return {
+          success: Array.isArray(rawList) && rawList.length > 0,
+          courses: rawList.map((item, idx) => ({
+            id: `ai_parsed_${idx + 1}`,
+            code: item.code || '',
+            title: item.title || '',
+            semester: item.semester || '기타',
+            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과'),
+            catRaw: item.cat || '',
+            credits: parseInt(item.credits, 10) || 3,
+            grade: normalizeGrade(item.grade),
+            confidence: 'high',
+            source: 'ai',
+            needsReview: false
+          })),
+          count: rawList.length,
+          highConfidenceCount: rawList.length,
+          reviewCount: 0
+        };
+      } else {
+        const url = 'https://api.openai.com/v1/chat/completions';
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'user', content: prompt }],
+            response_format: { type: 'json_object' }
+          })
+        });
+        if (!res.ok) {
+          throw new Error(`OpenAI API 오류 (${res.status}): ${res.statusText}`);
+        }
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content || '{}';
+        const parsed = JSON.parse(reply);
+        const rawList = Array.isArray(parsed) ? parsed : (parsed.courses || parsed.items || []);
+
+        return {
+          success: Array.isArray(rawList) && rawList.length > 0,
+          courses: rawList.map((item, idx) => ({
+            id: `ai_parsed_${idx + 1}`,
+            code: item.code || '',
+            title: item.title || '',
+            semester: item.semester || '기타',
+            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과'),
+            catRaw: item.cat || '',
+            credits: parseInt(item.credits, 10) || 3,
+            grade: normalizeGrade(item.grade),
+            confidence: 'high',
+            source: 'ai',
+            needsReview: false
+          })),
+          count: rawList.length,
+          highConfidenceCount: rawList.length,
+          reviewCount: 0
+        };
+      }
+    }
+
+    window.extractTextFromPdf = extractTextFromPdf;
+    window.renderPdfPageToCanvas = renderPdfPageToCanvas;
+    window.performOcrOnPdf = performOcrOnPdf;
+    window.toggleExtractedTextPreview = toggleExtractedTextPreview;
+    window.startPdfAiParsing = startPdfAiParsing;
+    window.normalizeGrade = normalizeGrade;
+    window.classifyCategory = classifyCategory;
+    window.findMatchingCourse = findMatchingCourse;
+    window.parseTranscriptText = parseTranscriptText;
+    window.parseTranscriptWithAi = parseTranscriptWithAi;
 
     /* =========================================================================
        4.5 GE (교양) 6대 영역 규칙 기반 세부 진단 엔진

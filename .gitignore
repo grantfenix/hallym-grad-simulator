@@ -14,7 +14,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/ (unignored for frontend pdf.js libraries)
+!lib/
 lib64/
 parts/
 sdist/
