@@ -102,10 +102,12 @@
        ------------------------------------------------------------- */
     .auth-overlay {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: calc(100vh - 45px);
       padding: 2rem 1rem;
+      gap: 1.25rem;
     }
     .auth-card {
       background: #ffffff;
@@ -1037,6 +1039,29 @@
       border-radius: 4px;
       margin-bottom: 0.5rem;
     }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .auth-overlay .app-footer {
+      border-top: none;
+      margin-top: 0;
+      padding: 0;
+    }
+    .app-footer a {
+      color: var(--gray-600);
+      text-decoration: underline;
+    }
+    .app-footer a:hover {
+      color: var(--primary);
+    }
   </style>
 </head>
 <body>
@@ -1195,6 +1220,14 @@
         </button>
       </form>
     </div>
+
+    <!-- Auth Screen Footer -->
+    <footer class="app-footer">
+      <div>© 2026 유아미 · 한림대학교 경영과인공지능 수업 프로젝트</div>
+      <div style="margin-top: 0.25rem; font-size: 0.72rem; color: var(--gray-400);">
+        Licensed under the <a href="LICENSE" target="_blank">MIT License</a> · 저작권자: 유아미
+      </div>
+    </footer>
   </div>
 
   <!-- ================================================================= -->
@@ -1862,6 +1895,14 @@
       </section>
 
     </main>
+
+    <!-- Main Application Footer -->
+    <footer class="app-footer">
+      <div>© 2026 유아미 · 한림대학교 경영과인공지능 수업 프로젝트</div>
+      <div style="margin-top: 0.25rem; font-size: 0.72rem; color: var(--gray-400);">
+        Licensed under the <a href="LICENSE" target="_blank">MIT License</a> · 저작권자: 유아미
+      </div>
+    </footer>
 
     <!-- ================================================================= -->
     <!-- MODAL 1: 과목 추가 / 수정 모달 (#course-edit-modal) -->
