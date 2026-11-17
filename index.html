@@ -1797,7 +1797,7 @@
     <!-- MODAL 2: 성적증명서 PDF 업로드 모달 (#pdf-upload-modal) -->
     <!-- ================================================================= -->
     <div id="pdf-upload-modal" class="modal-backdrop" style="display: none;" onclick="handlePdfModalBackdrop(event)">
-      <div class="modal-window" onclick="event.stopPropagation()" style="max-width: 580px;">
+      <div id="pdf-modal-window" class="modal-window" onclick="event.stopPropagation()" style="max-width: 580px; width: 95%; transition: max-width 0.25s ease;">
         <div class="modal-header">
           <div class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
             <span>📄 성적증명서 PDF 업로드</span>
@@ -1883,6 +1883,89 @@
               <button type="button" class="btn btn-outline" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;" onclick="toggleExtractedTextPreview()">
                 텍스트 접기/펼치기
               </button>
+            </div>
+          </div>
+
+          <!-- Parsed Course Results Table Container (3~4단계 확인 및 수정 테이블) -->
+          <div id="pdf-parsed-results-container" style="display: none; margin-bottom: 1.2rem; border: 1px solid #c084fc; border-radius: 10px; background: #ffffff; padding: 1rem; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);">
+            
+            <!-- Header bar with summary & action buttons -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <div style="font-weight: 800; font-size: 0.98rem; color: #581c87; display: flex; align-items: center; gap: 0.4rem;">
+                  <span>📋</span> 파싱된 과목 확인 및 수정
+                  <span id="pdf-parsed-badge-count" class="badge" style="background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; font-size: 0.75rem;">
+                    총 0과목
+                  </span>
+                </div>
+                <div style="font-size: 0.76rem; color: #64748b; margin-top: 2px;">
+                  인식된 과목 정보를 직접 수정하거나 불필요한 과목을 삭제할 수 있습니다.
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 0.4rem;">
+                <button type="button" class="btn btn-outline" style="font-size: 0.76rem; padding: 0.3rem 0.65rem;" onclick="toggleSelectAllParsedCourses()">
+                  ☑️ 전체 선택/해제
+                </button>
+                <button type="button" class="btn btn-outline" style="font-size: 0.76rem; padding: 0.3rem 0.65rem; color: #7c3aed; border-color: #c084fc;" onclick="addBlankParsedCourseRow()">
+                  ➕ 과목 직접 추가
+                </button>
+              </div>
+            </div>
+
+            <!-- Duplicate strategy option -->
+            <div id="pdf-dup-strategy-box" style="margin-bottom: 0.75rem; padding: 0.5rem 0.75rem; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; font-size: 0.76rem; color: #92400e; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.35rem;">
+                <span>⚠️</span>
+                <span><strong>기존 과목 중복 발견 시 처리:</strong></span>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
+                  <input type="radio" name="pdf-dup-strategy" value="overwrite" checked onchange="handleDupStrategyChange(this.value)" />
+                  덮어쓰기 (기존 성적 갱신)
+                </label>
+                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
+                  <input type="radio" name="pdf-dup-strategy" value="skip" onchange="handleDupStrategyChange(this.value)" />
+                  건너뛰기 (기존 유지)
+                </label>
+              </div>
+            </div>
+
+            <!-- Scrollable Table Wrapper -->
+            <div style="max-height: 290px; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 6px;">
+              <table class="table" style="width: 100%; min-width: 640px; font-size: 0.78rem; border-collapse: collapse;">
+                <thead style="background: #f8fafc; position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                  <tr>
+                    <th style="width: 38px; text-align: center; padding: 0.5rem 0.3rem;">선택</th>
+                    <th style="width: 85px; padding: 0.5rem 0.4rem;">학기</th>
+                    <th style="min-width: 150px; padding: 0.5rem 0.4rem;">교과목명</th>
+                    <th style="width: 145px; padding: 0.5rem 0.4rem;">이수구분</th>
+                    <th style="width: 65px; padding: 0.5rem 0.4rem; text-align: center;">학점</th>
+                    <th style="width: 75px; padding: 0.5rem 0.4rem; text-align: center;">성적</th>
+                    <th style="width: 85px; padding: 0.5rem 0.4rem; text-align: center;">상태</th>
+                    <th style="width: 45px; padding: 0.5rem 0.3rem; text-align: center;">삭제</th>
+                  </tr>
+                </thead>
+                <tbody id="pdf-parsed-table-body">
+                  <!-- Dynamic rows generated by renderParsedCoursesTable() -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Bottom summary & Save button -->
+            <div style="margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+              <div id="pdf-parsed-selection-summary" style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
+                선택된 과목: <span id="pdf-selected-count" style="color: #7c3aed;">0</span>개 (총 <span id="pdf-selected-credits" style="color: #7c3aed;">0</span>학점)
+              </div>
+
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn btn-outline" style="font-size: 0.82rem;" onclick="resetPdfSelection()">
+                  다시 분석하기
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-save-parsed-courses" style="font-size: 0.84rem; font-weight: 700; background: #7c3aed; border-color: #6d28d9;" onclick="saveParsedCoursesToUser()">
+                  💾 내 수강 목록에 최종 반영하기
+                </button>
+              </div>
             </div>
           </div>
 
@@ -2854,6 +2937,8 @@
     function resetPdfSelection() {
       selectedPdfFile = null;
       window.lastExtractedPdfData = null;
+      parsedCourseItems = [];
+      window.lastParsedCourses = [];
       const fileInput = document.getElementById('pdf-file-input');
       if (fileInput) fileInput.value = '';
 
@@ -2863,6 +2948,8 @@
       const extractedContainer = document.getElementById('pdf-extracted-container');
       const extractedPreview = document.getElementById('pdf-extracted-preview');
       const scannedBadge = document.getElementById('pdf-scanned-badge');
+      const parsedContainer = document.getElementById('pdf-parsed-results-container');
+      const modalWindow = document.getElementById('pdf-modal-window');
 
       if (promptEl) promptEl.style.display = 'block';
       if (previewEl) previewEl.style.display = 'none';
@@ -2870,6 +2957,8 @@
       if (extractedContainer) extractedContainer.style.display = 'none';
       if (extractedPreview) extractedPreview.textContent = '';
       if (scannedBadge) scannedBadge.style.display = 'none';
+      if (parsedContainer) parsedContainer.style.display = 'none';
+      if (modalWindow) modalWindow.style.maxWidth = '580px';
     }
 
     /* =========================================================================
@@ -3197,6 +3286,9 @@
           if (descEl) {
             descEl.textContent = `과목 분석 완료: ${parseResult.count}개 과목 감지됨 (고신뢰도: ${parseResult.highConfidenceCount}개, 확인 권장: ${parseResult.reviewCount}개)`;
           }
+
+          // 3단계: 파싱 확인 및 수정 테이블 렌더링 및 모달 확장
+          initParsedCourseItems(parseResult.courses);
         } else {
           if (iconEl) iconEl.textContent = '⚠️';
           if (titleEl) titleEl.textContent = '과목 정보 수동 확인 필요';
@@ -3213,6 +3305,341 @@
         }
         alert(`⚠️ PDF 텍스트 추출 중 오류가 발생했습니다:\n${err.message || err}\n\n다른 PDF 파일을 선택하시거나 [➕ 과목 직접 추가]를 이용해주세요.`);
       }
+    }
+
+    /* =========================================================================
+       4.4.3 파싱 결과 확인/수정 테이블 & 중복 방지 & 저장 핸들러
+       ========================================================================= */
+    let parsedCourseItems = [];
+    let parsedDupStrategy = 'overwrite'; // 'overwrite' or 'skip'
+
+    function initParsedCourseItems(courses) {
+      parsedCourseItems = (courses || []).map((c, idx) => ({
+        id: c.id || `parsed_${idx + 1}`,
+        selected: true,
+        code: c.code || '',
+        title: c.title || '',
+        semester: c.semester || '기타',
+        cat: c.cat || '경영_전선',
+        catRaw: c.catRaw || '',
+        credits: c.credits || 3,
+        grade: c.grade || '수강중',
+        confidence: c.confidence || 'high',
+        needsReview: c.needsReview || false,
+        isDuplicate: false,
+        dupTargetId: null
+      }));
+
+      checkParsedDuplicates();
+      renderParsedCoursesTable();
+
+      const container = document.getElementById('pdf-parsed-results-container');
+      if (container) container.style.display = 'block';
+
+      const modalWindow = document.getElementById('pdf-modal-window');
+      if (modalWindow) modalWindow.style.maxWidth = '840px';
+    }
+
+    /**
+     * 현재 activeUserCourses와 대조하여 중복 과목 식별
+     * 기준: 과목코드 일치 또는 과목명 일치
+     */
+    function checkParsedDuplicates() {
+      const activeCourses = activeUserCourses || [];
+
+      for (const item of parsedCourseItems) {
+        let isDup = false;
+        let targetId = null;
+
+        for (const existing of activeCourses) {
+          const sameCode = (item.code && existing.code && item.code === existing.code);
+          const sameTitle = (norm(item.title) && norm(item.title) === norm(existing.title));
+
+          if (sameCode || sameTitle) {
+            isDup = true;
+            targetId = existing.id;
+            break;
+          }
+        }
+
+        item.isDuplicate = isDup;
+        item.dupTargetId = targetId;
+
+        // 건너뛰기 전략일 때는 중복 항목 기본 선택 해제
+        if (isDup && parsedDupStrategy === 'skip') {
+          item.selected = false;
+        }
+      }
+    }
+
+    function renderParsedCoursesTable() {
+      const tbody = document.getElementById('pdf-parsed-table-body');
+      const badgeCount = document.getElementById('pdf-parsed-badge-count');
+      const selectedCountEl = document.getElementById('pdf-selected-count');
+      const selectedCreditsEl = document.getElementById('pdf-selected-credits');
+      const dupBox = document.getElementById('pdf-dup-strategy-box');
+
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (badgeCount) {
+        badgeCount.textContent = `총 ${parsedCourseItems.length}과목`;
+      }
+
+      // 중복 과목이 존재하는지 확인
+      const hasAnyDup = parsedCourseItems.some(i => i.isDuplicate);
+      if (dupBox) {
+        dupBox.style.display = hasAnyDup ? 'flex' : 'none';
+      }
+
+      const majorPrefix = (currentUser?.major || '경영').replace(/학과|학부/, '');
+
+      parsedCourseItems.forEach((item) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #f1f5f9';
+        if (item.isDuplicate) {
+          tr.style.background = '#fffdf5';
+        }
+
+        const isMissingTitle = !item.title || item.title.trim() === '';
+
+        // Status Badge
+        let statusBadge = '';
+        if (isMissingTitle) {
+          statusBadge = `<span class="badge badge-danger" style="font-size:0.68rem; padding: 2px 6px; background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;">직접입력</span>`;
+        } else if (item.isDuplicate) {
+          statusBadge = `<span class="badge badge-warning" style="font-size:0.68rem; padding: 2px 6px; background:#fffbeb; color:#b45309; border:1px solid #fde68a;">중복</span>`;
+        } else {
+          statusBadge = `<span class="badge badge-success" style="font-size:0.68rem; padding: 2px 6px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0;">신규</span>`;
+        }
+
+        // Category options
+        const categories = [
+          { val: `${majorPrefix}_전선`, label: `전선 (${majorPrefix})` },
+          { val: `${majorPrefix}_전필`, label: `전필 (${majorPrefix})` },
+          { val: '교양_정보소통', label: '교양 (정보소통)' },
+          { val: '교양_생애설계', label: '교양 (생애설계)' },
+          { val: '교양_의사소통', label: '교양 (의사소통)' },
+          { val: '교양_글로벌소통', label: '교양 (글로벌소통)' },
+          { val: '교양_스포츠웰니스', label: '교양 (스포츠웰니스)' },
+          { val: '교양_자율선택', label: '교양 (자율선택)' },
+          { val: '일반선택', label: '일반선택' }
+        ];
+
+        let catOptionsHtml = '';
+        categories.forEach(c => {
+          const selected = (item.cat === c.val) ? 'selected' : '';
+          catOptionsHtml += `<option value="${c.val}" ${selected}>${c.label}</option>`;
+        });
+
+        // Grade options
+        const grades = ['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'P', 'F', '수강중'];
+        let gradeOptionsHtml = '';
+        grades.forEach(g => {
+          const selected = (item.grade === g) ? 'selected' : '';
+          gradeOptionsHtml += `<option value="${g}" ${selected}>${g}</option>`;
+        });
+
+        // Credits options
+        const creditVals = [1, 2, 3, 4];
+        let creditOptionsHtml = '';
+        creditVals.forEach(cr => {
+          const selected = (item.credits === cr) ? 'selected' : '';
+          creditOptionsHtml += `<option value="${cr}" ${selected}>${cr}</option>`;
+        });
+
+        tr.innerHTML = `
+          <td style="text-align: center; vertical-align: middle; padding: 0.4rem 0.2rem;">
+            <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="toggleParsedCourseItem('${item.id}', this.checked)" />
+          </td>
+          <td style="vertical-align: middle; padding: 0.4rem 0.3rem;">
+            <input type="text" class="input" style="padding: 0.2rem 0.4rem; font-size: 0.78rem; width: 75px;" value="${item.semester}" onchange="updateParsedCourseItem('${item.id}', 'semester', this.value)" />
+          </td>
+          <td style="vertical-align: middle; padding: 0.4rem 0.3rem;">
+            <input type="text" class="input" style="padding: 0.2rem 0.4rem; font-size: 0.78rem; width: 100%; min-width: 140px; ${isMissingTitle ? 'border-color: #ef4444; background: #fff5f5;' : ''}" value="${item.title}" placeholder="과목명 직접 입력 필요" onchange="updateParsedCourseItem('${item.id}', 'title', this.value)" />
+          </td>
+          <td style="vertical-align: middle; padding: 0.4rem 0.3rem;">
+            <select class="select" style="padding: 0.2rem 0.3rem; font-size: 0.78rem; width: 100%;" onchange="updateParsedCourseItem('${item.id}', 'cat', this.value)">
+              ${catOptionsHtml}
+            </select>
+          </td>
+          <td style="vertical-align: middle; text-align: center; padding: 0.4rem 0.3rem;">
+            <select class="select" style="padding: 0.2rem 0.3rem; font-size: 0.78rem; width: 55px; text-align: center;" onchange="updateParsedCourseItem('${item.id}', 'credits', this.value)">
+              ${creditOptionsHtml}
+            </select>
+          </td>
+          <td style="vertical-align: middle; text-align: center; padding: 0.4rem 0.3rem;">
+            <select class="select" style="padding: 0.2rem 0.3rem; font-size: 0.78rem; width: 68px; text-align: center;" onchange="updateParsedCourseItem('${item.id}', 'grade', this.value)">
+              ${gradeOptionsHtml}
+            </select>
+          </td>
+          <td style="vertical-align: middle; text-align: center; padding: 0.4rem 0.3rem;">
+            ${statusBadge}
+          </td>
+          <td style="vertical-align: middle; text-align: center; padding: 0.4rem 0.2rem;">
+            <button type="button" class="btn btn-outline" style="padding: 0.15rem 0.35rem; font-size: 0.72rem; color: #ef4444; border-color: #fca5a5;" onclick="removeParsedCourseItem('${item.id}')" title="삭제">✕</button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      // Update selection totals
+      const selectedItems = parsedCourseItems.filter(i => i.selected);
+      const totalSelectedCredits = selectedItems.reduce((acc, cur) => acc + (cur.credits || 0), 0);
+
+      if (selectedCountEl) selectedCountEl.textContent = selectedItems.length;
+      if (selectedCreditsEl) selectedCreditsEl.textContent = totalSelectedCredits;
+    }
+
+    function toggleParsedCourseItem(id, isSelected) {
+      const item = parsedCourseItems.find(i => i.id === id);
+      if (item) {
+        item.selected = isSelected;
+        renderParsedCoursesTable();
+      }
+    }
+
+    function toggleSelectAllParsedCourses() {
+      const allSelected = parsedCourseItems.every(i => i.selected);
+      parsedCourseItems.forEach(i => i.selected = !allSelected);
+      renderParsedCoursesTable();
+    }
+
+    function updateParsedCourseItem(id, field, value) {
+      const item = parsedCourseItems.find(i => i.id === id);
+      if (!item) return;
+
+      if (field === 'credits') {
+        item.credits = parseInt(value, 10) || 3;
+      } else {
+        item[field] = value;
+      }
+
+      if (field === 'title') {
+        checkParsedDuplicates();
+      }
+
+      renderParsedCoursesTable();
+    }
+
+    function removeParsedCourseItem(id) {
+      parsedCourseItems = parsedCourseItems.filter(i => i.id !== id);
+      renderParsedCoursesTable();
+    }
+
+    function addBlankParsedCourseRow() {
+      const majorPrefix = (currentUser?.major || '경영').replace(/학과|학부/, '');
+      const newItem = {
+        id: `parsed_manual_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
+        selected: true,
+        code: '',
+        title: '',
+        semester: '2026-2',
+        cat: `${majorPrefix}_전선`,
+        catRaw: '전선',
+        credits: 3,
+        grade: '수강중',
+        confidence: 'medium',
+        needsReview: true,
+        isDuplicate: false,
+        dupTargetId: null
+      };
+
+      parsedCourseItems.unshift(newItem);
+      renderParsedCoursesTable();
+    }
+
+    function handleDupStrategyChange(strategy) {
+      parsedDupStrategy = strategy;
+      checkParsedDuplicates();
+      renderParsedCoursesTable();
+    }
+
+    /**
+     * 3~4단계: 파싱 확인 테이블의 선택된 과목들을 내 수강 목록(activeUserCourses)에 저장 및 반영
+     */
+    function saveParsedCoursesToUser() {
+      if (!currentUser) {
+        alert('로그인이 필요한 기능입니다.');
+        return;
+      }
+
+      const selectedItems = parsedCourseItems.filter(i => i.selected);
+      if (selectedItems.length === 0) {
+        alert('저장할 과목을 최소 1개 이상 선택해주세요.');
+        return;
+      }
+
+      // 과목명 공백 검증
+      const invalidItem = selectedItems.find(i => !i.title || i.title.trim() === '');
+      if (invalidItem) {
+        alert('⚠️ 과목명이 비어있는 항목이 있습니다.\n과목명을 직접 입력하시거나 [✕] 버튼을 눌러 해당 항목을 삭제해주세요.');
+        return;
+      }
+
+      let addedCount = 0;
+      let overwrittenCount = 0;
+      let skippedCount = 0;
+
+      for (const item of selectedItems) {
+        const titleTrimmed = item.title.trim();
+
+        if (item.isDuplicate && item.dupTargetId) {
+          if (parsedDupStrategy === 'overwrite') {
+            // 기존 과목 덮어쓰기 (성적 및 이수정보 업데이트)
+            const targetIdx = activeUserCourses.findIndex(ac => ac.id === item.dupTargetId);
+            if (targetIdx !== -1) {
+              activeUserCourses[targetIdx] = {
+                ...activeUserCourses[targetIdx],
+                title: titleTrimmed,
+                semester: item.semester,
+                cat: item.cat,
+                credits: item.credits,
+                grade: item.grade
+              };
+              overwrittenCount++;
+            }
+          } else {
+            // 건너뛰기
+            skippedCount++;
+          }
+        } else {
+          // 신규 과목 추가
+          const newCourse = {
+            id: `c_pdf_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+            semester: item.semester,
+            title: titleTrimmed,
+            cat: item.cat,
+            credits: item.credits,
+            grade: item.grade
+          };
+          activeUserCourses.push(newCourse);
+          addedCount++;
+        }
+      }
+
+      // localStorage에 저장
+      try {
+        saveUserCourses(currentUser.studentId, activeUserCourses);
+      } catch (e) {
+        console.error('Failed to save to localStorage:', e);
+        alert('⚠️ 과목 저장 중 오류가 발생했습니다. 브라우저 저장공간을 확인해주세요.');
+        return;
+      }
+
+      // UI 및 졸업 진단 실시간 갱신
+      renderMyInfoTab();
+
+      // 모달 닫기 및 초기화
+      closePdfModal();
+
+      let msg = `🎉 성적증명서 반영 완료!\n- 신규 등록: ${addedCount}개 과목`;
+      if (overwrittenCount > 0) msg += `\n- 기존 갱신: ${overwrittenCount}개 과목`;
+      if (skippedCount > 0) msg += `\n- 중복 건너뜀: ${skippedCount}개 과목`;
+      msg += `\n\n[내 정보] 탭의 취득 학점 및 교양 6대 영역 진행률이 실시간 갱신되었습니다.`;
+
+      alert(msg);
     }
 
     /* =========================================================================
