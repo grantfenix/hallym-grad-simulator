@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
-  <!-- Course Database (1,098 Courses) for offline & local file:// support -->
+  <!-- Databases for offline & local file:// support -->
   <script src="data/courses.js"></script>
+  <script src="data/graduation_rules.js"></script>
+  <script src="data/gyoyang_rules.js"></script>
   <style>
     :root {
       --primary: #0284c7;
@@ -943,8 +945,8 @@
       <form id="form-register" style="display: none;" onsubmit="handleRegister(event)">
         <div class="auth-field">
           <label class="auth-label" for="reg-id">학번 (아이디) <span style="color: var(--danger);">*</span></label>
-          <input type="text" id="reg-id" class="input" style="width: 100%;" placeholder="학번 8~10자리 입력 (예: 20241234)" />
-          <div class="auth-hint">한림대학교 학번을 입력하세요.</div>
+          <input type="text" id="reg-id" class="input" style="width: 100%;" placeholder="학번 8~10자리 입력 (예: 20241234)" oninput="handleRegIdInput(this.value)" />
+          <div class="auth-hint">한림대학교 학번을 입력하세요. (앞 4자리 입력 시 입학연도 자동 선택)</div>
         </div>
 
         <div class="auth-field">
@@ -960,6 +962,21 @@
         <div class="auth-field">
           <label class="auth-label" for="reg-pw-confirm">비밀번호 확인 <span style="color: var(--danger);">*</span></label>
           <input type="password" id="reg-pw-confirm" class="input" style="width: 100%;" placeholder="비밀번호 재입력" />
+        </div>
+
+        <!-- 입학연도(학번) 선택 -->
+        <div class="auth-field">
+          <label class="auth-label" for="reg-admission-year">입학연도 (학번 기준) <span style="color: var(--danger);">*</span></label>
+          <select id="reg-admission-year" class="select" style="width: 100%;">
+            <option value="2026">2026학번</option>
+            <option value="2025" selected>2025학번</option>
+            <option value="2024">2024학번</option>
+            <option value="2023">2023학번</option>
+            <option value="2022">2022학번 (22학번 이전 교양 기준)</option>
+            <option value="2021">2021학번 (22학번 이전 교양 기준)</option>
+            <option value="2020">2020학번 이전 (22학번 이전 교양 기준)</option>
+          </select>
+          <div class="auth-hint">※ 2023학번 이후: 글로벌소통 9학점 / 2022학번 이전: 글로벌소통 6학점 자동 적용</div>
         </div>
 
         <!-- 학적 구분: 재학생 vs 편입생 -->
@@ -982,12 +999,29 @@
         <div class="auth-field">
           <label class="auth-label" for="reg-major">주전공 선택 <span style="color: var(--danger);">*</span></label>
           <select id="reg-major" class="select" style="width: 100%;">
-            <option value="경영학과" selected>🏛️ 경영학과 (단일전공 60학점 완전지원)</option>
-            <option value="소프트웨어학부">💻 소프트웨어학부 (간단 모드)</option>
-            <option value="데이터사이언스학부">📊 데이터사이언스학부 (간단 모드)</option>
-            <option value="경제학과">📈 경제학과 (간단 모드)</option>
-            <option value="심리학과">🧠 심리학과 (간단 모드)</option>
-            <option value="기타 학과">🎓 기타 학과 (간단 모드)</option>
+            <option value="경영학과" selected>경영학과</option>
+            <option value="소프트웨어학부">소프트웨어학부</option>
+            <option value="데이터사이언스학부">데이터사이언스학부</option>
+            <option value="인공지능융합학부">인공지능융합학부</option>
+            <option value="경제학과">경제학과</option>
+            <option value="금융재무학과">금융재무학과</option>
+            <option value="광고홍보학과">광고홍보학과</option>
+            <option value="미디어스쿨">미디어스쿨</option>
+            <option value="심리학과">심리학과</option>
+            <option value="사회복지학부">사회복지학부</option>
+            <option value="법학과">법학과</option>
+            <option value="사회학과">사회학과</option>
+            <option value="정치행정학과">정치행정학과</option>
+            <option value="영어영문학과">영어영문학과</option>
+            <option value="국어국문학전공">국어국문학전공</option>
+            <option value="일본어학과">일본어학과</option>
+            <option value="러시아어학과">러시아어학과</option>
+            <option value="인문콘텐츠융합전공">인문콘텐츠융합전공</option>
+            <option value="반도체·디스플레이스쿨">반도체·디스플레이스쿨</option>
+            <option value="융합과학수사학과">융합과학수사학과</option>
+            <option value="체육학과">체육학과</option>
+            <option value="화학과">화학과</option>
+            <option value="일송자유교양대학 자유교양전공">일송자유교양대학 자유교양전공</option>
           </select>
         </div>
 
@@ -1071,14 +1105,46 @@
             </select>
           </div>
           <div style="margin-bottom: 1rem;">
+            <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">입학연도 (학번 기준)</label>
+            <select id="modal-admission-year" class="select" style="width: 100%;">
+              <option value="2026">2026학번</option>
+              <option value="2025">2025학번</option>
+              <option value="2024">2024학번</option>
+              <option value="2023">2023학번</option>
+              <option value="2022">2022학번 (22학번 이전 교양 기준)</option>
+              <option value="2021">2021학번 (22학번 이전 교양 기준)</option>
+              <option value="2020">2020학번 이전 (22학번 이전 교양 기준)</option>
+            </select>
+            <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem;">
+              ※ 2023학번 이후: 글로벌소통 9학점(Career English 의무) / 2022학번 이전: 글로벌소통 6학점
+            </div>
+          </div>
+          <div style="margin-bottom: 1rem;">
             <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">주전공 선택</label>
             <select id="modal-major-select" class="select" style="width: 100%;">
-              <option value="경영학과">🏛️ 경영학과 (단일전공 60학점 완전지원)</option>
-              <option value="소프트웨어학부">💻 소프트웨어학부 (간단 모드)</option>
-              <option value="데이터사이언스학부">📊 데이터사이언스학부 (간단 모드)</option>
-              <option value="경제학과">📈 경제학과 (간단 모드)</option>
-              <option value="심리학과">🧠 심리학과 (간단 모드)</option>
-              <option value="기타 학과">🎓 기타 학과 (간단 모드)</option>
+              <option value="경영학과" selected>경영학과</option>
+              <option value="소프트웨어학부">소프트웨어학부</option>
+              <option value="데이터사이언스학부">데이터사이언스학부</option>
+              <option value="인공지능융합학부">인공지능융합학부</option>
+              <option value="경제학과">경제학과</option>
+              <option value="금융재무학과">금융재무학과</option>
+              <option value="광고홍보학과">광고홍보학과</option>
+              <option value="미디어스쿨">미디어스쿨</option>
+              <option value="심리학과">심리학과</option>
+              <option value="사회복지학부">사회복지학부</option>
+              <option value="법학과">법학과</option>
+              <option value="사회학과">사회학과</option>
+              <option value="정치행정학과">정치행정학과</option>
+              <option value="영어영문학과">영어영문학과</option>
+              <option value="국어국문학전공">국어국문학전공</option>
+              <option value="일본어학과">일본어학과</option>
+              <option value="러시아어학과">러시아어학과</option>
+              <option value="인문콘텐츠융합전공">인문콘텐츠융합전공</option>
+              <option value="반도체·디스플레이스쿨">반도체·디스플레이스쿨</option>
+              <option value="융합과학수사학과">융합과학수사학과</option>
+              <option value="체육학과">체육학과</option>
+              <option value="화학과">화학과</option>
+              <option value="일송자유교양대학 자유교양전공">일송자유교양대학 자유교양전공</option>
             </select>
             <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem;">
               ※ 전공을 변경하면 졸업요건 계산이 바뀝니다.
@@ -1161,6 +1227,10 @@
             <div class="user-info-item">
               <div class="info-label">이름</div>
               <div class="info-val" id="info-val-name">-</div>
+            </div>
+            <div class="user-info-item">
+              <div class="info-label">입학연도 (학번)</div>
+              <div class="info-val" id="info-val-year">-</div>
             </div>
             <div class="user-info-item">
               <div class="info-label">학적 구분</div>
@@ -1346,96 +1416,25 @@
           </div>
         </div>
 
+        <!-- Major Mandatory Courses Card -->
+        <div class="card">
+          <div class="card-title">
+            <span id="major-mandatory-title">🏛️ 주전공 전공필수(전필) 이수 진단</span>
+            <span style="font-size: 0.78rem; font-weight: 600;" id="major-mandatory-summary-badge"></span>
+          </div>
+          <div id="major-mandatory-container">
+            <!-- Dynamically populated via renderMajorMandatory -->
+          </div>
+        </div>
+
         <!-- Common GE 26 Credits 6-Area Progress Grid -->
         <div class="card">
           <div class="card-title">
             <span>📚 한림대학교 공통 교양(26학점) 6대 영역별 충족 현황</span>
-            <span style="font-size: 0.78rem; font-weight: 600; color: var(--success);" id="ge-total-summary-badge">총 35학점 이수 (기준 26학점 달성)</span>
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--success);" id="ge-total-summary-badge">총 26학점 기준</span>
           </div>
-          <div class="ge-grid">
-            <!-- 1. 정보소통 -->
-            <div class="ge-item" id="ge-card-1" style="border-left: 3px solid var(--danger);">
-              <div class="ge-item-head">
-                <span>1. 정보소통 (AI/코딩)</span>
-                <span id="ge-val-1" style="color: var(--danger);">0 / 5 학점 (미이수 결손)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-1" style="width: 0%; background: var(--danger);"></div>
-              </div>
-              <div class="ge-hint">
-                💡 <strong>제안 과목:</strong> AI프로젝트입문(2학점), 기초창의코딩(3학점)
-              </div>
-            </div>
-
-            <!-- 2. 생애설계 -->
-            <div class="ge-item" id="ge-card-2" style="border-left: 3px solid #f59e0b;">
-              <div class="ge-item-head">
-                <span>2. 생애설계 (오디세이)</span>
-                <span id="ge-val-2" style="color: #f59e0b;">1 / 2 학점 (오디세이2 미이수)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-2" style="width: 50%; background: #f59e0b;"></div>
-              </div>
-              <div class="ge-hint">
-                💡 <strong>제안 과목:</strong> 오디세이세미나 2 (공통 교양필수 1학점)
-              </div>
-            </div>
-
-            <!-- 3. 의사소통 -->
-            <div class="ge-item" id="ge-card-3" style="border-left: 3px solid var(--success);">
-              <div class="ge-item-head">
-                <span>3. 의사소통</span>
-                <span id="ge-val-3" style="color: var(--success);">3 / 3 학점 (충족 완료)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-3" style="width: 100%; background: var(--success);"></div>
-              </div>
-              <div class="ge-hint">
-                ✓ 이수: (외국인)발표와토론2 등
-              </div>
-            </div>
-
-            <!-- 4. 글로벌소통 -->
-            <div class="ge-item" id="ge-card-4" style="border-left: 3px solid var(--success);">
-              <div class="ge-item-head">
-                <span>4. 글로벌소통 (언어)</span>
-                <span id="ge-val-4" style="color: var(--success);">9 / 9 학점 (기준 달성)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-4" style="width: 100%; background: var(--success);"></div>
-              </div>
-              <div class="ge-hint">
-                ✓ 이수: 읽기와쓰기2, 대학한국어2·3, 영어 과목군
-              </div>
-            </div>
-
-            <!-- 5. 스포츠웰니스 -->
-            <div class="ge-item" id="ge-card-5" style="border-left: 3px solid var(--success);">
-              <div class="ge-item-head">
-                <span>5. 스포츠웰니스</span>
-                <span id="ge-val-5" style="color: var(--success);">2 / 1 학점 (기준 달성)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-5" style="width: 100%; background: var(--success);"></div>
-              </div>
-              <div class="ge-hint">
-                ✓ 이수: 스포츠-요가, 소도구필라테스 등
-              </div>
-            </div>
-
-            <!-- 6. 자율선택 교양 -->
-            <div class="ge-item" id="ge-card-6" style="border-left: 3px solid var(--success);">
-              <div class="ge-item-head">
-                <span>6. 자율선택 교양</span>
-                <span id="ge-val-6" style="color: var(--success);">18 / 6 학점 (초과 달성)</span>
-              </div>
-              <div class="ge-progress">
-                <div class="ge-bar" id="ge-bar-6" style="width: 100%; background: var(--success);"></div>
-              </div>
-              <div class="ge-hint">
-                ✓ 이수: 경제학, 통계학, 한국대학생활, 한국문화 등
-              </div>
-            </div>
+          <div class="ge-grid" id="ge-cards-container">
+            <!-- Dynamically generated 6 GE Area Cards via renderGeCards -->
           </div>
         </div>
 
@@ -1831,6 +1830,8 @@
   <!-- JAVASCRIPT LOGIC -->
   <!-- ================================================================= -->
   <script src="data/courses.js"></script>
+  <script src="data/graduation_rules.js"></script>
+  <script src="data/gyoyang_rules.js"></script>
   <script>
     /* =========================================================================
        1. DEMO & INITIAL DATA (20258044 김한림 실제 이수 과목 21개)
@@ -1929,12 +1930,16 @@
           studentId: '20258044',
           name: '김한림',
           password: '1234',
+          admissionYear: 2025,
           major: '경영학과',
           studentType: '재학생',
           hasDoubleMajor: false,
           doubleMajorName: '',
           createdAt: new Date().toISOString()
         };
+        saveUsers(users);
+      } else if (!users['20258044'].admissionYear) {
+        users['20258044'].admissionYear = 2025;
         saveUsers(users);
       }
     }
@@ -2036,6 +2041,86 @@
       }
     }
 
+    // Load Graduation Rules (23 Departments)
+    let graduationRules = {};
+    let gyoyangRules = {};
+
+    async function loadGraduationRules() {
+      if (window.HALLYM_GRADUATION_RULES && Object.keys(window.HALLYM_GRADUATION_RULES).length > 0) {
+        graduationRules = window.HALLYM_GRADUATION_RULES;
+        return;
+      }
+      try {
+        const res = await fetch('data/graduation_rules.json');
+        if (res.ok) {
+          graduationRules = await res.json();
+        }
+      } catch (err) {
+        console.warn('Failed to load graduation_rules.json:', err);
+      }
+    }
+
+    async function loadGyoyangRules() {
+      if (window.HALLYM_GYOYANG_RULES && Object.keys(window.HALLYM_GYOYANG_RULES).length > 0) {
+        gyoyangRules = window.HALLYM_GYOYANG_RULES;
+        return;
+      }
+      try {
+        const res = await fetch('data/gyoyang_rules.json');
+        if (res.ok) {
+          gyoyangRules = await res.json();
+        }
+      } catch (err) {
+        console.warn('Failed to load gyoyang_rules.json:', err);
+      }
+    }
+
+    function getDepartmentGradRule(deptName) {
+      if (graduationRules && graduationRules[deptName]) {
+        return graduationRules[deptName];
+      }
+      return {
+        department: deptName || '경영학과',
+        college: '',
+        total_credits: 130,
+        major_credits: { single: 60, double: 33, minor: 21 },
+        ge_credits: 26,
+        mandatory_courses: { since_2021: [], before_2021: [] },
+        special_conditions: {}
+      };
+    }
+
+    function getUserAdmissionYear(user) {
+      if (!user) return 2025;
+      if (user.admissionYear) return Number(user.admissionYear);
+      const parsed = parseInt(String(user.studentId || '').substring(0, 4), 10);
+      return (parsed >= 2000 && parsed <= 2030) ? parsed : 2025;
+    }
+
+    function getGyoyangRule(admissionYear) {
+      const year = Number(admissionYear) || 2025;
+      const gr = (gyoyangRules && Object.keys(gyoyangRules).length > 0) ? gyoyangRules : (window.HALLYM_GYOYANG_RULES || {});
+      if (year >= 2023) {
+        return gr['since_2023'] || null;
+      } else {
+        return gr['before_2023'] || null;
+      }
+    }
+
+    function handleRegIdInput(val) {
+      if (val && val.length >= 4) {
+        const y = val.substring(0, 4);
+        const select = document.getElementById('reg-admission-year');
+        if (select) {
+          if (Array.from(select.options).some(o => o.value === y)) {
+            select.value = y;
+          } else if (parseInt(y, 10) <= 2020) {
+            select.value = '2020';
+          }
+        }
+      }
+    }
+
     function norm(str) {
       return (str || '').replace(/[\s\-_:.]+/g, '').toLowerCase();
     }
@@ -2121,6 +2206,7 @@
       const name = document.getElementById('reg-name').value.trim();
       const pw = document.getElementById('reg-pw').value;
       const pwConfirm = document.getElementById('reg-pw-confirm').value;
+      const admissionYear = parseInt(document.getElementById('reg-admission-year').value, 10) || (parseInt(id.substring(0, 4), 10) || 2025);
       const major = document.getElementById('reg-major').value;
       const hasDouble = document.getElementById('reg-has-double').checked;
       const doubleName = document.getElementById('reg-double-name').value.trim();
@@ -2155,6 +2241,7 @@
         studentId: id,
         name: name,
         password: pw,
+        admissionYear: admissionYear,
         major: major,
         studentType: currentStudentType,
         hasDoubleMajor: hasDouble,
@@ -2226,14 +2313,12 @@
       if (!currentUser) return;
       const major = currentUser.major || '경영학과';
       const studentType = currentUser.studentType || '재학생';
-      let majorText = major === '경영학과' ? '경영학과 단일전공' : `${major} (간단 모드)`;
-      if (currentUser.hasDoubleMajor && currentUser.doubleMajorName) {
-        majorText = `${major} + ${currentUser.doubleMajorName} 복수전공`;
-      }
+      const admYear = getUserAdmissionYear(currentUser);
+      let majorText = (currentUser.hasDoubleMajor && currentUser.doubleMajorName) ? `${major} + ${currentUser.doubleMajorName} 복수전공` : `${major} 단일전공`;
 
       const pEl = document.getElementById('profile-display-text');
       if (pEl) {
-        pEl.innerHTML = `👤 <b>${currentUser.studentId}</b> ${currentUser.name} · ${majorText} · <span class="badge ${studentType === '편입생' ? 'badge-primary' : 'badge-gray'}" style="font-size:0.72rem;">${studentType}</span>`;
+        pEl.innerHTML = `👤 <b>${currentUser.studentId}</b> ${currentUser.name} · <b>${admYear}학번</b> · ${majorText} · <span class="badge ${studentType === '편입생' ? 'badge-primary' : 'badge-gray'}" style="font-size:0.72rem;">${studentType}</span>`;
       }
     }
 
@@ -2246,6 +2331,16 @@
       document.getElementById('modal-student-name').value = currentUser.name;
       document.getElementById('modal-major-select').value = currentUser.major || '경영학과';
       document.getElementById('modal-student-type').value = currentUser.studentType || '재학생';
+
+      const admYear = getUserAdmissionYear(currentUser);
+      const yearSelect = document.getElementById('modal-admission-year');
+      if (yearSelect) {
+        if (Array.from(yearSelect.options).some(o => o.value === String(admYear))) {
+          yearSelect.value = String(admYear);
+        } else if (admYear <= 2020) {
+          yearSelect.value = '2020';
+        }
+      }
 
       document.getElementById('modal-has-double').checked = !!currentUser.hasDoubleMajor;
       document.getElementById('modal-double-wrap').style.display = currentUser.hasDoubleMajor ? 'block' : 'none';
@@ -2271,8 +2366,12 @@
       const newMajor = document.getElementById('modal-major-select').value;
       const prevMajor = currentUser.major;
 
-      if (newMajor !== prevMajor) {
-        const ok = confirm('전공을 변경하면 졸업요건 계산이 바뀝니다. 계속하시겠습니까?');
+      const yearSelect = document.getElementById('modal-admission-year');
+      const newYear = yearSelect ? parseInt(yearSelect.value, 10) : getUserAdmissionYear(currentUser);
+      const prevYear = getUserAdmissionYear(currentUser);
+
+      if (newMajor !== prevMajor || newYear !== prevYear) {
+        const ok = confirm('전공 또는 입학연도를 변경하면 졸업 및 교양 요건이 새로 계산됩니다. 계속하시겠습니까?');
         if (!ok) return;
       }
 
@@ -2284,6 +2383,7 @@
       currentUser.name = newName;
       currentUser.studentType = newType;
       currentUser.major = newMajor;
+      currentUser.admissionYear = newYear;
       currentUser.hasDoubleMajor = hasD;
       currentUser.doubleMajorName = dName;
 
@@ -2333,8 +2433,14 @@
       if (!currentUser) return;
 
       // 1. 기본정보 카드 반영
+      const admYear = getUserAdmissionYear(currentUser);
+      const cohortLabel = admYear >= 2023 ? '23학번 이후 교양 기준' : '22학번 이전 교양 기준';
       document.getElementById('info-val-id').textContent = currentUser.studentId;
       document.getElementById('info-val-name').textContent = currentUser.name;
+      const elYear = document.getElementById('info-val-year');
+      if (elYear) {
+        elYear.innerHTML = `<strong>${admYear}학번</strong> <span style="font-size:0.75rem; color:var(--gray-500); margin-left:0.25rem;">(${cohortLabel})</span>`;
+      }
       document.getElementById('info-val-type').innerHTML = `<span class="badge ${currentUser.studentType === '편입생' ? 'badge-primary' : 'badge-gray'}">${currentUser.studentType}</span>`;
       document.getElementById('info-val-major').textContent = currentUser.major || '경영학과';
       document.getElementById('info-val-double').textContent = (currentUser.hasDoubleMajor && currentUser.doubleMajorName) ? currentUser.doubleMajorName : '없음';
@@ -2595,6 +2701,311 @@
     }
 
     /* =========================================================================
+       4.5 GE (교양) 6대 영역 규칙 기반 세부 진단 엔진
+       ========================================================================= */
+    function diagnoseGyoyang(courses, admYear, geRule) {
+      if (!geRule) geRule = getGyoyangRule(admYear);
+      const isConfirmed = c => (c.grade && c.grade !== '수강중' && c.grade !== 'N/P');
+      const isInProg = c => (c.grade === '수강중');
+
+      const matchesAny = (title, list) => {
+        const tNorm = norm(title);
+        return list.some(item => {
+          const iNorm = norm(item);
+          return tNorm.includes(iNorm) || iNorm.includes(tNorm);
+        });
+      };
+
+      const getStatus = (conf, inProg, req) => {
+        if (conf >= req) return 'PASSED';
+        if (conf + inProg >= req) return 'IN_PROGRESS';
+        return 'MISSING';
+      };
+
+      const assigned = new Set();
+
+      // 1. 정보소통 (컴퓨팅사고 2학점 + 창의코딩 3학점)
+      const compKeywords = ['컴퓨팅사고와문제해결', '컴퓨팅사고-ai', '컴퓨팅사고-데이터기초', '컴퓨팅사고-융합', '컴퓨팅사고-창의', '컴퓨팅사고'];
+      const codeKeywords = ['ai프로젝트입문', '기초창의코딩', '창의코딩', '모두의java', '파이썬프로그래밍기초', '데이터과학기초', '웹프로그래밍기초', '파이썬'];
+      const codeSubs = ['소프트웨어', '인공지능융합', '데이터사이언스', '프로그래밍'];
+
+      const compMatches = courses.filter(c => !assigned.has(c.id) && matchesAny(c.title, compKeywords));
+      compMatches.forEach(c => assigned.add(c.id));
+
+      const codeMatches = courses.filter(c => !assigned.has(c.id) && (
+        c.cat === '교양_정보소통' || matchesAny(c.title, codeKeywords) || (c.cat !== '일반선택' && matchesAny(c.title, codeSubs))
+      ));
+      codeMatches.forEach(c => assigned.add(c.id));
+
+      const compConf = compMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const compInProg = compMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const compStatus = getStatus(compConf, compInProg, 2);
+
+      const codeConf = codeMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const codeInProg = codeMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const codeStatus = getStatus(codeConf, codeInProg, 3);
+
+      const infoConf = compConf + codeConf;
+      const infoInProg = compInProg + codeInProg;
+      const infoReq = 5;
+      const infoStatus = (compStatus === 'PASSED' && codeStatus === 'PASSED') ? 'PASSED' :
+                         ((compStatus !== 'MISSING' && codeStatus !== 'MISSING') ? 'IN_PROGRESS' : 'MISSING');
+
+      const areaInfo = {
+        area: '정보소통',
+        required_credits: infoReq,
+        confirmed_credits: infoConf,
+        in_prog_credits: infoInProg,
+        exp_credits: infoConf + infoInProg,
+        status: infoStatus,
+        sub_items: [
+          {
+            name: '컴퓨팅사고 (2학점)',
+            required_credits: 2,
+            confirmed_credits: compConf,
+            in_prog_credits: compInProg,
+            status: compStatus,
+            candidates: ['컴퓨팅사고와문제해결', '컴퓨팅사고-AI', '컴퓨팅사고-데이터기초', '컴퓨팅사고-융합', '컴퓨팅사고-창의'],
+            substitutions: [],
+            matched: compMatches
+          },
+          {
+            name: '창의코딩 (3학점)',
+            required_credits: 3,
+            confirmed_credits: codeConf,
+            in_prog_credits: codeInProg,
+            status: codeStatus,
+            candidates: ['AI프로젝트입문', '기초창의코딩', '창의코딩', '파이썬프로그래밍기초', '데이터과학기초', '웹프로그래밍기초'],
+            substitutions: ['소프트웨어/AI/데이터사이언스 기초코딩 대체'],
+            matched: codeMatches
+          }
+        ]
+      };
+
+      // 2. 생애설계 (오디세이세미나1 1학점 + 오디세이세미나2 1학점)
+      const ody1Matches = courses.filter(c => !assigned.has(c.id) && norm(c.title).includes('오디세이세미나1'));
+      ody1Matches.forEach(c => assigned.add(c.id));
+      const ody2Matches = courses.filter(c => !assigned.has(c.id) && norm(c.title).includes('오디세이세미나2'));
+      ody2Matches.forEach(c => assigned.add(c.id));
+
+      const ody1Conf = ody1Matches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const ody1InProg = ody1Matches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const ody1Status = getStatus(ody1Conf, ody1InProg, 1);
+
+      const ody2Conf = ody2Matches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const ody2InProg = ody2Matches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const ody2Status = getStatus(ody2Conf, ody2InProg, 1);
+
+      const lifeConf = ody1Conf + ody2Conf;
+      const lifeInProg = ody1InProg + ody2InProg;
+      const lifeReq = 2;
+      const lifeStatus = (ody1Status === 'PASSED' && ody2Status === 'PASSED') ? 'PASSED' :
+                         ((ody1Status !== 'MISSING' && ody2Status !== 'MISSING') ? 'IN_PROGRESS' : 'MISSING');
+
+      const areaLife = {
+        area: '생애설계',
+        required_credits: lifeReq,
+        confirmed_credits: lifeConf,
+        in_prog_credits: lifeInProg,
+        exp_credits: lifeConf + lifeInProg,
+        status: lifeStatus,
+        sub_items: [
+          {
+            name: '오디세이세미나1 (1학점)',
+            required_credits: 1,
+            confirmed_credits: ody1Conf,
+            in_prog_credits: ody1InProg,
+            status: ody1Status,
+            candidates: ['오디세이세미나1'],
+            substitutions: [],
+            matched: ody1Matches
+          },
+          {
+            name: '오디세이세미나2 (1학점)',
+            required_credits: 1,
+            confirmed_credits: ody2Conf,
+            in_prog_credits: ody2InProg,
+            status: ody2Status,
+            candidates: ['오디세이세미나2'],
+            substitutions: [],
+            matched: ody2Matches
+          }
+        ]
+      };
+
+      // 3. 의사소통 (1과목 3학점)
+      const commKeywords = ['비판적사고와글쓰기', '사고와표현', '프로젝트융합글쓰기', 'criticalthinking', '글쓰기', '의사소통'];
+      const commSubs = ['읽기와쓰기', '발표와토론', '대학한국어2', '대학한국어3', '외국인읽기와쓰기', '외국인발표와토론'];
+      const commMatches = courses.filter(c => !assigned.has(c.id) && (
+        c.cat === '교양_의사소통' || matchesAny(c.title, commKeywords) || matchesAny(c.title, commSubs)
+      ));
+      commMatches.forEach(c => assigned.add(c.id));
+
+      const commConf = commMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const commInProg = commMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const commStatus = getStatus(commConf, commInProg, 3);
+
+      const areaComm = {
+        area: '의사소통',
+        required_credits: 3,
+        confirmed_credits: commConf,
+        in_prog_credits: commInProg,
+        exp_credits: commConf + commInProg,
+        status: commStatus,
+        sub_items: [
+          {
+            name: '의사소통 교과목 (3학점)',
+            required_credits: 3,
+            confirmed_credits: commConf,
+            in_prog_credits: commInProg,
+            status: commStatus,
+            candidates: ['비판적사고와글쓰기', '사고와표현', '프로젝트융합글쓰기', 'CRITICAL THINKING AND ARGUMENTATION'],
+            substitutions: ['읽기와쓰기', '발표와토론', '대학한국어2/3', '(외국인)읽기와쓰기/(외국인)발표와토론'],
+            matched: commMatches
+          }
+        ]
+      };
+
+      // 4. 글로벌소통 (2023학번 이후 9학점, 2022학번 이전 6학점)
+      const careerEngRequired = !!(geRule && geRule.areas && geRule.areas['글로벌소통'] && geRule.areas['글로벌소통'].career_english_required);
+      const careerKeywords = ['careerenglish', '진로영어'];
+      const careerSubs = ['technicalwriting', 'presentationskills', 'worldenglish', '공인어학성적'];
+
+      const careerMatches = courses.filter(c => !assigned.has(c.id) && (
+        matchesAny(c.title, careerKeywords) || matchesAny(c.title, careerSubs)
+      ));
+      careerMatches.forEach(c => assigned.add(c.id));
+
+      const careerConf = careerMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const careerInProg = careerMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const careerStatus = getStatus(careerConf, careerInProg, 3);
+
+      const univEngKeywords = ['대학영어1', '대학영어2', '대학영어3', '대학영어4', 'essentialenglish', '인공지능영어', '영어', 'english', 'toeic'];
+      const univEngSubs = ['영작문', '영어발표', '스크린영어', '실용영어', '한국어', '읽기와쓰기'];
+      const univEngMatches = courses.filter(c => !assigned.has(c.id) && (
+        c.cat === '교양_글로벌소통' || matchesAny(c.title, univEngKeywords) || matchesAny(c.title, univEngSubs)
+      ));
+      univEngMatches.forEach(c => assigned.add(c.id));
+
+      const univEngReqCredits = 6;
+      const univEngConf = univEngMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const univEngInProg = univEngMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const univEngStatus = getStatus(univEngConf, univEngInProg, univEngReqCredits);
+
+      const globalTotalReq = careerEngRequired ? 9 : 6;
+      const globalConf = careerEngRequired ? (careerConf + univEngConf) : univEngConf;
+      const globalInProg = careerEngRequired ? (careerInProg + univEngInProg) : univEngInProg;
+      const globalStatus = careerEngRequired 
+        ? ((careerStatus === 'PASSED' && univEngStatus === 'PASSED') ? 'PASSED' : ((careerStatus !== 'MISSING' && univEngStatus !== 'MISSING') ? 'IN_PROGRESS' : 'MISSING'))
+        : univEngStatus;
+
+      const areaGlobalSubItems = [
+        {
+          name: '대학영어 / 글로벌영어 (6학점)',
+          required_credits: 6,
+          confirmed_credits: univEngConf,
+          in_prog_credits: univEngInProg,
+          status: univEngStatus,
+          candidates: ['대학영어1', '대학영어2', 'Essential English 1', 'Essential English 2', '인공지능영어1', '인공지능영어2'],
+          substitutions: ['영작문2', '영어발표와토론', '스크린영어', '실용영어회화'],
+          matched: univEngMatches
+        }
+      ];
+
+      if (careerEngRequired) {
+        areaGlobalSubItems.push({
+          name: '진로영어 (Career English 3학점 의무)',
+          required_credits: 3,
+          confirmed_credits: careerConf,
+          in_prog_credits: careerInProg,
+          status: careerStatus,
+          candidates: ['CAREER ENGLISH1', 'CAREER ENGLISH2'],
+          substitutions: ['Technical Writing', 'Presentation Skills', 'World English', '공인어학성적 대체'],
+          matched: careerMatches
+        });
+      }
+
+      const areaGlobal = {
+        area: '글로벌소통',
+        required_credits: globalTotalReq,
+        career_english_required: careerEngRequired,
+        confirmed_credits: globalConf,
+        in_prog_credits: globalInProg,
+        exp_credits: globalConf + globalInProg,
+        status: globalStatus,
+        sub_items: areaGlobalSubItems
+      };
+
+      // 5. 스포츠웰니스 (1과목 1학점)
+      const sportKeywords = ['스포츠', '요가', '필라테스', '헬스', '수영', '골프', '체육', '테니스', '스키', 'teamsports', '건강증진'];
+      const sportMatches = courses.filter(c => !assigned.has(c.id) && (
+        c.cat === '교양_스포츠웰니스' || matchesAny(c.title, sportKeywords)
+      ));
+      sportMatches.forEach(c => assigned.add(c.id));
+
+      const sportConf = sportMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const sportInProg = sportMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const sportStatus = getStatus(sportConf, sportInProg, 1);
+
+      const areaSport = {
+        area: '스포츠웰니스',
+        required_credits: 1,
+        confirmed_credits: sportConf,
+        in_prog_credits: sportInProg,
+        exp_credits: sportConf + sportInProg,
+        status: sportStatus,
+        sub_items: [
+          {
+            name: '체육 실기 교과목 (1학점)',
+            required_credits: 1,
+            confirmed_credits: sportConf,
+            in_prog_credits: sportInProg,
+            status: sportStatus,
+            candidates: ['골프', '테니스', '수영', '스키', '배드민턴', '요가', '필라테스', '헬스', '스포츠클라이밍', 'TEAM SPORTS'],
+            substitutions: ['체육학과 개설 실기 과목'],
+            matched: sportMatches
+          }
+        ]
+      };
+
+      // 6. 자율선택 (2023학번 이후 6학점, 2022학번 이전 9학점)
+      const reqFree = (geRule && geRule.areas && geRule.areas['자율선택']) ? geRule.areas['자율선택'].required_credits : (admYear >= 2023 ? 6 : 9);
+      const isMajorCourse = c => (
+        c.cat.includes('전공') || c.cat.includes('전선') || c.cat.includes('전필') || c.cat.startsWith('경영')
+      );
+      const isGenCourse = c => (c.cat === '일반선택');
+      const freeMatches = courses.filter(c => !assigned.has(c.id) && !isMajorCourse(c) && !isGenCourse(c));
+      freeMatches.forEach(c => assigned.add(c.id));
+
+      const freeConf = freeMatches.filter(isConfirmed).reduce((s, c) => s + Number(c.credits), 0);
+      const freeInProg = freeMatches.filter(isInProg).reduce((s, c) => s + Number(c.credits), 0);
+      const freeStatus = getStatus(freeConf, freeInProg, reqFree);
+
+      const areaFree = {
+        area: '자율선택',
+        required_credits: reqFree,
+        confirmed_credits: freeConf,
+        in_prog_credits: freeInProg,
+        exp_credits: freeConf + freeInProg,
+        status: freeStatus,
+        sub_items: [
+          {
+            name: `자율선택 일반/소양교양 (${reqFree}학점)`,
+            required_credits: reqFree,
+            confirmed_credits: freeConf,
+            in_prog_credits: freeInProg,
+            status: freeStatus,
+            candidates: ['기초교양(문학/사회/과학/예술)', '일반교양 전 영역', '한림소양(시민소양/봉사)'],
+            substitutions: [],
+            matched: freeMatches
+          }
+        ]
+      };
+
+      return [areaInfo, areaLife, areaComm, areaGlobal, areaSport, areaFree];
+    }
+
+    /* =========================================================================
        5. GRADUATION METRICS ENGINE (규칙 코드 기반 100% 자동 집계)
        ========================================================================= */
     function calculateMetrics(courses) {
@@ -2604,59 +3015,134 @@
       const confCourses = courses.filter(isConfirmed);
       const inProgCourses = courses.filter(isInProg);
 
+      // Current user context
+      const curMajor = currentUser ? currentUser.major : '경영학과';
+      const admYear = getUserAdmissionYear(currentUser);
+      const isDoubleMajor = !!(currentUser && currentUser.hasDoubleMajor && currentUser.doubleMajorName);
+
+      // Rules lookup
+      const deptRule = getDepartmentGradRule(curMajor);
+      const geRule = getGyoyangRule(admYear);
+
+      // Required credits dynamically loaded from rules
+      const reqTotalCredits = (deptRule && deptRule.total_credits) ? deptRule.total_credits : 130;
+      const reqMajorCredits = deptRule && deptRule.major_credits 
+        ? (isDoubleMajor ? deptRule.major_credits.double : deptRule.major_credits.single) 
+        : (isDoubleMajor ? 33 : 60);
+      const reqGECredits = (geRule && geRule.total_credits) ? geRule.total_credits : (deptRule.ge_credits || 26);
+      const reqGenCredits = Math.max(0, reqTotalCredits - reqMajorCredits - reqGECredits);
+
+      // Total credits
       const confTotal = confCourses.reduce((sum, c) => sum + Number(c.credits), 0);
       const currTotal = inProgCourses.reduce((sum, c) => sum + Number(c.credits), 0);
       const expTotal = confTotal + currTotal;
-      const remainTotal = Math.max(0, 130 - expTotal);
+      const remainTotal = Math.max(0, reqTotalCredits - expTotal);
 
       // Major
-      const isMajor = c => (c.cat.includes('전공') || c.cat.includes('전선') || c.cat.includes('전필') || c.cat.startsWith('경영'));
+      const curDeptPrefix = curMajor.replace(/학부|학과|전공|스쿨/g, '');
+      const isMajor = c => {
+        if (!c.cat && !c.dept) return false;
+        if (c.cat && (
+          c.cat.includes('전공') || 
+          c.cat.includes('전선') || 
+          c.cat.includes('전필') || 
+          c.cat.startsWith('경영')
+        )) return true;
+        if (curDeptPrefix && ((c.dept && c.dept.includes(curDeptPrefix)) || (c.cat && c.cat.includes(curDeptPrefix)))) return true;
+        return false;
+      };
       const confMajor = courses.filter(c => isMajor(c) && isConfirmed(c)).reduce((sum, c) => sum + Number(c.credits), 0);
       const expMajor = courses.filter(c => isMajor(c)).reduce((sum, c) => sum + Number(c.credits), 0);
+      const remainMajor = Math.max(0, reqMajorCredits - expMajor);
 
       // General Electives
       const isGen = c => (c.cat === '일반선택');
       const confGen = courses.filter(c => isGen(c) && isConfirmed(c)).reduce((sum, c) => sum + Number(c.credits), 0);
       const expGen = courses.filter(c => isGen(c)).reduce((sum, c) => sum + Number(c.credits), 0);
+      const remainGen = Math.max(0, reqGenCredits - expGen);
 
       // Common GE (26 credits, 6 areas)
       const isGE = c => (!isMajor(c) && !isGen(c));
       const confGE = courses.filter(c => isGE(c) && isConfirmed(c)).reduce((sum, c) => sum + Number(c.credits), 0);
       const expGE = courses.filter(c => isGE(c)).reduce((sum, c) => sum + Number(c.credits), 0);
+      const remainGE = Math.max(0, reqGECredits - expGE);
 
-      // 6 Areas Calculation
-      const hasWord = (c, words) => words.some(w => norm(c.title).includes(norm(w)));
+      // 6 Areas Calculation via Rules-based Diagnostic Engine
+      const geDiagnosis = diagnoseGyoyang(courses, admYear, geRule);
+      const a1 = geDiagnosis[0].exp_credits;
+      const a2 = geDiagnosis[1].exp_credits;
+      const a3 = geDiagnosis[2].exp_credits;
+      const a4 = geDiagnosis[3].exp_credits;
+      const a5 = geDiagnosis[4].exp_credits;
+      const a6 = geDiagnosis[5].exp_credits;
 
-      let a1 = 0, a2 = 0, a3 = 0, a4 = 0, a5 = 0, a6 = 0;
-      courses.filter(isGE).forEach(c => {
-        const cr = Number(c.credits);
-        if (c.cat === '교양_정보소통' || hasWord(c, ['AI프로젝트입문', '창의코딩', '기초창의코딩', '파이썬', '소프트웨어', '코딩'])) {
-          a1 += cr;
-        } else if (c.cat === '교양_생애설계' || hasWord(c, ['오디세이세미나1', '오디세이세미나2'])) {
-          a2 += cr;
-        } else if (c.cat === '교양_의사소통' || hasWord(c, ['발표와토론', '글쓰기', '의사소통'])) {
-          a3 += cr;
-        } else if (c.cat === '교양_글로벌소통' || hasWord(c, ['영어', '한국어', '읽기와쓰기', 'ENGLISH', 'TOEIC'])) {
-          a4 += cr;
-        } else if (c.cat === '교양_스포츠웰니스' || hasWord(c, ['스포츠', '요가', '필라테스', '헬스', '수영', '골프'])) {
-          a5 += cr;
-        } else {
-          a6 += cr;
+      // GE Area Targets from gyoyang_rules.js
+      const reqGEAreas = (geRule && geRule.areas) ? geRule.areas : {};
+      const reqInfo = reqGEAreas['정보소통'] ? reqGEAreas['정보소통'].required_credits : 5;
+      const reqLife = reqGEAreas['생애설계'] ? reqGEAreas['생애설계'].required_credits : 2;
+      const reqComm = reqGEAreas['의사소통'] ? reqGEAreas['의사소통'].required_credits : 3;
+      const reqGlobal = reqGEAreas['글로벌소통'] ? reqGEAreas['글로벌소통'].required_credits : (admYear >= 2023 ? 9 : 6);
+      const reqSport = reqGEAreas['스포츠웰니스'] ? reqGEAreas['스포츠웰니스'].required_credits : 1;
+      const reqFree = reqGEAreas['자율선택'] ? reqGEAreas['자율선택'].required_credits : (admYear >= 2023 ? 6 : 9);
+      const careerEnglishRequired = reqGEAreas['글로벌소통'] ? !!reqGEAreas['글로벌소통'].career_english_required : (admYear >= 2023);
+
+      const infoDeficit = Math.max(0, reqInfo - a1);
+      const lifeDeficit = Math.max(0, reqLife - a2);
+      const commDeficit = Math.max(0, reqComm - a3);
+      const globalDeficit = Math.max(0, reqGlobal - a4);
+      const sportDeficit = Math.max(0, reqSport - a5);
+      const freeDeficit = Math.max(0, reqFree - a6);
+
+      // Specific mandatory courses check directly from geDiagnosis sub_items
+      const hasOdyssey1 = geDiagnosis[1].sub_items[0].status !== 'MISSING';
+      const hasOdyssey2 = geDiagnosis[1].sub_items[1].status !== 'MISSING';
+      const hasCareerEnglish = careerEnglishRequired
+        ? (geDiagnosis[3].sub_items.length > 1 && geDiagnosis[3].sub_items[1].status !== 'MISSING')
+        : true;
+
+      // Department Mandatory Major Courses check
+      const mandatoryMajorRules = (admYear >= 2021) 
+        ? ((deptRule && deptRule.mandatory_courses && deptRule.mandatory_courses.since_2021) ? deptRule.mandatory_courses.since_2021 : [])
+        : ((deptRule && deptRule.mandatory_courses && deptRule.mandatory_courses.before_2021) ? deptRule.mandatory_courses.before_2021 : []);
+
+      const mandatoryStatus = mandatoryMajorRules.map(reqCourse => {
+        const cleanTitle = reqCourse.title.replace(/\(.*?\)/g, '').trim();
+        const taken = courses.find(c => {
+          if (reqCourse.code && c.code && norm(c.code) === norm(reqCourse.code)) return true;
+          const cNorm = norm(c.title);
+          if (cNorm.includes(norm(cleanTitle)) || norm(cleanTitle).includes(cNorm)) return true;
+          if (norm(c.title).includes(norm(reqCourse.title)) || norm(reqCourse.title).includes(norm(c.title))) return true;
+          return false;
+        });
+
+        let status = 'MISSING';
+        if (taken) {
+          status = (taken.grade === '수강중') ? 'IN_PROGRESS' : (isConfirmed(taken) ? 'PASSED' : 'MISSING');
         }
+
+        return {
+          title: reqCourse.title,
+          code: reqCourse.code || '',
+          credits: reqCourse.credits || 3,
+          note: reqCourse.note || '',
+          status,
+          matchedCourse: taken || null
+        };
       });
 
-      // Deficiencies check
-      const hasOdyssey2 = courses.some(c => norm(c.title).includes('오디세이세미나2'));
-      const infoDeficit = Math.max(0, 5 - a1);
-
       return {
-        confTotal, currTotal, expTotal, remainTotal,
-        confMajor, expMajor,
-        confGen, expGen,
-        confGE, expGE,
+        confTotal, currTotal, expTotal, remainTotal, reqTotalCredits,
+        confMajor, expMajor, remainMajor, reqMajorCredits,
+        confGen, expGen, remainGen, reqGenCredits,
+        confGE, expGE, remainGE, reqGECredits,
         areas: { a1, a2, a3, a4, a5, a6 },
-        hasOdyssey2,
-        infoDeficit
+        reqGEAreas: { reqInfo, reqLife, reqComm, reqGlobal, reqSport, reqFree },
+        hasOdyssey1, hasOdyssey2,
+        hasCareerEnglish, careerEnglishRequired,
+        infoDeficit, lifeDeficit, commDeficit, globalDeficit, sportDeficit, freeDeficit,
+        geDiagnosis,
+        mandatoryMajorRules, mandatoryStatus,
+        deptRule, geRule, curMajor, admYear
       };
     }
 
@@ -2666,100 +3152,307 @@
     function renderScreen1Tables() {
       if (!currentUser) return;
       const m = calculateMetrics(activeUserCourses);
-      const isMgmt = (currentUser.major === '경영학과');
+      const isDoubleMajor = !!(currentUser.hasDoubleMajor && currentUser.doubleMajorName);
 
-      // 1. Hero box
-      document.getElementById('hero-total-display').innerHTML = `현재 확정 ${m.confTotal} <span style="font-size: 1.2rem; color: var(--gray-600); font-weight: 500;">/ 130</span>`;
-      document.getElementById('hero-sub-display').innerHTML = `<span>↳ 수강중 ${m.currTotal}학점 완료 시 예상: <strong>${m.expTotal} / 130 학점</strong></span>`;
+      // 1. Hero box (Dynamic total credits from graduation rules)
+      document.getElementById('hero-total-display').innerHTML = `현재 확정 ${m.confTotal} <span style="font-size: 1.2rem; color: var(--gray-600); font-weight: 500;">/ ${m.reqTotalCredits}</span>`;
+      document.getElementById('hero-sub-display').innerHTML = `<span>↳ 수강중 ${m.currTotal}학점 완료 시 예상: <strong>${m.expTotal} / ${m.reqTotalCredits} 학점</strong></span>`;
       document.getElementById('hero-remain-display').innerHTML = `(완료 시 졸업까지 잔여: <strong style="color: var(--danger);">${m.remainTotal}학점</strong>)`;
 
-      // Deficiencies list
+      // 2. Deficiencies list (Rules-based dynamic diagnosis)
       const defContainer = document.getElementById('deficiency-list');
       defContainer.innerHTML = '';
+      let defCount = 0;
 
-      if (!m.hasOdyssey2) {
+      // (A) Mandatory Major Courses (전공필수 과목 진단)
+      const missingMajors = m.mandatoryStatus.filter(ms => ms.status === 'MISSING');
+      missingMajors.forEach(ms => {
+        defCount++;
         defContainer.innerHTML += `
           <div class="deficiency-pill">
-            <span>1. 생애설계: 오디세이세미나 2 (공통 교양필수)</span>
+            <span>[전공필수] <strong>${currentUser.major}</strong>: ${ms.title} (${ms.note || '필수 이수'})</span>
+            <span style="font-weight: 800; color: #b91c1c;">${ms.credits}학점 미이수</span>
+          </div>
+        `;
+      });
+
+      // (B) 생애설계: 오디세이세미나2
+      if (!m.hasOdyssey2) {
+        defCount++;
+        defContainer.innerHTML += `
+          <div class="deficiency-pill">
+            <span>[교양필수] 생애설계: <strong>오디세이세미나2</strong> (2학년 필수)</span>
             <span style="font-weight: 800; color: #b91c1c;">1학점 미이수</span>
           </div>
         `;
       }
+
+      // (C) 정보소통 (컴퓨팅사고 + 창의코딩)
       if (m.infoDeficit > 0) {
+        defCount++;
         defContainer.innerHTML += `
           <div class="deficiency-pill">
-            <span>2. 정보소통 영역 (AI프로젝트입문 + 창의코딩)</span>
+            <span>[교양필수] 정보소통 영역: 컴퓨팅사고 & 창의코딩 (필수 ${m.reqGEAreas.reqInfo}학점)</span>
             <span style="font-weight: 800; color: #b91c1c;">${m.infoDeficit}학점 미이수</span>
           </div>
         `;
       }
-      if (m.hasOdyssey2 && m.infoDeficit === 0) {
-        defContainer.innerHTML = `
-          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.45rem 0.75rem; font-size:0.8rem; color:#166534; font-weight:700;">
-            ✓ 공통 필수 의무 요건(생애설계/정보소통)을 모두 충족했습니다!
+
+      // (D) 글로벌소통 Career English (2023학번 이후 필수)
+      if (m.careerEnglishRequired && !m.hasCareerEnglish) {
+        defCount++;
+        defContainer.innerHTML += `
+          <div class="deficiency-pill">
+            <span>[교양필수] 글로벌소통: <strong>Career English 1 또는 2</strong> (23학번 이후 의무)</span>
+            <span style="font-weight: 800; color: #b91c1c;">3학점 미이수</span>
           </div>
         `;
       }
 
-      // Simple mode banner
+      // (E) 전공 이수학점 부족
+      if (m.remainMajor > 0) {
+        defCount++;
+        defContainer.innerHTML += `
+          <div class="deficiency-pill" style="border-left-color: #f59e0b;">
+            <span>[전공학점] <strong>${currentUser.major}</strong> 이수 부족 (${m.expMajor} / ${m.reqMajorCredits}학점)</span>
+            <span style="font-weight: 800; color: #b45309;">${m.remainMajor}학점 필요</span>
+          </div>
+        `;
+      }
+
+      // (F) 졸업 총학점 부족 안내 (다른 필수 요건 미이수가 없는 경우만 별도 안내)
+      if (m.remainTotal > 0 && defCount === 0) {
+        defContainer.innerHTML += `
+          <div class="deficiency-pill" style="border-left-color: #3b82f6;">
+            <span>[총 졸업학점] 잔여 이수 학점 (${m.expTotal} / ${m.reqTotalCredits}학점)</span>
+            <span style="font-weight: 800; color: #1d4ed8;">${m.remainTotal}학점 필요</span>
+          </div>
+        `;
+      } else if (defCount === 0 && m.remainTotal === 0) {
+        defContainer.innerHTML = `
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.45rem 0.75rem; font-size:0.8rem; color:#166534; font-weight:700;">
+            ✓ 축하합니다! 전공 및 교양 필수 졸업 요건을 모두 충족했습니다!
+          </div>
+        `;
+      }
+
+      // 3. Department & Major Summary Hint
       const simpleBanner = document.getElementById('simple-mode-banner');
       const majorHint = document.getElementById('major-remain-hint');
       const thMajorName = document.getElementById('th-major-name');
 
-      if (isMgmt) {
-        simpleBanner.style.display = 'none';
-        majorHint.textContent = `* 경영 단일전공 기준: 전공 ${m.expMajor}/60학점 (잔여 ${Math.max(0, 60 - m.expMajor)}학점 필요)`;
-        thMajorName.textContent = '주전공 (경영 단일전공)';
-        document.getElementById('td-conf-major').innerHTML = `<strong>${m.confMajor}</strong> / 60 학점`;
-        document.getElementById('td-exp-major').innerHTML = `<strong>${m.expMajor}</strong> / 60 학점`;
-      } else {
-        simpleBanner.style.display = 'flex';
-        majorHint.textContent = `* ${currentUser.major} [간단 모드]: 전공 상세 요건은 학과 확인 필요`;
-        thMajorName.textContent = `주전공 (${currentUser.major} 간단 모드)`;
-        document.getElementById('td-conf-major').innerHTML = `<strong>${m.confMajor}</strong> 학점 이수`;
-        document.getElementById('td-exp-major').innerHTML = `<strong>${m.expMajor}</strong> 학점 이수 (학과확인)`;
+      if (simpleBanner) simpleBanner.style.display = 'none';
+      const majorTypeStr = isDoubleMajor ? `복수전공 (+${currentUser.doubleMajorName})` : '단일전공';
+      majorHint.textContent = `* ${currentUser.major} (${majorTypeStr}) 기준: 전공 ${m.expMajor}/${m.reqMajorCredits}학점 (잔여 ${Math.max(0, m.reqMajorCredits - m.expMajor)}학점 필요)`;
+      thMajorName.textContent = `주전공 (${currentUser.major} ${isDoubleMajor ? '복수' : '단일'})`;
+      document.getElementById('td-conf-major').innerHTML = `<strong>${m.confMajor}</strong> / ${m.reqMajorCredits} 학점`;
+      document.getElementById('td-exp-major').innerHTML = `<strong>${m.expMajor}</strong> / ${m.reqMajorCredits} 학점 ${m.expMajor >= m.reqMajorCredits ? '(충족)' : ''}`;
+
+      // 4. Category table (Dynamically loaded rules)
+      document.getElementById('td-conf-ge').innerHTML = `<strong>${m.confGE}</strong> / ${m.reqGECredits} 학점`;
+      document.getElementById('td-exp-ge').innerHTML = `<strong>${m.expGE}</strong> / ${m.reqGECredits} 학점 ${m.expGE >= m.reqGECredits ? '(충족)' : ''}`;
+      document.getElementById('td-conf-gen').innerHTML = `<strong>${m.confGen}</strong> / ${m.reqGenCredits} 학점`;
+      document.getElementById('td-exp-gen').innerHTML = `<strong>${m.expGen}</strong> / ${m.reqGenCredits} 학점 ${m.expGen >= m.reqGenCredits ? '(충족)' : ''}`;
+      document.getElementById('td-conf-tot').innerHTML = `<strong style="color: var(--primary);">${m.confTotal}</strong> / ${m.reqTotalCredits} 학점`;
+      document.getElementById('td-exp-tot').innerHTML = `<strong style="color: #15803d;">${m.expTotal}</strong> / ${m.reqTotalCredits} 학점 (+${m.currTotal})`;
+
+      // 5. Major Mandatory Courses Dynamic Card
+      renderMajorMandatory(m);
+
+      // 6. 6-Area GE Grid Dynamic Cards
+      renderGeCards(m.geDiagnosis, m.reqGECredits);
+
+      const geBadge = document.getElementById('ge-total-summary-badge');
+      if (geBadge) {
+        geBadge.textContent = `총 ${m.expGE}학점 이수 (기준 ${m.reqGECredits}학점 ${m.expGE >= m.reqGECredits ? '달성 완료' : '미달'})`;
+        geBadge.style.color = m.expGE >= m.reqGECredits ? 'var(--success)' : 'var(--danger)';
       }
-
-      // Category table
-      document.getElementById('td-conf-ge').innerHTML = `<strong>${m.confGE}</strong> / 26 학점`;
-      document.getElementById('td-exp-ge').innerHTML = `<strong>${m.expGE}</strong> / 26 학점 ${m.expGE >= 26 ? '(충족)' : ''}`;
-      document.getElementById('td-conf-gen').innerHTML = `<strong>${m.confGen}</strong> / 3 학점`;
-      document.getElementById('td-exp-gen').innerHTML = `<strong>${m.expGen}</strong> / 3 학점 ${m.expGen >= 3 ? '(충족)' : ''}`;
-      document.getElementById('td-conf-tot').innerHTML = `<strong style="color: var(--primary);">${m.confTotal}</strong> / 130 학점`;
-      document.getElementById('td-exp-tot').innerHTML = `<strong style="color: #15803d;">${m.expTotal}</strong> / 130 학점 (+${m.currTotal})`;
-
-      // 6-Area GE Grid
-      const updateArea = (num, val, max, title, defWord) => {
-        const pct = Math.min(100, (val / max) * 100);
-        const card = document.getElementById(`ge-card-${num}`);
-        const text = document.getElementById(`ge-val-${num}`);
-        const bar = document.getElementById(`ge-bar-${num}`);
-
-        if (val >= max) {
-          card.style.borderLeft = '3px solid var(--success)';
-          text.style.color = 'var(--success)';
-          text.textContent = `${val} / ${max} 학점 (기준 달성)`;
-          bar.style.background = 'var(--success)';
-        } else {
-          card.style.borderLeft = '3px solid var(--danger)';
-          text.style.color = 'var(--danger)';
-          text.textContent = `${val} / ${max} 학점 (${defWord})`;
-          bar.style.background = 'var(--danger)';
-        }
-        bar.style.width = `${pct}%`;
-      };
-
-      updateArea(1, m.areas.a1, 5, '정보소통', '미이수 결손');
-      updateArea(2, m.areas.a2, 2, '생애설계', '미이수');
-      updateArea(3, m.areas.a3, 3, '의사소통', '미달');
-      updateArea(4, m.areas.a4, 9, '글로벌소통', '미달');
-      updateArea(5, m.areas.a5, 1, '스포츠웰니스', '미달');
-      updateArea(6, m.areas.a6, 6, '자율선택', '미달');
-
-      document.getElementById('ge-total-summary-badge').textContent = `총 ${m.expGE}학점 이수 (기준 26학점 ${m.expGE >= 26 ? '달성 완료' : '미달'})`;
 
       // Dynamic Semester Sections
       renderDynamicSemesterSections();
+    }
+
+    /* =========================================================================
+       6.1 전공필수(전필) 과목 UI 동적 렌더링
+       ========================================================================= */
+    function renderMajorMandatory(m) {
+      const container = document.getElementById('major-mandatory-container');
+      const titleSpan = document.getElementById('major-mandatory-title');
+      const badgeSpan = document.getElementById('major-mandatory-summary-badge');
+      if (!container) return;
+
+      const curMajor = m.curMajor || (currentUser ? currentUser.major : '경영학과');
+      if (titleSpan) titleSpan.innerHTML = `🏛️ <strong>${curMajor}</strong> 전공필수(전필) 이수 진단`;
+
+      const list = m.mandatoryStatus || [];
+      if (list.length === 0) {
+        if (badgeSpan) {
+          badgeSpan.textContent = '지정 전필 없음 (전공선택으로 자유 이수)';
+          badgeSpan.style.color = 'var(--gray-600)';
+        }
+        container.innerHTML = `
+          <div style="background:#f8fafc; border:1px solid var(--border); border-radius:6px; padding:0.85rem 1rem; font-size:0.82rem; color:var(--gray-600);">
+            ℹ️ <strong>${curMajor}</strong>는 별도의 필수 지정 전공과목이 없거나 전공선택(전선) 학점으로 자유 이수할 수 있습니다.
+          </div>
+        `;
+        return;
+      }
+
+      const passedCount = list.filter(c => c.status === 'PASSED').length;
+      const inProgCount = list.filter(c => c.status === 'IN_PROGRESS').length;
+      const missingCount = list.filter(c => c.status === 'MISSING').length;
+
+      if (badgeSpan) {
+        if (missingCount === 0) {
+          badgeSpan.textContent = `전공필수 ${list.length}과목 충족 완료`;
+          badgeSpan.style.color = 'var(--success)';
+        } else {
+          badgeSpan.textContent = `미이수 ${missingCount}과목 결손`;
+          badgeSpan.style.color = 'var(--danger)';
+        }
+      }
+
+      container.innerHTML = `
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.65rem;">
+          ${list.map(c => {
+            const isPassed = c.status === 'PASSED';
+            const isInProg = c.status === 'IN_PROGRESS';
+            const isMissing = c.status === 'MISSING';
+
+            const borderColor = isPassed ? 'var(--success)' : (isInProg ? '#f59e0b' : 'var(--danger)');
+            const bgColor = isPassed ? '#f0fdf4' : (isInProg ? '#fffbeb' : '#fef2f2');
+            const badge = isPassed
+              ? `<span class="badge" style="background:#dcfce7; color:#15803d; font-weight:700;">✓ 이수완료 (${c.matchedCourse ? c.matchedCourse.grade : '확정'})</span>`
+              : (isInProg
+                  ? `<span class="badge" style="background:#fef3c7; color:#b45309; font-weight:700;">⏳ 수강중</span>`
+                  : `<span class="badge" style="background:#fee2e2; color:#b91c1c; font-weight:700;">⚠️ 미이수 필수</span>`);
+
+            return `
+              <div style="border-left:4px solid ${borderColor}; background:${bgColor}; border-radius:6px; padding:0.65rem 0.85rem; border:1px solid #e2e8f0; border-left-width:4px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <strong style="font-size:0.86rem; color:var(--gray-900);">${c.title}</strong>
+                    <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${c.credits}학점${c.code ? ` / 코드: ${c.code}` : ''})</span>
+                  </div>
+                  ${badge}
+                </div>
+                ${c.note ? `<div style="font-size:0.73rem; color:#64748b; margin-top:0.3rem; line-height:1.35;">📌 ${c.note}</div>` : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       6.2 교양 6대 영역 카드 및 진행률 바 동적 렌더링
+       ========================================================================= */
+    function renderGeCards(geDiagnosis, reqGECredits) {
+      const container = document.getElementById('ge-cards-container');
+      if (!container || !Array.isArray(geDiagnosis)) return;
+      container.innerHTML = '';
+
+      const areaIcons = {
+        '정보소통': '💻',
+        '생애설계': '🌱',
+        '의사소통': '💬',
+        '글로벌소통': '🌐',
+        '스포츠웰니스': '🏃',
+        '자율선택': '🎨'
+      };
+
+      geDiagnosis.forEach((area, idx) => {
+        const icon = areaIcons[area.area] || '📚';
+        const isPassed = area.status === 'PASSED';
+        const isInProg = area.status === 'IN_PROGRESS';
+        const isMissing = area.status === 'MISSING';
+
+        const borderColor = isPassed ? 'var(--success)' : (isInProg ? '#f59e0b' : 'var(--danger)');
+        const statusBadge = isPassed
+          ? `<span class="badge" style="background:#dcfce7; color:#15803d; font-weight:700;">✓ 이수완료</span>`
+          : (isInProg
+              ? `<span class="badge" style="background:#fef3c7; color:#b45309; font-weight:700;">⏳ 수강중</span>`
+              : `<span class="badge" style="background:#fee2e2; color:#b91c1c; font-weight:700;">⚠️ 미이수</span>`);
+
+        const confPct = Math.min(100, (area.confirmed_credits / area.required_credits) * 100);
+        const inProgPct = Math.min(100 - confPct, (area.in_prog_credits / area.required_credits) * 100);
+
+        // Sub items breakdown
+        let subItemsHtml = '';
+        if (area.sub_items && area.sub_items.length > 0) {
+          subItemsHtml = `<div style="margin-top:0.6rem; border-top:1px dashed var(--gray-200); padding-top:0.45rem;">`;
+          area.sub_items.forEach(sub => {
+            const subPassed = sub.status === 'PASSED';
+            const subInProg = sub.status === 'IN_PROGRESS';
+            const subIcon = subPassed ? '✅' : (subInProg ? '⏳' : '❌');
+            const subColor = subPassed ? '#166534' : (subInProg ? '#b45309' : '#b91c1c');
+
+            let matchedStr = '';
+            if (sub.matched && sub.matched.length > 0) {
+              const courseNames = sub.matched.map(c => `${c.title} (${c.credits}학점, ${c.grade})`).join(', ');
+              matchedStr = `<div style="font-size:0.73rem; color:#15803d; margin-top:2px;">↳ 이수과목: <strong>${courseNames}</strong></div>`;
+            }
+
+            let guidanceStr = '';
+            if (!subPassed) {
+              const candStr = (sub.candidates && sub.candidates.length > 0) ? sub.candidates.slice(0, 3).join(', ') : '';
+              const subStr = (sub.substitutions && sub.substitutions.length > 0) ? sub.substitutions.join(', ') : '';
+              guidanceStr = `<div style="font-size:0.72rem; color:#64748b; margin-top:2px; line-height:1.35;">
+                ${candStr ? `💡 <strong>필요과목:</strong> ${candStr}<br>` : ''}
+                ${subStr ? `🔄 <strong>대체가능:</strong> ${subStr}` : ''}
+              </div>`;
+            }
+
+            subItemsHtml += `
+              <div style="margin-bottom:0.4rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem;">
+                  <span style="font-weight:600; color:${subColor};">${subIcon} ${sub.name}</span>
+                  <span style="font-weight:700; color:${subColor}; font-size:0.75rem;">
+                    ${sub.confirmed_credits}${sub.in_prog_credits > 0 ? ` (+${sub.in_prog_credits})` : ''} / ${sub.required_credits}학점
+                  </span>
+                </div>
+                ${matchedStr}
+                ${guidanceStr}
+              </div>
+            `;
+          });
+          subItemsHtml += `</div>`;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'ge-item';
+        card.id = `ge-dynamic-card-${idx+1}`;
+        card.style.borderLeft = `4px solid ${borderColor}`;
+        card.style.background = '#ffffff';
+        card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)';
+
+        card.innerHTML = `
+          <div class="ge-item-head" style="align-items:center; margin-bottom:0.5rem;">
+            <span style="display:flex; align-items:center; gap:0.35rem; font-size:0.88rem;">
+              <span>${icon}</span> <strong>${idx+1}. ${area.area}</strong>
+            </span>
+            ${statusBadge}
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:0.76rem; color:var(--gray-600); margin-bottom:0.25rem;">
+            <span>취득 현황</span>
+            <span>
+              <strong style="color:${borderColor}; font-size:0.85rem;">${area.confirmed_credits}</strong>
+              ${area.in_prog_credits > 0 ? `<span style="color:#f59e0b; font-weight:700;"> (+${area.in_prog_credits} 수강중)</span>` : ''} 
+              / ${area.required_credits} 학점
+            </span>
+          </div>
+
+          <div class="ge-progress" style="height:7px; background:#e2e8f0; position:relative; overflow:hidden;">
+            <div class="ge-bar" style="width:${confPct}%; background:${isPassed ? 'var(--success)' : '#3b82f6'}; position:absolute; height:100%; left:0;"></div>
+            <div class="ge-bar" style="width:${inProgPct}%; background:#f59e0b; position:absolute; height:100%; left:${confPct}%;"></div>
+          </div>
+
+          ${subItemsHtml}
+        `;
+
+        container.appendChild(card);
+      });
     }
 
     function renderDynamicSemesterSections() {
@@ -2997,7 +3690,7 @@
             hasDup = true;
           } else {
             baskValidCredits += b.credits;
-            if (b.cat.startsWith('경영')) baskBiz += b.credits;
+            if (b.cat.includes('전공') || b.cat.includes('전선') || b.cat.includes('전필') || b.cat.startsWith('경영')) baskBiz += b.credits;
           }
 
           const tr = document.createElement('tr');
@@ -3043,14 +3736,15 @@
 
       // Live metrics based on active user
       const m = calculateMetrics(activeUserCourses);
+      const reqTotalCredits = m.reqTotalCredits;
       const expectedCurrent = m.expTotal;
       const simTotal = expectedCurrent + baskValidCredits;
-      const simRemain = Math.max(0, 130 - simTotal);
-      const currPct = ((expectedCurrent / 130) * 100).toFixed(1);
-      const simPct = Math.min(100, ((simTotal / 130) * 100)).toFixed(1);
+      const simRemain = Math.max(0, reqTotalCredits - simTotal);
+      const currPct = ((expectedCurrent / reqTotalCredits) * 100).toFixed(1);
+      const simPct = Math.min(100, ((simTotal / reqTotalCredits) * 100)).toFixed(1);
       const baskPct = (simPct - currPct).toFixed(1);
 
-      document.getElementById('live-hero-credits').innerHTML = `${simTotal} <span style="font-size: 1.05rem; font-weight: 500; color: var(--gray-600);">/ 130</span>`;
+      document.getElementById('live-hero-credits').innerHTML = `${simTotal} <span style="font-size: 1.05rem; font-weight: 500; color: var(--gray-600);">/ ${reqTotalCredits}</span>`;
       document.getElementById('live-hero-pct').textContent = `달성도: ${simPct}% (기존 ${expectedCurrent}학점 + 바구니 +${baskValidCredits}학점)`;
       document.getElementById('live-bar-curr').style.width = `${currPct}%`;
       document.getElementById('live-bar-basket').style.left = `${currPct}%`;
@@ -3058,13 +3752,22 @@
 
       document.getElementById('live-remain-text').textContent = `이 바구니로 졸업까지 남은 학점: ${simRemain}학점`;
 
-      // Business Major: 60 credits target
+      // Major credits target dynamically based on current user's department rules
+      const reqMajorCredits = m.reqMajorCredits;
       const totBiz = m.expMajor + baskBiz;
       document.getElementById('live-biz-cred').textContent = totBiz;
       document.getElementById('live-biz-delta').textContent = baskBiz > 0 ? `(+${baskBiz})` : '';
 
-      const currBizWidth = (m.expMajor / 60) * 100;
-      const baskBizWidth = Math.min(100 - currBizWidth, (baskBiz / 60) * 100);
+      const liveTargetSpan = document.getElementById('live-biz-target');
+      if (liveTargetSpan) liveTargetSpan.textContent = reqMajorCredits;
+
+      const livePanelLabel = document.getElementById('live-panel-major-label');
+      if (livePanelLabel) {
+        livePanelLabel.textContent = `${currentUser ? currentUser.major : '전공'} (${reqMajorCredits}학점 기준)`;
+      }
+
+      const currBizWidth = Math.min(100, (m.expMajor / reqMajorCredits) * 100);
+      const baskBizWidth = Math.min(100 - currBizWidth, (baskBiz / reqMajorCredits) * 100);
       document.getElementById('live-biz-bar-curr').style.width = `${currBizWidth}%`;
       document.getElementById('live-biz-bar-bask').style.left = `${currBizWidth}%`;
       document.getElementById('live-biz-bar-bask').style.width = `${baskBizWidth}%`;
@@ -3079,6 +3782,8 @@
        ========================================================================= */
     window.addEventListener('DOMContentLoaded', async () => {
       await loadCourseDatabase();
+      await loadGraduationRules();
+      await loadGyoyangRules();
       ensureDefaultDemoUser();
 
       const currentUserId = localStorage.getItem('hallym_current_user_id');
