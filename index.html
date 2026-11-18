@@ -82,6 +82,12 @@
       --card-bg: #ffffff;
       --border: #e2e8f0;
 
+      /* Semantic AI Accent Palette */
+      --ai-purple: #7c3aed;
+      --ai-purple-hover: #6d28d9;
+      --ai-purple-light: #faf5ff;
+      --ai-purple-border: #c084fc;
+
       /* Modern Design System Tokens */
       --radius-xs: 4px;
       --radius-sm: 6px;
@@ -356,12 +362,22 @@
       background: var(--gray-50);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius-full);
-      padding: 0.45rem 1rem;
+      padding: 0.45rem 0.95rem;
       font-size: 0.83rem;
       font-weight: 600;
       color: var(--gray-800);
       cursor: pointer;
       transition: var(--transition-base);
+      max-width: 100%;
+      white-space: nowrap;
+    }
+    #profile-display-text {
+      display: inline-block;
+      max-width: 380px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
     }
     .student-badge-btn:hover {
       background: var(--primary-light);
@@ -485,6 +501,25 @@
     .modal-close-btn:hover {
       color: var(--gray-800);
       background: var(--gray-100);
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.65rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1.25rem;
+    }
+    .modal-footer-split {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.65rem;
     }
 
     .container {
@@ -834,6 +869,15 @@
       overflow-x: auto;
       margin-bottom: 1.25rem;
       -webkit-overflow-scrolling: touch;
+      position: relative;
+      background:
+        linear-gradient(to right, white 30%, rgba(255, 255, 255, 0)),
+        linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 100% 0,
+        radial-gradient(farthest-side at 0 50%, rgba(15, 23, 42, 0.08), rgba(0, 0, 0, 0)),
+        radial-gradient(farthest-side at 100% 50%, rgba(15, 23, 42, 0.08), rgba(0, 0, 0, 0)) 100% 0;
+      background-repeat: no-repeat;
+      background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+      background-attachment: local, local, scroll, scroll;
     }
     table {
       width: 100%;
@@ -937,9 +981,9 @@
     .badge-curr { background: var(--status-inprog-bg); color: var(--status-inprog-text); border: 1px solid var(--status-inprog-border); }
     
     .badge-ai {
-      background: var(--status-passed-bg);
-      color: var(--status-passed-text);
-      border: 1px solid var(--status-passed-border);
+      background: var(--ai-purple-light);
+      color: var(--ai-purple);
+      border: 1px solid var(--ai-purple-border);
       font-size: 0.74rem;
       font-weight: 700;
       padding: 0.2rem 0.55rem;
@@ -1210,6 +1254,95 @@
       color: var(--primary);
     }
 
+
+    /* Toast Notification System */
+    #app-toast-container {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      pointer-events: none;
+      max-width: 420px;
+      width: calc(100vw - 2.5rem);
+    }
+    .app-toast {
+      pointer-events: auto;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 0.85rem 1.15rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--gray-800);
+      line-height: 1.45;
+      border: 1px solid var(--border);
+      border-left-width: 4px;
+      animation: toastSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s ease;
+    }
+    .app-toast.toast-success { border-left-color: #10b981; }
+    .app-toast.toast-error { border-left-color: #ef4444; }
+    .app-toast.toast-warning { border-left-color: #f59e0b; }
+    .app-toast.toast-info { border-left-color: var(--primary); }
+    @keyframes toastSlideIn {
+      from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .app-toast.toast-fadeout {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+    }
+    @media (max-width: 480px) {
+      #app-toast-container {
+        top: auto;
+        bottom: 1.25rem;
+        right: 0.85rem;
+        left: 0.85rem;
+        width: auto;
+      }
+    }
+
+    /* Autocomplete Keyboard Active Highlight */
+    .autocomplete-item.active {
+      background: var(--primary-light) !important;
+      color: var(--primary-hover) !important;
+    }
+
+    /* Step tracker in PDF status */
+    .pdf-step-tracker {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      padding-top: 0.65rem;
+      border-top: 1px dashed var(--status-passed-border);
+      font-size: 0.74rem;
+      color: var(--gray-500);
+      justify-content: space-between;
+    }
+    .pdf-step-item {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      opacity: 0.5;
+      transition: all 0.2s ease;
+    }
+    .pdf-step-item.active {
+      opacity: 1;
+      font-weight: 700;
+      color: var(--status-passed-text);
+    }
+    .pdf-step-item.done {
+      opacity: 1;
+      color: #10b981;
+      font-weight: 700;
+    }
+
     /* =========================================================
        RESPONSIVE MEDIA QUERIES (375px ~ 768px Mobile & Tablet)
        ========================================================= */
@@ -1223,6 +1356,8 @@
       header { padding: 0.75rem 1rem; }
       .header-inner { flex-wrap: wrap; gap: 0.6rem; }
       .brand-title { font-size: 1rem; }
+      #profile-display-text { max-width: 180px; }
+      .student-badge-btn { padding: 0.35rem 0.65rem; font-size: 0.78rem; }
       .container { margin: 1.25rem auto; padding: 0 0.85rem; }
 
       /* Nav Tabs scrollable without squishing buttons */
@@ -1929,7 +2064,7 @@
                   <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 0.35rem;">
                     🔍 과목 검색 (내장 DB <span id="course-count-badge">1,098</span>개 과목 지원 / 오타·영문 허용 자동완성)
                   </label>
-                  <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 또는 코드 입력 (예: 마케팅원론, Essential English, 903178)" oninput="handleCourseSearch(this.value)" autocomplete="off" />
+                  <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 또는 코드 입력 (예: 마케팅원론, Essential English, 903178)" oninput="handleCourseSearch(this.value)" onkeydown="handleSearchInputKeyDown(event)" autocomplete="off" />
                   <div id="autocomplete-dropdown" class="autocomplete-list" style="display: none;"></div>
                 </div>
 
@@ -2545,6 +2680,57 @@
       if (!grade || grade === '수강중') return 'badge-status-inprog';
       if (grade === 'F' || grade === 'N/P' || grade === 'NP') return 'badge-status-missing';
       return 'badge-status-passed';
+    }
+
+    // Safe localStorage wrapper to guard against QuotaExceededError or private browsing
+    
+    // Modern In-App Toast Notification
+    function showToast(message, type = 'info', duration = 3200) {
+      if (typeof document === 'undefined') return;
+      let container = document.getElementById('app-toast-container');
+      if (!container && document.body) {
+        container = document.createElement('div');
+        container.id = 'app-toast-container';
+        container.setAttribute('aria-live', 'polite');
+        document.body.appendChild(container);
+      }
+      if (!container) return;
+
+      const icons = {
+        success: '✅',
+        error: '⚠️',
+        warning: '🔔',
+        info: 'ℹ️'
+      };
+
+      const toast = document.createElement('div');
+      toast.className = 'app-toast toast-' + (type || 'info');
+      toast.innerHTML = `
+        <span style="font-size: 1.1rem; line-height: 1;">${icons[type] || 'ℹ️'}</span>
+        <div style="flex: 1;">${message}</div>
+        <button type="button" style="background: none; border: none; font-size: 1rem; color: var(--gray-400); cursor: pointer; padding: 0 0.2rem; line-height: 1;" aria-label="닫기" onclick="this.closest('.app-toast').remove()">✕</button>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('toast-fadeout');
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 260);
+      }, duration);
+    }
+
+    function safeLocalStorageSet(key, value) {
+      try {
+        localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+        return true;
+      } catch (err) {
+        console.warn('safeLocalStorageSet failed for ' + key + ':', err);
+        if (typeof alert === 'function') {
+          alert('⚠️ 브라우저 저장공간이 부족하거나 제한되어 변경사항을 저장하지 못했습니다.');
+        }
+        return false;
+      }
     }
 
     function getUsers() {
@@ -3731,6 +3917,16 @@
         previewEl.style.display = 'block';
       } else {
         previewEl.style.display = 'none';
+      }
+    }
+
+    function updatePdfStep(stepNum) {
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById(`pdf-step-${i}`);
+        if (!el) continue;
+        el.classList.remove('active', 'done');
+        if (i < stepNum) el.classList.add('done');
+        else if (i === stepNum) el.classList.add('active');
       }
     }
 
@@ -5440,6 +5636,51 @@ ${rawText}`;
       return [...customCourses, ...courseDatabase];
     }
 
+    
+    let activeAutocompleteIndex = -1;
+
+    function handleSearchInputKeyDown(e) {
+      const dropdown = document.getElementById('autocomplete-dropdown');
+      if (!dropdown || dropdown.style.display === 'none') return;
+
+      const items = dropdown.querySelectorAll('.autocomplete-item');
+      if (!items || items.length === 0) {
+        if (e.key === 'Escape') {
+          dropdown.style.display = 'none';
+        }
+        return;
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeAutocompleteIndex = (activeAutocompleteIndex + 1) % items.length;
+        updateAutocompleteHighlight(items);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeAutocompleteIndex = (activeAutocompleteIndex - 1 + items.length) % items.length;
+        updateAutocompleteHighlight(items);
+      } else if (e.key === 'Enter') {
+        if (activeAutocompleteIndex >= 0 && activeAutocompleteIndex < items.length) {
+          e.preventDefault();
+          items[activeAutocompleteIndex].click();
+          activeAutocompleteIndex = -1;
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        dropdown.style.display = 'none';
+        activeAutocompleteIndex = -1;
+      }
+    }
+
+    function updateAutocompleteHighlight(items) {
+      items.forEach((item, idx) => {
+        item.classList.toggle('active', idx === activeAutocompleteIndex);
+        if (idx === activeAutocompleteIndex) {
+          item.scrollIntoView({ block: 'nearest' });
+        }
+      });
+    }
+
     function handleCourseSearch(query) {
       const dropdown = document.getElementById('autocomplete-dropdown');
       const q = norm(query);
@@ -5846,5 +6087,7 @@ ${rawText}`;
       }
     });
   </script>
+  <!-- In-app Floating Toast Notifications Container -->
+  <div id="app-toast-container" aria-live="polite"></div>
 </body>
 </html>
