@@ -155,11 +155,11 @@
     }
     .auth-card {
       background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: var(--radius-2xl);
       max-width: 480px;
       width: 100%;
-      padding: 2.25rem 2rem;
+      padding: 2.25rem 2.15rem;
       box-shadow: var(--shadow-xl);
       transition: var(--transition-base);
     }
@@ -169,21 +169,21 @@
     }
     .auth-badge {
       display: inline-block;
-      background: var(--primary);
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: white;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      font-weight: 800;
       padding: 0.25rem 0.65rem;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-full);
       margin-bottom: 0.5rem;
-      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.25);
+      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
     }
     .auth-title {
       font-size: 1.38rem;
       font-weight: 800;
       color: var(--gray-900);
       margin-bottom: 0.4rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
     .auth-subtitle {
       font-size: 0.86rem;
@@ -192,8 +192,8 @@
     }
     .auth-tabs {
       display: flex;
-      background: var(--gray-100);
-      border-radius: var(--radius-md);
+      background: #f1f5f9;
+      border-radius: var(--radius-lg);
       padding: 0.35rem;
       margin-bottom: 1.5rem;
       gap: 0.35rem;
@@ -206,7 +206,7 @@
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--gray-600);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-md);
       cursor: pointer;
       transition: var(--transition-base);
     }
@@ -216,7 +216,7 @@
     .auth-tab-btn.active {
       background: #ffffff;
       color: var(--primary);
-      box-shadow: var(--shadow-xs);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
     }
     .auth-field {
       margin-bottom: 1.15rem;
@@ -1143,12 +1143,12 @@
       gap: 1.5rem;
     }
 
-    /* Live Panel */
+    /* Live Panel (Modern Glass Card) */
     .live-panel {
       background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem 1.6rem;
       position: sticky;
       top: 5.5rem;
       box-shadow: var(--shadow-sm);
@@ -1156,36 +1156,37 @@
     }
     .live-metric-hero {
       text-align: center;
-      background: var(--gray-50);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin-bottom: 1.15rem;
-      border: 1px solid var(--gray-200);
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid #bae6fd;
     }
     .live-hero-num {
-      font-size: 2rem;
+      font-size: 2.25rem;
       font-weight: 800;
-      color: var(--gray-900);
+      color: #0f172a;
       line-height: 1.1;
       margin-bottom: 0.25rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
     .progress-track {
       height: 8px;
-      background: var(--gray-200);
+      background: #e2e8f0;
       border-radius: var(--radius-full);
       overflow: hidden;
       position: relative;
     }
     .live-remaining-pill {
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: var(--radius-md);
-      padding: 0.55rem;
+      background: var(--status-missing-bg);
+      border: 1px solid var(--status-missing-border);
+      border-radius: var(--radius-full);
+      padding: 0.55rem 0.85rem;
       margin-top: 0.85rem;
       font-size: 0.82rem;
-      color: #991b1b;
+      color: var(--status-missing-text);
       font-weight: 700;
+      text-align: center;
     }
 
     /* Autocomplete List */
@@ -1250,29 +1251,30 @@
       margin-top: 1rem;
     }
     .help-step-card {
-      background: var(--gray-50);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.35rem;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: var(--radius-xl);
+      padding: 1.4rem 1.5rem;
       position: relative;
       transition: var(--transition-base);
+      box-shadow: var(--shadow-xs);
     }
     .help-step-card:hover {
       background: #ffffff;
-      box-shadow: var(--shadow-sm);
-      border-color: var(--gray-300);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
       transform: translateY(-2px);
     }
     .help-step-num {
       display: inline-block;
-      background: var(--primary);
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
       color: white;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 800;
-      padding: 0.25rem 0.55rem;
-      border-radius: var(--radius-sm);
-      margin-bottom: 0.6rem;
-      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.25);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.65rem;
+      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
     }
 
     /* Footer */
@@ -1335,6 +1337,30 @@
     .app-toast.toast-error { border-left-color: #ef4444; }
     .app-toast.toast-warning { border-left-color: #f59e0b; }
     .app-toast.toast-info { border-left-color: var(--primary); }
+    /* Tooltip Hint Icons */
+    .tooltip-hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-full);
+      background: #e2e8f0;
+      color: #64748b;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: help;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+      transition: var(--transition-fast);
+      user-select: none;
+      line-height: 1;
+    }
+    .tooltip-hint:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
     @keyframes toastSlideIn {
       from { opacity: 0; transform: translateY(-8px) scale(0.96); }
       to { opacity: 1; transform: translateY(0) scale(1); }
@@ -1344,135 +1370,10 @@
       transform: translateY(-6px) scale(0.96);
     }
     @media (max-width: 480px) {
-      #app-toast-container {
-        top: auto;
-        bottom: 1.25rem;
-        right: 0.85rem;
-        left: 0.85rem;
-        width: auto;
-      }
-    }
-
-    /* Autocomplete Keyboard Active Highlight */
-    .autocomplete-item.active {
-      background: var(--primary-light) !important;
-      color: var(--primary-hover) !important;
-    }
-
-    /* Step tracker in PDF status */
-    .pdf-step-tracker {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-      padding-top: 0.65rem;
-      border-top: 1px dashed var(--status-passed-border);
-      font-size: 0.74rem;
-      color: var(--gray-500);
-      justify-content: space-between;
-    }
-    .pdf-step-item {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      opacity: 0.5;
-      transition: all 0.2s ease;
-    }
-    .pdf-step-item.active {
-      opacity: 1;
-      font-weight: 700;
-      color: var(--status-passed-text);
-    }
-    .pdf-step-item.done {
-      opacity: 1;
-      color: #10b981;
-      font-weight: 700;
-    }
-
-    /* =========================================================
-       RESPONSIVE MEDIA QUERIES (375px ~ 768px Mobile & Tablet)
-       ========================================================= */
-    @media (max-width: 900px) {
-      .sim-layout { grid-template-columns: 1fr; }
-      .live-panel { position: static; top: auto; }
-    }
-
-    @media (max-width: 768px) {
-      body { padding-bottom: 3rem; }
-      header { padding: 0.75rem 1rem; }
-      .header-inner { flex-wrap: wrap; gap: 0.6rem; }
-      .brand-title { font-size: 1rem; }
-      #profile-display-text { max-width: 180px; }
-      .student-badge-btn { padding: 0.35rem 0.65rem; font-size: 0.78rem; }
-      .container { margin: 1.25rem auto; padding: 0 0.85rem; }
-
-      /* Nav Tabs scrollable without squishing buttons */
-      .nav-tabs {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        flex-wrap: nowrap;
-        padding: 0.3rem;
-        gap: 0.25rem;
-        border-radius: var(--radius-lg);
-      }
-      .nav-tabs::-webkit-scrollbar { display: none; }
-      .tab-btn {
-        flex: 1 0 auto;
-        white-space: nowrap;
-        font-size: 0.88rem;
-        padding: 0.65rem 0.95rem;
-      }
-
-      /* Hero Box responsive */
-      .hero-box {
-        grid-template-columns: 1fr;
-        padding: 1.25rem 1.1rem;
-        gap: 1.25rem;
-      }
-      .hero-stat-main {
-        border-right: none;
-        padding-right: 0;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 1.25rem;
-      }
-
-      /* Toolbar responsive layout */
-      .course-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-      }
-      .course-filter-group {
-        width: 100%;
-      }
-      .course-filter-group .select,
-      .course-filter-group .input {
-        flex: 1 1 calc(50% - 0.3rem);
-        min-width: 120px;
-      }
-
-      /* User Info Grid */
-      .user-info-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-
-      /* GE Grid */
-      .ge-grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Modal responsive */
-      .modal-window {
-        padding: 1.25rem;
-        max-height: 85vh;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .auth-overlay { padding: 1.5rem 0.75rem; }
+      .auth-overlay { padding: 1.25rem 0.75rem; }
       .auth-card {
         padding: 1.5rem 1.15rem;
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius-xl);
       }
       .auth-title { font-size: 1.2rem; }
       .auth-tab-btn { font-size: 0.84rem; padding: 0.55rem; }
@@ -1487,6 +1388,10 @@
         padding: 0.35rem 0.65rem;
         font-size: 0.76rem;
       }
+      #profile-display-text { max-width: 130px; }
+      .card { padding: 1.25rem 1rem; border-radius: var(--radius-lg); }
+      .live-panel { padding: 1.15rem 1rem; }
+      .live-hero-num { font-size: 1.85rem; }
     }
   </style>
 </head>
@@ -1874,9 +1779,9 @@
         <div class="summary-role-bar">
           <div class="stat-pill-group">
             <div class="stat-pill">등록 과목: <strong id="summary-course-count">0</strong>개</div>
-            <div class="stat-pill">기이수(확정): <strong id="summary-conf-credits" style="color: var(--primary);">0</strong>학점</div>
-            <div class="stat-pill">수강 중: <strong id="summary-curr-credits" style="color: #ea580c;">0</strong>학점</div>
-            <div class="stat-pill">예상 총계: <strong id="summary-exp-credits" style="color: #15803d;">0</strong> / 130학점</div>
+            <div class="stat-pill" title="지난 학기까지 성적이 취득 완료된 확정 학점입니다.">기이수(확정): <strong id="summary-conf-credits" style="color: var(--primary);">0</strong>학점 <span class="tooltip-hint" title="지난 학기까지 성적이 확정된 학점입니다.">?</span></div>
+            <div class="stat-pill" title="현재 학기에 수강 중인 과목의 학점입니다.">수강 중: <strong id="summary-curr-credits" style="color: #ea580c;">0</strong>학점</div>
+            <div class="stat-pill" title="현재 수강 과목을 모두 F 없이 이수한다고 가정했을 때의 총 졸업 예상 학점입니다.">예상 총계: <strong id="summary-exp-credits" style="color: #15803d;">0</strong> / 130학점 <span class="tooltip-hint" title="현재 수강 중인 과목을 포함한 미래 예상 학점입니다.">?</span></div>
             <div class="stat-pill">졸업 잔여: <strong id="summary-remain-credits" style="color: var(--danger);">130</strong>학점</div>
           </div>
 
@@ -2039,14 +1944,14 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>현재 확정 (기이수 성적 확정)</strong></td>
+                  <td><strong>현재 확정 (기이수 성적 확정)</strong> <span class="tooltip-hint" title="지난 학기까지 성적이 확정 완료된 학점입니다.">?</span></td>
                   <td id="td-conf-major"><strong>9</strong> / 60 학점</td>
                   <td id="td-conf-ge"><strong>25</strong> / 26 학점</td>
                   <td id="td-conf-gen"><strong>0</strong> / 3 학점</td>
                   <td id="td-conf-tot"><strong style="color: var(--primary);">34</strong> / 130 학점</td>
                 </tr>
                 <tr style="background: #f0fdf4;">
-                  <td><strong>수강중 완료 시 예상</strong></td>
+                  <td><strong>수강중 완료 시 예상</strong> <span class="tooltip-hint" title="현재 학기 수강 과목을 정상 이수한다고 가정했을 때의 미래 예상 학점입니다.">?</span></td>
                   <td id="td-exp-major" style="color: #15803d;"><strong>13</strong> / 60 학점</td>
                   <td id="td-exp-ge" style="color: #15803d;"><strong>35</strong> / 26 학점</td>
                   <td id="td-exp-gen" style="color: #15803d;"><strong>3</strong> / 3 학점</td>
@@ -2404,19 +2309,32 @@
               </select>
             </div>
 
-            <!-- 이수 학기 -->
+            <!-- 이수 학기 (연도 + 학기 분리 드롭다운) -->
             <div>
               <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">
                 이수 학기 <span style="color: var(--danger);">*</span>
               </label>
-              <input type="text" id="course-semester-input" class="input" style="width: 100%;" placeholder="예: 2026-1, 2026-2" list="semester-suggestions" />
-              <datalist id="semester-suggestions">
-                <option value="2025-1">
-                <option value="2025-2">
-                <option value="2026-1">
-                <option value="2026-2">
-                <option value="2027-1">
-              </datalist>
+              <div style="display: flex; gap: 0.4rem;">
+                <select id="course-sem-year-select" class="select" style="flex: 1.2;" onchange="syncCourseSemesterInput()">
+                  <option value="2027">2027년</option>
+                  <option value="2026" selected>2026년</option>
+                  <option value="2025">2025년</option>
+                  <option value="2024">2024년</option>
+                  <option value="2023">2023년</option>
+                  <option value="2022">2022년</option>
+                  <option value="2021">2021년</option>
+                  <option value="2020">2020년 이전</option>
+                  <option value="기타">기타</option>
+                </select>
+                <select id="course-sem-term-select" class="select" style="flex: 1;" onchange="syncCourseSemesterInput()">
+                  <option value="1">1학기</option>
+                  <option value="2" selected>2학기</option>
+                  <option value="여름">여름계절</option>
+                  <option value="겨울">겨울계절</option>
+                  <option value="기타">기타</option>
+                </select>
+              </div>
+              <input type="hidden" id="course-semester-input" value="2026-2" />
             </div>
           </div>
 
@@ -2589,8 +2507,8 @@
               </div>
             </div>
 
-            <!-- Scrollable Table Wrapper -->
-            <div style="max-height: 290px; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 6px;">
+            <!-- Scrollable Table Wrapper (UX: max-height with smooth vertical scroll) -->
+            <div style="max-height: 260px; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);">
               <table class="table" style="width: 100%; min-width: 640px; font-size: 0.78rem; border-collapse: collapse;">
                 <thead style="background: #f8fafc; position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
                   <tr>
@@ -2610,8 +2528,8 @@
               </table>
             </div>
 
-            <!-- Bottom summary & Save button -->
-            <div style="margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <!-- Bottom summary & Save button (UX: Always visible sticky bar) -->
+            <div style="margin-top: 0.85rem; padding: 0.75rem 0 0.25rem 0; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; position: sticky; bottom: -0.5rem; background: #ffffff; z-index: 5;">
               <div id="pdf-parsed-selection-summary" style="font-size: 0.8rem; font-weight: 700; color: #1e293b;">
                 선택된 과목: <span id="pdf-selected-count" style="color: #7c3aed;">0</span>개 (총 <span id="pdf-selected-credits" style="color: #7c3aed;">0</span>학점)
               </div>
@@ -3092,11 +3010,19 @@
         tabReg.classList.remove('active');
         formLogin.style.display = 'block';
         formReg.style.display = 'none';
+        setTimeout(() => {
+          const el = document.getElementById('login-id');
+          if (el) el.focus();
+        }, 50);
       } else {
         tabLogin.classList.remove('active');
         tabReg.classList.add('active');
         formLogin.style.display = 'none';
         formReg.style.display = 'block';
+        setTimeout(() => {
+          const el = document.getElementById('reg-id');
+          if (el) el.focus();
+        }, 50);
       }
     }
 
@@ -3557,13 +3483,31 @@
     }
 
     /* Course CRUD Handlers */
+    
+    function syncCourseSemesterInput() {
+      const ySel = document.getElementById('course-sem-year-select');
+      const tSel = document.getElementById('course-sem-term-select');
+      const hiddenInput = document.getElementById('course-semester-input');
+      if (!ySel || !tSel || !hiddenInput) return;
+      const y = ySel.value;
+      const t = tSel.value;
+      let sem = '2026-2';
+      if (y === '기타' && t === '기타') sem = '기타';
+      else if (y === '기타') sem = t;
+      else if (t === '기타') sem = y;
+      else sem = `${y}-${t}`;
+      hiddenInput.value = sem;
+    }
+
     function openAddCourseModal() {
       document.getElementById('course-modal-title').textContent = '➕ 기이수 과목 직접 추가';
       document.getElementById('course-edit-id').value = '';
       document.getElementById('course-title-input').value = '';
       document.getElementById('course-cat-input').value = '경영_전선';
       document.getElementById('course-credits-input').value = '3';
-      document.getElementById('course-semester-input').value = '2026-2';
+      const ySel = document.getElementById('course-sem-year-select'); if (ySel) ySel.value = '2026';
+      const tSel = document.getElementById('course-sem-term-select'); if (tSel) tSel.value = '2';
+      syncCourseSemesterInput();
       document.getElementById('course-grade-input').value = '수강중';
       document.getElementById('modal-autocomplete-dropdown').style.display = 'none';
       document.getElementById('course-edit-modal').style.display = 'flex';
@@ -3590,7 +3534,18 @@
       }
 
       document.getElementById('course-credits-input').value = course.credits || 3;
-      document.getElementById('course-semester-input').value = course.semester || '2026-2';
+      const semParts = parseSemesterParts(course.semester || '2026-2');
+      const ySel = document.getElementById('course-sem-year-select');
+      const tSel = document.getElementById('course-sem-term-select');
+      if (ySel) {
+        if (Array.from(ySel.options).some(o => o.value === semParts.year)) ySel.value = semParts.year;
+        else ySel.value = '기타';
+      }
+      if (tSel) {
+        if (Array.from(tSel.options).some(o => o.value === semParts.term)) tSel.value = semParts.term;
+        else tSel.value = '기타';
+      }
+      syncCourseSemesterInput();
       document.getElementById('course-grade-input').value = course.grade || '수강중';
       document.getElementById('modal-autocomplete-dropdown').style.display = 'none';
       document.getElementById('course-edit-modal').style.display = 'flex';
@@ -3611,6 +3566,7 @@
       const title = document.getElementById('course-title-input').value.trim();
       const cat = document.getElementById('course-cat-input').value;
       const credits = parseInt(document.getElementById('course-credits-input').value, 10);
+      syncCourseSemesterInput();
       const semester = document.getElementById('course-semester-input').value.trim() || '기타';
       const grade = document.getElementById('course-grade-input').value;
 
@@ -3686,12 +3642,17 @@
           const div = document.createElement('div');
           div.className = 'autocomplete-item';
           div.innerHTML = `
-            <div>
+            <div style="flex: 1; padding-right: 0.5rem;">
               <strong>${item.title}</strong>
               <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${item.dept || item.cat})</span>
               ${item.desc ? `<div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${item.desc}</div>` : ''}
             </div>
-            <span class="badge badge-gray">${item.credits}학점</span>
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <span class="badge badge-gray" style="font-size: 0.72rem;">${item.credits}학점</span>
+              <button type="button" class="btn btn-primary btn-direct-add" style="padding: 0.25rem 0.55rem; font-size: 0.74rem; min-height: 28px;" title="이 과목을 바로 장바구니에 담습니다" onclick="event.stopPropagation(); directAddCourseToBasket('${encodeURIComponent(JSON.stringify(item))}')">
+                + 바로 담기
+              </button>
+            </div>
           `;
           div.onclick = () => {
             document.getElementById('course-title-input').value = item.title;
@@ -5857,6 +5818,17 @@ ${rawText}`;
       dropdown.style.display = 'block';
     }
 
+    
+    function directAddCourseToBasket(encodedItemStr) {
+      try {
+        const item = JSON.parse(decodeURIComponent(encodedItemStr));
+        selectCourseFromAutocomplete(item);
+        addCourseToBasket();
+      } catch (e) {
+        console.error('directAddCourseToBasket error:', e);
+      }
+    }
+
     function selectCourseFromAutocomplete(item) {
       document.getElementById('bask-title-input').value = item.title;
       document.getElementById('bask-cred-input').value = item.credits || 3;
@@ -6216,6 +6188,10 @@ ${rawText}`;
         document.getElementById('auth-container').style.display = 'flex';
         document.getElementById('main-app-container').style.display = 'none';
         renderHelpTab();
+        setTimeout(() => {
+          const el = document.getElementById('login-id');
+          if (el) el.focus();
+        }, 100);
       }
     });
   </script>
