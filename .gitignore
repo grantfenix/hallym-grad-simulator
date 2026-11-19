@@ -40,6 +40,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Local presentations & backups (not tracked on GitHub)
+ppt/
+
 # Operating System Files
 .DS_Store
 Thumbs.db
