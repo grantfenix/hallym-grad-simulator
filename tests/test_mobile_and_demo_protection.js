@@ -78,7 +78,12 @@ const responsiveChecks = [
   '@media (max-width: 768px)',
   '.hero-box {',
   '@media (max-width: 480px)',
-  'translate3d(-50%, 0, 0)'
+  'translate3d(-50%, 0, 0)',
+  'overflow-x: clip;',
+  'position: sticky;',
+  'min-height: 56px',
+  'max-height: 56px',
+  '.header-logout-btn {'
 ];
 
 for (const pattern of responsiveChecks) {
@@ -87,6 +92,7 @@ for (const pattern of responsiveChecks) {
   }
 }
 console.log("  [PASS] Mobile responsive CSS layout rules and hardware-accelerated floating bar verified");
+console.log("  [PASS] Compact sticky header (56px) and overflow-x clip verified");
 
 // Test Section 3: Demo Button Stealth HTML Structure
 console.log("\n--- 3. Demo Account Button Stealth HTML Structure ---");
