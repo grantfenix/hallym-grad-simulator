@@ -23,7 +23,7 @@ except Exception:
     BUILTIN_COURSES = []
 
 # -----------------------------------------------------------------------------
-# REAL STUDENT RECORD (Student ID: 20258044, Zero Fake Courses)
+# DEMO STUDENT RECORD (Student ID: 20250000, Zero Fake Courses)
 # -----------------------------------------------------------------------------
 REQ_TOTAL = 130
 REQ_BIZ_SINGLE = 60    # 경영 단일전공 기준
@@ -76,7 +76,7 @@ if "custom_courses" not in st.session_state:
 if "major_mode" not in st.session_state:
     st.session_state.major_mode = "경영학과 (단일전공 60학점 완전지원)"
 if "student_id" not in st.session_state:
-    st.session_state.student_id = "20258044"
+    st.session_state.student_id = "20250000"
 if "student_name" not in st.session_state:
     st.session_state.student_name = "유아미"
 if "student_type" not in st.session_state:

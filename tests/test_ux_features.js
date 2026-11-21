@@ -86,7 +86,7 @@ console.log('[PASS] syncCourseSemesterInput works as expected');
 
 // 2. Check directAddCourseToBasket
 console.log('\n--- 2. directAddCourseToBasket ---');
-sandbox.currentUser = { studentId: '20258044', name: '유아미', major: '경영학과' };
+sandbox.currentUser = { studentId: '20250000', name: '유아미', major: '경영학과' };
 sandbox.activeUserCourses = [];
 const testItem = { title: '마케팅원론', credits: 3, cat: '경영_전선' };
 console.log('Testing selectCourseFromAutocomplete directly:');

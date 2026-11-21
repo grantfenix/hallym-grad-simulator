@@ -54,7 +54,7 @@ console.log('Testing renderHelpTab dynamically...');
 
 // Case 1: 경영학과 2025학번 단일전공
 sandbox.completeLogin({
-  studentId: '20258044',
+  studentId: '20250000',
   name: '유아미',
   admissionYear: 2025,
   major: '경영학과',

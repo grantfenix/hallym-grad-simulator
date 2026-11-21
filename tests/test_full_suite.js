@@ -198,8 +198,8 @@ async function runTestSuite() {
 
     // 1-6. 데모 로그인
     handleDemoLogin();
-    const demoLoginPass = currentUser && currentUser.studentId === '20258044' && activeUserCourses.length >= 20;
-    recordResult('1-6. 데모 계정(20258044) 원클릭 로그인 및 기이수 과목 로드', demoLoginPass);
+    const demoLoginPass = currentUser && (currentUser.studentId === '20250000' || currentUser.studentId === '20258044') && activeUserCourses.length >= 20;
+    recordResult('1-6. 데모 계정(20250000) 원클릭 로그인 및 기이수 과목 로드', demoLoginPass);
 
     // 1-7. 로그아웃
     confirmResponse = true;

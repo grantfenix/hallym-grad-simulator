@@ -69,13 +69,13 @@ const sampleCourses = [
 ];
 
 const mockStorage = {
-  'hallym_courses_20258044': JSON.stringify(sampleCourses)
+  'hallym_courses_20250000': JSON.stringify(sampleCourses)
 };
 
 sandbox.localStorage.getItem = (k) => mockStorage[k] || null;
 
 sandbox.completeLogin({
-  studentId: '20258044',
+  studentId: '20250000',
   name: '유아미',
   admissionYear: 2025,
   major: '경영학과',

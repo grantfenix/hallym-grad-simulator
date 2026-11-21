@@ -58,19 +58,20 @@ console.log('[PASS] Demo button contains 유아미');
 console.log('\n--- 2. ensureDefaultDemoUser Fresh Creation ---');
 sandbox.ensureDefaultDemoUser();
 const usersAfterFresh = JSON.parse(mockStorage['hallym_users']);
-const demoFresh = usersAfterFresh['20258044'];
+const demoFresh = usersAfterFresh['20250000'] || usersAfterFresh['20258044'];
 console.log('Created Demo User:', demoFresh.name, demoFresh.studentId);
 if (demoFresh.name !== '유아미') throw new Error(`Expected name '유아미', got '${demoFresh.name}'`);
-console.log('[PASS] Fresh user name is 유아미');
+if (demoFresh.studentId !== '20250000') throw new Error(`Expected studentId '20250000', got '${demoFresh.studentId}'`);
+console.log('[PASS] Fresh user name is 유아미 (studentId: 20250000)');
 
 // 3. Check Legacy Migration ('김한림' in localStorage upgraded to '유아미')
 console.log('\n--- 3. ensureDefaultDemoUser Legacy Migration ---');
 mockStorage['hallym_users'] = JSON.stringify({
-  '20258044': { studentId: '20258044', name: '김한림', major: '경영학과' }
+  '20250000': { studentId: '20250000', name: '김한림', major: '경영학과' }
 });
 sandbox.ensureDefaultDemoUser();
 const usersAfterMigrate = JSON.parse(mockStorage['hallym_users']);
-const demoMigrated = usersAfterMigrate['20258044'];
+const demoMigrated = usersAfterMigrate['20250000'] || usersAfterMigrate['20258044'];
 console.log('Migrated Demo User:', demoMigrated.name);
 if (demoMigrated.name !== '유아미') throw new Error(`Expected migrated name '유아미', got '${demoMigrated.name}'`);
 console.log('[PASS] Legacy user auto-upgraded to 유아미');
