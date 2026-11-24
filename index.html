@@ -1443,6 +1443,16 @@
         padding: 0.15rem 0.4rem !important;
         white-space: nowrap !important;
       }
+      #biz-exam-waiver-card,
+      #major-track-card {
+        padding: 0.75rem 0.65rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .track-grid,
+      .exam-grid {
+        grid-template-columns: 1fr !important;
+      }
       .brand-title {
         font-size: 0.88rem !important;
         white-space: nowrap !important;
@@ -2390,6 +2400,22 @@
               ※ 전공을 변경하면 졸업요건 계산이 바뀝니다.
             </div>
           </div>
+          <!-- 세부 전공 트랙 선택 (경영학과) -->
+          <div id="modal-track-wrap" style="margin-bottom: 1rem;">
+            <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">세부 전공 트랙 선택 (선택 사항)</label>
+            <select id="modal-track-select" class="select" style="width: 100%;">
+              <option value="none" selected>선택 안 함 (공통 졸업요건만 판정)</option>
+              <option value="회계·세무">1. 회계·세무 트랙 (회계사/세무사/재경)</option>
+              <option value="의료경영">2. 의료경영 트랙 (의료기관/건보공단/제약)</option>
+              <option value="글로벌혁신전략">3. 글로벌혁신전략 트랙 (경영전략/기획/컨설팅)</option>
+              <option value="비즈니스인텔리전스">4. 비즈니스인텔리전스 트랙 (데이터분석/BI)</option>
+              <option value="관광경영">5. 관광경영 트랙 (호텔/항공/리조트/MICE)</option>
+              <option value="마케팅기획">6. 마케팅기획 트랙 (마케팅기획/MD/시장조사)</option>
+            </select>
+            <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem; line-height: 1.4;">
+              ※ 한림대 경영학과 공식 6대 전공진로트랙 중 희망 트랙을 선택하면 맞춤형 로드맵을 제공합니다. (미선택 시 공통 졸업요건만 판정)
+            </div>
+          </div>
           <div style="margin-bottom: 1.25rem;">
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.84rem; font-weight: 600; cursor: pointer;">
               <input type="checkbox" id="modal-has-double" onchange="toggleDoubleMajorInput(this.checked)">
@@ -2493,6 +2519,10 @@
             <div class="user-info-item">
               <div class="info-label">주전공</div>
               <div class="info-val" id="info-val-major">-</div>
+            </div>
+            <div class="user-info-item">
+              <div class="info-label">세부 트랙</div>
+              <div class="info-val" id="info-val-track">자율 이수 (트랙 미선택)</div>
             </div>
             <div class="user-info-item">
               <div class="info-label">복수전공</div>
@@ -2838,6 +2868,34 @@
             </div>
           </div>
 
+          <!-- 경영학과 공식 내규: 졸업시험 9개 분야 중 4개 분야 면제 판정표 -->
+          <div class="card" id="biz-exam-waiver-card" style="display: none; border: 1.5px solid #bfdbfe; background: #ffffff;">
+            <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid #dbeafe; padding-bottom: 0.65rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span style="font-size: 1.02rem; font-weight: 800; color: #1e40af;">🎓 [경영학과 공식 내규] 졸업시험 면제 판정표</span>
+                <span class="badge" style="background:#eff6ff; color:#1e40af; font-size:0.75rem; border:1px solid #bfdbfe; font-weight: 700;">4개 분야 B0 이상 취득</span>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700;" id="biz-exam-waiver-summary-badge"></span>
+            </div>
+            <div id="biz-exam-waiver-container" style="padding-top: 0.65rem;">
+              <!-- Dynamically populated via renderBizExamWaiver -->
+            </div>
+          </div>
+
+          <!-- 경영학과 공식 진로 트랙 로드맵 카드 (트랙 선택 시 표시) -->
+          <div class="card" id="major-track-card" style="display: none; border: 1.5px solid #bae6fd; background: #ffffff;">
+            <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid #e0f2fe; padding-bottom: 0.65rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span id="major-track-title" style="font-size: 1.05rem; font-weight: 800; color: #0369a1;">🎯 희망 진로 트랙 로드맵</span>
+                <span class="badge" style="background:#e0f2fe; color:#0284c7; font-size:0.75rem; border:1px solid #bae6fd; font-weight: 700;">희망 진로 권장 로드맵</span>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700;" id="major-track-summary-badge"></span>
+            </div>
+            <div id="major-track-container" style="padding-top: 0.65rem;">
+              <!-- Dynamically populated via renderTrackDiagnosis -->
+            </div>
+          </div>
+
           <!-- Common GE 26 Credits 6-Area Progress Grid -->
           <div class="card">
             <div class="card-title">
@@ -2893,6 +2951,13 @@
                   </label>
                   <input type="text" id="bask-title-input" class="input" style="width: 100%;" placeholder="과목명 또는 코드 입력 (예: 마케팅원론, Essential English, 903178)" oninput="handleCourseSearch(this.value)" onkeydown="handleSearchInputKeyDown(event)" autocomplete="off" />
                   <div id="autocomplete-dropdown" class="autocomplete-list" style="display: none;"></div>
+                </div>
+                <!-- Track Quick View Shortcut -->
+                <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; margin-top: 0.45rem;">
+                  <span style="font-size: 0.74rem; font-weight: 700; color: var(--gray-600);">⚡ 빠른 담기:</span>
+                  <button type="button" class="btn btn-outline" onclick="quickFillTrackCoreCourses()" style="font-size: 0.72rem; padding: 0.2rem 0.55rem; height: auto; color: var(--primary); border-color: var(--primary);" title="선택한 트랙 또는 경영학 추천 과목을 바로 확인합니다">
+                    🎯 트랙/권장 과목 바로 담기
+                  </button>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 2fr 1fr auto; gap: 0.5rem; margin-top: 0.6rem;">
@@ -4032,6 +4097,374 @@
       };
     }
 
+    /* =========================================================================
+       경영학과 공식 내규: 졸업시험 9개 분야 중 4개 분야 선택 면제 엔진
+       출처: 졸업기준_경영학과.txt (라인 56-67)
+       ========================================================================= */
+    const BIZ_EXAM_WAIVER_RULES = {
+      requiredFieldsCount: 4,
+      minGrade: 'B0',
+      b0Grades: ['A+', 'A0', 'A', 'B+', 'B0', 'B'],
+      fields: {
+        '회계학': ['회계입문', '회계원리', '중급회계', '회계세무데이터분석', '세무원리', '원가관리회계', '재무회계', '중급재무회계'],
+        '조직 및 인사관리': ['조직행동론', '인적자원관리', '인사관리론', '글로컬경영실무'],
+        '재무관리': ['재무관리'],
+        '마케팅': ['마케팅원론', '소비자행동론', '시장조사론', '마케팅커뮤니케이션', '국제마케팅'],
+        '경영과학 및 생산관리': ['비즈니스인텔리전스', '생산운영관리', '비즈니스앱기획'],
+        'MIS': ['경영정보시스템', '경영과기계학습', '인터넷비즈니스', '데이터사이언스입문'],
+        '경영전략': ['경영전략', '기업과사회', '협상론', '경영학특강', '벤처기업론', '기술경영', '국제경영론'],
+        '의료경영': ['의료경영론', '의학용어', '의료정책과법', '보건의료빅데이터관리', '의료품질경영', '병원경영분석'],
+        '관광경영': ['관광경영론', '관광산업론', '호텔경영관리', '레저산업론', '여행사경영론', '융합산업경영']
+      },
+      capstoneRule: {
+        codes: ['210112'],
+        titles: ['캡스톤디자인'],
+        maxBonus: 1,
+        note: '캡스톤디자인(210112) B0 이상 취득 시 졸업시험 최대 1개 분야 추가 면제'
+      }
+    };
+
+    function diagnoseBizExamWaiver(courses, user) {
+      if (!user || user.major !== '경영학과') return null;
+
+      const B0_GRADES = BIZ_EXAM_WAIVER_RULES.b0Grades;
+      const normTitle = t => (t || '').replace(/\(.*?\)/g, '').replace(/[\s\-_]/g, '').toLowerCase();
+
+      // Deduplicate courses by normalized title/code. For retakes, prioritize confirmed highest grade
+      const deduplicatedCourses = [];
+      const courseMap = {};
+
+      (courses || []).forEach(c => {
+        const key = c.code || normTitle(c.title);
+        const existing = courseMap[key];
+        if (!existing) {
+          courseMap[key] = c;
+          deduplicatedCourses.push(c);
+        } else {
+          const isCurrConfirmed = c.grade && c.grade !== '수강중' && c.grade !== 'N/P';
+          const isExistConfirmed = existing.grade && existing.grade !== '수강중' && existing.grade !== 'N/P';
+          if (isCurrConfirmed && (!isExistConfirmed || B0_GRADES.indexOf(c.grade) < B0_GRADES.indexOf(existing.grade))) {
+            courseMap[key] = c;
+            const idx = deduplicatedCourses.indexOf(existing);
+            if (idx !== -1) deduplicatedCourses[idx] = c;
+          }
+        }
+      });
+
+      const examFields = BIZ_EXAM_WAIVER_RULES.fields;
+      const fieldResults = {};
+      let waivedFieldsCount = 0;
+      let inProgressFieldsCount = 0;
+
+      Object.keys(examFields).forEach(fieldName => {
+        const courseKeywords = examFields[fieldName];
+        const matchedList = deduplicatedCourses.filter(c => {
+          const cNorm = normTitle(c.title);
+          return courseKeywords.some(kw => cNorm.includes(normTitle(kw)) || normTitle(kw).includes(cNorm));
+        });
+
+        let fieldWaived = false;
+        let fieldInProg = false;
+        let bestCourse = null;
+
+        matchedList.forEach(c => {
+          if (c.grade && B0_GRADES.includes(c.grade)) {
+            fieldWaived = true;
+            if (!bestCourse || !B0_GRADES.includes(bestCourse.grade)) bestCourse = c;
+          } else if (c.grade === '수강중') {
+            fieldInProg = true;
+            if (!bestCourse) bestCourse = c;
+          } else if (!bestCourse && c.grade) {
+            bestCourse = c;
+          }
+        });
+
+        if (fieldWaived) {
+          waivedFieldsCount++;
+        } else if (fieldInProg) {
+          inProgressFieldsCount++;
+        }
+
+        fieldResults[fieldName] = {
+          waived: fieldWaived,
+          inProgress: fieldInProg,
+          matchedList,
+          bestCourse
+        };
+      });
+
+      let capstoneBonus = false;
+      const capstoneDef = BIZ_EXAM_WAIVER_RULES.capstoneRule;
+      const capstoneMatched = deduplicatedCourses.find(c =>
+        (c.code && capstoneDef.codes.includes(norm(c.code))) ||
+        capstoneDef.titles.some(t => normTitle(c.title).includes(normTitle(t)))
+      );
+      if (capstoneMatched && capstoneMatched.grade && B0_GRADES.includes(capstoneMatched.grade)) {
+        capstoneBonus = true;
+      }
+
+      const effectiveWaivedCount = Math.min(4, waivedFieldsCount + (capstoneBonus ? 1 : 0));
+      const isExamWaiverComplete = (effectiveWaivedCount >= 4);
+
+      return {
+        fieldResults,
+        waivedFieldsCount,
+        inProgressFieldsCount,
+        capstoneBonus,
+        capstoneMatched,
+        effectiveWaivedCount,
+        isExamWaiverComplete
+      };
+    }
+
+    /* =========================================================================
+       경영학과 공식 6대 진로 트랙 정의 (TRACK_DEFINITIONS) 및 진단 엔진
+       출처: 한림대학교 입학처 공식 경영학과.pdf (2023.09) p.6-7
+       ========================================================================= */
+    const TRACK_DEFINITIONS = {
+      '회계·세무': {
+        id: '회계·세무',
+        title: '회계·세무 트랙',
+        dept: '경영학과',
+        desc: '경영의사결정을 위한 언어인 회계 및 세무에 대한 이론 및 실무지식을 익히고, 전문자격증 취득을 유도함으로써 회계·세무분야 전문가를 양성하는 트랙',
+        careers: '공인회계사, 세무사, 기업 회계/세무/재경/경영기획팀, 회계/세무법인',
+        recommendedDoubleMajors: '경제학과, 금융재무학과, 데이터사이언스학부, 스타트업비즈니스전공, 글로벌비즈니스전공',
+        certifications: '공인회계사(CPA), 세무사(CTA), 재경관리사, 전산회계운용사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '204101', title: '경제학원론(거시)', credits: 3, cat: '전선', semester: '1학년 1학기' },
+          { code: '205102', title: '재무학원론', credits: 3, cat: '경영_전선', semester: '1학년 2학기' },
+          { code: '205201', title: '회계입문', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' }
+        ],
+        advancedCourses: [
+          { code: 'biz_elec_13', title: '중급재무회계1', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205315', title: '원가관리회계', credits: 3, cat: '경영_전선', semester: '2학년 2학기' },
+          { code: '205215', title: '창업과금융', credits: 3, cat: '경영_전선', semester: '2학년 2학기' },
+          { code: '205216', title: '세무원리', credits: 3, cat: '경영_전선', semester: '2학년 2학기' },
+          { code: '205316', title: '회계세무실무', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205214', title: '중급회계', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '205317', title: '비즈니스인텔리전스', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '205425', title: '인터넷비즈니스(종합설계)', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '205416', title: '회계세무데이터분석', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '205290', title: '경영분석(종합설계)', credits: 3, cat: '전선', semester: '4학년 1/2학기' },
+          { code: '205417', title: '기업과세금', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '205418', title: '창업과세금', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '205419', title: '경영자료분석', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '205414', title: '시장조사론(종합설계)', credits: 3, cat: '경영_전선', semester: '4학년 2학기' }
+        ]
+      },
+      '의료경영': {
+        id: '의료경영',
+        title: '의료경영 트랙',
+        dept: '경영학과',
+        desc: '헬스케어 섹터 환경 내에서 조직 및 정책 수준의 복잡한 의사결정에 영향을 주는 요인을 통찰하는 의료경영 리더 양성 특성화 트랙',
+        careers: '의료기관, 국민건강보험공단, 건강보험심사평가원, 민간보험사 경영기획부서, 의약품/의료기기 제조기업',
+        recommendedDoubleMajors: '공공인재융합전공, 정보과학대학, 글로벌비즈니스전공, 바이오헬스케어융합전공, 생명과학과, 언어병리학전공, 청각학전공',
+        certifications: '보건의료정보관리사(의무기록사), 병원행정사, 의료정보관리사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '215101', title: '헬스케어산업과경영', credits: 3, cat: '경영_전선', semester: '1학년 2학기' },
+          { code: '215110', title: '의학용어', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205206', title: '조직행동론', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' }
+        ],
+        advancedCourses: [
+          { code: '215201', title: '의료경영론', credits: 3, cat: '경영_전선', semester: '2학년 2학기' },
+          { code: '215301', title: '의료품질경영', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '215302', title: '보건의료빅데이터관리', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '205306', title: '인적자원관리', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '205318', title: '비즈니스다이내믹스', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '205319', title: '소셜비즈니스', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '215401', title: '의료정책과법', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '215402', title: '병원경영분석', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '205317', title: '비즈니스인텔리전스', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '205419', title: '경영자료분석', credits: 3, cat: '경영_전선', semester: '4학년 2학기' }
+        ]
+      },
+      '글로벌혁신전략': {
+        id: '글로벌혁신전략',
+        title: '글로벌혁신전략 트랙',
+        dept: '경영학과',
+        desc: '국제경영과 기술혁신 전략이 연합된 경영전략 기반 응용트랙으로, 글로벌 대기업 사업 다각화와 중소벤처기업 기술혁신 역량을 교육하는 트랙',
+        careers: '경영지도사(컨설턴트), 일반기업체 기획/전략/해외영업 부서',
+        recommendedDoubleMajors: '스타트업비즈니스전공, 영어영문학과, 중국학과, 일본학과, 러시아학과, 인공지능융합학부',
+        certifications: '경영지도사, 유통관리사, 무역영어, 물류관리사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '205103', title: '창의성과혁신', credits: 3, cat: '경영_전선', semester: '1학년 1/2학기' },
+          { code: '205101', title: '경영학원론', credits: 3, cat: '교양_자율선택', semester: '1학년 1/2학기' },
+          { code: '205104', title: '기업가정신과창업', credits: 3, cat: '경영_전선', semester: '1학년 1/2학기' },
+          { code: 'biz_elec_07', title: '경영통계학', credits: 3, cat: '경영_전선', semester: '2학년 1학기' }
+        ],
+        advancedCourses: [
+          { code: '205202', title: '기업과사회', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205203', title: '서비스경영', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' },
+          { code: 'biz_elec_12', title: '경영전략', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205304', title: '국제경영론', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '004049', title: '벤처기업론(종합설계)', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205307', title: '무역실무', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205308', title: '기술경영', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205401', title: '국제마케팅', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '205414', title: '시장조사론(종합설계)', credits: 3, cat: '경영_전선', semester: '4학년 1/2학기' },
+          { code: '205317', title: '비즈니스인텔리전스', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '205425', title: '인터넷비즈니스(종합설계)', credits: 3, cat: '경영_전선', semester: '4학년 1/2학기' },
+          { code: '205419', title: '경영자료분석', credits: 3, cat: '경영_전선', semester: '4학년 1학기' }
+        ]
+      },
+      '비즈니스인텔리전스': {
+        id: '비즈니스인텔리전스',
+        title: '비즈니스인텔리전스 트랙',
+        dept: '경영학과',
+        desc: '데이터에 대한 기본 개념과 통계의 기초를 학습하고 기업체의 다양한 업무영역에서 발생하는 비즈니스 데이터를 분석하여 실무적으로 적용하는 트랙',
+        careers: '일반기업체, 경영정보 관련 부서, 전략 수립 부서, 마케팅 부서, 데이터 과학자',
+        recommendedDoubleMajors: '금융재무학과, 데이터사이언스학부, 소프트웨어학부',
+        certifications: 'SQLD, ADsP, 빅데이터분석기사, 정보처리기사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '204101', title: '경제학원론(거시)', credits: 3, cat: '전선', semester: '1학년 1/2학기' },
+          { code: 'biz_elec_07', title: '경영통계학', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205320', title: '경영정보시스템(종합설계)', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' }
+        ],
+        advancedCourses: [
+          { code: '205204', title: '데이터사이언스입문', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205425', title: '인터넷비즈니스(종합설계)', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205317', title: '비즈니스인텔리전스', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '205416', title: '회계세무데이터분석', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '205414', title: '시장조사론(종합설계)', credits: 3, cat: '경영_전선', semester: '4학년 1/2학기' },
+          { code: '205419', title: '경영자료분석', credits: 3, cat: '경영_전선', semester: '4학년 2학기' }
+        ]
+      },
+      '관광경영': {
+        id: '관광경영',
+        title: '관광경영 트랙',
+        dept: '경영학과',
+        desc: '관광산업 전반에 대한 이해를 도모하고 여행업, 호텔 및 리조트, 국제회의, 공기업 등 진출 분야에 필요한 지식과 소양을 함양하는 글로벌 인재 양성 트랙',
+        careers: '여행사, 항공사, 호텔, 리조트, 한국관광공사, 공무원(도청/시청), 국제회의기획업 등',
+        recommendedDoubleMajors: '융합관광경영전공, 광고홍보학과, 체육학과, 공공인재융합전공',
+        certifications: '관광통역안내사, 컨벤션기획사, 호텔경영사, 국내여행안내사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '636101', title: '관광경영론', credits: 3, cat: '경영_전선', semester: '1학년 1학기' },
+          { code: '636102', title: '융합산업경영', credits: 3, cat: '경영_전선', semester: '1학년 1/2학기' },
+          { code: '205303', title: '마케팅원론', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' },
+          { code: '205206', title: '조직행동론', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' },
+          { code: '205320', title: '경영정보시스템(종합설계)', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' }
+        ],
+        advancedCourses: [
+          { code: '636201', title: '레저산업론', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '636336', title: '관광산업론(종합설계)', credits: 3, cat: '경영_전선', semester: '2학년 2학기' },
+          { code: '636250', title: '서비스마케팅', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '636301', title: '장소마케팅', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '636302', title: '컨벤션산업론', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: '636401', title: '호텔경영관리', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: '636402', title: '여행사경영론', credits: 3, cat: '경영_전선', semester: '4학년 2학기' },
+          { code: '636403', title: '국제행사운영기획', credits: 3, cat: '경영_전선', semester: '4학년 2학기' }
+        ]
+      },
+      '마케팅기획': {
+        id: '마케팅기획',
+        title: '마케팅기획 트랙',
+        dept: '경영학과',
+        desc: '마케팅 기획 및 프레젠테이션 능력 함양을 통해 국내외 기업의 각종 직군에서 요구하는 마케터를 양성하는 특성화 트랙',
+        careers: '기업체 마케팅/기획 부서, 상품기획자(MD), 시장조사분석가, 브랜드매니저',
+        recommendedDoubleMajors: '데이터사이언스학부, 심리학과, 광고홍보학과, 미디어스쿨',
+        certifications: '사회조사분석사, 유통관리사, 검색광고마케터, 브랜드관리사',
+        sourceRef: '한림대 경영학과 공식 로드맵 p.6-7',
+        foundationCourses: [
+          { code: '205201', title: '회계입문', credits: 3, cat: '경영_전선', semester: '1학년 1/2학기' },
+          { code: '205303', title: '마케팅원론', credits: 3, cat: '경영_전선', semester: '1학년 1/2학기' },
+          { code: 'biz_elec_07', title: '경영통계학', credits: 3, cat: '경영_전선', semester: '2학년 1학기' },
+          { code: '205206', title: '조직행동론', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' }
+        ],
+        advancedCourses: [
+          { code: 'biz_elec_10', title: '생산운영관리', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' },
+          { code: '205320', title: '경영정보시스템(종합설계)', credits: 3, cat: '경영_전선', semester: '2학년 1/2학기' },
+          { code: '205309', title: '마케팅커뮤니케이션', credits: 3, cat: '경영_전선', semester: '3학년 1학기' },
+          { code: 'biz_elec_18', title: '소비자행동론', credits: 3, cat: '경영_전선', semester: '3학년 2학기' },
+          { code: '205414', title: '시장조사론(종합설계)', credits: 3, cat: '경영_전선', semester: '3학년 1/2학기' },
+          { code: '205401', title: '국제마케팅', credits: 3, cat: '경영_전선', semester: '4학년 1학기' },
+          { code: 'biz_elec_12', title: '경영전략', credits: 3, cat: '경영_전선', semester: '4학년 1/2학기' }
+        ]
+      }
+    };
+
+    // 하위 호환성 별칭 매핑
+    TRACK_DEFINITIONS['경영학_기본트랙'] = TRACK_DEFINITIONS['회계·세무'];
+
+    function diagnoseMajorTrack(courses, user) {
+      if (!user || user.major !== '경영학과' || !user.track || user.track === 'none') {
+        return null;
+      }
+
+      let trackDef = TRACK_DEFINITIONS[user.track];
+      if (!trackDef) {
+        const foundKey = Object.keys(TRACK_DEFINITIONS).find(k => user.track.includes(k) || k.includes(user.track));
+        if (foundKey) trackDef = TRACK_DEFINITIONS[foundKey];
+      }
+      if (!trackDef) return null;
+
+      const normTitle = t => (t || '').replace(/\(.*?\)/g, '').replace(/[\s\-_]/g, '').toLowerCase();
+
+      // Deduplicate courses
+      const deduplicatedCourses = [];
+      const courseMap = {};
+      (courses || []).forEach(c => {
+        const key = c.code || normTitle(c.title);
+        const existing = courseMap[key];
+        if (!existing) {
+          courseMap[key] = c;
+          deduplicatedCourses.push(c);
+        } else {
+          const isCurrConfirmed = c.grade && c.grade !== '수강중' && c.grade !== 'N/P';
+          const isExistConfirmed = existing.grade && existing.grade !== '수강중' && existing.grade !== 'N/P';
+          if (isCurrConfirmed && !isExistConfirmed) {
+            courseMap[key] = c;
+            const idx = deduplicatedCourses.indexOf(existing);
+            if (idx !== -1) deduplicatedCourses[idx] = c;
+          }
+        }
+      });
+
+      const matchCourseList = (reqList) => {
+        return (reqList || []).map(req => {
+          const matched = deduplicatedCourses.find(c =>
+            (c.code && req.code && String(c.code) === String(req.code)) ||
+            normTitle(c.title) === normTitle(req.title) ||
+            normTitle(c.title).includes(normTitle(req.title)) ||
+            normTitle(req.title).includes(normTitle(c.title))
+          );
+          let status = 'MISSING';
+          let grade = null;
+          if (matched) {
+            grade = matched.grade;
+            if (grade === '수강중') {
+              status = 'IN_PROGRESS';
+            } else if (grade && grade !== 'N/P' && grade !== 'F') {
+              status = 'PASSED';
+            }
+          }
+          return { ...req, matched, status, grade };
+        });
+      };
+
+      const foundationStatus = matchCourseList(trackDef.foundationCourses);
+      const advancedStatus = matchCourseList(trackDef.advancedCourses);
+
+      const foundationPassedCount = foundationStatus.filter(c => c.status === 'PASSED').length;
+      const foundationInProgCount = foundationStatus.filter(c => c.status === 'IN_PROGRESS').length;
+      const advancedPassedCount = advancedStatus.filter(c => c.status === 'PASSED').length;
+      const advancedInProgCount = advancedStatus.filter(c => c.status === 'IN_PROGRESS').length;
+
+      return {
+        trackDef,
+        foundationStatus,
+        advancedStatus,
+        foundationPassedCount,
+        foundationInProgCount,
+        advancedPassedCount,
+        advancedInProgCount
+      };
+    }
+
     function getUserAdmissionYear(user) {
       if (!user) return 2025;
       if (user.admissionYear) return Number(user.admissionYear);
@@ -4412,6 +4845,21 @@
       document.getElementById('modal-student-type').value = currentUser.studentType || '재학생';
       updateModalStudentTypeHint(currentUser.studentType || '재학생');
 
+      const trackSelect = document.getElementById('modal-track-select');
+      const trackWrap = document.getElementById('modal-track-wrap');
+      if (trackSelect) {
+        trackSelect.value = currentUser.track || 'none';
+      }
+      if (trackWrap) {
+        trackWrap.style.display = ((currentUser.major || '경영학과') === '경영학과') ? 'block' : 'none';
+      }
+      const majorSelect = document.getElementById('modal-major-select');
+      if (majorSelect) {
+        majorSelect.onchange = (e) => {
+          if (trackWrap) trackWrap.style.display = (e.target.value === '경영학과') ? 'block' : 'none';
+        };
+      }
+
       const admYear = getUserAdmissionYear(currentUser);
       const yearSelect = document.getElementById('modal-admission-year');
       if (yearSelect) {
@@ -4466,6 +4914,10 @@
       currentUser.admissionYear = newYear;
       currentUser.hasDoubleMajor = hasD;
       currentUser.doubleMajorName = dName;
+
+      const trackSelect = document.getElementById('modal-track-select');
+      const newTrack = (newMajor === '경영학과' && trackSelect) ? trackSelect.value : 'none';
+      currentUser.track = newTrack;
 
       const users = getUsers();
       users[currentUser.studentId] = currentUser;
@@ -4547,6 +4999,18 @@
         }
       }
       document.getElementById('info-val-major').textContent = currentUser.major || '경영학과';
+      const elTrack = document.getElementById('info-val-track');
+      if (elTrack) {
+        if (currentUser.major === '경영학과' && currentUser.track && currentUser.track !== 'none') {
+          const tDef = TRACK_DEFINITIONS[currentUser.track];
+          const tTitle = tDef ? tDef.title : currentUser.track;
+          elTrack.innerHTML = `<span class="badge" style="background:#e0f2fe; color:#0284c7; font-weight:700;">🎯 ${tTitle}</span>`;
+        } else if (currentUser.major === '경영학과') {
+          elTrack.textContent = '자율 이수 (트랙 미선택)';
+        } else {
+          elTrack.textContent = '해당 없음';
+        }
+      }
       document.getElementById('info-val-double').textContent = (currentUser.hasDoubleMajor && currentUser.doubleMajorName) ? currentUser.doubleMajorName : '없음';
 
       // 2. 학점 계산 및 집계 요약
@@ -6678,6 +7142,8 @@ ${rawText}`;
 
       // 5. Major Mandatory Courses Dynamic Card
       renderMajorMandatory(m);
+      renderBizExamWaiver(m, currentUser);
+      renderTrackDiagnosis(m, currentUser);
 
       // 6. 6-Area GE Grid Dynamic Cards
       renderGeCards(m.geDiagnosis, m.reqGECredits);
@@ -6976,6 +7442,235 @@ ${rawText}`;
           }).join('')}
         </div>
       `;
+    }
+
+    /* =========================================================================
+       6.1.1 [경영학과 공식 내규] 졸업시험 면제 판정표 렌더링 (4개 분야 B0 이상 취득)
+       출처: 졸업기준_경영학과.txt 라인 56-67
+       ========================================================================= */
+    function renderBizExamWaiver(m, currentUser) {
+      const card = document.getElementById('biz-exam-waiver-card');
+      const container = document.getElementById('biz-exam-waiver-container');
+      const badgeSpan = document.getElementById('biz-exam-waiver-summary-badge');
+      if (!card || !container) return;
+
+      if (!currentUser || currentUser.major !== '경영학과') {
+        card.style.display = 'none';
+        return;
+      }
+
+      const diag = diagnoseBizExamWaiver(activeUserCourses, currentUser);
+      if (!diag) {
+        card.style.display = 'none';
+        return;
+      }
+
+      card.style.display = 'block';
+
+      const pct = Math.min(100, (diag.effectiveWaivedCount / 4) * 100);
+      const examStatusBadge = diag.isExamWaiverComplete
+        ? `<span class="badge badge-status-passed" style="font-weight:700;">✓ 졸업시험 면제 충족 (4개 분야 B0 달성)</span>`
+        : `<span class="badge" style="background:#fef3c7; color:#92400e; border:1px solid #fde68a;">⚠️ 면제 미충족 (${diag.effectiveWaivedCount}/4개 분야)</span>`;
+
+      const fieldBadges = Object.keys(diag.fieldResults).map(fieldName => {
+        const res = diag.fieldResults[fieldName];
+        if (res.waived) {
+          return `
+            <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:6px; padding:0.45rem 0.6rem; font-size:0.75rem; box-sizing:border-box;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:0.25rem;">
+                <strong style="color:#065f46;">${fieldName}</strong>
+                <span class="badge badge-status-passed" style="font-size:0.68rem; padding:0.15rem 0.35rem;">✓ 면제 (${res.bestCourse.grade})</span>
+              </div>
+              <div style="font-size:0.7rem; color:#047857; margin-top:2px;">
+                인정: ${res.bestCourse.title}
+              </div>
+            </div>
+          `;
+        } else if (res.inProgress) {
+          return `
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:0.45rem 0.6rem; font-size:0.75rem; box-sizing:border-box;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:0.25rem;">
+                <strong style="color:#1e40af;">${fieldName}</strong>
+                <span class="badge badge-status-inprog" style="font-size:0.68rem; padding:0.15rem 0.35rem;">⏳ 수강 중</span>
+              </div>
+              <div style="font-size:0.7rem; color:#1d4ed8; margin-top:2px;">
+                과목: ${res.bestCourse.title} (B0 취득 시 면제)
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:0.45rem 0.6rem; font-size:0.75rem; color:#64748b; box-sizing:border-box;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:0.25rem;">
+                <strong>${fieldName}</strong>
+                <span style="font-size:0.68rem; color:#94a3b8;">미충족</span>
+              </div>
+              <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">
+                해당 과목 B0 이상 필요
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      const capstoneNote = diag.capstoneBonus
+        ? `<div style="font-size:0.74rem; color:#15803d; margin-top:0.45rem; padding:0.35rem 0.5rem; background:#ecfdf5; border-radius:4px; border:1px solid #bbf7d0;">
+            ✓ <strong>캡스톤디자인 B0 이상 취득:</strong> 졸업시험 1개 분야 추가 면제 보너스가 적용되었습니다.
+           </div>`
+        : '';
+
+      container.innerHTML = `
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:0.65rem 0.85rem; font-size:0.78rem; line-height:1.5; color:#1e40af; margin-bottom:0.85rem; box-sizing:border-box;">
+          📌 <strong>경영학과 공식 내규 (졸업시험 면제 규정):</strong><br>
+          경영학과는 졸업시험 9개 분야 중 4개 분야를 합격해야 합니다. 단, 각 분야의 지정 과목 중 1과목 이상에서 <strong>B0 학점 이상</strong>을 취득하면 해당 분야의 졸업시험이 면제됩니다.<br>
+          <span style="font-size:0.72rem; color:#3b82f6;">※ 정규 시험 일정: 4학년 1학기(5월) 및 2학기(11월) 시행. (4학년 1학기까지 면제 요건 충족 권장)</span>
+        </div>
+
+        <div style="margin-bottom:0.85rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.4rem; margin-bottom:0.4rem;">
+            <span style="font-size:0.82rem; font-weight:700; color:#1e40af;">
+              면제 달성 현황: <strong>${diag.effectiveWaivedCount} / 4개 분야</strong> (최소 4개 필요)
+            </span>
+            ${examStatusBadge}
+          </div>
+          <div class="progress-track" style="height:9px; margin-bottom:0.35rem;">
+            <div class="progress-bar" style="width: ${pct}%; background: ${diag.isExamWaiverComplete ? 'var(--success)' : '#0284c7'};"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.73rem; color:#64748b;">
+            <span>현재 ${diag.waivedFieldsCount}개 분야 직접 B0 면제 ${diag.capstoneBonus ? '+ 캡스톤 보너스 1개' : ''}</span>
+            <span>${diag.inProgressFieldsCount > 0 ? `수강 중 과목 B0 취득 시 +${diag.inProgressFieldsCount}개 추가 면제 가능` : ''}</span>
+          </div>
+        </div>
+
+        <div class="exam-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:0.5rem;">
+          ${fieldBadges}
+        </div>
+        ${capstoneNote}
+      `;
+
+      if (badgeSpan) {
+        if (diag.isExamWaiverComplete) {
+          badgeSpan.innerHTML = '<span style="color:var(--status-passed-text);">✓ 면제 충족 (4/4)</span>';
+        } else {
+          badgeSpan.innerHTML = `<span style="color:#1e40af;">면제 ${diag.effectiveWaivedCount}/4개 분야</span>`;
+        }
+      }
+    }
+
+    /* =========================================================================
+       6.1.2 [경영학과 공식 진로 트랙] 희망 진로 트랙 로드맵 렌더링
+       출처: 한림대학교 입학처 공식 경영학과.pdf (2023.09) p.6-7
+       ========================================================================= */
+    function renderTrackDiagnosis(m, currentUser) {
+      const card = document.getElementById('major-track-card');
+      const container = document.getElementById('major-track-container');
+      const titleSpan = document.getElementById('major-track-title');
+      const badgeSpan = document.getElementById('major-track-summary-badge');
+      if (!card || !container) return;
+
+      if (!currentUser || currentUser.major !== '경영학과' || !currentUser.track || currentUser.track === 'none') {
+        card.style.display = 'none';
+        return;
+      }
+
+      const diag = diagnoseMajorTrack(activeUserCourses, currentUser);
+      if (!diag) {
+        card.style.display = 'none';
+        return;
+      }
+
+      card.style.display = 'block';
+      const tDef = diag.trackDef;
+      if (titleSpan) titleSpan.textContent = `🎯 [희망 진로 트랙] ${tDef.title}`;
+
+      // Helper for course cards
+      const renderCourseGrid = (courses) => {
+        return courses.map(c => {
+          let badgeHtml = '';
+          let borderCol = '#e2e8f0';
+          let bgCol = '#ffffff';
+
+          if (c.status === 'PASSED') {
+            borderCol = 'var(--status-passed)';
+            bgCol = 'var(--status-passed-bg)';
+            badgeHtml = `<span class="badge badge-status-passed">✓ 이수완료 (${c.grade})</span>`;
+          } else if (c.status === 'IN_PROGRESS') {
+            borderCol = 'var(--status-inprog)';
+            bgCol = 'var(--status-inprog-bg)';
+            badgeHtml = `<span class="badge badge-status-inprog">⏳ 수강 중</span>`;
+          } else {
+            badgeHtml = `<span class="badge" style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1;">ℹ️ 미이수 (권장)</span>`;
+          }
+
+          return `
+            <div style="border-left: 4px solid ${borderCol}; background: ${bgCol}; border-radius: 6px; padding: 0.6rem 0.75rem; border-top:1px solid #e2e8f0; border-right:1px solid #e2e8f0; border-bottom:1px solid #e2e8f0; box-sizing:border-box;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.25rem;">
+                <div>
+                  <strong style="font-size:0.85rem; color:var(--gray-900);">${c.title}</strong>
+                  <span style="font-size:0.73rem; color:#64748b; margin-left:0.3rem;">(${c.credits}학점 · 코드: ${c.code})</span>
+                </div>
+                ${badgeHtml}
+              </div>
+              <div style="font-size:0.72rem; color:#64748b; margin-top:0.25rem;">
+                권장 이수시기: ${c.semester || '권장 학기'} · ${c.cat || '전선'}
+              </div>
+            </div>
+          `;
+        }).join('');
+      };
+
+      const foundationCards = renderCourseGrid(diag.foundationStatus);
+      const advancedCards = renderCourseGrid(diag.advancedStatus);
+
+      container.innerHTML = `
+        <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem; font-size:0.78rem; line-height:1.5; color:#0369a1; margin-bottom:0.85rem; box-sizing:border-box;">
+          💡 <strong>안내:</strong> 본 트랙은 한림대학교 경영학과 공식 <strong>희망 진로 트랙(권장 로드맵)</strong>입니다.<br>
+          <span style="color:#0284c7; font-weight:700;">[트랙 권장 로드맵]</span>은 진로 맞춤형 학습 가이드이며, 법적 필수 요건이 아닙니다. 트랙 과목을 전부 이수하지 않더라도 공식 전공 기준(60학점, 복수전공 시 33학점)을 충족하면 정상 졸업이 가능합니다.
+        </div>
+
+        <!-- Track Overview & Career Meta Card -->
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:0.75rem 0.85rem; margin-bottom:0.85rem; box-sizing:border-box;">
+          <div style="font-size:0.83rem; color:var(--gray-700); margin-bottom:0.5rem; line-height:1.45;">
+            📝 <strong>트랙 소개:</strong> ${tDef.desc}
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.5rem; font-size:0.75rem; color:#334155; line-height:1.4;">
+            <div>💼 <strong>주요 진출 분야:</strong> ${tDef.careers}</div>
+            <div>🔗 <strong>추천 연계전공:</strong> ${tDef.recommendedDoubleMajors}</div>
+            <div>📜 <strong>연계 자격증:</strong> ${tDef.certifications}</div>
+            <div>📄 <strong>공식 출처:</strong> ${tDef.sourceRef}</div>
+          </div>
+        </div>
+
+        <!-- 1. Foundation Courses -->
+        <div style="margin-bottom:0.9rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+            <strong style="font-size:0.86rem; color:#0369a1;">📌 1~2학년 기초 교과목 (Foundation)</strong>
+            <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
+              이수: ${diag.foundationPassedCount} / ${diag.foundationStatus.length}과목 ${diag.foundationInProgCount > 0 ? `(수강중 ${diag.foundationInProgCount})` : ''}
+            </span>
+          </div>
+          <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+            ${foundationCards}
+          </div>
+        </div>
+
+        <!-- 2. Advanced Courses -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+            <strong style="font-size:0.86rem; color:#0369a1;">🚀 3~4학년 심화 교과목 (Advanced)</strong>
+            <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
+              이수: ${diag.advancedPassedCount} / ${diag.advancedStatus.length}과목 ${diag.advancedInProgCount > 0 ? `(수강중 ${diag.advancedInProgCount})` : ''}
+            </span>
+          </div>
+          <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+            ${advancedCards}
+          </div>
+        </div>
+      `;
+
+      if (badgeSpan) {
+        badgeSpan.innerHTML = `<span style="color:#0284c7;">기초 ${diag.foundationPassedCount}/${diag.foundationStatus.length} · 심화 ${diag.advancedPassedCount}/${diag.advancedStatus.length}</span>`;
+      }
     }
 
     /* =========================================================================
@@ -7323,7 +8018,76 @@ ${rawText}`;
       dropdown.style.display = 'block';
     }
 
-    
+    function quickFillTrackCoreCourses() {
+      const dropdown = document.getElementById('autocomplete-dropdown');
+      if (!dropdown) return;
+
+      let titleLabel = '🎯 경영학 공통 핵심/권장 과목';
+      let courseList = [];
+
+      if (currentUser && currentUser.major === '경영학과' && currentUser.track && currentUser.track !== 'none' && TRACK_DEFINITIONS[currentUser.track]) {
+        const tDef = TRACK_DEFINITIONS[currentUser.track];
+        titleLabel = `🎯 ${tDef.title} 권장 과목`;
+        courseList = [
+          ...tDef.foundationCourses.map(c => ({ ...c, cat: c.cat || '경영_전선', note: `${tDef.title} 기초 (${c.semester || ''})` })),
+          ...tDef.advancedCourses.map(c => ({ ...c, cat: c.cat || '경영_전선', note: `${tDef.title} 심화 (${c.semester || ''})` }))
+        ];
+      } else {
+        // Fallback common business core
+        courseList = [
+          { code: '006175', title: '오디세이세미나3', credits: 1, cat: '경영_전필', note: '공식 전공필수 (미이수 시 졸업 불가)' },
+          { code: '205201', title: '회계입문', credits: 3, cat: '경영_전선', note: '회계학 분야 기초' },
+          { code: '205303', title: '마케팅원론', credits: 3, cat: '경영_전선', note: '마케팅 분야 기초' },
+          { code: '205206', title: '조직행동론', credits: 3, cat: '경영_전선', note: '조직/인사 분야 기초' },
+          { code: '205305', title: '재무관리', credits: 3, cat: '경영_전선', note: '재무관리 분야 기초' },
+          { code: '205320', title: '경영정보시스템(종합설계)', credits: 3, cat: '경영_전선', note: 'MIS 분야 기초' },
+          { code: '205101', title: '경영학원론', credits: 3, cat: '교양_자율선택', note: '학과 공식 권장 교양' }
+        ];
+      }
+
+      dropdown.innerHTML = `
+        <div style="padding: 0.5rem 0.75rem; background: #f0f9ff; border-bottom: 1px solid #bae6fd; font-size: 0.75rem; color: #0369a1; font-weight: 700; display:flex; justify-content:space-between; align-items:center;">
+          <span>${titleLabel}</span>
+          <span style="font-size:0.7rem; color:#64748b; cursor:pointer;" onclick="document.getElementById('autocomplete-dropdown').style.display='none'">닫기 ✕</span>
+        </div>
+      `;
+
+      courseList.forEach(item => {
+        const isAlreadyInBasket = basketCourses.some(b => norm(b.title) === norm(item.title));
+        const isAlreadyTaken = activeUserCourses.some(c => norm(c.title) === norm(item.title));
+
+        const div = document.createElement('div');
+        div.className = 'autocomplete-item';
+        div.style.display = 'flex';
+        div.style.justifyContent = 'space-between';
+        div.style.alignItems = 'center';
+        div.style.padding = '0.5rem 0.75rem';
+
+        let statusHint = '';
+        if (isAlreadyInBasket) {
+          statusHint = '<span style="font-size:0.72rem; color:#0284c7; margin-left:0.3rem;">(바구니 담김)</span>';
+        } else if (isAlreadyTaken) {
+          statusHint = '<span style="font-size:0.72rem; color:#15803d; margin-left:0.3rem;">(기이수/수강중)</span>';
+        }
+
+        const encoded = encodeURIComponent(JSON.stringify(item));
+        div.innerHTML = `
+          <div>
+            <strong style="font-size:0.84rem;">${item.title}</strong>
+            <span style="font-size:0.75rem; color:#64748b; margin-left:0.35rem;">(${item.cat || item.type || '전선'} · ${item.credits}학점)</span>
+            ${statusHint}
+            <div style="font-size:0.72rem; color:#94a3b8; margin-top:2px;">${item.note || ''}</div>
+          </div>
+          <button type="button" class="btn btn-outline" style="font-size:0.72rem; padding:0.2rem 0.5rem; height:auto; color:var(--primary); border-color:var(--primary);" onclick="event.stopPropagation(); directAddCourseToBasket('${encoded}')">
+            + 담기
+          </button>
+        `;
+        dropdown.appendChild(div);
+      });
+
+      dropdown.style.display = 'block';
+    }
+
     function directAddCourseToBasket(encodedItemStr) {
       try {
         const item = JSON.parse(decodeURIComponent(encodedItemStr));
