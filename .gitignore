@@ -42,6 +42,7 @@ yarn-error.log*
 
 # Local presentations & backups (not tracked on GitHub)
 ppt/
+scratch/
 
 # Operating System Files
 .DS_Store
