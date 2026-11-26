@@ -294,6 +294,8 @@
       font-weight: 500;
     }
     .btn-demo {
+      position: relative;
+      z-index: 10;
       width: 100%;
       background: #f0f9ff;
       border: 1.5px solid #bae6fd;
@@ -304,10 +306,14 @@
       font-weight: 700;
       cursor: pointer;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.25rem;
       transition: var(--transition-base);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
     .btn-demo:hover {
       background: #e0f2fe;
@@ -316,6 +322,7 @@
       box-shadow: var(--shadow-xs);
     }
     .btn-demo:active {
+      background: #bae6fd;
       transform: translateY(0);
     }
 
@@ -1149,6 +1156,20 @@
     .input:focus, .select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.18);
+    }
+    .input-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18) !important;
+      animation: shake 0.3s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     /* Simulator Layout */
@@ -2156,14 +2177,14 @@
       <form id="form-login" onsubmit="handleLogin(event)">
         <div class="auth-field">
           <label class="auth-label" for="login-id">학번 (아이디)</label>
-          <input type="text" id="login-id" class="input" style="width: 100%;" placeholder="예: 20250000" autocomplete="username" />
+          <input type="text" id="login-id" class="input" style="width: 100%;" placeholder="예: 20250000" autocomplete="username" inputmode="numeric" pattern="[0-9]*" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" onkeydown="if(event.key==='Enter'){event.preventDefault();const p=document.getElementById('login-pw');if(p)p.focus();}" />
         </div>
         <div class="auth-field">
           <label class="auth-label" for="login-pw">비밀번호</label>
-          <input type="password" id="login-pw" class="input" style="width: 100%;" placeholder="비밀번호 입력" autocomplete="current-password" />
+          <input type="password" id="login-pw" class="input" style="width: 100%;" placeholder="비밀번호 입력" autocomplete="current-password" enterkeyhint="go" onkeydown="if(event.key==='Enter'){event.preventDefault();handleLogin(event);}" />
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; margin-top: 0.4rem;">
-          로그인
+        <button id="btn-login-submit" type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; margin-top: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+          <span>로그인</span>
         </button>
 
         <!-- DEMO ACCOUNT SECTION (HIDDEN FOR REGULAR USERS, PROTECTED BY PASSWORD) -->
@@ -2171,9 +2192,15 @@
           <div class="auth-divider">
             <span>데모 관리자 전용</span>
           </div>
-          <button id="btn-demo-login" type="button" class="btn-demo" onclick="handleDemoLoginWithPrompt()">
-            <span>🚀</span> 데모 계정 (20250000 유아미)으로 체험하기 <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700;">[🔒 비밀번호 보호]</span>
-            <div style="font-size: 0.72rem; color: var(--gray-500); font-weight: 500; margin-top: 0.2rem;">관리자 전용 체험 모드 · 비밀번호 인증 후 접속</div>
+          <button id="btn-demo-login" type="button" class="btn-demo" onclick="handleDemoLoginWithPrompt()" style="cursor: pointer;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; pointer-events: none; flex-wrap: wrap;">
+              <span>🚀</span>
+              <span>데모 계정 (20250000 유아미)으로 체험하기</span>
+              <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700;">[🔒 비밀번호 보호]</span>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--gray-500); font-weight: 500; margin-top: 0.1rem; pointer-events: none;">
+              관리자 전용 체험 모드 · 비밀번호 인증 후 접속
+            </div>
           </button>
         </div>
       </form>
@@ -2291,6 +2318,38 @@
     </footer>
   </div>
 
+  <!-- Demo Auth Modal (🔒 데모 관리자 인증) - 최상위 배치하여 로그인 화면에서도 정상 팝업 -->
+  <div id="demo-auth-modal" class="modal-backdrop" style="display: none; z-index: 3000;" onclick="handleDemoModalBackdrop(event)">
+    <div class="modal-window" onclick="event.stopPropagation()" style="max-width: 400px; width: 92%;">
+      <div class="modal-header">
+        <div class="modal-title">🔒 데모 관리자 인증</div>
+        <button type="button" class="modal-close-btn" onclick="closeDemoAuthModal()" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 1.25rem;">
+        <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem; line-height: 1.5;">
+          데모 계정(유아미 학생) 접속을 위한 관리자 비밀번호를 입력해주세요.
+        </p>
+        <div style="margin-bottom: 0.75rem;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 0.35rem;" for="demo-pw-input">
+            관리자 비밀번호
+          </label>
+          <input type="password" id="demo-pw-input" class="input" style="width: 100%; font-size: 0.95rem; padding: 0.65rem 0.85rem;" placeholder="비밀번호 입력" autocomplete="current-password" onkeydown="if(event.key==='Enter'){event.preventDefault();submitDemoAuth();}" />
+        </div>
+        <div id="demo-auth-error" class="alert alert-danger" style="display: none; font-size: 0.78rem; padding: 0.55rem 0.75rem; margin-bottom: 0.75rem; align-items: center; gap: 0.4rem;">
+          <span>⚠️</span> <div id="demo-auth-error-msg">비밀번호가 일치하지 않습니다. 관리자 비밀번호를 다시 확인해주세요.</div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1.2rem;">
+          <button type="button" class="btn btn-outline" onclick="closeDemoAuthModal()" style="padding: 0.55rem 1rem;">
+            취소
+          </button>
+          <button id="btn-demo-auth-submit" type="button" class="btn btn-primary" onclick="submitDemoAuth()" style="padding: 0.55rem 1.15rem; min-width: 110px; display: flex; align-items: center; justify-content: center;">
+            인증 및 접속
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================================================================= -->
   <!-- 2. MAIN APP CONTAINER (로그인 성공 시 표시) -->
   <!-- ================================================================= -->
@@ -2328,38 +2387,6 @@
         </div>
       </div>
     </header>
-
-    <!-- Demo Auth Modal (🔒 데모 관리자 인증) -->
-    <div id="demo-auth-modal" class="modal-backdrop" style="display: none;" onclick="handleDemoModalBackdrop(event)">
-      <div class="modal-window" onclick="event.stopPropagation()" style="max-width: 400px; width: 92%;">
-        <div class="modal-header">
-          <div class="modal-title">🔒 데모 관리자 인증</div>
-          <button type="button" class="modal-close-btn" onclick="closeDemoAuthModal()" aria-label="닫기">✕</button>
-        </div>
-        <div class="modal-body" style="padding: 1.25rem;">
-          <p style="font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1rem; line-height: 1.5;">
-            데모 계정(유아미 학생) 접속을 위한 관리자 비밀번호를 입력해주세요.
-          </p>
-          <div style="margin-bottom: 0.75rem;">
-            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--gray-700); margin-bottom: 0.35rem;">
-              관리자 비밀번호
-            </label>
-            <input type="password" id="demo-pw-input" class="input" style="width: 100%; font-size: 0.95rem; padding: 0.65rem 0.85rem;" placeholder="비밀번호 입력" autocomplete="current-password" onkeydown="if(event.key==='Enter'){event.preventDefault();submitDemoAuth();}" />
-          </div>
-          <div id="demo-auth-error" class="alert alert-danger" style="display: none; font-size: 0.78rem; padding: 0.55rem 0.75rem; margin-bottom: 0.75rem;">
-            <span>⚠️</span> <div>비밀번호가 일치하지 않습니다. 데모 계정 접속이 거부되었습니다.</div>
-          </div>
-          <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1.2rem;">
-            <button type="button" class="btn btn-outline" onclick="closeDemoAuthModal()" style="padding: 0.55rem 1rem;">
-              취소
-            </button>
-            <button type="button" class="btn btn-primary" onclick="submitDemoAuth()" style="padding: 0.55rem 1.15rem;">
-              인증 및 접속
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Settings Modal (⚙️ 설정) -->
     <div id="settings-modal" class="modal-backdrop" style="display: none;" onclick="handleModalBackdropClick(event)">
@@ -3476,14 +3503,63 @@
     <!-- ================================================================= -->
     <div id="pdf-upload-modal" class="modal-backdrop" style="display: none;" onclick="handlePdfModalBackdrop(event)">
       <div id="pdf-modal-window" class="modal-window" onclick="event.stopPropagation()" style="max-width: 580px; width: 95%; transition: max-width 0.25s ease;">
-        <div class="modal-header">
-          <div class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
-            <span>📄 성적증명서 PDF 업로드</span>
-            <span class="badge-ai">🤖 AI 처리 (OCR)</span>
+        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="modal-title" style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>📄 성적증명서 업로드 및 분석</span>
+            <span class="badge-ai">🤖 AI/OCR 정밀분석</span>
+            <span style="font-size: 0.72rem; padding: 2px 7px; border-radius: 9999px; background: #eff6ff; color: #1d4ed8; font-weight: 700; border: 1px solid #bfdbfe;">다중 포맷 지원</span>
           </div>
-          <button class="modal-close-btn" onclick="closePdfModal()" aria-label="닫기">✕</button>
+          <div style="display: flex; align-items: center; gap: 0.4rem;">
+            <button type="button" class="btn btn-outline" style="font-size: 0.76rem; padding: 0.25rem 0.55rem; color: var(--primary); border-color: var(--primary); display: flex; align-items: center; gap: 0.25rem;" onclick="closePdfModal(); openAddCourseModal();" title="성적표 파일 없이 직접 과목 등록">
+              ✏️ 수동 직접 입력
+            </button>
+            <button class="modal-close-btn" onclick="closePdfModal()" aria-label="닫기">✕</button>
+          </div>
         </div>
         <div class="modal-body">
+          <!-- Guidance Accordion: 성적표 발급처 및 형식 안내 -->
+          <div id="transcript-guide-accordion" style="margin-bottom: 0.85rem; border: 1px solid #cbd5e1; border-radius: 8px; background: #ffffff; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+            <div style="background: #f8fafc; padding: 0.6rem 0.85rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;" onclick="toggleTranscriptGuidance()">
+              <div style="font-weight: 700; font-size: 0.82rem; color: #1e293b; display: flex; align-items: center; gap: 0.4rem;">
+                <span>📘</span> 성적표 발급처(한림포탈/증명센터) 및 권장 형식 안내
+              </div>
+              <div id="transcript-guide-toggle-icon" style="font-size: 0.78rem; color: #475569; font-weight: bold;">▼ 펼치기</div>
+            </div>
+            <div id="transcript-guide-body" style="display: none; padding: 0.85rem; font-size: 0.77rem; color: #334155; line-height: 1.55; border-top: 1px solid #e2e8f0; background: #fafafa;">
+              <div style="margin-bottom: 0.75rem;">
+                <strong style="color: #0f172a; font-size: 0.8rem;">📍 성적표 발급처 (어디서 다운로드 받나요?)</strong>
+                <ul style="margin: 0.35rem 0 0 1.1rem; padding: 0;">
+                  <li><strong>한림대학교 통합정보시스템(포탈)</strong>: <code>portal.hallym.ac.kr</code> ➔ 학사행정 ➔ 성적관리 ➔ [전체성적조회/출력] ➔ 인쇄 시 <strong>[PDF로 저장]</strong> (※ 텍스트 레이어가 온전히 포함된 디지털 원본 PDF로 인식률 99.9% 보장)</li>
+                  <li><strong>인터넷 증명발급센터</strong>: <code>cert.hallym.ac.kr</code> ➔ 성적증명서(국문/학기별) 전자문서 PDF 발급</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom: 0.75rem;">
+                <strong style="color: #0f172a; font-size: 0.8rem;">📁 지원 파일 형식 & 권장 사항</strong>
+                <ul style="margin: 0.35rem 0 0 1.1rem; padding: 0;">
+                  <li><strong>PDF (.pdf)</strong>: 원본 디지털 PDF(텍스트 레이어) 및 스캔 PDF(OCR 광학인식 엔진 자동 전환) 지원</li>
+                  <li><strong>이미지 (.png, .jpg, .webp)</strong>: 성적표 화면 캡처 또는 스캔 이미지 지원 (Tesseract 한국어·영어 OCR 분석)</li>
+                  <li><strong>텍스트/CSV (.txt, .csv)</strong>: 엑셀에서 CSV로 저장한 파일이나 포탈 성적표 복사 텍스트 지원</li>
+                  <li><strong>Excel(.xlsx) / Word(.docx)</strong>: 엑셀 파일은 [파일 ➔ 다른 이름으로 저장 ➔ CSV(쉼표로 분리)]로 저장하여 업로드해주세요.</li>
+                </ul>
+              </div>
+
+              <div style="margin-bottom: 0.5rem;">
+                <strong style="color: #0f172a; font-size: 0.8rem;">📋 표준 성적표 표 구조 예시</strong>
+                <div style="background: #1e293b; color: #f8fafc; font-family: 'Consolas', 'Courier New', monospace; padding: 0.5rem 0.7rem; border-radius: 6px; font-size: 0.72rem; margin-top: 0.35rem; line-height: 1.45; overflow-x: auto;">
+[이수학기]    [학수번호]   [교과목명]       [이수구분]  [학점] [성적] [평점]<br>
+2024-1       020001     경영학원론       전선        3.0    A+    4.5<br>
+2024-1       010012     컴퓨팅사고       교양        3.0    A0    4.0<br>
+2024-1       030045     오디세이세미나1   교양        1.0    P     -
+                </div>
+              </div>
+
+              <div style="font-size: 0.73rem; color: #64748b; margin-top: 0.5rem;">
+                💡 파일 업로드 없이 한두 과목만 추가/수정하려면 언제든 상단의 <strong>[✏️ 수동 직접 입력]</strong> 버튼을 누르시면 됩니다.
+              </div>
+            </div>
+          </div>
+
           <!-- Drop Zone (Drag & Drop Support) -->
           <div id="pdf-drop-zone" 
                style="border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.2rem 1.5rem; text-align: center; background: #f8fafc; margin-bottom: 1rem; cursor: pointer; transition: all 0.2s ease;"
@@ -3496,22 +3572,25 @@
             <div id="pdf-drop-prompt">
               <div style="font-size: 2.6rem; margin-bottom: 0.5rem;">📑</div>
               <div style="font-weight: 700; font-size: 0.98rem; color: var(--gray-800); margin-bottom: 0.35rem;">
-                한림대학교 성적증명서 PDF를 끌어다 놓거나 클릭하세요
+                한림대학교 성적증명서(PDF·이미지·CSV)를 끌어다 놓거나 클릭하세요
               </div>
               <div style="font-size: 0.8rem; color: var(--gray-500); margin-bottom: 1.1rem; line-height: 1.45;">
-                포털(학사정보시스템)에서 발급받은 <strong>성적증명서 PDF</strong>를 업로드하면<br>
+                포털 또는 증명발급센터에서 발급받은 <strong>성적증명서(PDF, 이미지, CSV)</strong>를 업로드하면<br>
                 AI가 과목명, 학기, 이수구분, 학점, 성적을 자동으로 파싱합니다.
               </div>
               <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
                 <button type="button" class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('pdf-file-input').click()">
-                  📂 PDF 파일 선택
+                  📂 성적표 파일 선택 (PDF·이미지·CSV)
                 </button>
                 <button type="button" class="btn btn-outline" style="background: #ffffff; border-color: #cbd5e1; color: #475569; font-weight: 600;" onclick="event.stopPropagation(); handleQuickFillSampleTranscript(true)">
                   📋 예시 성적표 즉시 채우기
                 </button>
+                <button type="button" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary-light); font-weight: 600;" onclick="event.stopPropagation(); closePdfModal(); openAddCourseModal();">
+                  ✏️ 수동 직접 입력
+                </button>
               </div>
               <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 0.75rem;">
-                ※ 파일 형식: .pdf (드래그 앤 드롭 또는 파일 탐색기 선택 지원)
+                ※ 파일 형식: .pdf, .png, .jpg, .webp, .txt, .csv (드래그 앤 드롭 지원)
               </div>
             </div>
 
@@ -3521,7 +3600,7 @@
               <div style="font-weight: 800; font-size: 1rem; color: #1e293b;" id="pdf-preview-filename">transcript.pdf</div>
               <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.2rem;" id="pdf-preview-filesize">0 KB</div>
               <div style="display: inline-block; margin-top: 0.6rem; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 700; color: #047857;">
-                ✓ 성적증명서 PDF 파일 준비 완료
+                ✓ 성적증명서 파일 준비 완료
               </div>
               <div style="margin-top: 1.25rem; display: flex; gap: 0.5rem; justify-content: center;">
                 <button type="button" class="btn btn-outline" style="font-size: 0.82rem;" onclick="event.stopPropagation(); resetPdfSelection();">
@@ -3533,7 +3612,7 @@
               </div>
             </div>
 
-            <input type="file" id="pdf-file-input" accept=".pdf,application/pdf" style="display: none;" onchange="handlePdfSelected(event)" />
+            <input type="file" id="pdf-file-input" accept=".pdf, .png, .jpg, .jpeg, .webp, .txt, .csv, .xlsx, .docx, application/pdf, image/*, text/plain, text/csv" style="display: none;" onchange="handlePdfSelected(event)" />
           </div>
 
           <!-- Status / Progress container -->
@@ -3542,7 +3621,7 @@
               <div style="font-size: 1.3rem;" id="pdf-status-icon">⏳</div>
               <div style="flex: 1;">
                 <div style="font-weight: 700; font-size: 0.86rem; color: var(--status-passed-text);" id="pdf-status-title">성적표 분석 준비 중...</div>
-                <div style="font-size: 0.75rem; color: var(--gray-600); margin-top: 2px;" id="pdf-status-desc">PDF 텍스트 레이어 및 광학 인식(OCR)을 준비하고 있습니다.</div>
+                <div style="font-size: 0.75rem; color: var(--gray-600); margin-top: 2px;" id="pdf-status-desc">텍스트 레이어 및 광학 인식(OCR)을 준비하고 있습니다.</div>
               </div>
             </div>
           </div>
@@ -3561,7 +3640,7 @@
             </div>
             <div id="pdf-step1-success-actions" style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #e2e8f0; padding-top: 0.6rem;">
               <div style="font-size: 0.75rem; color: var(--status-passed-text); font-weight: 700;">
-                ✅ 1단계: PDF 텍스트 추출 완료!
+                ✅ 1단계: 텍스트 추출 완료!
               </div>
               <button type="button" class="btn btn-outline" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;" onclick="toggleExtractedTextPreview()">
                 텍스트 접기/펼치기
@@ -3572,18 +3651,16 @@
           <!-- Parsed Course Results Table Container (3~4단계 확인 및 수정 테이블) -->
           <div id="pdf-parsed-results-container" style="display: none; margin-bottom: 1.2rem; border: 1px solid var(--border); border-radius: 10px; background: #ffffff; padding: 1rem; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);">
             
-            <!-- Header bar with summary & action buttons -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-              <div>
-                <div style="font-weight: 800; font-size: 0.98rem; color: var(--gray-900); display: flex; align-items: center; gap: 0.4rem;">
-                  <span>📋</span> 파싱된 과목 확인 및 수정
-                  <span id="pdf-parsed-badge-count" class="badge badge-status-passed" style="font-size: 0.75rem;">
-                    총 0과목
-                  </span>
-                </div>
-                <div style="font-size: 0.76rem; color: var(--gray-500); margin-top: 2px;">
-                  인식된 과목 정보를 직접 수정하거나 불필요한 과목을 삭제할 수 있습니다.
-                </div>
+            <!-- Sub-view navigation tabs -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem;">
+              <div style="display: flex; gap: 0.4rem;">
+                <button type="button" id="tab-btn-parsed-table" class="btn btn-primary" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; font-weight: 700;" onclick="switchPdfResultSubView('table')">
+                  📋 인식 과목 확인·수정 (<span id="pdf-tab-parsed-count">0</span>과목)
+                </button>
+                <button type="button" id="tab-btn-parsed-debug" class="btn btn-outline" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;" onclick="switchPdfResultSubView('debug')">
+                  🔍 원본 대조 & 미인식 라인 (<span id="pdf-tab-unparsed-count">0</span>건)
+                </button>
+                <span id="pdf-parsed-badge-count" style="display: none;">총 0과목</span>
               </div>
 
               <div style="display: flex; gap: 0.4rem;">
@@ -3596,43 +3673,69 @@
               </div>
             </div>
 
-            <!-- Duplicate strategy option -->
-            <div id="pdf-dup-strategy-box" style="margin-bottom: 0.75rem; padding: 0.5rem 0.75rem; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; font-size: 0.76rem; color: #92400e; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
-              <div style="display: flex; align-items: center; gap: 0.35rem;">
-                <span>⚠️</span>
-                <span><strong>기존 과목 중복 발견 시 처리:</strong></span>
+            <!-- Subview 1: Table View -->
+            <div id="pdf-subview-table">
+              <!-- Duplicate strategy option -->
+              <div id="pdf-dup-strategy-box" style="margin-bottom: 0.75rem; padding: 0.5rem 0.75rem; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 6px; font-size: 0.76rem; color: #92400e; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.35rem;">
+                  <span>⚠️</span>
+                  <span><strong>기존 과목 중복 발견 시 처리:</strong></span>
+                </div>
+                <div style="display: flex; gap: 0.75rem; align-items: center;">
+                  <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
+                    <input type="radio" name="pdf-dup-strategy" value="overwrite" checked onchange="handleDupStrategyChange(this.value)" />
+                    덮어쓰기 (기존 성적 갱신)
+                  </label>
+                  <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
+                    <input type="radio" name="pdf-dup-strategy" value="skip" onchange="handleDupStrategyChange(this.value)" />
+                    건너뛰기 (기존 유지)
+                  </label>
+                </div>
               </div>
-              <div style="display: flex; gap: 0.75rem; align-items: center;">
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
-                  <input type="radio" name="pdf-dup-strategy" value="overwrite" checked onchange="handleDupStrategyChange(this.value)" />
-                  덮어쓰기 (기존 성적 갱신)
-                </label>
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.25rem;">
-                  <input type="radio" name="pdf-dup-strategy" value="skip" onchange="handleDupStrategyChange(this.value)" />
-                  건너뛰기 (기존 유지)
-                </label>
+
+              <!-- Scrollable Table Wrapper (UX: max-height with smooth vertical scroll) -->
+              <div style="max-height: 260px; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);">
+                <table class="table" style="width: 100%; min-width: 640px; font-size: 0.78rem; border-collapse: collapse;">
+                  <thead style="background: #f8fafc; position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                    <tr>
+                      <th style="width: 38px; text-align: center; padding: 0.5rem 0.3rem;">선택</th>
+                      <th style="width: 85px; padding: 0.5rem 0.4rem;">학기</th>
+                      <th style="min-width: 150px; padding: 0.5rem 0.4rem;">교과목명</th>
+                      <th style="width: 145px; padding: 0.5rem 0.4rem;">이수구분</th>
+                      <th style="width: 65px; padding: 0.5rem 0.4rem; text-align: center;">학점</th>
+                      <th style="width: 75px; padding: 0.5rem 0.4rem; text-align: center;">성적</th>
+                      <th style="width: 85px; padding: 0.5rem 0.4rem; text-align: center;">상태</th>
+                      <th style="width: 45px; padding: 0.5rem 0.3rem; text-align: center;">삭제</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pdf-parsed-table-body">
+                    <!-- Dynamic rows generated by renderParsedCoursesTable() -->
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            <!-- Scrollable Table Wrapper (UX: max-height with smooth vertical scroll) -->
-            <div style="max-height: 260px; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);">
-              <table class="table" style="width: 100%; min-width: 640px; font-size: 0.78rem; border-collapse: collapse;">
-                <thead style="background: #f8fafc; position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
-                  <tr>
-                    <th style="width: 38px; text-align: center; padding: 0.5rem 0.3rem;">선택</th>
-                    <th style="width: 85px; padding: 0.5rem 0.4rem;">학기</th>
-                    <th style="min-width: 150px; padding: 0.5rem 0.4rem;">교과목명</th>
-                    <th style="width: 145px; padding: 0.5rem 0.4rem;">이수구분</th>
-                    <th style="width: 65px; padding: 0.5rem 0.4rem; text-align: center;">학점</th>
-                    <th style="width: 75px; padding: 0.5rem 0.4rem; text-align: center;">성적</th>
-                    <th style="width: 85px; padding: 0.5rem 0.4rem; text-align: center;">상태</th>
-                    <th style="width: 45px; padding: 0.5rem 0.3rem; text-align: center;">삭제</th>
-                  </tr>
-                </thead>
-                <tbody id="pdf-parsed-table-body">
-                  <!-- Dynamic rows generated by renderParsedCoursesTable() -->
-                </tbody>
-              </table>
+            <!-- Subview 2: Debug & Raw Text Alignment View -->
+            <div id="pdf-subview-debug" style="display: none;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.35rem;">
+                <span>⚠️</span> 미인식 / 수동 검토 권장 라인
+              </div>
+              <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.6rem;">
+                아래 라인들은 성적 또는 과목명 패턴이 불분명하여 자동 등록되지 않았습니다. [➕ 과목 추가]를 누르면 과목 행으로 전환되어 직접 수정할 수 있습니다.
+              </div>
+
+              <!-- List of Unparsed lines -->
+              <div id="pdf-unparsed-lines-list" style="max-height: 160px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 1rem; background: #ffffff;">
+                <!-- Filled dynamically by renderUnparsedLinesDebug() -->
+              </div>
+
+              <!-- Full Raw Text with Line Numbers -->
+              <div style="font-size: 0.8rem; font-weight: 700; color: #1e293b; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.35rem;">
+                <span>📑</span> 추출 원본 텍스트 전체 대조 (라인 번호 포함)
+              </div>
+              <div id="pdf-raw-lines-viewer" style="max-height: 140px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.5rem; line-height: 1.45;">
+                <!-- Filled dynamically by renderUnparsedLinesDebug() -->
+              </div>
             </div>
 
             <!-- Bottom summary & Save button (UX: Always visible sticky bar) -->
@@ -3747,37 +3850,218 @@
     }
 
     /**
+     * [긴급 3] 공식 학사 기준(information/) 기반 사용자 맞춤형 이수구분 체계 동적 생성
+     * - 교양필수 (정해진 과목 의무: 정보소통 5학점, 생애설계 2학점)
+     * - 교양선택필수 (영역 내 과목 선택 의무: 의사소통 3학점, 글로벌소통 9/6학점, 스포츠웰니스 1학점)
+     * - 일반교양 / 자율선택 (융복합학문 6대 영역 및 기초교양)
+     * - 외국인 유학생 전용 (글로벌소통 한국어 12학점 의무 등)
+     * - 편입생 전용 (교양 의무 면제 등)
+     * - 사용자 실제 학과 전공 맞춤 (경영 외 학과에 '경영_' 강제 노출 방지)
+     */
+    function getAvailableCourseCategories(user) {
+      const u = user || (typeof currentUser !== 'undefined' ? currentUser : null) || { major: '경영학과', studentType: '재학생', admissionYear: 2025 };
+      const major = u.major || '경영학과';
+      const majorPrefix = major.replace(/학과|학부|전공|스쿨/g, '');
+      const studentType = u.studentType || '재학생';
+      const admYear = parseInt(u.admissionYear || 2025, 10);
+      const is2023OrNewer = (admYear >= 2023);
+      const isForeigner = (studentType === '외국인 유학생');
+      const isTransfer = (studentType === '편입생');
+
+      // 1. 전공 그룹
+      const majorOptions = [
+        { val: `${majorPrefix}_전선`, label: `${major} 전공선택 (${majorPrefix}_전선)` },
+        { val: `${majorPrefix}_전필`, label: `${major} 전공필수 (${majorPrefix}_전필)` }
+      ];
+
+      if (major.includes('소프트웨어') || major.includes('컴퓨터')) {
+        majorOptions.push({ val: '소프트웨어_기초', label: '소프트웨어 기초' });
+      }
+
+      if (u.hasDoubleMajor && u.doubleMajorName) {
+        const doublePrefix = u.doubleMajorName.replace(/학과|학부|전공|스쿨/g, '');
+        majorOptions.push({ val: `${doublePrefix}_전선`, label: `${u.doubleMajorName} 복수전공 선택 (${doublePrefix}_전선)` });
+        majorOptions.push({ val: `${doublePrefix}_전필`, label: `${u.doubleMajorName} 복수전공 필수 (${doublePrefix}_전필)` });
+      }
+
+      majorOptions.push({ val: '전선', label: '전공선택 (공통)' });
+      majorOptions.push({ val: '전필', label: '전공필수 (공통)' });
+
+      // 2. 교양 그룹 (교양필수 / 교양선택필수 / 일반교양)
+      let geMandatoryOptions = [];
+      let geSelectiveOptions = [];
+      let geElectiveOptions = [];
+
+      if (isForeigner) {
+        geMandatoryOptions = [
+          { val: '교양_생애설계', label: '생애설계 [필수] (오디세이세미나 1·2)' }
+        ];
+        geSelectiveOptions = [
+          { val: '교양_글로벌소통', label: '글로벌소통 [외국인 필수 12학점] (대학한국어 1~4·외국인글쓰기)' },
+          { val: '교양_스포츠웰니스', label: '스포츠웰니스 [선택필수 1학점] (체육/건강)' }
+        ];
+        geElectiveOptions = [
+          { val: '교양_자율선택', label: '일반교양 / 자율선택 (융복합·인문·사회·예술)' },
+          { val: '교양_정보소통', label: '정보소통 (AI/코딩 - 유학생 자율이수)' },
+          { val: '교양_의사소통', label: '의사소통 (글쓰기/표현 - 유학생 자율이수)' }
+        ];
+      } else if (isTransfer) {
+        geMandatoryOptions = [
+          { val: '교양_생애설계', label: '생애설계 (오디세이세미나3 전공인정)' }
+        ];
+        geSelectiveOptions = [
+          { val: '교양_의사소통', label: '교양 - 의사소통 (편입생 선택이수)' },
+          { val: '교양_글로벌소통', label: '교양 - 글로벌소통 (편입생 선택이수)' },
+          { val: '교양_정보소통', label: '교양 - 정보소통 (편입생 선택이수)' },
+          { val: '교양_스포츠웰니스', label: '교양 - 스포츠웰니스 (편입생 선택이수)' }
+        ];
+        geElectiveOptions = [
+          { val: '교양_자율선택', label: '일반교양 / 자율선택 (인정학점 외 선택)' }
+        ];
+      } else {
+        geMandatoryOptions = [
+          { val: '교양_정보소통', label: '정보소통 [교양필수 5학점] (컴퓨팅사고 2 + 창의코딩 3)' },
+          { val: '교양_생애설계', label: '생애설계 [교양필수 2학점] (오디세이세미나 1·2)' }
+        ];
+
+        geSelectiveOptions = [
+          { val: '교양_의사소통', label: '의사소통 [선택필수 3학점] (사고와표현/글쓰기)' },
+          { val: '교양_글로벌소통', label: is2023OrNewer ? '글로벌소통 [선택필수 9학점] (영어/어학/Career English)' : '글로벌소통 [기초교양 6학점] (대학영어 1~4)' },
+          { val: '교양_스포츠웰니스', label: '스포츠웰니스 [선택필수 1학점] (체육/건강/스포츠)' }
+        ];
+
+        geElectiveOptions = [
+          { val: '교양_자율선택', label: '일반교양 / 자율선택 (융복합학문 6대 영역 및 기초교양)' }
+        ];
+      }
+
+      // 3. 일반선택
+      const electiveOptions = [
+        { val: '일반선택', label: '일반선택 (타과전공 / 초과이수 / 현장실습)' }
+      ];
+
+      const groups = [
+        { groupName: `${major} 전공`, options: majorOptions },
+        { groupName: isForeigner ? '외국인 유학생 필수 교양' : (isTransfer ? '편입생 교양 (선택사항)' : '교양필수 (정해진 과목 의무)'), options: geMandatoryOptions },
+        { groupName: isForeigner ? '외국인 유학생 선택필수' : (isTransfer ? '편입생 기초교양' : '교양선택필수 (영역 내 과목 선택)'), options: geSelectiveOptions },
+        { groupName: '일반교양 / 자율선택 (융복합·소양)', options: geElectiveOptions },
+        { groupName: '일반선택 및 기타', options: electiveOptions }
+      ];
+
+      return {
+        majorPrefix,
+        defaultMajorCat: `${majorPrefix}_전선`,
+        groups,
+        flatList: [
+          ...majorOptions,
+          ...geMandatoryOptions,
+          ...geSelectiveOptions,
+          ...geElectiveOptions,
+          ...electiveOptions
+        ]
+      };
+    }
+
+    /**
+     * 사용자 맞춤 이수구분 optgroup HTML 문자열 생성
+     */
+    function getAvailableCourseCategoriesHtml(selectedVal, user) {
+      const catData = getAvailableCourseCategories(user);
+      let html = '';
+      catData.groups.forEach(g => {
+        html += `<optgroup label="${g.groupName}">`;
+        g.options.forEach(o => {
+          const isSelected = (selectedVal === o.val) ? 'selected' : '';
+          html += `<option value="${o.val}" ${isSelected}>${o.label}</option>`;
+        });
+        html += `</optgroup>`;
+      });
+      return html;
+    }
+
+    /**
+     * <select> 요소에 사용자 맞춤 이수구분 옵션 목록을 동적으로 주입
+     */
+    function populateCourseCategorySelect(selectEl, selectedVal, user) {
+      if (!selectEl) return;
+      const catData = getAvailableCourseCategories(user);
+      const targetVal = selectedVal || catData.defaultMajorCat;
+
+      if ('innerHTML' in selectEl) {
+        selectEl.innerHTML = getAvailableCourseCategoriesHtml(targetVal, user);
+      }
+
+      // options 배열 또는 컬렉션이 존재하는 경우 선택값 안전 적용
+      if (selectEl.options && selectEl.options.length > 0) {
+        const optionValues = Array.from(selectEl.options).map(o => o.value);
+        if (optionValues.includes(targetVal)) {
+          selectEl.value = targetVal;
+        } else if (targetVal.includes('전선') && optionValues.includes(`${catData.majorPrefix}_전선`)) {
+          selectEl.value = `${catData.majorPrefix}_전선`;
+        } else if (targetVal.includes('전필') && optionValues.includes(`${catData.majorPrefix}_전필`)) {
+          selectEl.value = `${catData.majorPrefix}_전필`;
+        } else if (optionValues.includes('전선')) {
+          selectEl.value = '전선';
+        } else {
+          selectEl.value = optionValues[0] || targetVal;
+        }
+      } else {
+        selectEl.value = targetVal;
+      }
+    }
+
+    /**
+     * 현재 화면의 모든 이수구분 select 요소를 현재 사용자 기준으로 갱신
+     */
+    function populateAllCategorySelects() {
+      const courseCat = document.getElementById('course-cat-input');
+      if (courseCat) {
+        populateCourseCategorySelect(courseCat, courseCat.value || null, currentUser);
+      }
+      const baskCat = document.getElementById('bask-cat-input');
+      if (baskCat) {
+        populateCourseCategorySelect(baskCat, baskCat.value || null, currentUser);
+      }
+    }
+
+    // 전역 참조 노출
+    window.getAvailableCourseCategories = getAvailableCourseCategories;
+    window.getAvailableCourseCategoriesHtml = getAvailableCourseCategoriesHtml;
+    window.populateCourseCategorySelect = populateCourseCategorySelect;
+    window.populateAllCategorySelects = populateAllCategorySelects;
+
+    /**
      * 사용자의 실제 전공 및 courses.json의 실제 이수구분(cat) 기반 범용 카테고리 매핑 함수
      * - courses.json의 실제 cat 우선 사용
-     * - 타 학과 학생에게 '경영_전선'/'경영_전필' 강제 배제 및 공통 '전선'/'전필' 반영
+     * - 타 학과 학생에게 '경영_전선'/'경영_전필' 강제 배제 및 해당 학과 전공 또는 공통 '전선'/'전필' 반영
      * - 경영학과 학생에게는 경영학 전공 과목에 대해 '경영_전선'/'경영_전필' 유지
      */
-    function resolveCourseCategoryForSelect(item, selectElement) {
-      const curMajor = currentUser ? currentUser.major : '경영학과';
+    function resolveCourseCategoryForSelect(item, selectElement, user) {
+      const u = user || ((typeof currentUser !== 'undefined' && currentUser) ? currentUser : null);
+      const curMajor = u ? u.major : '경영학과';
+      const curDeptPrefix = curMajor.replace(/학부|학과|전공|스쿨/g, '');
       const isBizMajor = (curMajor === '경영학과' || curMajor.includes('경영'));
       const options = (selectElement && selectElement.options) ? Array.from(selectElement.options).map(o => o.value) : [];
 
       let rawCat = (item && item.cat) ? item.cat : '';
       let targetCat = rawCat;
+      const itemDept = (item && item.dept) ? item.dept : '';
+      const isUserDeptCourse = !!(curDeptPrefix && itemDept && itemDept.includes(curDeptPrefix));
 
       if (rawCat) {
-        if (!isBizMajor) {
-          // 타 학과 학생: 경영학과 전용 태그가 붙어있으면 공통 '전선'/'전필'로 일반화
-          if (rawCat === '경영_전선') targetCat = '전선';
-          else if (rawCat === '경영_전필') targetCat = '전필';
+        if (isUserDeptCourse) {
+          if (rawCat.includes('전필')) targetCat = `${curDeptPrefix}_전필`;
+          else if (rawCat.includes('전선')) targetCat = `${curDeptPrefix}_전선`;
         } else {
-          // 경영학과 학생: 경영학 과목이거나 경영 관련이면 '경영_전선'/'경영_전필' 매핑
-          if (rawCat === '전선' && item.dept && item.dept.includes('경영')) {
-            targetCat = '경영_전선';
-          } else if (rawCat === '전필' && item.dept && item.dept.includes('경영')) {
-            targetCat = '경영_전필';
+          // 타 학과 학생: 타과 전용 태그('경영_전선' 등)가 붙어있으면 공통 '전선'/'전필'로 변환
+          if (!isBizMajor) {
+            if (rawCat === '경영_전선') targetCat = '전선';
+            else if (rawCat === '경영_전필') targetCat = '전필';
           }
         }
       } else {
-        const itemDept = (item && item.dept) ? item.dept : '';
-        const curDeptPrefix = curMajor.replace(/학부|학과|전공|스쿨/g, '');
-        if (curDeptPrefix && itemDept.includes(curDeptPrefix)) {
-          targetCat = isBizMajor ? '경영_전선' : '전선';
+        if (isUserDeptCourse) {
+          targetCat = `${curDeptPrefix}_전선`;
         } else {
           targetCat = '일반선택';
         }
@@ -3787,12 +4071,18 @@
       if (options.length === 0) return targetCat;
       if (options.includes(targetCat)) return targetCat;
 
+      // 사용자 학과 전공 옵션 호환
+      if (targetCat.includes('전선') && options.includes(`${curDeptPrefix}_전선`)) return `${curDeptPrefix}_전선`;
+      if (targetCat.includes('전필') && options.includes(`${curDeptPrefix}_전필`)) return `${curDeptPrefix}_전필`;
+
       // targetCat이 '전선'인데 select options에 '경영_전선'만 있는 mock DOM 환경 호환
       if (targetCat === '전선' && options.includes('경영_전선')) return '경영_전선';
       if (targetCat === '전필' && options.includes('경영_전필')) return '경영_전필';
+      if (targetCat.includes('전선') && options.includes('전선')) return '전선';
+      if (targetCat.includes('전필') && options.includes('전필')) return '전필';
 
       if (rawCat && options.includes(rawCat)) return rawCat;
-      return options[0];
+      return options[0] || targetCat;
     }
 
     /* -------------------------------------------------------------------------
@@ -4779,36 +5069,125 @@
       document.getElementById('reg-double-wrap').style.display = checked ? 'block' : 'none';
     }
 
+    function sanitizeStudentId(rawId) {
+      if (!rawId) return '';
+      let s = String(rawId).trim();
+      // 전각 숫자를 반각 ASCII 숫자로 변환
+      s = s.replace(/[\uFF10-\uFF19]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0));
+      // 보이지 않는 제로너비 공백 등 유니코드 특수문자 제거
+      s = s.replace(/[\u200B-\u200D\uFEFF]/g, '');
+      return s.trim();
+    }
+
+    function setLoginButtonState(state, message) {
+      const btn = document.getElementById('btn-login-submit');
+      if (!btn) return;
+      if (state === 'loading') {
+        btn.disabled = true;
+        btn.innerHTML = `<span style="display:inline-block; width:14px; height:14px; border:2px solid #ffffff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:4px;"></span> <span>${message || '로그인 중...'}</span>`;
+      } else if (state === 'success') {
+        btn.disabled = true;
+        if (btn.classList && typeof btn.classList.remove === 'function') {
+          btn.classList.remove('btn-primary', 'btn-danger');
+          btn.classList.add('btn-success');
+        }
+        btn.innerHTML = `<span>✓ ${message || '로그인 성공'}</span>`;
+      } else {
+        btn.disabled = false;
+        if (btn.classList && typeof btn.classList.remove === 'function') {
+          btn.classList.remove('btn-success', 'btn-danger');
+          btn.classList.add('btn-primary');
+        }
+        btn.innerHTML = `<span>${message || '로그인'}</span>`;
+      }
+    }
+
     function handleLogin(e) {
       if (e) e.preventDefault();
-      const idInput = document.getElementById('login-id').value.trim();
-      const pwInput = document.getElementById('login-pw').value;
+      const rawId = document.getElementById('login-id') ? document.getElementById('login-id').value : '';
+      const pwInput = document.getElementById('login-pw') ? document.getElementById('login-pw').value : '';
+      const idInput = sanitizeStudentId(rawId);
 
       if (!idInput) {
-        showAuthAlert('학번을 입력해주세요.');
+        showAuthAlert('학번을 입력해주세요.', 'danger');
+        setLoginButtonState('idle');
+        const idEl = document.getElementById('login-id');
+        if (idEl) {
+          if (typeof idEl.focus === 'function') idEl.focus();
+          if (idEl.classList && typeof idEl.classList.add === 'function') {
+            idEl.classList.add('input-error');
+            setTimeout(() => idEl.classList.remove('input-error'), 2500);
+          }
+        }
         return;
       }
+
+      if (!pwInput) {
+        showAuthAlert('비밀번호를 입력해주세요.', 'danger');
+        setLoginButtonState('idle');
+        const pwEl = document.getElementById('login-pw');
+        if (pwEl) {
+          if (typeof pwEl.focus === 'function') pwEl.focus();
+          if (pwEl.classList && typeof pwEl.classList.add === 'function') {
+            pwEl.classList.add('input-error');
+            setTimeout(() => pwEl.classList.remove('input-error'), 2500);
+          }
+        }
+        return;
+      }
+
+      setLoginButtonState('loading', '로그인 중...');
 
       const users = getUsers();
       const user = users[idInput];
 
       if (!user) {
-        showAuthAlert('등록되지 않은 학번입니다. 회원가입 탭에서 먼저 가입해주세요.');
+        showAuthAlert('등록되지 않은 학번입니다. 회원가입 탭에서 먼저 가입해주세요.', 'danger');
+        setLoginButtonState('idle');
+        const idEl = document.getElementById('login-id');
+        if (idEl) {
+          if (typeof idEl.focus === 'function') idEl.focus();
+          if (typeof idEl.select === 'function') idEl.select();
+        }
         return;
       }
 
       const hashedInput = sha256(pwInput);
-      const isMatch = (user.password === hashedInput) || (user.password === pwInput);
+      const isDemoAccount = (idInput === '20250000' || idInput === '20258044');
+      const isMatch = (user.password === hashedInput) ||
+                      (user.password === pwInput) ||
+                      (isDemoAccount && typeof verifyDemoPassword === 'function' && verifyDemoPassword(pwInput));
+
       if (!isMatch) {
-        showAuthAlert('비밀번호가 올바르지 않습니다.');
+        showAuthAlert('비밀번호가 올바르지 않습니다.', 'danger');
+        setLoginButtonState('idle');
+        const pwEl = document.getElementById('login-pw');
+        if (pwEl) {
+          if (typeof pwEl.focus === 'function') pwEl.focus();
+          if (typeof pwEl.select === 'function') pwEl.select();
+          if (pwEl.classList && typeof pwEl.classList.add === 'function') {
+            pwEl.classList.add('input-error');
+            setTimeout(() => pwEl.classList.remove('input-error'), 2500);
+          }
+        }
         return;
       }
-      if (user.password === pwInput) {
+
+      if (user.password === pwInput && !isDemoAccount) {
         user.password = hashedInput;
         saveUsers(users);
       }
 
-      completeLogin(user);
+      setLoginButtonState('success', '로그인 성공');
+      showAuthAlert(`환영합니다, ${user.name || idInput}님! 메인 화면으로 이동합니다.`, 'success');
+
+      try {
+        completeLogin(user);
+      } catch (err) {
+        console.error('completeLogin error:', err);
+        setLoginButtonState('idle');
+        showAuthAlert('로그인 처리 중 오류가 발생했습니다. 다시 시도해주세요.', 'danger');
+      }
     }
 
     /* =========================================================================
@@ -4829,10 +5208,28 @@
       const modal = document.getElementById('demo-auth-modal');
       const input = document.getElementById('demo-pw-input');
       const errorBox = document.getElementById('demo-auth-error');
+      const errorMsg = document.getElementById('demo-auth-error-msg');
+      const btnSubmit = document.getElementById('btn-demo-auth-submit');
+
       if (input) input.value = '';
-      if (errorBox) errorBox.style.display = 'none';
-      if (modal) modal.style.display = 'flex';
-      setTimeout(() => { if (input) input.focus(); }, 100);
+      if (errorBox) {
+        errorBox.style.display = 'none';
+        if (errorMsg) errorMsg.textContent = '비밀번호가 일치하지 않습니다. 관리자 비밀번호를 다시 확인해주세요.';
+      }
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = '인증 및 접속';
+      }
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.style.zIndex = '3000';
+      }
+      setTimeout(() => {
+        if (input) {
+          input.focus();
+          try { input.select(); } catch (e) {}
+        }
+      }, 100);
     }
 
     function closeDemoAuthModal() {
@@ -4847,25 +5244,61 @@
     function submitDemoAuth() {
       const input = document.getElementById('demo-pw-input');
       const errorBox = document.getElementById('demo-auth-error');
+      const errorMsg = document.getElementById('demo-auth-error-msg');
+      const btnSubmit = document.getElementById('btn-demo-auth-submit');
       const pw = input ? input.value : '';
-      if (verifyDemoPassword(pw)) {
-        closeDemoAuthModal();
-        if (typeof showToast === 'function') {
-          showToast('🔓 관리자 인증 성공: 데모 계정으로 로그인합니다.', 'success');
-        }
-        handleDemoLogin();
-      } else {
+
+      if (!pw || pw.trim() === '') {
         if (errorBox) {
+          if (errorMsg) errorMsg.textContent = '비밀번호를 입력해주세요.';
           errorBox.style.display = 'flex';
         }
-        if (input) {
-          input.value = '';
-          input.focus();
-        }
+        if (input) input.focus();
+        return;
       }
+
+      // 로딩 상태 피드백
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = '<span style="display:inline-block; width:13px; height:13px; border:2px solid #ffffff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; vertical-align:middle; margin-right:5px;"></span> 인증 중...';
+      }
+
+      setTimeout(() => {
+        if (verifyDemoPassword(pw)) {
+          if (btnSubmit) {
+            btnSubmit.innerHTML = '✅ 접속 성공!';
+          }
+          if (typeof showToast === 'function') {
+            showToast('🔓 관리자 인증 성공: 데모 계정으로 로그인합니다.', 'success');
+          }
+          setTimeout(() => {
+            closeDemoAuthModal();
+            handleDemoLogin();
+          }, 150);
+        } else {
+          if (btnSubmit) {
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = '인증 및 접속';
+          }
+          if (errorBox) {
+            if (errorMsg) errorMsg.textContent = '비밀번호가 일치하지 않습니다. 관리자 비밀번호를 다시 확인해주세요.';
+            errorBox.style.display = 'flex';
+          }
+          if (input) {
+            input.value = '';
+            input.focus();
+          }
+        }
+      }, 100);
     }
 
     function handleDemoLoginWithPrompt(directPw) {
+      if (typeof window !== 'undefined' && window.event) {
+        try {
+          window.event.preventDefault();
+          window.event.stopPropagation();
+        } catch(e) {}
+      }
       if (directPw !== undefined && directPw !== null) {
         if (verifyDemoPassword(directPw)) {
           handleDemoLogin();
@@ -4878,7 +5311,16 @@
     function handleDemoLogin() {
       ensureDefaultDemoUser();
       const users = getUsers();
-      completeLogin(users['20250000'] || users['20258044']);
+      const demoUser = (users && (users['20250000'] || users['20258044'])) || {
+        studentId: '20250000',
+        name: '유아미',
+        admissionYear: 2025,
+        major: '경영학과',
+        studentType: '재학생',
+        hasDoubleMajor: false,
+        doubleMajorName: ''
+      };
+      completeLogin(demoUser);
     }
 
     let secretClickCount = 0;
@@ -4975,26 +5417,37 @@
     }
 
     function completeLogin(user) {
-      if (user && (user.studentId === '20250000' || user.studentId === '20258044') && user.name === '김한림') {
-        user.name = '유아미';
+      try {
+        if (user && (user.studentId === '20250000' || user.studentId === '20258044') && user.name === '김한림') {
+          user.name = '유아미';
+        }
+        currentUser = user;
+        safeStorageSet('hallym_current_user_id', user.studentId);
+
+        // Load user data
+        activeUserCourses = getUserCourses(user.studentId);
+        basketCourses = getUserBasket(user.studentId);
+        customCourses = getUserCustomCourses(user.studentId);
+
+        const authContainer = document.getElementById('auth-container');
+        const mainAppContainer = document.getElementById('main-app-container');
+        if (authContainer) authContainer.style.display = 'none';
+        if (mainAppContainer) mainAppContainer.style.display = 'block';
+
+        if (typeof updateCourseCountDisplay === 'function') updateCourseCountDisplay();
+        if (typeof updateProfileBadge === 'function') updateProfileBadge();
+        if (typeof populateAllCategorySelects === 'function') populateAllCategorySelects();
+        if (typeof renderMyInfoTab === 'function') renderMyInfoTab();
+        if (typeof renderScreen1Tables === 'function') renderScreen1Tables();
+        if (typeof renderScreen2 === 'function') renderScreen2();
+        if (typeof renderHelpTab === 'function') renderHelpTab();
+      } catch (err) {
+        console.error('completeLogin execution error:', err);
+        const authContainer = document.getElementById('auth-container');
+        const mainAppContainer = document.getElementById('main-app-container');
+        if (authContainer) authContainer.style.display = 'none';
+        if (mainAppContainer) mainAppContainer.style.display = 'block';
       }
-      currentUser = user;
-      safeStorageSet('hallym_current_user_id', user.studentId);
-
-      // Load user data
-      activeUserCourses = getUserCourses(user.studentId);
-      basketCourses = getUserBasket(user.studentId);
-      customCourses = getUserCustomCourses(user.studentId);
-
-      document.getElementById('auth-container').style.display = 'none';
-      document.getElementById('main-app-container').style.display = 'block';
-
-      updateCourseCountDisplay();
-      updateProfileBadge();
-      renderMyInfoTab();
-      renderScreen1Tables();
-      renderScreen2();
-      renderHelpTab();
     }
 
     function handleLogout() {
@@ -5043,12 +5496,7 @@
         renderScreen2();
         const baskCat = document.getElementById('bask-cat-input');
         if (baskCat && currentUser) {
-          const isBiz = (currentUser.major === '경영학과' || (currentUser.major && currentUser.major.includes('경영')));
-          if (isBiz && Array.from(baskCat.options).some(o => o.value === '경영_전선')) {
-            baskCat.value = '경영_전선';
-          } else if (!isBiz && Array.from(baskCat.options).some(o => o.value === '전선')) {
-            baskCat.value = '전선';
-          }
+          populateCourseCategorySelect(baskCat, baskCat.value || null, currentUser);
         }
       }
       if (tabNum === 4) renderHelpTab();
@@ -5163,6 +5611,7 @@
 
       closeSettingsModal();
       updateProfileBadge();
+      populateAllCategorySelects();
       renderMyInfoTab();
       renderScreen1Tables();
       renderScreen2();
@@ -5412,18 +5861,9 @@
       document.getElementById('course-modal-title').textContent = '➕ 기이수 과목 직접 추가';
       document.getElementById('course-edit-id').value = '';
       document.getElementById('course-title-input').value = '';
-      const curMajor = currentUser ? currentUser.major : '경영학과';
-      const isBiz = (curMajor === '경영학과' || curMajor.includes('경영'));
       const catInput = document.getElementById('course-cat-input');
       if (catInput) {
-        const defaultCat = isBiz ? '경영_전선' : '전선';
-        if (Array.from(catInput.options).some(o => o.value === defaultCat)) {
-          catInput.value = defaultCat;
-        } else if (Array.from(catInput.options).some(o => o.value === '전선')) {
-          catInput.value = '전선';
-        } else if (Array.from(catInput.options).some(o => o.value === '경영_전선')) {
-          catInput.value = '경영_전선';
-        }
+        populateCourseCategorySelect(catInput, null, currentUser);
       }
       document.getElementById('course-credits-input').value = '3';
       const ySel = document.getElementById('course-sem-year-select'); if (ySel) ySel.value = '2026';
@@ -5444,16 +5884,8 @@
       document.getElementById('course-title-input').value = course.title;
 
       const catSelect = document.getElementById('course-cat-input');
-      const curMajor = currentUser ? currentUser.major : '경영학과';
-      const isBiz = (curMajor === '경영학과' || curMajor.includes('경영'));
-      if (Array.from(catSelect.options).some(o => o.value === course.cat)) {
-        catSelect.value = course.cat;
-      } else if (course.cat.includes('전필')) {
-        catSelect.value = isBiz ? '경영_전필' : (Array.from(catSelect.options).some(o => o.value === '전필') ? '전필' : '경영_전필');
-      } else if (course.cat.includes('전선')) {
-        catSelect.value = isBiz ? '경영_전선' : (Array.from(catSelect.options).some(o => o.value === '전선') ? '전선' : '경영_전선');
-      } else {
-        catSelect.value = '교양_자율선택';
+      if (catSelect) {
+        populateCourseCategorySelect(catSelect, course.cat, currentUser);
       }
 
       document.getElementById('course-credits-input').value = course.credits || 3;
@@ -5768,7 +6200,8 @@
       if (descEl) descEl.textContent = '2024학년도 1·2학기 8개 과목이 자동 분석되었습니다. 아래 표에서 확인 후 [내 과목으로 일괄 저장]을 클릭하세요.';
 
       const userMajor = (currentUser && currentUser.major) ? currentUser.major : '경영학과';
-      const parseResult = parseTranscriptText(SAMPLE_TRANSCRIPT_RAW, userMajor);
+      const studentType = (currentUser && currentUser.studentType) ? currentUser.studentType : '재학생';
+      const parseResult = parseTranscriptText(SAMPLE_TRANSCRIPT_RAW, userMajor, studentType);
       window.lastParsedCourses = parseResult.courses;
 
       initParsedCourseItems(parseResult.courses);
@@ -5826,10 +6259,31 @@
     function processSelectedPdfFile(file) {
       if (!file) return;
 
-      // File validation: PDF check
-      const isPdf = file.name.toLowerCase().endsWith('.pdf') || (file.type && file.type.includes('pdf'));
-      if (!isPdf) {
-        alert(`⚠️ [${file.name}]은(는) PDF 파일이 아닙니다.\n성적증명서 PDF 파일(.pdf)을 선택해주세요.`);
+      const fileNameLower = file.name.toLowerCase();
+      const isPdf = fileNameLower.endsWith('.pdf') || (file.type && file.type.includes('pdf'));
+      const isImage = ['.png', '.jpg', '.jpeg', '.webp'].some(ext => fileNameLower.endsWith(ext)) || (file.type && file.type.startsWith('image/'));
+      const isTextOrCsv = ['.txt', '.csv'].some(ext => fileNameLower.endsWith(ext)) || (file.type && (file.type.includes('text') || file.type.includes('csv')));
+      const isOfficeDoc = ['.xlsx', '.xls', '.docx', '.doc'].some(ext => fileNameLower.endsWith(ext));
+
+      if (isOfficeDoc) {
+        const isExcel = fileNameLower.endsWith('.xlsx') || fileNameLower.endsWith('.xls');
+        const docType = isExcel ? 'Excel(.xlsx)' : 'Word(.docx)';
+        const tipMsg = isExcel 
+          ? 'Excel에서 [파일 ➔ 다른 이름으로 저장 ➔ 파일 형식: CSV (쉼표로 분리)(*.csv)]로 저장하여 업로드해주세요.'
+          : 'Word 문서의 표 내용을 복사하여 [✏️ 수동 직접 입력]에서 과목을 직접 등록해주세요.';
+
+        const goToManual = confirm(`📘 [${file.name}] 파일 안내:\n\n${docType} 문서는 브라우저 보안 및 정확한 분석을 위해 다음 방법으로 업로드해주시기 바랍니다:\n\n1. ${tipMsg}\n2. 또는 텍스트(.txt) 파일로 변환하여 업로드\n\n지금 [수동 직접 입력] 창으로 이동하시겠습니까?`);
+        if (goToManual) {
+          closePdfModal();
+          openAddCourseModal();
+        } else {
+          resetPdfSelection();
+        }
+        return;
+      }
+
+      if (!isPdf && !isImage && !isTextOrCsv) {
+        alert(`⚠️ [${file.name}]은(는) 지원되지 않는 파일 형식입니다.\n성적증명서 PDF(.pdf), 이미지(.png, .jpg), 텍스트/CSV(.txt, .csv) 파일을 선택해주세요.`);
         resetPdfSelection();
         return;
       }
@@ -5845,18 +6299,24 @@
       if (filenameEl) filenameEl.textContent = file.name;
       if (filesizeEl) {
         const sizeKb = (file.size / 1024).toFixed(1);
-        filesizeEl.textContent = `${sizeKb} KB (성적증명서)`;
+        let typeLabel = 'PDF 성적증명서';
+        if (isImage) typeLabel = '이미지 성적표 (OCR 분석)';
+        else if (isTextOrCsv) typeLabel = '텍스트/CSV 성적표';
+        filesizeEl.textContent = `${sizeKb} KB (${typeLabel})`;
       }
 
       if (promptEl) promptEl.style.display = 'none';
       if (previewEl) previewEl.style.display = 'block';
     }
 
+    const processSelectedTranscriptFile = processSelectedPdfFile;
+
     function resetPdfSelection() {
       selectedPdfFile = null;
       window.lastExtractedPdfData = null;
       parsedCourseItems = [];
       window.lastParsedCourses = [];
+      window.lastUnparsedLines = [];
       const fileInput = document.getElementById('pdf-file-input');
       if (fileInput) fileInput.value = '';
 
@@ -5868,6 +6328,10 @@
       const scannedBadge = document.getElementById('pdf-scanned-badge');
       const parsedContainer = document.getElementById('pdf-parsed-results-container');
       const modalWindow = document.getElementById('pdf-modal-window');
+      const tabParsedCount = document.getElementById('pdf-tab-parsed-count');
+      const tabUnparsedCount = document.getElementById('pdf-tab-unparsed-count');
+      const unparsedList = document.getElementById('pdf-unparsed-lines-list');
+      const rawViewer = document.getElementById('pdf-raw-lines-viewer');
 
       if (promptEl) promptEl.style.display = 'block';
       if (previewEl) previewEl.style.display = 'none';
@@ -5877,6 +6341,94 @@
       if (scannedBadge) scannedBadge.style.display = 'none';
       if (parsedContainer) parsedContainer.style.display = 'none';
       if (modalWindow) modalWindow.style.maxWidth = '580px';
+      if (tabParsedCount) tabParsedCount.textContent = '0';
+      if (tabUnparsedCount) tabUnparsedCount.textContent = '0';
+      if (unparsedList) unparsedList.innerHTML = '';
+      if (rawViewer) rawViewer.innerHTML = '';
+      switchPdfResultSubView('table');
+    }
+
+    /**
+     * 성적표 이미지 파일(File or Blob)을 브라우저에서 읽어 Tesseract OCR로 텍스트를 추출합니다.
+     */
+    async function extractTextFromImage(file, onProgress) {
+      if (typeof Tesseract === 'undefined') {
+        throw new Error('Tesseract OCR 라이브러리가 로드되지 않았습니다.');
+      }
+
+      const isHttp = (typeof window !== 'undefined' && window.location && window.location.protocol.startsWith('http'));
+      const tesseractOptions = {
+        workerPath: isHttp ? 'lib/tesseract.worker.min.js' : 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js',
+        corePath: isHttp ? 'lib/tesseract-core-simd-lstm.wasm.js' : 'https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.1.0/tesseract-core-simd-lstm.wasm.js',
+        langPath: isHttp ? 'lib/lang-data' : 'https://tessdata.projectnaptha.com/4.0.0_fast'
+      };
+
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.onerror = () => reject(new Error('이미지 파일을 읽는 중 오류가 발생했습니다.'));
+        reader.readAsDataURL(file);
+      });
+
+      const ocrResult = await Tesseract.recognize(
+        dataUrl,
+        'kor+eng',
+        {
+          ...tesseractOptions,
+          logger: m => {
+            if (m.status === 'recognizing text' && typeof onProgress === 'function') {
+              const pct = Math.round((m.progress || 0) * 100);
+              onProgress(1, 1, pct, `이미지 광학 문자 인식 중 (${pct}%)`);
+            }
+          }
+        }
+      );
+
+      const pageText = (ocrResult.data && ocrResult.data.text) ? ocrResult.data.text.trim() : '';
+      const lines = pageText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+      return {
+        success: lines.length > 0,
+        numPages: 1,
+        totalChars: pageText.length,
+        isScanned: true,
+        isOcr: true,
+        isImage: true,
+        pages: [{ pageNumber: 1, lines, rawText: pageText, hasText: lines.length > 0 }],
+        fullText: pageText
+      };
+    }
+
+    /**
+     * 텍스트(.txt) 또는 CSV(.csv) 파일로부터 성적표 텍스트 데이터를 읽어옵니다.
+     */
+    async function extractTextFromTextOrCsv(file) {
+      const rawText = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.onerror = () => reject(new Error('텍스트 파일을 읽는 중 오류가 발생했습니다.'));
+        reader.readAsText(file, 'utf-8');
+      });
+
+      const isCsv = file.name.toLowerCase().endsWith('.csv') || (file.type && file.type.includes('csv'));
+      let normalizedText = rawText;
+      if (isCsv) {
+        // CSV 분리자 쉼표를 공백으로 치환하여 토큰 파서와 호환
+        normalizedText = rawText.split('\n').map(line => line.replace(/,/g, ' ')).join('\n');
+      }
+
+      const lines = normalizedText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+      return {
+        success: lines.length > 0,
+        numPages: 1,
+        totalChars: normalizedText.length,
+        isScanned: false,
+        isOcr: false,
+        isTextOrCsv: true,
+        pages: [{ pageNumber: 1, lines, rawText: normalizedText, hasText: lines.length > 0 }],
+        fullText: normalizedText
+      };
     }
 
     /* =========================================================================
@@ -6112,9 +6664,15 @@
 
     async function startPdfAiParsing() {
       if (!selectedPdfFile) {
-        alert('업로드할 PDF 파일을 먼저 선택해주세요.');
+        alert('업로드할 성적표 파일을 먼저 선택해주세요.');
         return;
       }
+
+      const file = selectedPdfFile;
+      const fileNameLower = file.name.toLowerCase();
+      const isPdf = fileNameLower.endsWith('.pdf') || (file.type && file.type.includes('pdf'));
+      const isImage = ['.png', '.jpg', '.jpeg', '.webp'].some(ext => fileNameLower.endsWith(ext)) || (file.type && file.type.startsWith('image/'));
+      const isTextOrCsv = ['.txt', '.csv'].some(ext => fileNameLower.endsWith(ext)) || (file.type && (file.type.includes('text') || file.type.includes('csv')));
 
       const statusEl = document.getElementById('pdf-parsing-status');
       const iconEl = document.getElementById('pdf-status-icon');
@@ -6127,50 +6685,73 @@
 
       if (statusEl) statusEl.style.display = 'block';
       if (iconEl) iconEl.textContent = '⏳';
-      if (titleEl) titleEl.textContent = '1단계: PDF 텍스트 레이어 고속 추출 중...';
-      if (descEl) descEl.textContent = 'PDF.js 엔진으로 파일의 텍스트와 좌표 정보를 추출하고 있습니다.';
 
       try {
-        const extractFn = (window.extractTextFromPdf || extractTextFromPdf);
-        let extractResult = await extractFn(selectedPdfFile, (curPage, totalPages) => {
-          if (descEl) {
-            descEl.textContent = `PDF 페이지 텍스트 추출 중... (${curPage} / ${totalPages} 페이지)`;
-          }
-        });
+        let extractResult = null;
 
-        // 스캔 이미지 문서 감지 시: Tesseract OCR 엔진 자동 가동
-        if (extractResult.isScanned) {
+        if (isPdf) {
+          if (titleEl) titleEl.textContent = '1단계: PDF 텍스트 레이어 고속 추출 중...';
+          if (descEl) descEl.textContent = 'PDF.js 엔진으로 파일의 텍스트와 좌표 정보를 추출하고 있습니다.';
+
+          const extractFn = (window.extractTextFromPdf || extractTextFromPdf);
+          extractResult = await extractFn(file, (curPage, totalPages) => {
+            if (descEl) {
+              descEl.textContent = `PDF 페이지 텍스트 추출 중... (${curPage} / ${totalPages} 페이지)`;
+            }
+          });
+
+          // 스캔 이미지 문서 감지 시: Tesseract OCR 엔진 자동 가동
+          if (extractResult.isScanned) {
+            if (scannedBadge) {
+              scannedBadge.style.display = 'inline-block';
+              scannedBadge.textContent = '📷 스캔 이미지 (OCR 광학인식 중...)';
+            }
+            if (iconEl) iconEl.textContent = '🔍';
+            if (titleEl) titleEl.textContent = '스캔 PDF 감지: OCR 광학 문자 인식 진행 중...';
+            if (descEl) descEl.textContent = '텍스트 레이어가 없는 스캔 이미지 문서입니다. Tesseract OCR 엔진으로 텍스트를 추출합니다.';
+
+            try {
+              const ocrFn = (window.performOcrOnPdf || performOcrOnPdf);
+              const ocrResult = await ocrFn(extractResult.pdfDoc, (curPage, totalPages, pct, stepDesc) => {
+                if (descEl) {
+                  descEl.textContent = `OCR 인식 중... ${curPage}/${totalPages}페이지 (${pct}%) - ${stepDesc}`;
+                }
+              });
+
+              if (ocrResult.success && ocrResult.totalChars > 0) {
+                extractResult = ocrResult;
+              } else {
+                throw new Error('스캔 이미지에서 텍스트를 인식하지 못했습니다.');
+              }
+            } catch (ocrErr) {
+              console.warn('OCR processing error:', ocrErr);
+              if (iconEl) iconEl.textContent = '⚠️';
+              if (titleEl) titleEl.textContent = '스캔 문서 OCR 인식 실패';
+              if (descEl) {
+                descEl.textContent = '스캔된 이미지에서 텍스트를 읽지 못했습니다. 직접 입력해주세요.';
+              }
+              alert('⚠️ 스캔 이미지 성적표에서 텍스트를 인식하지 못했습니다.\n[➕ 과목 직접 추가] 또는 [✏️ 수동 직접 입력]을 이용해 과목을 입력해주세요.');
+              return;
+            }
+          }
+        } else if (isImage) {
           if (scannedBadge) {
             scannedBadge.style.display = 'inline-block';
-            scannedBadge.textContent = '📷 스캔 이미지 (OCR 광학인식 중...)';
+            scannedBadge.textContent = '📷 이미지 OCR 광학인식 모드';
           }
           if (iconEl) iconEl.textContent = '🔍';
-          if (titleEl) titleEl.textContent = '스캔 PDF 감지: OCR 광학 문자 인식 진행 중...';
-          if (descEl) descEl.textContent = '텍스트 레이어가 없는 스캔 이미지 문서입니다. Tesseract OCR 엔진으로 텍스트를 추출합니다.';
+          if (titleEl) titleEl.textContent = '이미지 OCR 광학 문자 인식 진행 중...';
+          if (descEl) descEl.textContent = 'Tesseract OCR 엔진으로 성적표 이미지에서 문자를 추출하고 있습니다.';
 
-          try {
-            const ocrFn = (window.performOcrOnPdf || performOcrOnPdf);
-            const ocrResult = await ocrFn(extractResult.pdfDoc, (curPage, totalPages, pct, stepDesc) => {
-              if (descEl) {
-                descEl.textContent = `OCR 인식 중... ${curPage}/${totalPages}페이지 (${pct}%) - ${stepDesc}`;
-              }
-            });
-
-            if (ocrResult.success && ocrResult.totalChars > 0) {
-              extractResult = ocrResult;
-            } else {
-              throw new Error('스캔 이미지에서 텍스트를 인식하지 못했습니다.');
-            }
-          } catch (ocrErr) {
-            console.warn('OCR processing error:', ocrErr);
-            if (iconEl) iconEl.textContent = '⚠️';
-            if (titleEl) titleEl.textContent = '스캔 문서 OCR 인식 실패';
-            if (descEl) {
-              descEl.textContent = '스캔된 이미지에서 텍스트를 읽지 못했습니다. 직접 입력해주세요.';
-            }
-            alert('⚠️ 스캔 이미지 성적표에서 텍스트를 인식하지 못했습니다.\n[➕ 과목 직접 추가]를 이용해 과목을 직접 입력해주세요.');
-            return;
-          }
+          const extractImgFn = (window.extractTextFromImage || extractTextFromImage);
+          extractResult = await extractImgFn(file, (curPage, totalPages, pct, stepDesc) => {
+            if (descEl) descEl.textContent = `이미지 인식 중... (${pct}%) - ${stepDesc}`;
+          });
+        } else if (isTextOrCsv) {
+          if (titleEl) titleEl.textContent = '텍스트/CSV 성적표 데이터 로드 중...';
+          if (descEl) descEl.textContent = '파일에서 텍스트 데이터를 읽어 파싱을 준비하고 있습니다.';
+          const extractTxtFn = (window.extractTextFromTextOrCsv || extractTextFromTextOrCsv);
+          extractResult = await extractTxtFn(file);
         }
 
         window.lastExtractedPdfData = extractResult;
@@ -6178,7 +6759,7 @@
         // 1단계 텍스트 추출 또는 OCR 완료 안내
         if (extractedContainer) extractedContainer.style.display = 'block';
         if (extractedStats) {
-          const modeLabel = extractResult.isOcr ? '📷 OCR 추출' : '📄 텍스트 레이어';
+          const modeLabel = extractResult.isOcr ? '📷 OCR 추출' : (extractResult.isTextOrCsv ? '📄 텍스트/CSV' : '📄 텍스트 레이어');
           extractedStats.textContent = `(${extractResult.numPages}페이지, ${extractResult.totalChars.toLocaleString()}자 - ${modeLabel})`;
         }
 
@@ -6204,15 +6785,22 @@
         if (descEl) descEl.textContent = '내장 1,098개 과목 데이터베이스와 대조하여 학기, 과목명, 학점, 성적을 분석하고 있습니다.';
 
         const userMajor = (currentUser && currentUser.major) ? currentUser.major : '경영학과';
-        const parseResult = parseTranscriptText(extractResult.fullText, userMajor);
+        const studentType = (currentUser && currentUser.studentType) ? currentUser.studentType : '재학생';
+        const parseResult = parseTranscriptText(extractResult.fullText, userMajor, studentType);
         window.lastParsedCourses = parseResult.courses;
+        window.lastUnparsedLines = parseResult.unparsedLines || [];
+
+        // 원본 대조 및 미인식 라인 디버그 뷰 업데이트
+        renderUnparsedLinesDebug(parseResult.unparsedLines, extractResult.fullText);
 
         if (parseResult.success) {
           if (iconEl) iconEl.textContent = '✅';
           const ocrNotice = extractResult.isOcr ? ' (OCR 인식)' : '';
           if (titleEl) titleEl.textContent = `2단계 완료: 총 ${parseResult.count}개 과목 파싱 성공!${ocrNotice}`;
           if (descEl) {
-            descEl.textContent = `과목 분석 완료: ${parseResult.count}개 과목 감지됨 (고신뢰도: ${parseResult.highConfidenceCount}개, 확인 권장: ${parseResult.reviewCount}개)`;
+            const unparsedNotice = parseResult.unparsedLines && parseResult.unparsedLines.length > 0
+              ? `, 미인식/주의: ${parseResult.unparsedLines.length}건` : '';
+            descEl.textContent = `과목 분석 완료: ${parseResult.count}개 과목 감지됨 (고신뢰도: ${parseResult.highConfidenceCount}개, 확인 권장: ${parseResult.reviewCount}개${unparsedNotice})`;
           }
 
           // 3단계: 파싱 확인 및 수정 테이블 렌더링 및 모달 확장
@@ -6223,15 +6811,20 @@
           if (descEl) {
             descEl.textContent = '텍스트는 추출되었으나 정형 성적표 과목 행을 자동으로 찾지 못했습니다. [➕ 과목 직접 추가]를 이용해주세요.';
           }
+          const container = document.getElementById('pdf-parsed-results-container');
+          if (container) container.style.display = 'block';
+          const modalWindow = document.getElementById('pdf-modal-window');
+          if (modalWindow) modalWindow.style.maxWidth = '840px';
+          switchPdfResultSubView('debug');
         }
       } catch (err) {
-        console.error('PDF text extraction error:', err);
+        console.error('Transcript processing error:', err);
         if (iconEl) iconEl.textContent = '❌';
-        if (titleEl) titleEl.textContent = 'PDF 텍스트 추출 실패';
+        if (titleEl) titleEl.textContent = '성적표 텍스트 추출 실패';
         if (descEl) {
-          descEl.textContent = 'PDF 파일에서 텍스트를 읽을 수 없습니다. 정상적인 성적증명서 PDF인지 확인해주세요.';
+          descEl.textContent = '파일에서 텍스트를 읽을 수 없습니다. 정상적인 성적표 파일인지 확인해주세요.';
         }
-        alert(`⚠️ PDF 텍스트 추출 중 오류가 발생했습니다:\n${err.message || err}\n\n다른 PDF 파일을 선택하시거나 [➕ 과목 직접 추가]를 이용해주세요.`);
+        alert(`⚠️ 성적표 파일 분석 중 오류가 발생했습니다:\n${err.message || err}\n\n다른 파일을 선택하시거나 [✏️ 수동 직접 입력]을 이용해주세요.`);
       }
     }
 
@@ -6242,13 +6835,14 @@
     let parsedDupStrategy = 'overwrite'; // 'overwrite' or 'skip'
 
     function initParsedCourseItems(courses) {
+      const defaultMajorPrefix = (currentUser?.major || '경영').replace(/학과|학부/, '');
       parsedCourseItems = (courses || []).map((c, idx) => ({
         id: c.id || `parsed_${idx + 1}`,
         selected: true,
         code: c.code || '',
         title: c.title || '',
         semester: c.semester || '기타',
-        cat: c.cat || '경영_전선',
+        cat: c.cat || `${defaultMajorPrefix}_전선`,
         catRaw: c.catRaw || '',
         credits: c.credits || 3,
         grade: c.grade || '수강중',
@@ -6261,11 +6855,16 @@
       checkParsedDuplicates();
       renderParsedCoursesTable();
 
+      const tabParsedCount = document.getElementById('pdf-tab-parsed-count');
+      if (tabParsedCount) tabParsedCount.textContent = parsedCourseItems.length;
+
       const container = document.getElementById('pdf-parsed-results-container');
       if (container) container.style.display = 'block';
 
       const modalWindow = document.getElementById('pdf-modal-window');
       if (modalWindow) modalWindow.style.maxWidth = '840px';
+
+      switchPdfResultSubView('table');
     }
 
     /**
@@ -6314,6 +6913,11 @@
         badgeCount.textContent = `총 ${parsedCourseItems.length}과목`;
       }
 
+      const tabParsedCount = document.getElementById('pdf-tab-parsed-count');
+      if (tabParsedCount) {
+        tabParsedCount.textContent = parsedCourseItems.length;
+      }
+
       // 중복 과목이 존재하는지 확인
       const hasAnyDup = parsedCourseItems.some(i => i.isDuplicate);
       if (dupBox) {
@@ -6341,24 +6945,8 @@
           statusBadge = `<span class="badge badge-success" style="font-size:0.68rem; padding: 2px 6px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0;">신규</span>`;
         }
 
-        // Category options
-        const categories = [
-          { val: `${majorPrefix}_전선`, label: `전선 (${majorPrefix})` },
-          { val: `${majorPrefix}_전필`, label: `전필 (${majorPrefix})` },
-          { val: '교양_정보소통', label: '교양 (정보소통)' },
-          { val: '교양_생애설계', label: '교양 (생애설계)' },
-          { val: '교양_의사소통', label: '교양 (의사소통)' },
-          { val: '교양_글로벌소통', label: '교양 (글로벌소통)' },
-          { val: '교양_스포츠웰니스', label: '교양 (스포츠웰니스)' },
-          { val: '교양_자율선택', label: '교양 (자율선택)' },
-          { val: '일반선택', label: '일반선택' }
-        ];
-
-        let catOptionsHtml = '';
-        categories.forEach(c => {
-          const selected = (item.cat === c.val) ? 'selected' : '';
-          catOptionsHtml += `<option value="${c.val}" ${selected}>${c.label}</option>`;
-        });
+        // Category options dynamically generated based on user major and admission info
+        const catOptionsHtml = getAvailableCourseCategoriesHtml(item.cat, currentUser);
 
         // Grade options
         const grades = ['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'P', 'F', '수강중'];
@@ -6476,6 +7064,7 @@
 
       parsedCourseItems.unshift(newItem);
       renderParsedCoursesTable();
+      switchPdfResultSubView('table');
     }
 
     function handleDupStrategyChange(strategy) {
@@ -6571,6 +7160,161 @@
     }
 
     /* =========================================================================
+       4.4.2.1 성적표 안내 아코디언 & 서브뷰(테이블/디버그) & 미인식 라인 핸들러
+       ========================================================================= */
+    function toggleTranscriptGuidance() {
+      const body = document.getElementById('transcript-guide-body');
+      const icon = document.getElementById('transcript-guide-toggle-icon');
+      if (!body) return;
+      if (body.style.display === 'none' || !body.style.display) {
+        body.style.display = 'block';
+        if (icon) icon.textContent = '▲ 접기';
+      } else {
+        body.style.display = 'none';
+        if (icon) icon.textContent = '▼ 펼치기';
+      }
+    }
+
+    function switchPdfResultSubView(view) {
+      const tableView = document.getElementById('pdf-subview-table');
+      const debugView = document.getElementById('pdf-subview-debug');
+      const tabBtnTable = document.getElementById('tab-btn-parsed-table');
+      const tabBtnDebug = document.getElementById('tab-btn-parsed-debug');
+
+      if (view === 'debug') {
+        if (tableView) tableView.style.display = 'none';
+        if (debugView) debugView.style.display = 'block';
+        if (tabBtnTable) {
+          tabBtnTable.classList.remove('btn-primary');
+          tabBtnTable.classList.add('btn-outline');
+        }
+        if (tabBtnDebug) {
+          tabBtnDebug.classList.remove('btn-outline');
+          tabBtnDebug.classList.add('btn-primary');
+        }
+      } else {
+        if (tableView) tableView.style.display = 'block';
+        if (debugView) debugView.style.display = 'none';
+        if (tabBtnTable) {
+          tabBtnTable.classList.remove('btn-outline');
+          tabBtnTable.classList.add('btn-primary');
+        }
+        if (tabBtnDebug) {
+          tabBtnDebug.classList.remove('btn-primary');
+          tabBtnDebug.classList.add('btn-outline');
+        }
+      }
+    }
+
+    function renderUnparsedLinesDebug(unparsedLines, fullText) {
+      const container = document.getElementById('pdf-unparsed-lines-list');
+      const countBadge = document.getElementById('pdf-tab-unparsed-count');
+      const rawViewer = document.getElementById('pdf-raw-lines-viewer');
+
+      const list = unparsedLines || window.lastUnparsedLines || [];
+      if (countBadge) countBadge.textContent = list.length;
+
+      if (container) {
+        if (list.length === 0) {
+          container.innerHTML = `
+            <div style="padding: 1.25rem; text-align: center; color: #047857; background: #ecfdf5; border-radius: 6px;">
+              <div style="font-size: 1.3rem; margin-bottom: 0.25rem;">🎉</div>
+              <div style="font-weight: 700; font-size: 0.82rem;">모든 유효 라인이 과목으로 성공적으로 인식되었습니다!</div>
+              <div style="font-size: 0.72rem; color: #065f46; margin-top: 0.15rem;">인식 제외된 행은 헤더(제목, 학수번호 머리말 등)나 공백입니다.</div>
+            </div>
+          `;
+        } else {
+          let html = '';
+          list.forEach((item, idx) => {
+            const safeText = (item.text || '').replace(/"/g, '&quot;');
+            html += `
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.65rem; border-bottom: 1px solid #f1f5f9; background: ${idx % 2 === 0 ? '#ffffff' : '#fcfcfc'}; gap: 0.5rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.45rem; flex: 1; min-width: 200px;">
+                  <span style="font-weight: 700; font-size: 0.72rem; padding: 2px 6px; border-radius: 4px; background: #f1f5f9; color: #475569; min-width: 48px; text-align: center;">줄 ${item.lineIndex}</span>
+                  <span style="font-family: monospace; font-size: 0.76rem; color: #1e293b; word-break: break-all;">${escapeHtml(item.text)}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.45rem;">
+                  <span style="font-size: 0.7rem; color: #991b1b; background: #fee2e2; padding: 2px 7px; border-radius: 9999px; white-space: nowrap;">${item.reason || '패턴 불일치'}</span>
+                  <button type="button" class="btn btn-outline" style="font-size: 0.72rem; padding: 0.2rem 0.5rem; color: var(--primary); border-color: var(--primary); white-space: nowrap;" onclick="addParsedCourseFromUnparsedLine('${safeText}')">
+                    ➕ 과목 추가
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+          container.innerHTML = html;
+        }
+      }
+
+      if (rawViewer && fullText) {
+        const lines = fullText.split('\n');
+        let viewerHtml = '';
+        lines.forEach((l, idx) => {
+          const lineNum = idx + 1;
+          const isUnparsed = list.some(u => u.lineIndex === lineNum);
+          const bg = isUnparsed ? '#fff1f2' : 'transparent';
+          const color = isUnparsed ? '#be123c' : '#334155';
+          viewerHtml += `<div style="background: ${bg}; color: ${color}; padding: 1px 4px; font-family: monospace; font-size: 0.74rem;"><span style="color: #94a3b8; user-select: none; display: inline-block; width: 32px;">${lineNum}</span> ${escapeHtml(l)}</div>`;
+        });
+        rawViewer.innerHTML = viewerHtml;
+      }
+    }
+
+    function addParsedCourseFromUnparsedLine(rawLine) {
+      if (!rawLine) return;
+      const majorPrefix = (currentUser?.major || '경영').replace(/학과|학부/, '');
+      const tokens = rawLine.trim().split(/\s+/);
+      
+      let guessedTitle = rawLine.trim();
+      let guessedGrade = '수강중';
+      let guessedCredits = 3;
+      let guessedSem = '2026-2';
+
+      const semMatch = rawLine.match(/\b(19\d{2}|20[0-3]\d)[-/.년]\s*([12]|여름|겨울|하계|동계|1학기|2학기)\b/);
+      if (semMatch) {
+        guessedSem = `${semMatch[1]}-${semMatch[2].replace('학기', '')}`;
+      }
+
+      for (const t of tokens) {
+        const up = t.toUpperCase();
+        if (['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'F', 'P', 'NP'].includes(up)) {
+          guessedGrade = up;
+          guessedTitle = guessedTitle.replace(t, '').trim();
+        } else if (['1', '2', '3', '4'].includes(t) && !t.includes('.')) {
+          guessedCredits = parseInt(t, 10);
+        }
+      }
+
+      const newItem = {
+        id: `parsed_unparsed_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
+        selected: true,
+        code: '',
+        title: guessedTitle || '직접입력 과목',
+        semester: guessedSem,
+        cat: `${majorPrefix}_전선`,
+        catRaw: '전선',
+        credits: guessedCredits,
+        grade: guessedGrade,
+        confidence: 'medium',
+        needsReview: true,
+        isDuplicate: false,
+        dupTargetId: null
+      };
+
+      parsedCourseItems.unshift(newItem);
+      checkParsedDuplicates();
+      renderParsedCoursesTable();
+
+      const tabParsedCount = document.getElementById('pdf-tab-parsed-count');
+      if (tabParsedCount) tabParsedCount.textContent = parsedCourseItems.length;
+
+      switchPdfResultSubView('table');
+      if (typeof showToast === 'function') {
+        showToast(`➕ [${newItem.title}] 행이 확인 테이블 맨 위에 추가되었습니다.`, 'success');
+      }
+    }
+
+    /* =========================================================================
        4.4.2 성적증명서 텍스트 파싱 엔진 (한림대 전용 규칙 기반 & AI 보조)
        ========================================================================= */
     let courseLookupIndex = null;
@@ -6613,12 +7357,18 @@
     /**
      * 원문 이수구분 및 과목명을 분석하여 내부 이수구분 코드로 매핑
      */
-    function classifyCategory(rawCat, title, userMajor = '경영학과') {
+    function classifyCategory(rawCat, title, userMajor = '경영학과', studentType = '재학생') {
       const rc = (rawCat || '').trim();
       const tn = norm(title);
-      const majorPrefix = (userMajor || '경영').replace(/학과|학부/, '');
+      const majorPrefix = (userMajor || '경영').replace(/학과|학부|전공|스쿨/g, '');
+      const isForeigner = (studentType === '외국인 유학생' || (typeof currentUser !== 'undefined' && currentUser && currentUser.studentType === '외국인 유학생'));
 
-      // 1. 과목명 기반 교양 6대 영역 자동 분류
+      // 1. 외국인 유학생 전용 글로벌소통 한국어 과목 매핑
+      if (isForeigner && (tn.includes('대학한국어') || tn.includes('한국어') || tn.includes('읽기와쓰기') || tn.includes('발표와토론'))) {
+        return '교양_글로벌소통';
+      }
+
+      // 2. 과목명 기반 교양 6대 영역 자동 분류
       if (tn.includes('컴퓨팅사고') || tn.includes('창의코딩') || tn.includes('창의적문제해결') || tn.includes('파이썬') || tn.includes('python') || tn.includes('ai와데이터센싱')) {
         return '교양_정보소통';
       }
@@ -6635,7 +7385,7 @@
         return '교양_스포츠웰니스';
       }
 
-      // 2. 원문 이수구분 텍스트 기반 분류
+      // 3. 원문 이수구분 텍스트 기반 분류
       if (rc.includes('전필') || rc.includes('전공필수')) {
         return `${majorPrefix}_전필`;
       }
@@ -6649,63 +7399,75 @@
         return '교양_자율선택';
       }
 
-      // 기본값: 전공선택
+      // 기본값: 사용자의 전공선택
       return `${majorPrefix}_전선`;
     }
 
     /**
-     * 텍스트 라인에서 교과목 DB와 대조하여 일치하는 과목 객체 탐색
+     * 텍스트 라인 또는 후보명에서 교과목 DB와 대조하여 일치하는 과목 객체 탐색
      */
-    function findMatchingCourse(line, code) {
+    function findMatchingCourse(titleText, code) {
       const idx = getCourseLookupIndex();
-      const normLine = norm(line);
 
-      // 1. 긴 과목명부터 우선 매칭 (정확도 극대화)
-      for (const tn of idx.sortedTitles) {
-        if (tn.length >= 3 && normLine.includes(tn)) {
-          return idx.byTitleNorm[tn];
-        }
-      }
-
-      // 2. 과목코드/학수번호로 매칭
+      // 1. 과목코드/학수번호로 우선 매칭
       if (code && idx.byCode[code]) {
         return idx.byCode[code];
+      }
+
+      const normTitle = norm(titleText);
+      if (!normTitle) return null;
+
+      // 2. 정확한 과목명 매칭
+      if (idx.byTitleNorm[normTitle]) {
+        return idx.byTitleNorm[normTitle];
+      }
+
+      // 3. 후보명에 DB 과목명이 온전히 포함되어 있는 경우 매칭 (길이 3 이상)
+      for (const tn of idx.sortedTitles) {
+        if (tn.length >= 3 && normTitle.includes(tn)) {
+          return idx.byTitleNorm[tn];
+        }
       }
 
       return null;
     }
 
     /**
-     * 추출된 PDF 텍스트에서 한림대 성적증명서 형식의 과목들을 정규표현식 및 규칙으로 파싱
+     * 추출된 PDF/이미지/CSV 텍스트에서 한림대 성적증명서 형식의 과목들을 정밀 파싱
      */
-    function parseTranscriptText(rawText, userMajor = '경영학과') {
+    function parseTranscriptText(rawText, userMajor = '경영학과', studentType = '재학생') {
       if (!rawText || typeof rawText !== 'string') {
-        return { success: false, courses: [], count: 0, highConfidenceCount: 0, reviewCount: 0, message: '추출된 텍스트가 없습니다.' };
+        return { success: false, courses: [], unparsedLines: [], count: 0, highConfidenceCount: 0, reviewCount: 0, message: '추출된 텍스트가 없습니다.' };
       }
 
-      const lines = rawText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+      const allLines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
       const parsedCourses = [];
+      const unparsedLines = [];
       let currentSemester = '기타';
 
-      // 학기 헤더 정규식 (예: [ 2025학년도 제 1학기 ], 2025-1 등)
-      const reSemesterHeader = /(?:\[\s*)?((?:19[9\d]|20[0-3]\d))\s*(?:학년도|\s|년도)?\s*(?:제\s*)?([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?(?:\s*\])?/i;
-      const reInLineSemester = /(?:^|\s)((?:19[9\d]|20[0-3]\d))\s*[-/.년]\s*([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?(?=\s|$)/;
+      // 학기 헤더 정규식 (예: [ 2024학년도 제 1학기 ], 2024-1 등)
+      const reSemesterHeader = /(?:\[\s*)?\b(19\d{2}|20[0-3]\d)\s*(?:학년도|\s|년도)?\s*(?:제\s*)?([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?(?:\s*\])?/i;
+      const reInLineSemester = /\b(19\d{2}|20[0-3]\d)\s*[-/.년]\s*([12]|여름|겨울|하계|동계|1학기|2학기)(?:\s*학기)?\b/i;
 
-      // 성적 등급 정규식 (A+, A0, B+, B0, C+, C0, D+, D0, F, P, NP, 수강중 등)
-      const reGrade = /(?:^|\s)(A\+|A0|A|B\+|B0|B|C\+|C0|C|D\+|D0|D|F|P|NP|N\/P|S|U|수강중|수강)(?=\s|$)/i;
-      // 학점 정규식 (0.5 ~ 6.0 학점)
-      const reCredit = /(?:^|\s)([0-6](?:\.0|\.5)?)(?:\s*학점)?(?=\s|$)/;
-      // 학수번호/과목코드 정규식 (5~7자리 숫자 또는 알파벳+숫자)
-      const reCode = /(?:^|\s)([0-9]{5,7}|[A-Z]{2,4}[0-9]{3,4})(?=\s|$)/;
-      // 이수구분 키워드
-      const reCat = /(전필|전공필수|전선|전공선택|전공|교필|교양필수|교선|교양선택|교양|균특|일선|일반선택|자율선택|기초교양|심화교양)/;
+      const GRADE_TOKENS = ['A+', 'A0', 'A', 'B+', 'B0', 'B', 'C+', 'C0', 'C', 'D+', 'D0', 'D', 'F', 'P', 'NP', 'N/P', 'S', 'U', '수강중', '수강', 'ING'];
+      const reCreditToken = /^(?:[0-6](?:\.0|\.5)?)$/;
+      const reCodeToken = /^(?:[0-9]{5,7}|[A-Za-z]{2,5}[0-9]{3,5}|biz_[a-z]+_\d+|sw_[a-z]+_\d+)$/;
+      const reCatToken = /^(전필|전공필수|전선|전공선택|전공|교필|교양필수|교선|교양선택|교양|균특|일선|일반선택|자율선택|기초교양|심화교양|소프트웨어_기초|소프트웨어_전선|경영_전선|경영_전필)$/;
 
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+      for (let lineIdx = 0; lineIdx < allLines.length; lineIdx++) {
+        const line = allLines[lineIdx];
 
-        // 1. 학기 블록 헤더 감지
+        // 1. 표 헤더 및 서식 안내 문구 필터링
+        if (line.includes('이수년도') || line.includes('교과목명') || line.includes('학수번호') ||
+            line.includes('취득학점계') || line.includes('평점평균') || line.includes('신청학점') ||
+            line.includes('한림대학교') || line.includes('성적증명서') || line.includes('총이수학점') ||
+            line.includes('직인생략') || line.includes('발급번호') || line.includes('PAGE BREAK')) {
+          continue;
+        }
+
+        // 2. 학기 블록 헤더 감지
         const semMatch = line.match(reSemesterHeader);
-        if (semMatch && !line.match(reGrade)) {
+        if (semMatch && !line.match(/\b(?:A\+|A0|B\+|B0|C\+|C0|D\+|D0|F|P|NP)\b/)) {
           const year = semMatch[1];
           let term = semMatch[2].replace('학기', '');
           if (term === '하계') term = '여름';
@@ -6714,92 +7476,130 @@
           continue;
         }
 
-        // 2. 표 헤더 및 서식 안내 문구 필터링
-        if (line.includes('이수년도') || line.includes('교과목명') || line.includes('학수번호') ||
-            line.includes('취득학점계') || line.includes('평점평균') || line.includes('신청학점') ||
-            line.includes('한림대학교') || line.includes('성적증명서') || line.includes('총이수학점') ||
-            line.includes('직인생략') || line.includes('발급번호') || line.includes('PAGE BREAK')) {
+        let tokens = line.split(/\s+/).filter(t => t.length > 0);
+        if (tokens.length < 2) {
+          unparsedLines.push({ lineIndex: lineIdx + 1, text: line, reason: '토큰 부족 (2단어 미만)' });
           continue;
         }
 
-        // 3. 과목 행 파싱
-        const gradeMatch = line.match(reGrade);
-        const creditMatch = line.match(reCredit);
-        const codeMatch = line.match(reCode);
-        const catMatch = line.match(reCat);
-
-        const codeCandidate = codeMatch ? codeMatch[1].trim() : null;
-        const foundInDb = findMatchingCourse(line, codeCandidate);
-
-        // 인라인 학기 표기 확인
+        // 3. 인라인 학기 추출
         let lineSemester = currentSemester;
-        const inLineSem = line.match(reInLineSemester);
-        if (inLineSem) {
-          let t = inLineSem[2].replace('학기', '');
-          if (t === '하계') t = '여름';
-          if (t === '동계') t = '겨울';
-          lineSemester = `${inLineSem[1]}-${t}`;
+        const inlineSemMatch = line.match(reInLineSemester);
+        if (inlineSemMatch) {
+          let term = inlineSemMatch[2].replace('학기', '');
+          if (term === '하계') term = '여름';
+          if (term === '동계') term = '겨울';
+          lineSemester = `${inlineSemMatch[1]}-${term}`;
+          tokens = tokens.filter(t => !t.match(reInLineSemester));
         }
 
-        // 과목 행 판정 조건: DB 매칭 또는 (성적 + (학점 또는 이수구분))
-        if (foundInDb || (gradeMatch && (creditMatch || catMatch))) {
-          const code = codeCandidate || (foundInDb ? foundInDb.code : '');
-          const rawGrade = gradeMatch ? gradeMatch[1] : '수강중';
-          const grade = normalizeGrade(rawGrade);
+        // 4. 성적 토큰 우측 우선 탐색
+        let foundGrade = null;
+        let gradeTokenIdx = -1;
 
-          let credits = 3;
-          if (foundInDb && foundInDb.credits) {
-            credits = foundInDb.credits;
-          } else if (creditMatch) {
-            credits = parseFloat(creditMatch[1]) || 3;
+        for (let i = tokens.length - 1; i >= 0; i--) {
+          const upperToken = tokens[i].toUpperCase();
+          if (GRADE_TOKENS.includes(upperToken) || upperToken === '수강중' || upperToken === '수강') {
+            foundGrade = normalizeGrade(upperToken);
+            gradeTokenIdx = i;
+            break;
           }
+        }
 
-          const rawCat = catMatch ? catMatch[1] : (foundInDb ? foundInDb.cat : '전선');
+        // 5. 학점 및 이수구분 탐색
+        let foundCredits = 3;
+        let creditTokenIdx = -1;
+        let foundCat = '전선';
+        let catTokenIdx = -1;
 
-          // 과목명 확정
-          let title = '';
-          if (foundInDb) {
-            title = foundInDb.title;
-          } else {
-            // 토큰 제거 후 과목명 추출
-            let rem = line;
-            if (inLineSem) rem = rem.replace(inLineSem[0], '');
-            if (codeMatch) rem = rem.replace(codeMatch[0], '');
-            if (catMatch) rem = rem.replace(catMatch[0], '');
-            if (gradeMatch) rem = rem.replace(gradeMatch[0], '');
-            if (creditMatch) rem = rem.replace(creditMatch[0], '');
-            rem = rem.replace(/\b[0-4]\.[0-9]\b/g, ''); // 평점 제거
-            rem = rem.replace(/[\[\]]/g, '').trim();
-            title = rem;
+        if (gradeTokenIdx !== -1) {
+          for (let i = gradeTokenIdx - 1; i >= Math.max(0, gradeTokenIdx - 3); i--) {
+            const tok = tokens[i];
+            if (/^[0-4]\.[0-9]$/.test(tok)) continue; // GPA 숫자 건너뜀
+            if (reCreditToken.test(tok) && creditTokenIdx === -1) {
+              foundCredits = parseFloat(tok) || 3;
+              creditTokenIdx = i;
+              continue;
+            }
+            if (reCatToken.test(tok) && catTokenIdx === -1) {
+              foundCat = tok;
+              catTokenIdx = i;
+              continue;
+            }
           }
+        }
 
-          if (title && title.length >= 2) {
-            const cat = classifyCategory(rawCat, title, userMajor);
+        // 6. 학수번호/과목코드 탐색 (좌측 1~2번째 토큰)
+        let foundCode = '';
+        let codeTokenIdx = -1;
+        if (tokens.length > 0 && reCodeToken.test(tokens[0])) {
+          foundCode = tokens[0];
+          codeTokenIdx = 0;
+        } else if (tokens.length > 1 && reCodeToken.test(tokens[1])) {
+          foundCode = tokens[1];
+          codeTokenIdx = 1;
+        }
 
-            parsedCourses.push({
-              id: `parsed_${parsedCourses.length + 1}`,
-              code: code || '',
-              title: title.trim(),
-              semester: lineSemester,
-              cat: cat,
-              catRaw: rawCat,
-              credits: Math.round(credits),
-              grade: grade,
-              confidence: foundInDb ? 'high' : 'medium',
-              source: 'rule',
-              needsReview: (!foundInDb || grade === '수강중')
-            });
+        // 7. 과목명 추출 (지정된 메타 토큰 제외)
+        const titleTokens = [];
+        for (let i = 0; i < tokens.length; i++) {
+          if (i === codeTokenIdx || i === gradeTokenIdx || i === creditTokenIdx || i === catTokenIdx) continue;
+          if (/^[0-4]\.[0-9]$/.test(tokens[i])) continue; // GPA 숫자 제외
+          titleTokens.push(tokens[i]);
+        }
+
+        let titleCandidate = titleTokens.join(' ').trim();
+        titleCandidate = titleCandidate.replace(/^[\-·•\s]+|[\-·•\s]+$/g, '').trim();
+
+        // 8. DB 매칭 확인 (과목명 또는 학수번호)
+        const dbCourse = findMatchingCourse(titleCandidate, foundCode);
+        if (dbCourse) {
+          if (foundCode || norm(titleCandidate) === norm(dbCourse.title)) {
+            titleCandidate = dbCourse.title;
           }
+          if (!foundCode && dbCourse.code) foundCode = dbCourse.code;
+          if (creditTokenIdx === -1 && dbCourse.credits) foundCredits = dbCourse.credits;
+          if (catTokenIdx === -1 && dbCourse.cat) foundCat = dbCourse.cat;
+        }
+
+        if (titleCandidate && titleCandidate.length >= 2 && (foundGrade || dbCourse)) {
+          const finalGrade = foundGrade || '수강중';
+          const finalCat = classifyCategory(foundCat, titleCandidate, userMajor, studentType);
+
+          parsedCourses.push({
+            id: `parsed_${parsedCourses.length + 1}`,
+            lineIndex: lineIdx + 1,
+            code: foundCode || '',
+            title: titleCandidate,
+            semester: lineSemester,
+            cat: finalCat,
+            catRaw: foundCat,
+            credits: Math.round(foundCredits),
+            grade: finalGrade,
+            confidence: dbCourse ? 'high' : 'medium',
+            source: 'rule',
+            needsReview: (!dbCourse || finalGrade === '수강중'),
+            rawLine: line
+          });
+        } else {
+          unparsedLines.push({
+            lineIndex: lineIdx + 1,
+            text: line,
+            reason: !titleCandidate ? '과목명 식별 불가' : (!foundGrade ? '성적 정보 없음' : '패턴 불일치')
+          });
         }
       }
+
+      window.lastUnparsedLines = unparsedLines;
 
       return {
         success: parsedCourses.length > 0,
         courses: parsedCourses,
+        unparsedLines: unparsedLines,
         count: parsedCourses.length,
         highConfidenceCount: parsedCourses.filter(c => c.confidence === 'high').length,
         reviewCount: parsedCourses.filter(c => c.needsReview).length,
-        message: parsedCourses.length > 0 ? `${parsedCourses.length}개 과목 파싱 성공` : '인식 가능한 과목 정보를 찾지 못했습니다.'
+        message: parsedCourses.length > 0 ? `${parsedCourses.length}개 과목 파싱 성공 (미인식 ${unparsedLines.length}줄)` : '인식 가능한 과목 정보를 찾지 못했습니다.'
       };
     }
 
@@ -6849,7 +7649,7 @@ ${rawText}`;
             code: item.code || '',
             title: item.title || '',
             semester: item.semester || '기타',
-            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과'),
+            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과', currentUser?.studentType || '재학생'),
             catRaw: item.cat || '',
             credits: parseInt(item.credits, 10) || 3,
             grade: normalizeGrade(item.grade),
@@ -6890,7 +7690,7 @@ ${rawText}`;
             code: item.code || '',
             title: item.title || '',
             semester: item.semester || '기타',
-            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과'),
+            cat: classifyCategory(item.cat, item.title, currentUser?.major || '경영학과', currentUser?.studentType || '재학생'),
             catRaw: item.cat || '',
             credits: parseInt(item.credits, 10) || 3,
             grade: normalizeGrade(item.grade),
@@ -8474,9 +9274,13 @@ ${rawText}`;
       const credSelect = document.getElementById('bask-cred-input');
       const curMajor = currentUser ? currentUser.major : '경영학과';
 
+      const defaultCat = (typeof getAvailableCourseCategories === 'function')
+        ? getAvailableCourseCategories(currentUser).defaultMajorCat
+        : (curMajor === '경영학과' ? '경영_전선' : '전선');
+
       const newCourse = {
         title: query.trim(),
-        cat: catSelect ? catSelect.value : (curMajor === '경영학과' ? '경영_전선' : '전선'),
+        cat: (catSelect && catSelect.value) ? catSelect.value : defaultCat,
         credits: credSelect ? parseInt(credSelect.value, 10) : 3,
         dept: curMajor || '사용자 직접추가'
       };
