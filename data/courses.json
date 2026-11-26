@@ -11519,5 +11519,406 @@
     "cat": "전선",
     "dept": "글로벌비즈니스전공",
     "semester": "1학기"
+  },
+  {
+    "code": "504425",
+    "title": "생명과학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504241",
+    "title": "세포생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504225",
+    "title": "분자유전학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "636505",
+    "title": "생명과학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504305",
+    "title": "분자생물학실험법",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504231",
+    "title": "단백체학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504431",
+    "title": "캡스톤디자인생물학연구I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504436",
+    "title": "Genomics",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504397",
+    "title": "후성유전학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504430",
+    "title": "생물정보학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504244",
+    "title": "분자면역학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504240",
+    "title": "암생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504435",
+    "title": "헬스케어제품의생리효능평가",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504395",
+    "title": "생물다양성",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504224",
+    "title": "식물계통학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504443",
+    "title": "식물계통학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504412",
+    "title": "식물생리학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504320",
+    "title": "식물발달생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504234",
+    "title": "유용식물학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "504243",
+    "title": "미생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504223",
+    "title": "응용미생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504413",
+    "title": "동물생리학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "생명과학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "005073",
+    "title": "기초생명과학및실험I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507003",
+    "title": "기초유전학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507004",
+    "title": "단백질생화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507007",
+    "title": "기초생화학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507518",
+    "title": "유전자면역세포치료개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507311",
+    "title": "세포생물학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507010",
+    "title": "유전자론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "507424",
+    "title": "시스템대사생화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "507312",
+    "title": "면역학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507009",
+    "title": "유전생화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507215",
+    "title": "유전자조작론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507317",
+    "title": "기초생화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507519",
+    "title": "면역학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507512",
+    "title": "캡스톤디자인-의생명과학연구I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507321",
+    "title": "인간과미생물",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "504210",
+    "title": "질환유전체학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507324",
+    "title": "의생명과학특론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "507226",
+    "title": "Trends in Biotechnology",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "507510",
+    "title": "암생물학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "507114",
+    "title": "세포배양및세포조작기법실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "bmd_unconf_01",
+    "title": "분자생물학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "507326",
+    "title": "인체질환생화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "바이오메디컬학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "508212",
+    "title": "식품미생물학및실험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "508303",
+    "title": "식품가공학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "508102",
+    "title": "기초영양학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "508301",
+    "title": "영양생화학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "508321",
+    "title": "지역사회영양학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "508429",
+    "title": "영양교육및상담실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "식품영양학과",
+    "semester": "1학기"
   }
 ]

@@ -3028,5 +3028,1891 @@
         "subMajorNote": "졸업 기준(p.233-235): 전공기초 6과목 + 전필 3과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS, 오디세이세미나3) + 2026졸업~ 캡스톤 2과목(GLOBAL MARKET ANALYSIS, AI-글로벌비즈니스융합연구) + 졸업시험(각 70점+, B0+/TESAT 170+ 면제) + TOEIC 850+(TOEFL iBT 80+/4.5+, IELTS 6.5+ 대체)."
       }
     }
+  },
+  "생명과학과": {
+    "department": "생명과학과",
+    "college": "의생명과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 의생명과학대학 생명과학과 공식 모듈형 전공트랙 7개(오믹스 4개 + 바이오헬스케어 3개, 선택제·이수증 발급)입니다. 각 트랙은 5개 모듈별 2과목 이상 이수 시 이수증이 발급되며, 졸업 시에는 오디세이세미나3 이수가 필수이고 졸업시험·논문은 없습니다(19학번~).",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-157], information/26년 한림대학교_의생명과학대학_생명과학과_리플릿_단면.pdf [p.1-4]",
+    "sourceQuote": "4. 모듈형 전공트랙 — 계통진화오믹스(a+b+c+d+f), 식물오믹스(a+b+c+d+g), 미생물오믹스(a+b+c+d+h), 동물오믹스(a+b+c+d+i), 식물소재바이오헬스케어(a+b+c+e+g), 미생물소재바이오헬스케어(a+b+c+e+h), 동물소재바이오헬스케어(a+b+c+e+i): 필수교과목 없음, 모듈당 2과목 이상 이수",
+    "unconfirmedNote": "'식물계통학실험(504443)'은 2026 대학안내책자 p.153 모듈표(3-2-2)와 p.156 교과과정표(2-0-4) 간 학점 표기 차이가 있어 p.156(2학점) 기준으로 반영되었습니다(수강신청 전 학점 확인 필요). 또한 p.153 '단백체학실험법'은 p.156 공식 교과목명 '단백체학실험(504231)'으로 매핑되었으며, 트랙 이수의 필수/선택 여부는 p.157 졸업기준에 졸업필수로 미기재되어 선택제(이수증 발급)로 안내됩니다.",
+    "tracks": {
+      "계통진화오믹스": {
+        "id": "계통진화오믹스",
+        "title": "계통진화오믹스 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "다중오믹스 분석 역량에 생물다양성·계통분류·진화생물학을 결합한 생물자원 유전체 연구 트랙",
+        "careers": "국립생물자원관, 마크로젠·이바이오젠·Illumina, 유전체/생물다양성 연구원",
+        "recommendedDoubleMajors": "빅데이터전공, 임상의학통계전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "계통진화오믹스 전공트랙 | a+b+c+d+f | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 오믹스생물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504436",
+                "title": "Genomics",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504397",
+                "title": "후성유전학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504430",
+                "title": "생물정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 생물계통진화",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504395",
+                "title": "생물다양성",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504224",
+                "title": "식물계통학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504443",
+                "title": "식물계통학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504417",
+                "title": "진화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "식물오믹스": {
+        "id": "식물오믹스",
+        "title": "식물오믹스 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "유전체·후성유전·생물정보학 기반의 식물생리·발달·유용식물 오믹스 연구 특화 트랙",
+        "careers": "유전체 분석 기업(마크로젠·Illumina), 농촌진흥청·국립수목원, 식물 연구원",
+        "recommendedDoubleMajors": "빅데이터전공, 임상의학통계전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "식물오믹스 전공트랙 | a+b+c+d+g | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 오믹스생물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504436",
+                "title": "Genomics",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504397",
+                "title": "후성유전학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504430",
+                "title": "생물정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 식물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504412",
+                "title": "식물생리학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504320",
+                "title": "식물발달생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504234",
+                "title": "유용식물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "미생물오믹스": {
+        "id": "미생물오믹스",
+        "title": "미생물오믹스 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "미생물학·응용미생물·마이크로바이옴과 다중오믹스 분석을 융합한 마이크로바이옴 연구 트랙",
+        "careers": "유전체/마이크로바이옴 연구소, 제약·바이오 R&D, QC/QA",
+        "recommendedDoubleMajors": "빅데이터전공, 임상의학통계전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "미생물오믹스 전공트랙 | a+b+c+d+h | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 오믹스생물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504436",
+                "title": "Genomics",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504397",
+                "title": "후성유전학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504430",
+                "title": "생물정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 미생물소재개발",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504243",
+                "title": "미생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504223",
+                "title": "응용미생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504437",
+                "title": "HUMAN MICROBIOME",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "동물오믹스": {
+        "id": "동물오믹스",
+        "title": "동물오믹스 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "동물생리·발생생물학·신경생물학과 다중오믹스 데이터를 결합한 생명현상 규명 트랙",
+        "careers": "대학병원·국공립 임상연구소, 유전체 분석 기업, 대학원 진학",
+        "recommendedDoubleMajors": "빅데이터전공, 임상의학통계전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "동물오믹스 전공트랙 | a+b+c+d+i | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 오믹스생물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504436",
+                "title": "Genomics",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504397",
+                "title": "후성유전학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504430",
+                "title": "생물정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "i",
+            "name": "모듈 i: 동물발달생리",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504413",
+                "title": "동물생리학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504242",
+                "title": "발생생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "636508",
+                "title": "신경생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "식물소재바이오헬스케어": {
+        "id": "식물소재바이오헬스케어",
+        "title": "식물소재바이오헬스케어 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "유용식물·천연물 소재와 바이오헬스케어 효능평가를 결합한 건강기능식품·화장품·의약품 개발 트랙",
+        "careers": "테라젠바이오·유바이오로직스·휴젤·바디텍메드, 바이오헬스 제품 개발/QC/QA",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "식물소재바이오헬스케어 전공트랙 | a+b+c+e+g | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 바이오헬스케어",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636507",
+                "title": "생명공학의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504244",
+                "title": "분자면역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504240",
+                "title": "암생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504435",
+                "title": "헬스케어제품의생리효능평가",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 식물학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504412",
+                "title": "식물생리학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504320",
+                "title": "식물발달생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504234",
+                "title": "유용식물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "미생물소재바이오헬스케어": {
+        "id": "미생물소재바이오헬스케어",
+        "title": "미생물소재바이오헬스케어 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "미생물·마이크로바이옴 소재와 바이오의약품·면역·효능평가를 융합한 바이오헬스 산업 트랙",
+        "careers": "제약·바이오의약품 개발사, 건강기능식품·화장품 기업, QC/QA/마케팅",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "미생물소재바이오헬스케어 전공트랙 | a+b+c+e+h | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 바이오헬스케어",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636507",
+                "title": "생명공학의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504244",
+                "title": "분자면역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504240",
+                "title": "암생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504435",
+                "title": "헬스케어제품의생리효능평가",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 미생물소재개발",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504243",
+                "title": "미생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504223",
+                "title": "응용미생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504437",
+                "title": "HUMAN MICROBIOME",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      },
+      "동물소재바이오헬스케어": {
+        "id": "동물소재바이오헬스케어",
+        "title": "동물소재바이오헬스케어 전공트랙",
+        "dept": "생명과학과",
+        "model": "modular",
+        "desc": "동물발달·생리·신경생물학 기반 바이오의약품·암·면역·맞춤형 헬스케어 개발 트랙",
+        "careers": "바이오의약품 개발 기업(휴젤·바디텍메드), 병원 임상연구소, 바이오헬스 R&D",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 자기설계융합전공",
+        "certifications": "생물분류기사, 바이오화학제품제조기사, 실험동물기술원",
+        "requirementSummary": "지정 5개 모듈당 2과목 이상 이수 (필수 교과목 없음, 총 10과목 이상, 이수증 발급)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-156]",
+        "sourceQuote": "동물소재바이오헬스케어 전공트랙 | a+b+c+e+i | 필수: 없음 | 모듈당 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504425",
+                "title": "생명과학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504426",
+                "title": "생명과학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "005080",
+                "title": "바이오잉글리쉬랩",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심생명과학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504241",
+                "title": "세포생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504424",
+                "title": "기초분자생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504225",
+                "title": "분자유전학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504239",
+                "title": "생화학및실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 생물학실험법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636505",
+                "title": "생명과학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504305",
+                "title": "분자생물학실험법",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504231",
+                "title": "단백체학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504431",
+                "title": "캡스톤디자인생물학연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "636506",
+                "title": "캡스톤디자인생물학연구II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 바이오헬스케어",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "636507",
+                "title": "생명공학의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504244",
+                "title": "분자면역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504240",
+                "title": "암생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "504435",
+                "title": "헬스케어제품의생리효능평가",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "i",
+            "name": "모듈 i: 동물발달생리",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "504413",
+                "title": "동물생리학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "504242",
+                "title": "발생생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "636508",
+                "title": "신경생물학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.156-157): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 2019학번~ 졸업시험·논문 없음(2018학번까지는 구 기준 택 1 적용 가능)."
+      }
+    }
+  },
+  "바이오메디컬학과": {
+    "department": "바이오메디컬학과",
+    "college": "의생명과학대학",
+    "model": "credit_threshold",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 의생명과학대학 바이오메디컬학과 공식 2대 전공역량 트랙(선택제, 바이오메디컬학과 전공 33학점 이상 이수)입니다. 트랙 이수는 필수가 아니며, 졸업 시 오디세이세미나3 이수가 필수이고 졸업논문·시험은 없습니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.158-164], information/26년 한림대학교_의생명과학대학_바이오메디컬학과_리플릿_단면.pdf [p.1-4]",
+    "sourceQuote": "3. 전공역량 트랙별 교과과정 및 졸업인증 기준 — 엘리트 생명과학자 / 현장실무 전문가 | 전공, 복수전공자: 바이오메디컬학과 전공 33학점 이상 이수 ※ 트랙 이수는 필수가 아닌 선택임",
+    "unconfirmedNote": "현장실무 전문가 트랙의 '분자생물학실험'은 2026 대학안내책자 p.159 트랙표에 기재되어 있으나 p.162 교과과정표에 6자리 코드 및 개설학기가 미기재되어 '미확인'으로 표시됩니다. 또한 '세포배양및세포조작기법실험(507114)'은 p.160(2학점)과 p.162(3학점) 간 표기 차이가 있어 p.162(3학점) 기준으로 반영되었습니다.",
+    "tracks": {
+      "엘리트생명과학자": {
+        "id": "엘리트생명과학자",
+        "title": "엘리트 생명과학자 트랙",
+        "dept": "바이오메디컬학과",
+        "model": "credit_threshold",
+        "desc": "생명현상·질병발생 원리 규명과 심화 연구실험·캡스톤을 통해 국내외 대학원 진학 및 전문 연구인력을 양성하는 트랙",
+        "careers": "국내외 대학원 진학, 국공립·정부출연·제약회사·대학병원 연구소 연구원, 임상/비임상 CRO",
+        "recommendedDoubleMajors": "생명과학과, 데이터사이언스학부, 바이오헬스케어융합전공",
+        "certifications": "실험동물기술원 1·2급, 바이오화학제품제조기사",
+        "requirementSummary": "트랙 교과목 포함 바이오메디컬학과 전공 33학점 이상 이수 (선택제)",
+        "minTotalCredits": 33,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.159-160, p.162]",
+        "sourceQuote": "전공역량 트랙1: 엘리트 생명과학자 | 전공, 복수전공자: 바이오메디컬학과 전공 33학점 이상 이수 ※ 트랙 이수는 필수가 아닌 선택임",
+        "foundationCourses": [
+          {
+            "code": "005073",
+            "title": "기초생명과학및실험I",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "005083",
+            "title": "기초생명과학및실험II",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "009062",
+            "title": "생체유기화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "507003",
+            "title": "기초유전학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507004",
+            "title": "단백질생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507008",
+            "title": "기초유전학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507007",
+            "title": "기초생화학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507518",
+            "title": "유전자면역세포치료개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507311",
+            "title": "세포생물학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507010",
+            "title": "유전자론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507424",
+            "title": "시스템대사생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507417",
+            "title": "바이러스학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507507",
+            "title": "기초조직학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507312",
+            "title": "면역학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507009",
+            "title": "유전생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507215",
+            "title": "유전자조작론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507317",
+            "title": "기초생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507519",
+            "title": "면역학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507512",
+            "title": "캡스톤디자인-의생명과학연구I",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507321",
+            "title": "인간과미생물",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507509",
+            "title": "조직분석실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "504210",
+            "title": "질환유전체학개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507508",
+            "title": "의생명정보분석기법",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507513",
+            "title": "캡스톤디자인-의생명과학연구II",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507511",
+            "title": "줄기세포생물학개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507324",
+            "title": "의생명과학특론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.162-163): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 졸업논문/시험 없음. 캡스톤디자인-의생명과학연구I·II는 사전 지도교수 실험실 허락 필요."
+      },
+      "현장실무전문가": {
+        "id": "현장실무전문가",
+        "title": "현장실무 전문가 트랙",
+        "dept": "바이오메디컬학과",
+        "model": "credit_threshold",
+        "desc": "바이오 산업체·병원·CRO 현장의 효능분석, 제품 분석, 품질관리(QA/QC), 인허가 실무 전문가를 양성하는 산학연계 트랙",
+        "careers": "바이오벤처·제약회사 관리/영업/품질관리/인허가/기술마케팅, 생명과학 기기·시약회사, 병원",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 경영학과, 식품영양학과",
+        "certifications": "실험동물기술원 1·2급, 바이오화학제품제조기사",
+        "requirementSummary": "트랙 교과목 포함 바이오메디컬학과 전공 33학점 이상 이수 (선택제)",
+        "minTotalCredits": 33,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.159-160, p.162]",
+        "sourceQuote": "전공역량 트랙2: 현장실무 전문가 | 전공, 복수전공자: 바이오메디컬학과 전공 33학점 이상 이수 ※ 트랙 이수는 필수가 아닌 선택임",
+        "foundationCourses": [
+          {
+            "code": "005073",
+            "title": "기초생명과학및실험I",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "005083",
+            "title": "기초생명과학및실험II",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "009062",
+            "title": "생체유기화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "507003",
+            "title": "기초유전학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507004",
+            "title": "단백질생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507008",
+            "title": "기초유전학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507518",
+            "title": "유전자면역세포치료개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507311",
+            "title": "세포생물학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507226",
+            "title": "Trends in Biotechnology",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507010",
+            "title": "유전자론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507424",
+            "title": "시스템대사생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507510",
+            "title": "암생물학개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507215",
+            "title": "유전자조작론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507114",
+            "title": "세포배양및세포조작기법실험",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "bmd_unconf_01",
+            "title": "분자생물학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "미확인",
+            "codeStatus": "미확인"
+          },
+          {
+            "code": "507506",
+            "title": "줄기세포실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507224",
+            "title": "고등생화학실험",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "504210",
+            "title": "질환유전체학개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "507508",
+            "title": "의생명정보분석기법",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507520",
+            "title": "발생유전자조절",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "507326",
+            "title": "인체질환생화학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.162-163): 전공필수 오디세이세미나3(006175, 복수전공필수 없음), 졸업논문/시험 없음. 캡스톤디자인-의생명과학연구I·II는 사전 지도교수 실험실 허락 필요."
+      }
+    }
+  },
+  "식품영양학과": {
+    "department": "식품영양학과",
+    "college": "의생명과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 의생명과학대학 식품영양학과 공식 모듈형 전공트랙 2개(선택제·이수증 발급: 식품위생가공, 지역사회응용영양)입니다. (2026 리플릿 진로 트랙 '영양사/영양교사'·'식품회사/연구소/위생직공무원'과 연계되며, 졸업 시에는 오디세이세미나3 및 졸업시험·어학·자격증 중 택 1 충족이 필수입니다.)",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.171-175], information/26년 한림대학교_의생명과학대학_식품영양학과_리플릿_단면.pdf [p.2-3]",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 식품위생가공 트랙(a+b: 식품가공학·식품위생학 필수, a·b 모듈 전체 이수), 지역사회응용영양 트랙(d+e: d 모듈 중 3과목 + e 모듈 전체 이수, 지역사회영양학 필수)",
+    "unconfirmedNote": null,
+    "tracks": {
+      "식품위생가공": {
+        "id": "식품위생가공",
+        "title": "식품위생가공 트랙",
+        "dept": "식품영양학과",
+        "model": "modular",
+        "desc": "식품제조·가공·미생물·식품위생법규 및 품질관리 업무를 수행하는 식품기업·위생직 전문가 양성 트랙",
+        "careers": "농심·서흥·노바렉스 등 식품·건강기능식품 제조사(품질관리/R&D), 지자체 식품위생직 공무원",
+        "recommendedDoubleMajors": "행정학, 바이오헬스케어융합전공",
+        "certifications": "식품기사(식품안전기사), 위생사",
+        "requirementSummary": "모듈 a(식품위생) 전체 3과목 + 모듈 b(식품가공) 전체 3과목 이수 (필수: 식품가공학, 식품위생학 / 총 6과목 18학점)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "식품가공학",
+          "식품위생학"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.171-173]",
+        "sourceQuote": "식품위생가공 트랙 | a + b | 필수: 식품가공학, 식품위생학 | 이수요건: a, b 모듈 전체 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 식품위생",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "215118",
+                "title": "공중보건학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "508208",
+                "title": "식품위생관계법규",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "508327",
+                "title": "식품위생학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 식품가공",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "508201",
+                "title": "식품학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "508212",
+                "title": "식품미생물학및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508303",
+                "title": "식품가공학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.174, 리플릿 p.3): 전공필수 오디세이세미나3(006175, 복수전공필수 없음) + ① 졸업시험(복수전공 33학점 이수 시 합격) ② 졸업논문(대학원 진학·외국인·졸업유보생) ③ 어학(TOEIC 700+, OPIc IM2+ 등) ④ 식품기사·영양사 자격증 중 택 1 충족 필수."
+      },
+      "지역사회응용영양": {
+        "id": "지역사회응용영양",
+        "title": "지역사회응용영양 트랙",
+        "dept": "식품영양학과",
+        "model": "modular",
+        "desc": "기초·고급영양학 지식을 바탕으로 지역사회 영양중재·교육·상담·판정 실무를 수행하는 응용영양 전문가 트랙",
+        "careers": "지역사회영양사, 보건소 영양사, 어린이·사회복지급식관리지원센터, 학교영양(교)사, 상담영양사",
+        "recommendedDoubleMajors": "사회복지학부, 바이오헬스케어융합전공, 데이터사이언스학부",
+        "certifications": "영양사, 영양교사(2급), 조리사",
+        "requirementSummary": "모듈 d(영양) 4과목 중 3과목 + 모듈 e(지역사회영양) 전체 3과목 이수 (필수: 지역사회영양학 / 총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "지역사회영양학"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.171-173]",
+        "sourceQuote": "지역사회응용영양 트랙 | d + e | 필수: d 모듈 중 3과목, 지역사회영양학 | 이수요건: d 모듈 중 3과목 + e 모듈 전체 이수",
+        "modules": [
+          {
+            "code": "d",
+            "name": "모듈 d: 영양",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "636702",
+                "title": "영양학용어",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508102",
+                "title": "기초영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508301",
+                "title": "영양생화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508325",
+                "title": "고급영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 지역사회영양",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "508321",
+                "title": "지역사회영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508429",
+                "title": "영양교육및상담실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "508413",
+                "title": "영양판정및실험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.174, 리플릿 p.3): 전공필수 오디세이세미나3(006175, 복수전공필수 없음) + ① 졸업시험(복수전공 33학점 이수 시 합격) ② 졸업논문(대학원 진학·외국인·졸업유보생) ③ 어학(TOEIC 700+, OPIc IM2+ 등) ④ 식품기사·영양사 자격증 중 택 1 충족 필수."
+      }
+    }
   }
 }

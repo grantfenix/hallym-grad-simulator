@@ -1100,5 +1100,109 @@
       "global_ge_note": "글로벌학부 지정 필수교양 26학점(글로벌소통 고급 1과목 포함, BASIC SPANISH 1·2 또는 중국어/일어 1·2 대체). 세부 교양 6자리 코드는 2026 대학안내책자 p.234 미기재(미확인).",
       "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.228-235]"
     }
+  },
+  "생명과학과": {
+    "department": "생명과학과",
+    "college": "의생명과학대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ]
+    },
+    "special_conditions": {
+      "graduation_thesis": "없음 (2019학번~ 졸업시험·논문 없음. 단, 2018학번까지 구 기준 적용 가능: 졸업시험(캡스톤디자인 생물학연구 이수 시 통과)·취업증명서·전공자격증·공인외국어 점수 중 택 1).",
+      "nano_degree": "바이오시스템소재 나노디그리(9학점 필수: 유용식물학 504234, 응용미생물학및실험 504223, 바이오헬스산업특론 636509).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.153-157], information/26년 한림대학교_의생명과학대학_생명과학과_리플릿_단면.pdf [p.1-4]"
+    }
+  },
+  "바이오메디컬학과": {
+    "department": "바이오메디컬학과",
+    "college": "의생명과학대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ]
+    },
+    "special_conditions": {
+      "graduation_thesis": "없음 (2026 대학안내책자 p.163 [졸업논문/시험] 없음).",
+      "capstone_note": "캡스톤디자인-의생명과학연구I(507512)·II(507513)는 사전에 학과 교수 1인의 실험실 수강 허락 후 수강신청 필수.",
+      "nano_degree": "정밀의과학 나노디그리(9학점 선택 3: 의약신소재특강 716000, 치료용생체고분자 716001, 유전자면역세포치료개론 507518, 줄기세포생물학개론 507511).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.158-164], information/26년 한림대학교_의생명과학대학_바이오메디컬학과_리플릿_단면.pdf [p.1-4]"
+    }
+  },
+  "식품영양학과": {
+    "department": "식품영양학과",
+    "college": "의생명과학대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ]
+    },
+    "special_conditions": {
+      "graduation_exam_or_cert": "아래 조건 중 택 1 충족: ① 졸업시험(연 1회 11월경, 영양사 국시 기준 준용; 복수전공생 33학점 이수 시 합격) ② 졸업논문(본교 대학원 진학생·외국인·졸업유보생 한정) ③ 어학(TOEIC 700+, TEPS 560+, New TEPS 305+, TOEFL iBT 80+, IELTS 6.5+, TOEIC Speaking 120+, OPIc IM2+) ④ 식품기사(식품안전기사) 또는 영양사 자격증 취득.",
+      "teaching_cert": "영양교사(2급) 교직과정 운영(2004학번~).",
+      "nano_degree": "바이오헬스케어 소재 개발 및 실무 나노디그리(9학점 선택 3: 건강기능식품개발실무 508519, 헬스케어실무 520015, 인체질환건강기능식품학 508521, 건강기능식품소재개발효능평가실무 508520).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.171-175], information/26년 한림대학교_의생명과학대학_식품영양학과_리플릿_단면.pdf [p.2-3]"
+    }
   }
 }
