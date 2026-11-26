@@ -464,6 +464,7 @@
     let graduationRules = cfg.graduationRules || null;
     let gyoyangRules = cfg.gyoyangRules || null;
     let coursesList = cfg.courses || null;
+    let deptTracks = cfg.tracks || null;
 
     if (!ragIndex) {
       if (typeof window !== 'undefined' && window.HALLYM_RAG_INDEX) ragIndex = window.HALLYM_RAG_INDEX;
@@ -486,6 +487,11 @@
           coursesList = Array.isArray(rawC) ? rawC : (rawC.courses || []);
         } catch (e) {}
       }
+    }
+    if (!deptTracks) {
+      if (typeof window !== 'undefined' && window.HALLYM_TRACKS) deptTracks = window.HALLYM_TRACKS;
+      else if (typeof globalThis !== 'undefined' && globalThis.HALLYM_TRACKS) deptTracks = globalThis.HALLYM_TRACKS;
+      else if (typeof require !== 'undefined') { try { deptTracks = require('../data/tracks.json'); } catch (e) {} }
     }
 
     const chunks = (ragIndex && Array.isArray(ragIndex.chunks)) ? ragIndex.chunks : [];
@@ -1950,6 +1956,56 @@
           sections = { headline, nextActions, remainingSummary: userMajor === '경영학과' ? remSummary : null, disclaimer: t.portalDisclaimer };
           const direct = [...findDirectChunks('information/경영학과.pdf', ['비즈니스인텔리젼스', '의료경영'], 2), ...findDirectChunks('information/경영대학.txt', ['비즈니스인텔리젼스', '의료경영'], 1)];
           sources = buildCitations(direct, ['트랙', '비즈니스인텔리젼스', '의료경영', ...qTok.words], 3);
+          grounded = sources.length > 0;
+        } else if (deptTracks && deptTracks[targetDept] && deptTracks[targetDept].tracks) {
+          const dMeta = deptTracks[targetDept];
+          const trackList = Object.values(dMeta.tracks);
+          const qWithoutDept = normStr(trimmedQuery.replace(new RegExp(targetDept, 'g'), ''));
+          const specific = trackList.find((tr) => {
+            const idNorm = normStr(String(tr.id || '').replace(/[·/\s]/g, ''));
+            const titleNorm = normStr(String(tr.title || '').replace(/[·/\s()트랙]/g, ''));
+            return (idNorm.length >= 2 && qWithoutDept.includes(idNorm)) || (titleNorm.length >= 3 && qWithoutDept.includes(titleNorm));
+          });
+
+          let headline = '';
+          const nextActions = [];
+          if (specific) {
+            headline =
+              lang === 'en' ? `${targetDept} **${specific.title}** — ${specific.desc}` :
+              lang === 'ru' ? `Трек **${specific.title}** (${targetDept}) — ${specific.desc}` :
+              lang === 'zh' ? `${targetDept} **${specific.title}** — ${specific.desc}` :
+              `${targetDept} **${specific.title}**은 ${specific.desc}이에요.`;
+            if (specific.requirementSummary) nextActions.push(`이수 기준: ${specific.requirementSummary}`);
+            if (specific.careers) nextActions.push(`주요 진로: ${specific.careers}`);
+            if (specific.subMajorNote) nextActions.push(`졸업 인정교과목: ${specific.subMajorNote}`);
+            if (specific.sourceQuote) nextActions.push(`공식 원문: "${specific.sourceQuote}"`);
+          } else {
+            const modelLabel = dMeta.model === 'modular' ? '모듈형 전공 트랙' : '전공역량 트랙';
+            headline =
+              lang === 'en' ? `${targetDept} operates **${trackList.length} official tracks** (optional).` :
+              lang === 'ru' ? `На факультете ${targetDept} действует **${trackList.length} официальных треков** (по выбору).` :
+              lang === 'zh' ? `${targetDept}共设有 **${trackList.length} 个官方培养方向**（选修制）。` :
+              `${targetDept}는 공식 ${modelLabel} **${trackList.length}개**를 운영해요 (선택제).`;
+            trackList.forEach((tr) => {
+              nextActions.push(`**${tr.title}**: ${tr.requirementSummary || tr.desc}`);
+            });
+            if (dMeta.unconfirmedNote) {
+              nextActions.push(`※ 미확인 항목: ${dMeta.unconfirmedNote}`);
+            }
+          }
+
+          sections = { headline, nextActions, remainingSummary: targetDept === userMajor ? remSummary : null, disclaimer: t.portalDisclaimer };
+          const ragHits = search(`${targetDept} 트랙 모듈 교과과정`, { dept: targetDept, topics: ['트랙', '전공'], topK: 2 });
+          const builtCitations = buildCitations(ragHits, ['트랙', '모듈', targetDept, ...qTok.words], 2);
+          const primaryCitation = {
+            id: `tracks:${targetDept}${specific ? ':' + specific.id : ''}`,
+            source: (specific && specific.sourceRef) || dMeta.sourceRef || 'data/tracks.json',
+            loc: 'tracks.json',
+            dept: targetDept,
+            score: 10.0,
+            quote: (specific && specific.sourceQuote) || dMeta.sourceQuote || dMeta.bannerNote || ''
+          };
+          sources = [primaryCitation, ...builtCitations].slice(0, 3);
           grounded = sources.length > 0;
         } else {
           const ragHits = search(`${targetDept} 트랙 로드맵 진로 교육과정`, { dept: targetDept, topics: ['트랙', '전공'], topK: 3 });

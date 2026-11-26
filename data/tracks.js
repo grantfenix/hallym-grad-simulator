@@ -1,0 +1,2115 @@
+// Hallym University Multi-Department Official Track Definitions (Phase 2: SW, DataScience, AdPR, Finance)
+// Business Administration 6 tracks remain in index.html TRACK_DEFINITIONS for 100% backward compatibility.
+(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_TRACKS = {
+  "소프트웨어학부": {
+    "department": "소프트웨어학부",
+    "college": "정보과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 소프트웨어학부 공식 모듈형 전공트랙(선택제, 이수증 발급)입니다. 모듈·트랙 이수는 필수가 아니며, 졸업 시에는 소프트웨어캡스톤디자인(또는 취업연계SW실무) + 세부전공 인정교과목 1과목(총 6학점) 및 오디세이세미나3 이수가 필수입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.192-193, p.196, p.198, p.202], information/학과별_졸업기준/졸업기준_소프트웨어학부.pdf [p.1-3]",
+    "sourceQuote": "※모듈 및 트랙 이수는 필수가 아님 / 빅데이터AI융합 트랙(a+b), IoT네트워크통신 트랙(c+d), VR/AR/게임개발 트랙(f+g), 웹 트랙(e+I): 각 모듈별 6학점 이상 이수 (트랙 이수조건 충족 시 이수증 발급)",
+    "unconfirmedNote": null,
+    "tracks": {
+      "빅데이터AI융합": {
+        "id": "빅데이터AI융합",
+        "title": "빅데이터AI융합 트랙",
+        "dept": "소프트웨어학부",
+        "model": "modular",
+        "desc": "빅데이터/클라우드와 인공지능 분야 특화 교육과정을 통해 빅데이터 구축·분석 및 AI 소프트웨어 개발 역량을 기르는 모듈형 트랙",
+        "careers": "소프트웨어 개발자, 빅데이터 구축·관리 전문가, AI 소프트웨어 개발자",
+        "recommendedDoubleMajors": "빅데이터 전공, 콘텐츠IT 전공, 스마트IoT 전공",
+        "certifications": "정보처리기사, 빅데이터분석기사, SQLD, ADsP",
+        "requirementSummary": "모듈 a(빅데이터) 6학점 이상 + 모듈 b(인공지능) 6학점 이상 (총 12학점 이상, 18학점 이내)",
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.192-193]",
+        "sourceQuote": "빅데이터AI융합 트랙 | a + b | 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 빅데이터",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "603126",
+                "title": "데이터사이언스기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603111",
+                "title": "데이터베이스기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "600007",
+                "title": "데이터베이스시스템",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "600005",
+                "title": "빅데이터개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 인공지능",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "603138",
+                "title": "인공지능기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506209",
+                "title": "머신러닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506417",
+                "title": "머신러닝응용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "600004",
+                "title": "딥러닝이론및응용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "빅데이터전공 졸업 인정교과목(9종 중 1과목+ 및 소프트웨어캡스톤디자인 필수): 빅데이터개론, 데이터시각화, 데이터마이닝, 머신러닝, 자연언어처리(구 텍스트정보처리), 클라우드컴퓨팅, 딥러닝이론및응용, 네트워크보안, 시스템보안"
+      },
+      "IoT네트워크통신": {
+        "id": "IoT네트워크통신",
+        "title": "IoT네트워크통신 트랙",
+        "dept": "소프트웨어학부",
+        "model": "modular",
+        "desc": "IoT 생태계에서 기기 간 아키텍처, 임베디드, 데이터 보안 및 효율적 통신 기술을 체계적으로 학습하는 모듈형 트랙",
+        "careers": "네트워크 통신 개발직, 임베디드시스템 개발직, IoT 플랫폼 서비스직",
+        "recommendedDoubleMajors": "빅데이터 전공, 콘텐츠IT 전공, 스마트IoT 전공",
+        "certifications": "정보통신기사, 정보처리기사, 전자계산기기사",
+        "requirementSummary": "모듈 c(IoT네트워크) 6학점 이상 + 모듈 d(IoT통신) 6학점 이상 (총 12학점 이상)",
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.192-193]",
+        "sourceQuote": "IoT네트워크통신 트랙 | c + d | 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: IoT네트워크",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "602106",
+                "title": "IoT네트워크",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "602104",
+                "title": "IoT플랫폼설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506829",
+                "title": "임베디드시스템",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: IoT통신",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "602101",
+                "title": "디지털통신",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603132",
+                "title": "통신네트워크시스템",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603130",
+                "title": "시스템보안",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "스마트IoT전공 졸업 인정교과목(9종 중 1과목+ 및 소프트웨어캡스톤디자인 필수): IoT네트워크, 모바일센서공학, 모바일프로그래밍, 디지털통신, 네트워크보안, IoT플랫폼설계, 시스템보안, 통신네트워크시스템, 고급임베디드시스템"
+      },
+      "VR/AR/게임개발": {
+        "id": "VR/AR/게임개발",
+        "title": "VR/AR/게임개발 트랙",
+        "dept": "소프트웨어학부",
+        "model": "modular",
+        "desc": "3차원 그래픽스·가상현실·증강현실·게임엔진 기술을 활용해 실감형 콘텐츠와 게임을 제작하는 모듈형 트랙",
+        "careers": "VR/AR 플랫폼 SW 개발자, 멀티미디어 콘텐츠 기획자, 게임 개발자/기획자, UI/UX 개발자",
+        "recommendedDoubleMajors": "빅데이터 전공, 콘텐츠IT 전공, 스마트IoT 전공",
+        "certifications": "정보처리기사, 게임프로그래밍전문가",
+        "requirementSummary": "모듈 f(VR/AR) 6학점 이상 + 모듈 g(게임개발) 6학점 이상 (총 12학점 이상)",
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.192-193]",
+        "sourceQuote": "VR/AR/게임개발 트랙 | f + g | 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "f",
+            "name": "모듈 f: VR/AR",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "601101",
+                "title": "VR/AR/게임제작기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "601108",
+                "title": "가상현실과증강현실",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506836",
+                "title": "HCI",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 게임개발",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "603147",
+                "title": "3차원모델링",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506419",
+                "title": "컴퓨터그래픽스",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "601104",
+                "title": "게임프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "콘텐츠IT전공 졸업 인정교과목(9종 중 1과목+ 및 소프트웨어캡스톤디자인 필수): VR/AR/게임제작기초, 가상현실과증강현실, 컴퓨터그래픽스, 3차원모델링, 영상처리프로그래밍, 멀티미디어개론, 영상처리와딥러닝, 게임프로그래밍, HCI"
+      },
+      "웹": {
+        "id": "웹",
+        "title": "웹 트랙",
+        "dept": "소프트웨어학부",
+        "model": "modular",
+        "desc": "웹 프론트엔드·백엔드·서버 구축 및 심화 프로그래밍 역량을 강화하는 모듈형 트랙",
+        "careers": "프론트엔드 개발, 백엔드 개발, 풀스택 개발, UI/UX 디자인, 웹 프로젝트 관리",
+        "recommendedDoubleMajors": "빅데이터 전공, 콘텐츠IT 전공, 스마트IoT 전공",
+        "certifications": "정보처리기사, 웹디자인기능사",
+        "requirementSummary": "모듈 e(웹개발) 6학점 이상 + 모듈 I(프로그래밍심화) 6학점 이상 (총 12학점 이상)",
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.192-193]",
+        "sourceQuote": "웹 트랙 | e + I | 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "e",
+            "name": "모듈 e: 웹개발",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "506702",
+                "title": "웹프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603135",
+                "title": "웹서버구축",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603137",
+                "title": "웹프레임워크활용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "I",
+            "name": "모듈 I: 프로그래밍심화",
+            "minCredits": 6,
+            "courses": [
+              {
+                "code": "506812",
+                "title": "모바일프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506703",
+                "title": "윈도우프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506489",
+                "title": "시스템프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "603109",
+                "title": "프로그래밍스튜디오",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "소프트웨어학부 졸업 시 소프트웨어캡스톤디자인(3학점, 취업연계SW실무 대체 가능) + 소속 세부전공 인정교과목 1과목(총 6학점) 필수"
+      }
+    }
+  },
+  "데이터사이언스학부": {
+    "department": "데이터사이언스학부",
+    "college": "정보과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 데이터사이언스학부 공식 모듈형 전공트랙 6개(선택제, 각 18학점 이상 + 필수교과목 이수 시 이수증 발급)입니다. 졸업 시에는 오디세이세미나3 및 비교과 자율역량 5개 요건 중 1개 이상 충족이 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-214], information/학과별_졸업기준/졸업기준_데이터사이언스학부.txt [L64-75]",
+    "sourceQuote": "3. 전공역량 트랙별 교과과정 및 이수 기준(*트랙이수는 선택제) — DSC(c+d+l), CRDS(c+f+h), 보험계리사(f+j+k), 공공보건데이터 전문가(a+c+g), 빅데이터분석기사(a+d+f), DS연구원(a+e+f) 각 18학점 이상",
+    "unconfirmedNote": "일부 모듈 교과목의 6자리 교과목번호 및 개설학기는 2026 대학안내책자 p.213-214 모듈표에 미기재되어 '미확인'으로 표시됩니다.",
+    "tracks": {
+      "DSC": {
+        "id": "DSC",
+        "title": "DSC 트랙 (데이터과학융합)",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "Data Science Convergence — 데이터 핸들링, DS 코딩, 헬스케어·AI Case Study를 융합한 데이터 과학자 양성 트랙",
+        "careers": "IT Data Scientist, 빅데이터 분석가, 헬스케어 데이터 분석가",
+        "recommendedDoubleMajors": "데이터테크전공, 임상의학통계전공, 디지털금융정보전공",
+        "certifications": "ADsP, ADP, SQLD, 빅데이터분석기사",
+        "requirementSummary": "모듈 c + d + l 교과목 중 필수 2과목(통계적 알고리즘, 행렬과데이터분석) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "통계적 알고리즘",
+          "행렬과데이터분석"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-214]",
+        "sourceQuote": "DSC1)(데이터과학융합 트랙) | c + d + l | 필수: 통계적 알고리즘, 행렬과데이터분석 | 18학점 이상",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 데이터핸들링",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_05",
+                "title": "행렬과데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701007",
+                "title": "데이터구조와컴퓨팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_06",
+                "title": "기초프로그래밍:R",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_07",
+                "title": "데이터분석의수리적기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: DS코딩",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "505563",
+                "title": "응용프로그래밍:R",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_08",
+                "title": "통계적 알고리즘",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "712008",
+                "title": "데이터과학을위한파이썬",
+                "credits": 3,
+                "cat": "교양_정보소통",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "l",
+            "name": "모듈 l: DS헬스케어(Case Study)",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_30",
+                "title": "스포츠빅데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_31",
+                "title": "확률·통계기반 인공지능",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_32",
+                "title": "임상의학패널데이터CASESTUDY",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      },
+      "CRDS": {
+        "id": "CRDS",
+        "title": "CRDS 트랙 (임상연구 전문가)",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "Clinical Research Data Scientist — 임상시험 설계·의생명 데이터 통계모형 및 딥러닝 추론 전문가 양성 트랙",
+        "careers": "한림대의료원/대형병원 의학통계분석가, 제약/신약 데이터 연구원, 보건복지부·식약처",
+        "recommendedDoubleMajors": "임상의학통계전공, 바이오메디컬학과, 생명과학과",
+        "certifications": "ADsP, ADP, 사회조사분석사, 빅데이터분석기사",
+        "requirementSummary": "모듈 c + f + h 교과목 중 필수 2과목(통계적방법론:추정과검정, 딥러닝모델과추론) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "통계적방법론:추정과검정",
+          "딥러닝모델과추론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-214]",
+        "sourceQuote": "CRDS2)(임상연구 전문가 트랙) | c + f + h | 필수: 통계적방법론:추정과검정, 딥러닝모델과추론 | 18학점 이상",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 데이터핸들링",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_05",
+                "title": "행렬과데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701007",
+                "title": "데이터구조와컴퓨팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_06",
+                "title": "기초프로그래밍:R",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_07",
+                "title": "데이터분석의수리적기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 통계방법론",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_12",
+                "title": "통계적방법론:추정과검정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "505303",
+                "title": "회귀분석및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_13",
+                "title": "데이터조사기법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_14",
+                "title": "딥러닝모델과추론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 임상설계와분석",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_18",
+                "title": "실험계획과분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_19",
+                "title": "임상의학통계기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_20",
+                "title": "의생명데이터통계모형",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      },
+      "보험계리사": {
+        "id": "보험계리사",
+        "title": "보험계리사 트랙",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "통계방법론·보험수리학·데이터과학 기반 보험계리 및 리스크 분석 전문가 양성 트랙",
+        "careers": "보험계리사, 보험사/금융감독원/국민연금공단 데이터·계리 직무",
+        "recommendedDoubleMajors": "디지털금융정보전공, 금융재무학과, 경영학과",
+        "certifications": "보험계리사, AFPK, CFP, 손해사정사",
+        "requirementSummary": "모듈 f + j + k 교과목 중 필수 2과목(통계적방법론:추정과검정, 생명보험과데이터) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "통계적방법론:추정과검정",
+          "생명보험과데이터"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.214-215]",
+        "sourceQuote": "보험계리사 | f + j + k | 필수: 통계적방법론:추정과검정, 생명보험과데이터 | 18학점 이상",
+        "modules": [
+          {
+            "code": "f",
+            "name": "모듈 f: 통계방법론",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_12",
+                "title": "통계적방법론:추정과검정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "505303",
+                "title": "회귀분석및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_13",
+                "title": "데이터조사기법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_14",
+                "title": "딥러닝모델과추론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "j",
+            "name": "모듈 j: 보험수리학",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_24",
+                "title": "기초보험론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_25",
+                "title": "보험수리및연습I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_26",
+                "title": "보험수리및연습II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "k",
+            "name": "모듈 k: DS보험계리",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_27",
+                "title": "캡스톤디자인:데이터과학과보험계리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_28",
+                "title": "생명보험과데이터",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_29",
+                "title": "데이터과학입문",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      },
+      "공공보건데이터전문가": {
+        "id": "공공보건데이터전문가",
+        "title": "공공보건데이터 전문가 트랙",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "공공·보건 빅데이터 분석 및 윤리·비즈니스 활용 역량을 기르는 전문가 트랙",
+        "careers": "통계청, 건강보험공단, 건강보험심사평가원, 지자체 공공데이터 담당자",
+        "recommendedDoubleMajors": "데이터테크전공, 임상의학통계전공, 공공인재융합전공",
+        "certifications": "빅데이터분석기사, ADsP, 사회조사분석사",
+        "requirementSummary": "모듈 a + c + g 교과목 중 필수 2과목(다변량분석, 어드벤쳐디자인:공공데이터의 이해) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "다변량분석",
+          "어드벤쳐디자인:공공데이터의 이해"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-214]",
+        "sourceQuote": "공공보건데이터 전문가 | a + c + g | 필수: 다변량분석, 어드벤쳐디자인:공공데이터의 이해 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 빅데이터분석",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_01",
+                "title": "빅데이터시계열모형",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701020",
+                "title": "빅데이터마이닝:머신러닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_02",
+                "title": "다변량분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_03",
+                "title": "자료분석I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 데이터핸들링",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_05",
+                "title": "행렬과데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701007",
+                "title": "데이터구조와컴퓨팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_06",
+                "title": "기초프로그래밍:R",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_07",
+                "title": "데이터분석의수리적기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 공공데이터이해",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_15",
+                "title": "어드벤쳐디자인:공공데이터의 이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_16",
+                "title": "데이터윤리와암호",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_17",
+                "title": "캡스톤디자인:공공데이터활용과비즈니스",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      },
+      "빅데이터분석기사": {
+        "id": "빅데이터분석기사",
+        "title": "빅데이터분석기사 트랙",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "빅데이터분석기사 국가자격 및 실무 머신러닝·통계 모델링에 특화된 트랙",
+        "careers": "빅데이터 분석가, AI/ML 데이터 엔지니어, 기업 데이터 분석팀",
+        "recommendedDoubleMajors": "데이터테크전공, 소프트웨어학부, 경영학과",
+        "certifications": "빅데이터분석기사, ADsP, ADP, SQLD",
+        "requirementSummary": "모듈 a + d + f 교과목 중 필수 2과목(빅데이터시계열모형, 회귀분석및실습) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "빅데이터시계열모형",
+          "회귀분석및실습"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-216]",
+        "sourceQuote": "빅데이터분석기사 | a + d + f | 필수: 빅데이터시계열모형, 회귀분석및실습 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 빅데이터분석",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_01",
+                "title": "빅데이터시계열모형",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701020",
+                "title": "빅데이터마이닝:머신러닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_02",
+                "title": "다변량분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_03",
+                "title": "자료분석I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: DS코딩",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "505563",
+                "title": "응용프로그래밍:R",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_08",
+                "title": "통계적 알고리즘",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "712008",
+                "title": "데이터과학을위한파이썬",
+                "credits": 3,
+                "cat": "교양_정보소통",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 통계방법론",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_12",
+                "title": "통계적방법론:추정과검정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "505303",
+                "title": "회귀분석및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_13",
+                "title": "데이터조사기법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_14",
+                "title": "딥러닝모델과추론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      },
+      "DS연구원": {
+        "id": "DS연구원",
+        "title": "DS연구원 트랙 (대학원 진학)",
+        "dept": "데이터사이언스학부",
+        "model": "modular",
+        "desc": "확률·분포론·통계방법론·시계열 분석 등 이론 기반의 대학원 진학 및 연구원 양성 트랙",
+        "careers": "대학원 진학(석·박사), 데이터과학 연구소 연구원, 통계학자",
+        "recommendedDoubleMajors": "임상의학통계전공, 데이터테크전공",
+        "certifications": "ADP, 빅데이터분석기사, 사회조사분석사",
+        "requirementSummary": "모듈 a + e + f 교과목 중 필수 3과목(통계적사고와이해, 빅데이터시계열모형, 데이터분석분포론) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "통계적사고와이해",
+          "빅데이터시계열모형",
+          "데이터분석분포론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.213-214]",
+        "sourceQuote": "DS연구원(대학원 진학) | a + e + f | 필수: 통계적사고와이해, 빅데이터시계열모형, 데이터분석분포론 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 빅데이터분석",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_01",
+                "title": "빅데이터시계열모형",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "701020",
+                "title": "빅데이터마이닝:머신러닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_02",
+                "title": "다변량분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_03",
+                "title": "자료분석I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 확률과통계",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "701005",
+                "title": "데이터를 읽는 눈",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인"
+              },
+              {
+                "code": "701006",
+                "title": "통계적사고와이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_10",
+                "title": "신은주사위놀이를하지않는다",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_11",
+                "title": "데이터분석분포론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 통계방법론",
+            "minCredits": 0,
+            "courses": [
+              {
+                "code": "ds_mod_12",
+                "title": "통계적방법론:추정과검정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "505303",
+                "title": "회귀분석및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "ds_mod_13",
+                "title": "데이터조사기법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "ds_mod_14",
+                "title": "딥러닝모델과추론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "광고홍보학과": {
+    "department": "광고홍보학과",
+    "college": "사회과학대학",
+    "model": "credit_threshold",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 광고홍보학과 공식 3대 전공역량 트랙(선택제)입니다. 트랙 이수 시 전공필수 '광고홍보조사방법론(=IAA조사방법론)' 포함 최소 33학점 이수가 기준이며, IAA 디플로마 희망자는 I수준 6과목 + II수준 5과목(총 11과목, C0 이하 3과목 미만)을 충족해야 합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.109-113], information/학과별_졸업기준/졸업기준_광고홍보학과.txt [L32-55]",
+    "sourceQuote": "3. 전공역량 트랙별 교과과정 및 이수 기준 (트랙 이수는 필수가 아닌 선택임) — 전공필수교과목(광고홍보조사방법론(=IAA조사방법론)) 포함 최소 33학점 이수",
+    "unconfirmedNote": "'광고촉진론'의 6자리 교과목번호 및 개설학기는 2026 대학안내책자 p.112 교과과정표에 미기재되어 '미확인'으로 표시됩니다.",
+    "tracks": {
+      "표준트랙": {
+        "id": "표준트랙",
+        "title": "표준 트랙 (IAA 국제표준)",
+        "dept": "광고홍보학과",
+        "model": "credit_threshold",
+        "desc": "국제광고협회(IAA)가 인증한 국제적 표준 모델로, 광고기획·매체계획·소비자행동·IMC 캠페인 실무 역량을 양성하는 트랙",
+        "careers": "국내외 광고대행사, 매체대행사, 조사회사, 일반기업 마케팅부서",
+        "recommendedDoubleMajors": "경영학과, 미디어스쿨, 심리학과",
+        "certifications": "IAA 디플로마(I수준 6 + II수준 5, 총 11과목), 사회조사분석사 2급, GAIQ",
+        "requirementSummary": "전공필수(광고홍보조사방법론) 포함 트랙 교과목 최소 33학점 이수 (선택제)",
+        "minTotalCredits": 33,
+        "requiredCourses": [
+          "광고홍보조사방법론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.109-112]",
+        "sourceQuote": "표준트랙(IAA 인증 국제적 표준모델) | 전공필수교과목(광고홍보조사방법론(=IAA조사방법론)) 포함 최소 33학점 이수",
+        "foundationCourses": [
+          {
+            "code": "209401",
+            "title": "광고개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209415",
+            "title": "홍보개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209466",
+            "title": "마케팅이론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209111",
+            "title": "커뮤니케이션입문",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209447",
+            "title": "광고와사회",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "900398",
+            "title": "소비자행동원론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "209112",
+            "title": "광고홍보조사방법론",
+            "credits": 3,
+            "cat": "전필",
+            "semester": "1학기"
+          },
+          {
+            "code": "209431",
+            "title": "매체계획론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209469",
+            "title": "인터액티브미디어",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "adpr_unconf_01",
+            "title": "광고촉진론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "미확인",
+            "codeStatus": "미확인"
+          },
+          {
+            "code": "209486",
+            "title": "캡스톤디자인-IMC캠페인",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209478",
+            "title": "국제마케팅커뮤니케이션특강",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210001",
+            "title": "광고홍보사례분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209493",
+            "title": "전략적광고기획론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209490",
+            "title": "크리에이티브전략",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          }
+        ]
+      },
+      "전략커뮤니케이션": {
+        "id": "전략커뮤니케이션",
+        "title": "전략커뮤니케이션 트랙 (IAA 연계)",
+        "dept": "광고홍보학과",
+        "model": "credit_threshold",
+        "desc": "IAA 국제표준 기반으로 전략적 사고와 캠페인 기획·브랜드 관리·디지털 데이터 분석 역량을 갖춘 홍보·PR 전문가 양성 트랙",
+        "careers": "국내외 홍보대행사, 언론사, 기업 마케팅·홍보부서",
+        "recommendedDoubleMajors": "미디어스쿨, 경영학과, 정치행정학과",
+        "certifications": "IAA 디플로마, 사회조사분석사 2급, GAIQ",
+        "requirementSummary": "전공필수(광고홍보조사방법론) 포함 트랙 교과목 최소 33학점 이수 (선택제)",
+        "minTotalCredits": 33,
+        "requiredCourses": [
+          "광고홍보조사방법론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.109-112]",
+        "sourceQuote": "전략커뮤니케이션 트랙(IAA 인증) | 전공필수교과목(광고홍보조사방법론) 포함 최소 33학점 이수",
+        "foundationCourses": [
+          {
+            "code": "209111",
+            "title": "커뮤니케이션입문",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209503",
+            "title": "설득커뮤니케이션",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209415",
+            "title": "홍보개론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210000",
+            "title": "아이디어발상법",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210002",
+            "title": "프리젠테이션실습",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "209112",
+            "title": "광고홍보조사방법론",
+            "credits": 3,
+            "cat": "전필",
+            "semester": "1학기"
+          },
+          {
+            "code": "209488",
+            "title": "브랜드관리론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209458",
+            "title": "홍보특강",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209486",
+            "title": "캡스톤디자인-IMC캠페인",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210007",
+            "title": "광고홍보디지털데이터분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "905011",
+            "title": "플랫폼비즈니스",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210008",
+            "title": "소셜미디어와광고홍보",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210010",
+            "title": "캡스톤디자인-소셜마케팅",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "210011",
+            "title": "디지털커머스와프로모션",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          }
+        ]
+      },
+      "콘텐츠마케팅": {
+        "id": "콘텐츠마케팅",
+        "title": "콘텐츠마케팅 트랙",
+        "dept": "광고홍보학과",
+        "model": "credit_threshold",
+        "desc": "SNS와 뉴미디어에 부합한 광고·홍보 영상·카피·디지털 콘텐츠 제작 실무 능력을 함양하는 트랙",
+        "careers": "광고홍보대행사 제작부, 게임회사, 디지털 콘텐츠 마케팅·조사회사",
+        "recommendedDoubleMajors": "미디어스쿨, 디지털인문예술전공, 경영학과",
+        "certifications": "ACA(Photoshop/Premiere), GAIQ, 메타 블루프린트",
+        "requirementSummary": "전공필수(광고홍보조사방법론) 포함 트랙 교과목 최소 33학점 이수 (선택제)",
+        "minTotalCredits": 33,
+        "requiredCourses": [
+          "광고홍보조사방법론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.109-112]",
+        "sourceQuote": "콘텐츠마케팅 트랙 | 전공필수교과목(광고홍보조사방법론) 포함 최소 33학점 이수",
+        "foundationCourses": [
+          {
+            "code": "210000",
+            "title": "아이디어발상법",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209441",
+            "title": "광고카피작성I",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209499",
+            "title": "광고홍보그래픽커뮤니케이션",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "209487",
+            "title": "캡스톤디자인-영상광고제작실습",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209494",
+            "title": "광고홍보영상기초",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "903028",
+            "title": "광고미학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "209112",
+            "title": "광고홍보조사방법론",
+            "credits": 3,
+            "cat": "전필",
+            "semester": "1학기"
+          },
+          {
+            "code": "209469",
+            "title": "인터액티브미디어",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "210006",
+            "title": "캡스톤디자인-디지털광고와유튜브제작실습",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "209490",
+            "title": "크리에이티브전략",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "210004",
+            "title": "캡스톤디자인-모바일콘텐츠와바이럴광고제작실습",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "209442",
+            "title": "광고카피작성II",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "210009",
+            "title": "비주얼브랜드커뮤니케이션",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ]
+      }
+    }
+  },
+  "금융재무학과": {
+    "department": "금융재무학과",
+    "college": "경영대학",
+    "model": "credit_threshold",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 경영대학 금융재무학과 공식 5대 전공역량 트랙(선택제, 트랙별 전공역량 교과목 중 21학점 이상 이수)입니다. 트랙 미충족은 졸업과 무관하며, 졸업시험은 대상 11과목 중 3과목 B 이상 또는 TOEIC 700+/TOEFL 500+로 면제됩니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.135-138, p.143-146]",
+    "sourceQuote": "*트랙 이수가 의무가 아닌 선택제로, 트랙 이수기준 미 충족 시 졸업과 무관하고 트랙 이수만 불가함 / 트랙이수기준: 트랙별 전공역량 교과목 중 21학점 이상 이수",
+    "unconfirmedNote": null,
+    "tracks": {
+      "은행/보험": {
+        "id": "은행/보험",
+        "title": "은행/보험 트랙",
+        "dept": "금융재무학과",
+        "model": "credit_threshold",
+        "desc": "은행·보험·은퇴/노후·부동산·종합재무설계 분야 실무 전문가 양성 트랙",
+        "careers": "시중은행, 보험회사, 종합재무설계사, 금융공기업",
+        "recommendedDoubleMajors": "경영학과, 경제학과, 디지털금융정보전공",
+        "certifications": "AFPK, CFP, 신용분석사, 보험계리사",
+        "requirementSummary": "은행/보험 트랙 전공역량 교과목 중 21학점 이상 이수 (선택제)",
+        "minTotalCredits": 21,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.137-138, p.143]",
+        "sourceQuote": "은행/보험 트랙 | 트랙별 전공역량 교과목 중 21학점 이상 이수",
+        "foundationCourses": [
+          {
+            "code": "205102",
+            "title": "재무학원론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206430",
+            "title": "금융학원론",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206208",
+            "title": "재무관리론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206425",
+            "title": "투자설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "205290",
+            "title": "경영분석(종합설계)",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206212",
+            "title": "재무경제학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206421",
+            "title": "계량재무분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206310",
+            "title": "금융기관론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206318",
+            "title": "노후설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206320",
+            "title": "은퇴설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206426",
+            "title": "보험설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206423",
+            "title": "부동산설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206427",
+            "title": "금융실무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206415",
+            "title": "파생상품론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206317",
+            "title": "채권분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ]
+      },
+      "증권/투자": {
+        "id": "증권/투자",
+        "title": "증권/투자 트랙",
+        "dept": "금융재무학과",
+        "model": "credit_threshold",
+        "desc": "증권·자산운용·채권·파생상품·실전투자 및 투자전략 전문가 양성 트랙",
+        "careers": "증권사, 자산운용사, 애널리스트, 펀드매니저, 투자자문사",
+        "recommendedDoubleMajors": "경영학과, 경제학과, 데이터사이언스학부",
+        "certifications": "투자자산운용사, CFA, FRM, 재무위험관리사",
+        "requirementSummary": "증권/투자 트랙 전공역량 교과목 중 21학점 이상 이수 (선택제)",
+        "minTotalCredits": 21,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.137-138, p.143]",
+        "sourceQuote": "증권/투자 트랙 | 트랙별 전공역량 교과목 중 21학점 이상 이수",
+        "foundationCourses": [
+          {
+            "code": "205102",
+            "title": "재무학원론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206430",
+            "title": "금융학원론",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206208",
+            "title": "재무관리론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206425",
+            "title": "투자설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "205290",
+            "title": "경영분석(종합설계)",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206212",
+            "title": "재무경제학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206421",
+            "title": "계량재무분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206429",
+            "title": "실전투자",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206310",
+            "title": "금융기관론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206415",
+            "title": "파생상품론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206420",
+            "title": "기업재무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206317",
+            "title": "채권분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206422",
+            "title": "금융투자전략",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206427",
+            "title": "금융실무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206402",
+            "title": "국제금융시장론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206416",
+            "title": "금융정책론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ]
+      },
+      "기업재무": {
+        "id": "기업재무",
+        "title": "기업재무 트랙",
+        "dept": "금융재무학과",
+        "model": "credit_threshold",
+        "desc": "기업 자금조달·재무분석·리스크관리 및 재경부서 핵심 인재 양성 트랙",
+        "careers": "일반기업 자금/재무/IR/재경부서, 회계·컨설팅 법인",
+        "recommendedDoubleMajors": "경영학과(회계·세무), 경제학과",
+        "certifications": "재경관리사, CPA, 전산세무 1/2급, TAT",
+        "requirementSummary": "기업재무 트랙 전공역량 교과목 중 21학점 이상 이수 (선택제)",
+        "minTotalCredits": 21,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.137-138, p.143]",
+        "sourceQuote": "기업재무 트랙 | 트랙별 전공역량 교과목 중 21학점 이상 이수",
+        "foundationCourses": [
+          {
+            "code": "205102",
+            "title": "재무학원론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206430",
+            "title": "금융학원론",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206208",
+            "title": "재무관리론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206425",
+            "title": "투자설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "205290",
+            "title": "경영분석(종합설계)",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206212",
+            "title": "재무경제학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206421",
+            "title": "계량재무분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206420",
+            "title": "기업재무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206415",
+            "title": "파생상품론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206320",
+            "title": "은퇴설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206317",
+            "title": "채권분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206426",
+            "title": "보험설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206427",
+            "title": "금융실무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206402",
+            "title": "국제금융시장론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206301",
+            "title": "국제재무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ]
+      },
+      "글로벌금융": {
+        "id": "글로벌금융",
+        "title": "글로벌금융 트랙",
+        "dept": "금융재무학과",
+        "model": "credit_threshold",
+        "desc": "국제금융시장·환율·국제재무·금융영어 역량을 갖춘 글로벌 금융 전문가 양성 트랙",
+        "careers": "외국계 금융기관, 국제금융센터, 수출입은행, 글로벌 기업 재무팀",
+        "recommendedDoubleMajors": "글로벌비즈니스전공, 경제학과, 영어영문학과",
+        "certifications": "CFA, FRM, 외환전문역, 국제무역사",
+        "requirementSummary": "글로벌금융 트랙 전공역량 교과목 중 21학점 이상 이수 (선택제)",
+        "minTotalCredits": 21,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.137-138, p.143]",
+        "sourceQuote": "글로벌금융 트랙 | 트랙별 전공역량 교과목 중 21학점 이상 이수",
+        "foundationCourses": [
+          {
+            "code": "205102",
+            "title": "재무학원론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206430",
+            "title": "금융학원론",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206208",
+            "title": "재무관리론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206425",
+            "title": "투자설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "206212",
+            "title": "재무경제학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206421",
+            "title": "계량재무분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206412",
+            "title": "금융영어Ⅰ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206414",
+            "title": "금융영어Ⅱ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206402",
+            "title": "국제금융시장론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206415",
+            "title": "파생상품론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206310",
+            "title": "금융기관론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206301",
+            "title": "국제재무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206416",
+            "title": "금융정책론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206427",
+            "title": "금융실무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206309",
+            "title": "재무학특강Ⅰ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206316",
+            "title": "재무학특강Ⅱ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ]
+      },
+      "금융재무학": {
+        "id": "금융재무학",
+        "title": "금융재무학 트랙 (심화·연구)",
+        "dept": "금융재무학과",
+        "model": "credit_threshold",
+        "desc": "계량재무·금융정책·파생상품·기업재무 등 이론·연구 중심의 금융재무 심화 트랙",
+        "careers": "대학원 진학, 금융연구원/국책연구소, 금융감독원·한국은행 등 정책기관",
+        "recommendedDoubleMajors": "경제학과, 데이터사이언스학부",
+        "certifications": "CFA, FRM, 투자자산운용사",
+        "requirementSummary": "금융재무학 트랙 전공역량 교과목 중 21학점 이상 이수 (선택제)",
+        "minTotalCredits": 21,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.137-138, p.143]",
+        "sourceQuote": "금융재무학 트랙 | 트랙별 전공역량 교과목 중 21학점 이상 이수",
+        "foundationCourses": [
+          {
+            "code": "205102",
+            "title": "재무학원론",
+            "credits": 3,
+            "cat": "경영_전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206430",
+            "title": "금융학원론",
+            "credits": 2,
+            "cat": "전선",
+            "semester": "2학기"
+          },
+          {
+            "code": "206208",
+            "title": "재무관리론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206425",
+            "title": "투자설계론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          }
+        ],
+        "advancedCourses": [
+          {
+            "code": "206212",
+            "title": "재무경제학",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206421",
+            "title": "계량재무분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206412",
+            "title": "금융영어Ⅰ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206414",
+            "title": "금융영어Ⅱ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206420",
+            "title": "기업재무론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206415",
+            "title": "파생상품론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206402",
+            "title": "국제금융시장론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206317",
+            "title": "채권분석",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206416",
+            "title": "금융정책론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206310",
+            "title": "금융기관론",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1·2학기"
+          },
+          {
+            "code": "206309",
+            "title": "재무학특강Ⅰ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "1학기"
+          },
+          {
+            "code": "206316",
+            "title": "재무학특강Ⅱ",
+            "credits": 3,
+            "cat": "전선",
+            "semester": "2학기"
+          }
+        ]
+      }
+    }
+  }
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = (typeof window !== 'undefined' && window.HALLYM_TRACKS) ? window.HALLYM_TRACKS : (typeof HALLYM_TRACKS !== 'undefined' ? HALLYM_TRACKS : {});
+}

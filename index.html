@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
   <!-- Databases for offline & local file:// support -->
-  <script src="data/courses.js?v=20261122"></script>
-  <script src="data/graduation_rules.js?v=20261122"></script>
-  <script src="data/gyoyang_rules.js?v=20261122"></script>
+  <script src="data/courses.js?v=20261127"></script>
+  <script src="data/graduation_rules.js?v=20261127"></script>
+  <script src="data/gyoyang_rules.js?v=20261127"></script>
+  <script src="data/tracks.js?v=20261127"></script>
   <!-- Local Hybrid RAG Index & Engine (Zero external API) -->
-  <script src="data/rag_index.js?v=20261126" defer></script>
-  <script src="js/rag_engine.js?v=20261126" defer></script>
+  <script src="data/rag_index.js?v=20261127" defer></script>
+  <script src="js/rag_engine.js?v=20261127" defer></script>
   <!-- PDF.js Engine for offline & local PDF text layer extraction -->
   <script src="lib/pdf.min.js?v=20261122"></script>
   <!-- Tesseract.js OCR Engine for scanned PDF optical character recognition -->
@@ -2903,7 +2904,7 @@
               ※ 전공을 변경하면 졸업요건 계산이 바뀝니다.
             </div>
           </div>
-          <!-- 세부 전공 트랙 선택 (경영학과) -->
+          <!-- 세부 전공 트랙 선택 (다학과 공식 트랙 동적 지원) -->
           <div id="modal-track-wrap" style="margin-bottom: 1rem;">
             <label style="display: block; font-weight: 700; font-size: 0.84rem; color: var(--gray-700); margin-bottom: 0.35rem;">세부 전공 트랙 선택 (선택 사항)</label>
             <select id="modal-track-select" class="select" style="width: 100%;">
@@ -2915,8 +2916,8 @@
               <option value="관광경영">5. 관광경영 트랙 (호텔/항공/리조트/MICE)</option>
               <option value="마케팅기획">6. 마케팅기획 트랙 (마케팅기획/MD/시장조사)</option>
             </select>
-            <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem; line-height: 1.4;">
-              ※ 한림대 경영학과 공식 6대 전공진로트랙 중 희망 트랙을 선택하면 맞춤형 로드맵을 제공합니다. (미선택 시 공통 졸업요건만 판정)
+            <div id="modal-track-hint" style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem; line-height: 1.4;">
+              ※ 소속 학과의 공식 전공 트랙 중 희망 트랙을 선택하면 맞춤형 로드맵과 이수 현황을 제공합니다. (미선택 시 공통 졸업요건만 판정)
             </div>
           </div>
           <div style="margin-bottom: 1.25rem;">
@@ -5308,25 +5309,117 @@
     // 하위 호환성 별칭 매핑
     TRACK_DEFINITIONS['경영학_기본트랙'] = TRACK_DEFINITIONS['회계·세무'];
 
+    function getExternalTracksDB() {
+      if (typeof window !== 'undefined' && window.HALLYM_TRACKS) return window.HALLYM_TRACKS;
+      if (typeof HALLYM_TRACKS !== 'undefined') return HALLYM_TRACKS;
+      return {};
+    }
+
+    function getDepartmentTrackMeta(major) {
+      if (!major) return null;
+      if (major === '경영학과') {
+        return {
+          department: '경영학과',
+          college: '경영대학',
+          model: 'biz_legacy',
+          isMandatory: false,
+          sourceRef: 'information/경영학과.pdf [p.6-7], information/[한림대학교] 2026학년도 대학안내책자.pdf [p.124-127]',
+          sourceQuote: '경영학과가 주 전공인 학생들은 학과에 개설된 6개 전공트랙 중 1개 이상의 전공트랙 이수를 선택할 수 있다.',
+          tracks: TRACK_DEFINITIONS
+        };
+      }
+      const ext = getExternalTracksDB();
+      return (ext && ext[major]) ? ext[major] : null;
+    }
+
+    function getDepartmentTracksMap(major) {
+      if (major === '경영학과') {
+        const out = {};
+        Object.keys(TRACK_DEFINITIONS).forEach(k => {
+          if (k !== '경영학_기본트랙') out[k] = TRACK_DEFINITIONS[k];
+        });
+        return out;
+      }
+      const meta = getDepartmentTrackMeta(major);
+      return (meta && meta.tracks) ? meta.tracks : null;
+    }
+
+    function resolveDepartmentTrackDef(major, trackId) {
+      if (!major || !trackId || trackId === 'none') return null;
+      if (major === '경영학과') {
+        let trackDef = TRACK_DEFINITIONS[trackId];
+        if (!trackDef) {
+          const foundKey = Object.keys(TRACK_DEFINITIONS).find(k => trackId.includes(k) || k.includes(trackId));
+          if (foundKey) trackDef = TRACK_DEFINITIONS[foundKey];
+        }
+        return trackDef || null;
+      }
+      const map = getDepartmentTracksMap(major);
+      if (!map) return null;
+      if (map[trackId]) return map[trackId];
+      const normKey = s => String(s || '').replace(/[\s·\-_\/]/g, '').toLowerCase();
+      const targetNorm = normKey(trackId);
+      const foundKey = Object.keys(map).find(k => {
+        const kn = normKey(k);
+        const tn = normKey(map[k].title);
+        return kn === targetNorm || tn.includes(targetNorm) || targetNorm.includes(kn);
+      });
+      return foundKey ? map[foundKey] : null;
+    }
+
+    function populateModalTrackSelect(major, selectedVal) {
+      const trackSelect = document.getElementById('modal-track-select');
+      const trackWrap = document.getElementById('modal-track-wrap');
+      const trackHint = document.getElementById('modal-track-hint');
+      const tracksMap = getDepartmentTracksMap(major);
+
+      if (!tracksMap || Object.keys(tracksMap).length === 0) {
+        if (trackWrap) trackWrap.style.display = 'none';
+        if (trackSelect) trackSelect.value = 'none';
+        return;
+      }
+
+      if (trackWrap) trackWrap.style.display = 'block';
+      if (trackSelect) {
+        const keys = Object.keys(tracksMap);
+        let optsHtml = '<option value="none">선택 안 함 (공통 졸업요건만 판정)</option>';
+        keys.forEach((k, idx) => {
+          const tr = tracksMap[k];
+          optsHtml += `<option value="${k}">${idx + 1}. ${tr.title}</option>`;
+        });
+        trackSelect.innerHTML = optsHtml;
+        trackSelect.value = (selectedVal && tracksMap[selectedVal]) ? selectedVal : 'none';
+      }
+      if (trackHint) {
+        const meta = getDepartmentTrackMeta(major);
+        const cnt = Object.keys(tracksMap).length;
+        trackHint.textContent = `※ 한림대 ${major} 공식 ${cnt}개 전공트랙 중 희망 트랙을 선택하면 맞춤형 이수 현황을 제공합니다. (${meta && meta.sourceRef ? meta.sourceRef.split(',')[0] : '공식 기준'})`;
+      }
+    }
+
     function diagnoseMajorTrack(courses, user) {
-      if (!user || user.major !== '경영학과' || !user.track || user.track === 'none') {
+      if (!user || !user.major || !user.track || user.track === 'none') {
         return null;
       }
 
-      let trackDef = TRACK_DEFINITIONS[user.track];
-      if (!trackDef) {
-        const foundKey = Object.keys(TRACK_DEFINITIONS).find(k => user.track.includes(k) || k.includes(user.track));
-        if (foundKey) trackDef = TRACK_DEFINITIONS[foundKey];
-      }
+      const trackDef = resolveDepartmentTrackDef(user.major, user.track);
       if (!trackDef) return null;
 
-      const normTitle = t => (t || '').replace(/\(.*?\)/g, '').replace(/[\s\-_]/g, '').toLowerCase();
+      const deptMeta = getDepartmentTrackMeta(user.major);
+      const normTitle = t => (t || '')
+        .replace(/\(.*?\)/g, '')
+        .replace(/[\s·\-_:]/g, '')
+        .replace(/Ⅲ/g, '3').replace(/Ⅱ/g, '2').replace(/Ⅰ/g, '1')
+        .replace(/iii$/i, '3').replace(/ii$/i, '2').replace(/i$/i, '1')
+        .toLowerCase();
 
       // Deduplicate courses
       const deduplicatedCourses = [];
       const courseMap = {};
       (courses || []).forEach(c => {
-        const key = c.code || normTitle(c.title);
+        const key = (c.code && !String(c.code).startsWith('ds_mod_') && !String(c.code).startsWith('adpr_unconf_'))
+          ? String(c.code)
+          : normTitle(c.title);
         const existing = courseMap[key];
         if (!existing) {
           courseMap[key] = c;
@@ -5342,46 +5435,171 @@
         }
       });
 
-      const matchCourseList = (reqList) => {
-        return (reqList || []).map(req => {
-          const matched = deduplicatedCourses.find(c =>
-            (c.code && req.code && String(c.code) === String(req.code)) ||
-            normTitle(c.title) === normTitle(req.title) ||
-            normTitle(c.title).includes(normTitle(req.title)) ||
-            normTitle(req.title).includes(normTitle(c.title))
-          );
-          let status = 'MISSING';
-          let grade = null;
-          if (matched) {
-            grade = matched.grade;
-            if (isInProgressGrade(grade)) {
-              status = 'IN_PROGRESS';
-            } else if (isPassingGrade(grade)) {
-              status = 'PASSED';
-            } else {
-              status = 'MISSING';
-            }
-          }
-          return { ...req, matched, status, grade };
+      const matchOneCourse = (req) => {
+        const reqNorm = normTitle(req.title);
+        const hasRealCode = req.code && req.codeStatus !== '미확인' && !String(req.code).startsWith('ds_mod_') && !String(req.code).startsWith('adpr_unconf_');
+        const matched = deduplicatedCourses.find(c => {
+          const cNorm = normTitle(c.title);
+          if (hasRealCode && c.code && String(c.code) === String(req.code)) return true;
+          if (!cNorm || !reqNorm) return false;
+          if (cNorm === reqNorm) return true;
+          return false;
         });
+        let status = 'MISSING';
+        let grade = null;
+        if (matched) {
+          grade = matched.grade;
+          if (isInProgressGrade(grade)) {
+            status = 'IN_PROGRESS';
+          } else if (isPassingGrade(grade)) {
+            status = 'PASSED';
+          } else {
+            status = 'MISSING';
+          }
+        }
+        return { ...req, matched, status, grade };
       };
 
+      const matchCourseList = (reqList) => (reqList || []).map(matchOneCourse);
+
+      // 1. Business Administration 6 Official Tracks (100% backward-compatible return shape)
+      if (user.major === '경영학과') {
+        const foundationStatus = matchCourseList(trackDef.foundationCourses);
+        const advancedStatus = matchCourseList(trackDef.advancedCourses);
+
+        const foundationPassedCount = foundationStatus.filter(c => c.status === 'PASSED').length;
+        const foundationInProgCount = foundationStatus.filter(c => c.status === 'IN_PROGRESS').length;
+        const advancedPassedCount = advancedStatus.filter(c => c.status === 'PASSED').length;
+        const advancedInProgCount = advancedStatus.filter(c => c.status === 'IN_PROGRESS').length;
+
+        return {
+          model: 'biz_legacy',
+          deptMeta,
+          trackDef,
+          foundationStatus,
+          advancedStatus,
+          foundationPassedCount,
+          foundationInProgCount,
+          advancedPassedCount,
+          advancedInProgCount
+        };
+      }
+
+      // 2. Generalized Modular Track Engine (e.g., 소프트웨어학부, 데이터사이언스학부)
+      if (trackDef.model === 'modular' && Array.isArray(trackDef.modules)) {
+        const moduleResults = trackDef.modules.map(mod => {
+          const courseStatuses = matchCourseList(mod.courses);
+          const passedCredits = courseStatuses.filter(c => c.status === 'PASSED').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+          const inProgCredits = courseStatuses.filter(c => c.status === 'IN_PROGRESS').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+          const passedCount = courseStatuses.filter(c => c.status === 'PASSED').length;
+          const inProgCount = courseStatuses.filter(c => c.status === 'IN_PROGRESS').length;
+          const minCr = Number(mod.minCredits) || 0;
+          return {
+            code: mod.code,
+            name: mod.name,
+            minCredits: minCr,
+            courses: courseStatuses,
+            passedCredits,
+            inProgCredits,
+            passedCount,
+            inProgCount,
+            isModuleMet: minCr > 0 ? (passedCredits >= minCr) : true
+          };
+        });
+
+        // Deduplicated credit sum across modules
+        const uniqueMap = new Map();
+        moduleResults.forEach(mr => {
+          mr.courses.forEach(cs => {
+            const k = normTitle(cs.title);
+            if (!uniqueMap.has(k) || (cs.status === 'PASSED' && uniqueMap.get(k).status !== 'PASSED')) {
+              uniqueMap.set(k, cs);
+            }
+          });
+        });
+        const allUnique = Array.from(uniqueMap.values());
+        const earnedCredits = allUnique.filter(c => c.status === 'PASSED').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+        const inProgCredits = allUnique.filter(c => c.status === 'IN_PROGRESS').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+
+        const minTotalCredits = Number(trackDef.minTotalCredits) || moduleResults.reduce((s, mr) => s + mr.minCredits, 0);
+        const requiredStatus = (trackDef.requiredCourses || []).map(title => {
+          const foundDef = allUnique.find(c => normTitle(c.title) === normTitle(title));
+          return matchOneCourse(foundDef || { title, credits: 3 });
+        });
+        const allRequiredMet = requiredStatus.every(r => r.status === 'PASSED');
+        const allModulesMet = moduleResults.every(mr => mr.isModuleMet);
+        const isTrackComplete = allModulesMet && allRequiredMet && (earnedCredits >= minTotalCredits);
+
+        return {
+          model: 'modular',
+          deptMeta,
+          trackDef,
+          moduleResults,
+          requiredStatus,
+          earnedCredits,
+          inProgCredits,
+          minTotalCredits,
+          allModulesMet,
+          allRequiredMet,
+          isTrackComplete
+        };
+      }
+
+      // 3. Generalized Credit-Threshold Track Engine (e.g., 광고홍보학과, 금융재무학과)
       const foundationStatus = matchCourseList(trackDef.foundationCourses);
       const advancedStatus = matchCourseList(trackDef.advancedCourses);
+      const combinedMap = new Map();
+      [...foundationStatus, ...advancedStatus].forEach(cs => {
+        const k = normTitle(cs.title);
+        if (!combinedMap.has(k) || (cs.status === 'PASSED' && combinedMap.get(k).status !== 'PASSED')) {
+          combinedMap.set(k, cs);
+        }
+      });
+      const allUnique = Array.from(combinedMap.values());
+      const earnedCredits = allUnique.filter(c => c.status === 'PASSED').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+      const inProgCredits = allUnique.filter(c => c.status === 'IN_PROGRESS').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+      const minTotalCredits = Number(trackDef.minTotalCredits) || 0;
+      const requiredStatus = (trackDef.requiredCourses || []).map(title => {
+        const foundDef = allUnique.find(c => normTitle(c.title) === normTitle(title));
+        return matchOneCourse(foundDef || { title, credits: 3 });
+      });
+      const allRequiredMet = requiredStatus.every(r => r.status === 'PASSED');
+      const isTrackComplete = allRequiredMet && (earnedCredits >= minTotalCredits);
 
-      const foundationPassedCount = foundationStatus.filter(c => c.status === 'PASSED').length;
-      const foundationInProgCount = foundationStatus.filter(c => c.status === 'IN_PROGRESS').length;
-      const advancedPassedCount = advancedStatus.filter(c => c.status === 'PASSED').length;
-      const advancedInProgCount = advancedStatus.filter(c => c.status === 'IN_PROGRESS').length;
+      let iaaStatus = null;
+      if (user.major === '광고홍보학과') {
+        const level1Passed = foundationStatus.filter(c => c.status === 'PASSED').length;
+        const level2Passed = advancedStatus.filter(c => c.status === 'PASSED').length;
+        const lowGradeGrades = new Set(['C0', 'C', 'D+', 'D0', 'D']);
+        const lowGradeCount = allUnique.filter(c => c.status === 'PASSED' && lowGradeGrades.has(String(c.grade || '').trim().toUpperCase())).length;
+        iaaStatus = {
+          level1Passed,
+          level1Required: 6,
+          level2Passed,
+          level2Required: 5,
+          lowGradeCount,
+          maxLowGradeAllowed: 2,
+          isIaaEligible: level1Passed >= 6 && level2Passed >= 5 && lowGradeCount < 3
+        };
+      }
 
       return {
+        model: 'credit_threshold',
+        deptMeta,
         trackDef,
         foundationStatus,
         advancedStatus,
-        foundationPassedCount,
-        foundationInProgCount,
-        advancedPassedCount,
-        advancedInProgCount
+        foundationPassedCount: foundationStatus.filter(c => c.status === 'PASSED').length,
+        foundationInProgCount: foundationStatus.filter(c => c.status === 'IN_PROGRESS').length,
+        advancedPassedCount: advancedStatus.filter(c => c.status === 'PASSED').length,
+        advancedInProgCount: advancedStatus.filter(c => c.status === 'IN_PROGRESS').length,
+        requiredStatus,
+        earnedCredits,
+        inProgCredits,
+        minTotalCredits,
+        allRequiredMet,
+        isTrackComplete,
+        iaaStatus
       };
     }
 
@@ -5975,18 +6193,12 @@
       document.getElementById('modal-student-type').value = currentUser.studentType || '재학생';
       updateModalStudentTypeHint(currentUser.studentType || '재학생');
 
-      const trackSelect = document.getElementById('modal-track-select');
-      const trackWrap = document.getElementById('modal-track-wrap');
-      if (trackSelect) {
-        trackSelect.value = currentUser.track || 'none';
-      }
-      if (trackWrap) {
-        trackWrap.style.display = ((currentUser.major || '경영학과') === '경영학과') ? 'block' : 'none';
-      }
+      const activeMajor = currentUser.major || '경영학과';
+      populateModalTrackSelect(activeMajor, currentUser.track || 'none');
       const majorSelect = document.getElementById('modal-major-select');
       if (majorSelect) {
         majorSelect.onchange = (e) => {
-          if (trackWrap) trackWrap.style.display = (e.target.value === '경영학과') ? 'block' : 'none';
+          populateModalTrackSelect(e.target.value, 'none');
         };
       }
 
@@ -6046,7 +6258,8 @@
       currentUser.doubleMajorName = dName;
 
       const trackSelect = document.getElementById('modal-track-select');
-      const newTrack = (newMajor === '경영학과' && trackSelect) ? trackSelect.value : 'none';
+      const validTracksMap = getDepartmentTracksMap(newMajor);
+      const newTrack = (validTracksMap && trackSelect && validTracksMap[trackSelect.value]) ? trackSelect.value : 'none';
       currentUser.track = newTrack;
 
       const users = getUsers();
@@ -6132,14 +6345,15 @@
       document.getElementById('info-val-major').textContent = currentUser.major || '경영학과';
       const elTrack = document.getElementById('info-val-track');
       if (elTrack) {
-        if (currentUser.major === '경영학과' && currentUser.track && currentUser.track !== 'none') {
-          const tDef = TRACK_DEFINITIONS[currentUser.track];
+        const activeTracksMap = getDepartmentTracksMap(currentUser.major || '경영학과');
+        if (activeTracksMap && currentUser.track && currentUser.track !== 'none') {
+          const tDef = resolveDepartmentTrackDef(currentUser.major || '경영학과', currentUser.track);
           const tTitle = tDef ? tDef.title : currentUser.track;
           elTrack.innerHTML = `<span class="badge" style="background:#e0f2fe; color:#0284c7; font-weight:700;">🎯 ${tTitle}</span>`;
-        } else if (currentUser.major === '경영학과') {
+        } else if (activeTracksMap) {
           elTrack.textContent = '자율 이수 (트랙 미선택)';
         } else {
-          elTrack.textContent = '해당 없음';
+          elTrack.textContent = '해당 없음 (미지원/트랙 없음)';
         }
       }
       document.getElementById('info-val-double').textContent = (currentUser.hasDoubleMajor && currentUser.doubleMajorName) ? currentUser.doubleMajorName : '없음';
@@ -9170,7 +9384,7 @@ ${rawText}`;
       const badgeSpan = document.getElementById('major-track-summary-badge');
       if (!card || !container) return;
 
-      if (!currentUser || currentUser.major !== '경영학과' || !currentUser.track || currentUser.track === 'none') {
+      if (!currentUser || !currentUser.major || !currentUser.track || currentUser.track === 'none') {
         card.style.display = 'none';
         return;
       }
@@ -9187,7 +9401,7 @@ ${rawText}`;
 
       // Helper for course cards
       const renderCourseGrid = (courses) => {
-        return courses.map(c => {
+        return (courses || []).map(c => {
           let badgeHtml = '';
           let borderCol = '#e2e8f0';
           let bgCol = '#ffffff';
@@ -9204,74 +9418,186 @@ ${rawText}`;
             badgeHtml = `<span class="badge" style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1;">ℹ️ 미이수 (권장)</span>`;
           }
 
+          const codeLabel = (c.codeStatus === '미확인' || !c.code || String(c.code).startsWith('ds_mod_') || String(c.code).startsWith('adpr_unconf_'))
+            ? '코드: 미확인'
+            : `코드: ${c.code}`;
+          const semLabel = c.semester || '미확인';
+
           return `
             <div style="border-left: 4px solid ${borderCol}; background: ${bgCol}; border-radius: 6px; padding: 0.6rem 0.75rem; border-top:1px solid #e2e8f0; border-right:1px solid #e2e8f0; border-bottom:1px solid #e2e8f0; box-sizing:border-box;">
               <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.25rem;">
                 <div>
                   <strong style="font-size:0.85rem; color:var(--gray-900);">${c.title}</strong>
-                  <span style="font-size:0.73rem; color:#64748b; margin-left:0.3rem;">(${c.credits}학점 · 코드: ${c.code})</span>
+                  <span style="font-size:0.73rem; color:#64748b; margin-left:0.3rem;">(${c.credits}학점 · ${codeLabel})</span>
                 </div>
                 ${badgeHtml}
               </div>
               <div style="font-size:0.72rem; color:#64748b; margin-top:0.25rem;">
-                권장 이수시기: ${c.semester || '권장 학기'} · ${c.cat || '전선'}
+                권장 이수시기: ${semLabel} · ${c.cat || '전선'}
               </div>
             </div>
           `;
         }).join('');
       };
 
-      const foundationCards = renderCourseGrid(diag.foundationStatus);
-      const advancedCards = renderCourseGrid(diag.advancedStatus);
+      // 1. Business Administration 6 Official Tracks (100% preserved existing rendering)
+      if (diag.model === 'biz_legacy' || currentUser.major === '경영학과') {
+        const foundationCards = renderCourseGrid(diag.foundationStatus);
+        const advancedCards = renderCourseGrid(diag.advancedStatus);
+
+        container.innerHTML = `
+          <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem; font-size:0.78rem; line-height:1.5; color:#0369a1; margin-bottom:0.85rem; box-sizing:border-box;">
+            💡 <strong>안내:</strong> 본 트랙은 한림대학교 경영학과 공식 <strong>희망 진로 트랙(권장 로드맵)</strong>입니다.<br>
+            <span style="color:#0284c7; font-weight:700;">[트랙 권장 로드맵]</span>은 진로 맞춤형 학습 가이드이며, 법적 필수 요건이 아닙니다. 트랙 과목을 전부 이수하지 않더라도 공식 전공 기준(60학점, 복수전공 시 33학점)을 충족하면 정상 졸업이 가능합니다.
+          </div>
+
+          <!-- Track Overview & Career Meta Card -->
+          <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:0.75rem 0.85rem; margin-bottom:0.85rem; box-sizing:border-box;">
+            <div style="font-size:0.83rem; color:var(--gray-700); margin-bottom:0.5rem; line-height:1.45;">
+              📝 <strong>트랙 소개:</strong> ${tDef.desc}
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.5rem; font-size:0.75rem; color:#334155; line-height:1.4;">
+              <div>💼 <strong>주요 진출 분야:</strong> ${tDef.careers}</div>
+              <div>🔗 <strong>추천 연계전공:</strong> ${tDef.recommendedDoubleMajors}</div>
+              <div>📜 <strong>연계 자격증:</strong> ${tDef.certifications}</div>
+              <div>📄 <strong>공식 출처:</strong> ${tDef.sourceRef}</div>
+            </div>
+          </div>
+
+          <!-- 1. Foundation Courses -->
+          <div style="margin-bottom:0.9rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+              <strong style="font-size:0.86rem; color:#0369a1;">📌 1~2학년 기초 교과목 (Foundation)</strong>
+              <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
+                이수: ${diag.foundationPassedCount} / ${diag.foundationStatus.length}과목 ${diag.foundationInProgCount > 0 ? `(수강중 ${diag.foundationInProgCount})` : ''}
+              </span>
+            </div>
+            <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+              ${foundationCards}
+            </div>
+          </div>
+
+          <!-- 2. Advanced Courses -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+              <strong style="font-size:0.86rem; color:#0369a1;">🚀 3~4학년 심화 교과목 (Advanced)</strong>
+              <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
+                이수: ${diag.advancedPassedCount} / ${diag.advancedStatus.length}과목 ${diag.advancedInProgCount > 0 ? `(수강중 ${diag.advancedInProgCount})` : ''}
+              </span>
+            </div>
+            <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+              ${advancedCards}
+            </div>
+          </div>
+        `;
+
+        if (badgeSpan) {
+          badgeSpan.innerHTML = `<span style="color:#0284c7;">기초 ${diag.foundationPassedCount}/${diag.foundationStatus.length} · 심화 ${diag.advancedPassedCount}/${diag.advancedStatus.length}</span>`;
+        }
+        return;
+      }
+
+      // 2. Generalized Modular / Credit-Threshold Multi-Department Track UI
+      const deptMeta = diag.deptMeta || {};
+      const unconfHtml = deptMeta.unconfirmedNote
+        ? `<div style="background:#fffbeb; border:1px solid #fde68a; border-radius:6px; padding:0.55rem 0.75rem; font-size:0.74rem; color:#92400e; margin-bottom:0.75rem;">⚠️ <strong>미확인 항목 안내:</strong> ${deptMeta.unconfirmedNote}</div>`
+        : '';
+
+      const reqHtml = (diag.requiredStatus && diag.requiredStatus.length > 0)
+        ? `<div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:0.6rem 0.75rem; margin-bottom:0.85rem; font-size:0.78rem;">
+            <strong style="color:#0f172a;">🔑 트랙 필수 지정 교과목:</strong>
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.4rem;">
+              ${diag.requiredStatus.map(r => {
+                const ok = r.status === 'PASSED';
+                const ing = r.status === 'IN_PROGRESS';
+                const stStyle = ok ? 'background:#dcfce7; color:#166534; border:1px solid #86efac;' : (ing ? 'background:#fef3c7; color:#92400e; border:1px solid #fcd34d;' : 'background:#fee2e2; color:#991b1b; border:1px solid #fca5a5;');
+                const icon = ok ? '✓' : (ing ? '⏳' : '✗');
+                return `<span style="padding:0.2rem 0.5rem; border-radius:4px; font-size:0.74rem; font-weight:700; ${stStyle}">${icon} ${r.title}</span>`;
+              }).join('')}
+            </div>
+          </div>`
+        : '';
+
+      const extraSubHtml = tDef.subMajorNote
+        ? `<div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:0.55rem 0.75rem; font-size:0.75rem; color:#166534; margin-bottom:0.75rem;">📌 <strong>졸업 인정과목 안내:</strong> ${tDef.subMajorNote}</div>`
+        : '';
+
+      const iaaHtml = diag.iaaStatus
+        ? `<div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; padding:0.6rem 0.75rem; font-size:0.76rem; color:#1e40af; margin-bottom:0.85rem;">
+            🏅 <strong>IAA 디플로마 이수 현황 (선택):</strong>
+            I(기초)수준 ${diag.iaaStatus.level1Passed}/${diag.iaaStatus.level1Required}과목 ·
+            II(심화)수준 ${diag.iaaStatus.level2Passed}/${diag.iaaStatus.level2Required}과목 ·
+            C0 이하 ${diag.iaaStatus.lowGradeCount}과목 (3과목 미만 요건)
+            ${diag.iaaStatus.isIaaEligible ? '<strong style="color:#15803d;"> — 요건 충족 ✓</strong>' : ''}
+          </div>`
+        : '';
+
+      let bodySectionsHtml = '';
+      if (diag.model === 'modular' && Array.isArray(diag.moduleResults)) {
+        bodySectionsHtml = diag.moduleResults.map(mr => `
+          <div style="margin-bottom:0.85rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.4rem;">
+              <strong style="font-size:0.85rem; color:#0369a1;">🧩 ${mr.name}</strong>
+              <span style="font-size:0.75rem; font-weight:700; color:${mr.isModuleMet ? '#15803d' : '#0369a1'};">
+                이수 ${mr.passedCredits}학점${mr.minCredits > 0 ? ` / ${mr.minCredits}학점` : ''} ${mr.inProgCredits > 0 ? `(수강중 +${mr.inProgCredits}학점)` : ''} ${mr.minCredits > 0 && mr.isModuleMet ? '✓' : ''}
+              </span>
+            </div>
+            <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+              ${renderCourseGrid(mr.courses)}
+            </div>
+          </div>
+        `).join('');
+      } else {
+        bodySectionsHtml = `
+          <div style="margin-bottom:0.9rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+              <strong style="font-size:0.86rem; color:#0369a1;">📌 기초 / I수준 교과목</strong>
+              <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">이수: ${diag.foundationPassedCount} / ${diag.foundationStatus.length}과목</span>
+            </div>
+            <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+              ${renderCourseGrid(diag.foundationStatus)}
+            </div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
+              <strong style="font-size:0.86rem; color:#0369a1;">🚀 심화 / II수준 전공역량 교과목</strong>
+              <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">이수: ${diag.advancedPassedCount} / ${diag.advancedStatus.length}과목</span>
+            </div>
+            <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
+              ${renderCourseGrid(diag.advancedStatus)}
+            </div>
+          </div>
+        `;
+      }
 
       container.innerHTML = `
-        <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem; font-size:0.78rem; line-height:1.5; color:#0369a1; margin-bottom:0.85rem; box-sizing:border-box;">
-          💡 <strong>안내:</strong> 본 트랙은 한림대학교 경영학과 공식 <strong>희망 진로 트랙(권장 로드맵)</strong>입니다.<br>
-          <span style="color:#0284c7; font-weight:700;">[트랙 권장 로드맵]</span>은 진로 맞춤형 학습 가이드이며, 법적 필수 요건이 아닙니다. 트랙 과목을 전부 이수하지 않더라도 공식 전공 기준(60학점, 복수전공 시 33학점)을 충족하면 정상 졸업이 가능합니다.
+        <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:6px; padding:0.65rem 0.85rem; font-size:0.78rem; line-height:1.5; color:#0369a1; margin-bottom:0.75rem; box-sizing:border-box;">
+          💡 <strong>안내:</strong> ${deptMeta.bannerNote || `${currentUser.major} 공식 전공 트랙(선택제)입니다.`}<br>
+          <strong>이수 기준:</strong> ${tDef.requirementSummary || '공식 기준 참고'}
         </div>
-
-        <!-- Track Overview & Career Meta Card -->
-        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:0.75rem 0.85rem; margin-bottom:0.85rem; box-sizing:border-box;">
-          <div style="font-size:0.83rem; color:var(--gray-700); margin-bottom:0.5rem; line-height:1.45;">
+        ${unconfHtml}
+        <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:0.75rem 0.85rem; margin-bottom:0.75rem; box-sizing:border-box;">
+          <div style="font-size:0.83rem; color:var(--gray-700); margin-bottom:0.45rem; line-height:1.45;">
             📝 <strong>트랙 소개:</strong> ${tDef.desc}
           </div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.5rem; font-size:0.75rem; color:#334155; line-height:1.4;">
-            <div>💼 <strong>주요 진출 분야:</strong> ${tDef.careers}</div>
-            <div>🔗 <strong>추천 연계전공:</strong> ${tDef.recommendedDoubleMajors}</div>
-            <div>📜 <strong>연계 자격증:</strong> ${tDef.certifications}</div>
-            <div>📄 <strong>공식 출처:</strong> ${tDef.sourceRef}</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:0.45rem; font-size:0.74rem; color:#334155; line-height:1.4;">
+            <div>💼 <strong>주요 진출 분야:</strong> ${tDef.careers || '미확인'}</div>
+            <div>🔗 <strong>추천 연계전공:</strong> ${tDef.recommendedDoubleMajors || '미확인'}</div>
+            <div>📜 <strong>연계 자격증:</strong> ${tDef.certifications || '미확인'}</div>
+            <div>📄 <strong>공식 출처:</strong> ${tDef.sourceRef || deptMeta.sourceRef || '미확인'}</div>
           </div>
+          ${tDef.sourceQuote ? `<div style="margin-top:0.5rem; padding:0.45rem 0.65rem; background:#f8fafc; border-left:3px solid #0284c7; font-size:0.72rem; color:#475569;"><strong>원문 인용:</strong> "${tDef.sourceQuote}"</div>` : ''}
         </div>
-
-        <!-- 1. Foundation Courses -->
-        <div style="margin-bottom:0.9rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
-            <strong style="font-size:0.86rem; color:#0369a1;">📌 1~2학년 기초 교과목 (Foundation)</strong>
-            <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
-              이수: ${diag.foundationPassedCount} / ${diag.foundationStatus.length}과목 ${diag.foundationInProgCount > 0 ? `(수강중 ${diag.foundationInProgCount})` : ''}
-            </span>
-          </div>
-          <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
-            ${foundationCards}
-          </div>
-        </div>
-
-        <!-- 2. Advanced Courses -->
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.45rem;">
-            <strong style="font-size:0.86rem; color:#0369a1;">🚀 3~4학년 심화 교과목 (Advanced)</strong>
-            <span style="font-size:0.76rem; color:#0369a1; font-weight:700;">
-              이수: ${diag.advancedPassedCount} / ${diag.advancedStatus.length}과목 ${diag.advancedInProgCount > 0 ? `(수강중 ${diag.advancedInProgCount})` : ''}
-            </span>
-          </div>
-          <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
-            ${advancedCards}
-          </div>
-        </div>
+        ${extraSubHtml}
+        ${iaaHtml}
+        ${reqHtml}
+        ${bodySectionsHtml}
       `;
 
       if (badgeSpan) {
-        badgeSpan.innerHTML = `<span style="color:#0284c7;">기초 ${diag.foundationPassedCount}/${diag.foundationStatus.length} · 심화 ${diag.advancedPassedCount}/${diag.advancedStatus.length}</span>`;
+        const statusColor = diag.isTrackComplete ? '#15803d' : '#0284c7';
+        const statusTag = diag.isTrackComplete ? '이수 충족 ✓' : `이수 ${diag.earnedCredits}/${diag.minTotalCredits}학점`;
+        badgeSpan.innerHTML = `<span style="color:${statusColor};">${statusTag}${diag.inProgCredits > 0 ? ` (+수강중 ${diag.inProgCredits})` : ''}</span>`;
       }
     }
 
@@ -9623,14 +9949,25 @@ ${rawText}`;
       let titleLabel = '🎯 경영학 공통 핵심/권장 과목';
       let courseList = [];
 
-      if (currentUser && currentUser.major === '경영학과' && currentUser.track && currentUser.track !== 'none' && TRACK_DEFINITIONS[currentUser.track]) {
-        const tDef = TRACK_DEFINITIONS[currentUser.track];
-        titleLabel = `🎯 ${tDef.title} 권장 과목`;
-        courseList = [
-          ...tDef.foundationCourses.map(c => ({ ...c, cat: c.cat || '경영_전선', note: `${tDef.title} 기초 (${c.semester || ''})` })),
-          ...tDef.advancedCourses.map(c => ({ ...c, cat: c.cat || '경영_전선', note: `${tDef.title} 심화 (${c.semester || ''})` }))
-        ];
-      } else {
+      if (currentUser && currentUser.major && currentUser.track && currentUser.track !== 'none') {
+        const tDef = resolveDepartmentTrackDef(currentUser.major, currentUser.track);
+        if (tDef) {
+          titleLabel = `🎯 ${tDef.title} 권장 과목`;
+          if (tDef.model === 'modular' && Array.isArray(tDef.modules)) {
+            tDef.modules.forEach(mod => {
+              (mod.courses || []).forEach(c => {
+                courseList.push({ ...c, cat: c.cat || '전선', note: `${mod.name} (${c.semester || '미확인'})` });
+              });
+            });
+          } else {
+            courseList = [
+              ...(tDef.foundationCourses || []).map(c => ({ ...c, cat: c.cat || (currentUser.major === '경영학과' ? '경영_전선' : '전선'), note: `${tDef.title} 기초 (${c.semester || '미확인'})` })),
+              ...(tDef.advancedCourses || []).map(c => ({ ...c, cat: c.cat || (currentUser.major === '경영학과' ? '경영_전선' : '전선'), note: `${tDef.title} 심화 (${c.semester || '미확인'})` }))
+            ];
+          }
+        }
+      }
+      if (courseList.length === 0) {
         // Fallback common business core
         courseList = [
           { code: '006175', title: '오디세이세미나3', credits: 1, cat: '경영_전필', note: '공식 전공필수 (미이수 시 졸업 불가)' },

@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,133 Courses)
+// Hallym University Course Database (1,214 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -10478,8 +10478,770 @@
     "cat": "경영_전선",
     "dept": "경영학과",
     "semester": "1학기"
+  },
+  {
+    "code": "603126",
+    "id": "603126",
+    "title": "데이터사이언스기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "600007",
+    "id": "600007",
+    "title": "데이터베이스시스템",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506209",
+    "id": "506209",
+    "title": "머신러닝",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "602106",
+    "id": "602106",
+    "title": "IoT네트워크",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "602104",
+    "id": "602104",
+    "title": "IoT플랫폼설계",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "603132",
+    "id": "603132",
+    "title": "통신네트워크시스템",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "603130",
+    "id": "603130",
+    "title": "시스템보안",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506702",
+    "id": "506702",
+    "title": "웹프로그래밍",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "603135",
+    "id": "603135",
+    "title": "웹서버구축",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "603137",
+    "id": "603137",
+    "title": "웹프레임워크활용",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "601108",
+    "id": "601108",
+    "title": "가상현실과증강현실",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506836",
+    "id": "506836",
+    "title": "HCI",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506419",
+    "id": "506419",
+    "title": "컴퓨터그래픽스",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506703",
+    "id": "506703",
+    "title": "윈도우프로그래밍",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "603109",
+    "id": "603109",
+    "title": "프로그래밍스튜디오",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "600008",
+    "id": "600008",
+    "title": "데이터시각화",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "600001",
+    "id": "600001",
+    "title": "데이터마이닝",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "506714",
+    "id": "506714",
+    "title": "영상처리프로그래밍",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "601109",
+    "id": "601109",
+    "title": "영상처리와딥러닝",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "602107",
+    "id": "602107",
+    "title": "모바일센서공학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "603133",
+    "id": "603133",
+    "title": "고급임베디드시스템",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "소프트웨어학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "206430",
+    "id": "206430",
+    "title": "금융학원론",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "206412",
+    "id": "206412",
+    "title": "금융영어Ⅰ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "206420",
+    "id": "206420",
+    "title": "기업재무론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206310",
+    "id": "206310",
+    "title": "금융기관론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206415",
+    "id": "206415",
+    "title": "파생상품론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206422",
+    "id": "206422",
+    "title": "금융투자전략",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206318",
+    "id": "206318",
+    "title": "노후설계론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206426",
+    "id": "206426",
+    "title": "보험설계론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206402",
+    "id": "206402",
+    "title": "국제금융시장론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "206309",
+    "id": "206309",
+    "title": "재무학특강Ⅰ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "206316",
+    "id": "206316",
+    "title": "재무학특강Ⅱ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "206427",
+    "id": "206427",
+    "title": "금융실무론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "206301",
+    "id": "206301",
+    "title": "국제재무론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "금융재무학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "209503",
+    "id": "209503",
+    "title": "설득커뮤니케이션",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "210002",
+    "id": "210002",
+    "title": "프리젠테이션실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "209499",
+    "id": "209499",
+    "title": "광고홍보그래픽커뮤니케이션",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "209431",
+    "id": "209431",
+    "title": "매체계획론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "209469",
+    "id": "209469",
+    "title": "인터액티브미디어",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "adpr_unconf_01",
+    "id": "adpr_unconf_01",
+    "title": "광고촉진론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "209478",
+    "id": "209478",
+    "title": "국제마케팅커뮤니케이션특강",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "210001",
+    "id": "210001",
+    "title": "광고홍보사례분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "209493",
+    "id": "209493",
+    "title": "전략적광고기획론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "209490",
+    "id": "209490",
+    "title": "크리에이티브전략",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "905011",
+    "id": "905011",
+    "title": "플랫폼비즈니스",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "210008",
+    "id": "210008",
+    "title": "소셜미디어와광고홍보",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "210010",
+    "id": "210010",
+    "title": "캡스톤디자인-소셜마케팅",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "210011",
+    "id": "210011",
+    "title": "디지털커머스와프로모션",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "210004",
+    "id": "210004",
+    "title": "캡스톤디자인-모바일콘텐츠와바이럴광고제작실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "광고홍보학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "ds_mod_01",
+    "id": "ds_mod_01",
+    "title": "빅데이터시계열모형",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_02",
+    "id": "ds_mod_02",
+    "title": "다변량분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_03",
+    "id": "ds_mod_03",
+    "title": "자료분석I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_04",
+    "id": "ds_mod_04",
+    "title": "어드벤쳐디자인:빅데이터기초분석과정보활용",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_05",
+    "id": "ds_mod_05",
+    "title": "행렬과데이터분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_06",
+    "id": "ds_mod_06",
+    "title": "기초프로그래밍:R",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_07",
+    "id": "ds_mod_07",
+    "title": "데이터분석의수리적기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_08",
+    "id": "ds_mod_08",
+    "title": "통계적 알고리즘",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "701005",
+    "id": "701005",
+    "title": "데이터를 읽는 눈",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인"
+  },
+  {
+    "code": "ds_mod_10",
+    "id": "ds_mod_10",
+    "title": "신은주사위놀이를하지않는다",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_11",
+    "id": "ds_mod_11",
+    "title": "데이터분석분포론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_12",
+    "id": "ds_mod_12",
+    "title": "통계적방법론:추정과검정",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_13",
+    "id": "ds_mod_13",
+    "title": "데이터조사기법",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_14",
+    "id": "ds_mod_14",
+    "title": "딥러닝모델과추론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_15",
+    "id": "ds_mod_15",
+    "title": "어드벤쳐디자인:공공데이터의 이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_16",
+    "id": "ds_mod_16",
+    "title": "데이터윤리와암호",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_17",
+    "id": "ds_mod_17",
+    "title": "캡스톤디자인:공공데이터활용과비즈니스",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_18",
+    "id": "ds_mod_18",
+    "title": "실험계획과분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_19",
+    "id": "ds_mod_19",
+    "title": "임상의학통계기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_20",
+    "id": "ds_mod_20",
+    "title": "의생명데이터통계모형",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_21",
+    "id": "ds_mod_21",
+    "title": "디지털금융의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_22",
+    "id": "ds_mod_22",
+    "title": "금융시계열분석및연습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_23",
+    "id": "ds_mod_23",
+    "title": "위험분석론및연습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_24",
+    "id": "ds_mod_24",
+    "title": "기초보험론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_25",
+    "id": "ds_mod_25",
+    "title": "보험수리및연습I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_26",
+    "id": "ds_mod_26",
+    "title": "보험수리및연습II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_27",
+    "id": "ds_mod_27",
+    "title": "캡스톤디자인:데이터과학과보험계리",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_28",
+    "id": "ds_mod_28",
+    "title": "생명보험과데이터",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_29",
+    "id": "ds_mod_29",
+    "title": "데이터과학입문",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_30",
+    "id": "ds_mod_30",
+    "title": "스포츠빅데이터분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_31",
+    "id": "ds_mod_31",
+    "title": "확률·통계기반 인공지능",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "ds_mod_32",
+    "id": "ds_mod_32",
+    "title": "임상의학패널데이터CASESTUDY",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "데이터사이언스학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
   }
 ];
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = (typeof window !== 'undefined' && window.HALLYM_COURSES) ? window.HALLYM_COURSES : (typeof HALLYM_COURSES !== 'undefined' ? HALLYM_COURSES : []);
 }
