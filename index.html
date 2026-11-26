@@ -8,6 +8,9 @@
   <script src="data/courses.js?v=20261122"></script>
   <script src="data/graduation_rules.js?v=20261122"></script>
   <script src="data/gyoyang_rules.js?v=20261122"></script>
+  <!-- Local Hybrid RAG Index & Engine (Zero external API) -->
+  <script src="data/rag_index.js?v=20261126" defer></script>
+  <script src="js/rag_engine.js?v=20261126" defer></script>
   <!-- PDF.js Engine for offline & local PDF text layer extraction -->
   <script src="lib/pdf.min.js?v=20261122"></script>
   <!-- Tesseract.js OCR Engine for scanned PDF optical character recognition -->
@@ -2015,6 +2018,374 @@
     }
 
     /* =========================================================
+       AI ACADEMIC RAG ASSISTANT MODAL & FAB (360px MOBILE SAFE)
+       ========================================================= */
+    .btn-rag-header {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #ffffff;
+      border: none;
+      font-size: 0.79rem;
+      font-weight: 700;
+      padding: 0.4rem 0.72rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-rag-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35);
+    }
+    .rag-fab-btn {
+      position: fixed;
+      right: 1.15rem;
+      bottom: 1.25rem;
+      z-index: 1500;
+      background: linear-gradient(135deg, #0369a1, #0ea5e9);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: 9999px;
+      padding: 0.68rem 1.05rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .rag-fab-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(2, 132, 199, 0.45);
+    }
+    .rag-modal-window {
+      max-width: 680px;
+      width: 94%;
+      max-height: 90vh;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .rag-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-bottom: 1px solid #bae6fd;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .rag-modal-body {
+      padding: 1rem 1.25rem 1.2rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex: 1;
+      min-height: 0;
+    }
+    .rag-profile-badge {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0.55rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 0.55rem 0.75rem;
+      font-size: 0.78rem;
+      color: #334155;
+      line-height: 1.45;
+    }
+    .rag-profile-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.74rem;
+    }
+    .rag-faq-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .rag-faq-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--gray-500);
+    }
+    .rag-faq-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .rag-faq-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      border-radius: 9999px;
+      padding: 0.32rem 0.68rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      text-align: left;
+      max-width: 100%;
+      line-height: 1.3;
+    }
+    .rag-faq-chip:hover {
+      background: #f0f9ff;
+      border-color: #0ea5e9;
+      color: #0369a1;
+    }
+    .rag-input-form {
+      display: flex;
+      gap: 0.45rem;
+      width: 100%;
+    }
+    .rag-input-form input {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.92rem;
+      padding: 0.62rem 0.82rem;
+    }
+    .rag-input-form button {
+      flex-shrink: 0;
+      padding: 0.62rem 1rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .rag-answer-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1rem;
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: #1e293b;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .rag-answer-card.rag-grounded {
+      border-color: #7dd3fc;
+      background: #fafdff;
+    }
+    .rag-answer-card.rag-ungrounded {
+      border-color: #fca5a5;
+      background: #fef2f2;
+      color: #991b1b;
+    }
+    .rag-answer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      font-size: 0.74rem;
+    }
+    .rag-answer-body {
+      white-space: pre-line;
+    }
+    .rag-answer-body code {
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: 0.08rem 0.32rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .rag-headline {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1.55;
+      margin-bottom: 0.65rem;
+    }
+    .rag-block-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #0369a1;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.3rem;
+    }
+    .rag-action-list {
+      margin: 0 0 0.65rem 0;
+      padding-left: 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      font-size: 0.81rem;
+      color: #334155;
+      line-height: 1.48;
+    }
+    .rag-remaining-bar {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 0.5rem 0.68rem;
+      font-size: 0.78rem;
+      color: #0c4a6e;
+      line-height: 1.45;
+      margin-top: 0.2rem;
+    }
+    .rag-disclaimer-note {
+      margin-top: 0.5rem;
+      padding: 0.45rem 0.65rem;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      font-size: 0.74rem;
+      color: #92400e;
+      line-height: 1.45;
+    }
+    .rag-sources-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 0.1rem;
+    }
+    .rag-sources-toggle-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      border-radius: 9999px;
+      padding: 0.38rem 0.8rem;
+      font-size: 0.77rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .rag-sources-toggle-btn:hover {
+      background: #f0f9ff;
+      border-color: #0ea5e9;
+      color: #0369a1;
+    }
+    .rag-sources-section {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 0.8rem 0.9rem;
+    }
+    .rag-sources-title {
+      font-size: 0.79rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+    .rag-sources-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .rag-source-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 3px solid #0ea5e9;
+      border-radius: 6px;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.77rem;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .rag-source-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+      color: #0369a1;
+    }
+    .rag-source-loc {
+      background: #e0f2fe;
+      color: #075985;
+      padding: 0.08rem 0.42rem;
+      border-radius: 4px;
+      font-size: 0.71rem;
+      font-weight: 700;
+    }
+    .rag-source-quote {
+      margin: 0;
+      color: #475569;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      background: #f8fafc;
+      padding: 0.4rem 0.55rem;
+      border-radius: 4px;
+    }
+    .rag-modal-footer {
+      padding: 0.6rem 1.25rem;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.72rem;
+      color: var(--gray-500);
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 540px) {
+      .rag-header-label {
+        display: none;
+      }
+      .btn-rag-header {
+        padding: 0.36rem 0.5rem;
+        font-size: 0.9rem;
+      }
+      .rag-fab-btn {
+        right: 0.75rem;
+        bottom: 4.85rem;
+        padding: 0.55rem 0.82rem;
+        font-size: 0.78rem;
+      }
+      .rag-modal-window {
+        width: 96%;
+        max-height: 92vh;
+      }
+      .rag-modal-header {
+        padding: 0.8rem 0.9rem;
+      }
+      .rag-modal-body {
+        padding: 0.8rem 0.9rem 1rem;
+      }
+      .rag-input-form {
+        flex-direction: column;
+      }
+      .rag-input-form input {
+        font-size: 16px;
+        width: 100%;
+      }
+      .rag-input-form button {
+        width: 100%;
+        min-height: 42px;
+      }
+      .rag-modal-footer {
+        padding: 0.55rem 0.9rem;
+      }
+    }
+
+    /* =========================================================
        PRINT & PDF EXPORT OPTIMIZATION (FEATURE 5)
        ========================================================= */
     .print-only {
@@ -2350,6 +2721,73 @@
     </div>
   </div>
 
+  <!-- AI Academic RAG Assistant Modal (🤖 한림 AI 학사 도우미) - 최상위 배치, 기존 4탭과 독립 -->
+  <div id="rag-assistant-modal" class="modal-backdrop no-print" style="display: none; z-index: 2600;" onclick="handleRagModalBackdrop(event)" role="dialog" aria-modal="true" aria-labelledby="rag-modal-title">
+    <div class="modal-window rag-modal-window" onclick="event.stopPropagation()">
+      <div class="rag-modal-header">
+        <div style="min-width: 0;">
+          <div id="rag-modal-title" class="modal-title" style="font-size: 0.98rem; display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <span>🤖 AI 학사 도우미</span>
+            <span style="font-size: 0.66rem; background: #0284c7; color: #fff; padding: 0.1rem 0.42rem; border-radius: 9999px; font-weight: 700;">KO·EN·RU·ZH</span>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeRagModal()" aria-label="AI 학사 도우미 닫기">✕</button>
+      </div>
+
+      <div class="rag-modal-body">
+        <!-- 현재 학적 배지 -->
+        <div id="rag-profile-badge" class="rag-profile-badge">
+          <span class="rag-profile-pill">🎓 학적 정보 로딩 중...</span>
+        </div>
+
+        <!-- 추천 질문 칩 -->
+        <div class="rag-faq-wrap">
+          <div id="rag-faq-chips" class="rag-faq-chips"></div>
+        </div>
+
+        <!-- 질문 입력창 -->
+        <form id="rag-query-form" class="rag-input-form" onsubmit="handleRagSubmit(event)">
+          <input
+            type="text"
+            id="rag-query-input"
+            class="input"
+            placeholder="한국어·EN·RU·ZH 자유롭게 질문하세요"
+            autocomplete="off"
+            aria-label="학사 규정 질문 입력"
+          />
+          <button id="rag-submit-btn" type="submit" class="btn btn-primary">질문</button>
+        </form>
+
+        <!-- 답변 카드 -->
+        <div id="rag-answer-card" class="rag-answer-card">
+          <div style="font-weight: 700; color: #0369a1; margin-bottom: 0.25rem;">👋 무엇이든 편하게 물어보세요!</div>
+          <div style="font-size: 0.8rem; color: #475569; line-height: 1.45;">
+            다음 학기 수강 추천, 남은 학점, 낮은 성적, 사이트 사용법을 한국어·영어·러시아어·중국어로 답해드려요.
+          </div>
+        </div>
+
+        <!-- 출처 보기 토글 버튼 (원문 인용은 기본 숨김) -->
+        <div id="rag-sources-toggle-wrap" class="rag-sources-toggle-wrap" style="display: none;">
+          <button id="rag-sources-toggle-btn" type="button" class="rag-sources-toggle-btn" onclick="toggleRagSources()" aria-expanded="false">
+            📚 출처 보기
+          </button>
+        </div>
+
+        <!-- 출처 목록 & 원문 인용 (기본 숨김) -->
+        <div id="rag-sources-section" class="rag-sources-section" style="display: none;">
+          <div class="rag-sources-title">
+            <span id="rag-sources-heading">📚 참고 출처 및 원문 인용</span>
+          </div>
+          <div id="rag-sources-list" class="rag-sources-list"></div>
+        </div>
+      </div>
+
+      <div class="rag-modal-footer">
+        공식 자료 기반 · 실제 개설 여부·시간표는 학교 포털 확인
+      </div>
+    </div>
+  </div>
+
   <!-- ================================================================= -->
   <!-- 2. MAIN APP CONTAINER (로그인 성공 시 표시) -->
   <!-- ================================================================= -->
@@ -2369,6 +2807,11 @@
             <span style="margin-left: 0.4rem; font-size: 0.8rem; color: var(--primary);">⚙️</span>
           </button>
 
+          <!-- AI Academic RAG Assistant Button -->
+          <button id="btn-header-rag" type="button" class="btn-rag-header no-print" onclick="openRagModal()" title="공식 자료 기반 AI 학사 도우미 열기">
+            <span>🤖</span><span class="rag-header-label">AI 학사 도우미</span>
+          </button>
+
           <!-- Logout Button -->
           <button class="btn btn-outline header-logout-btn" style="font-size: 0.8rem; padding: 0.4rem 0.75rem;" onclick="handleLogout()" title="현재 계정 로그아웃">
             🚪 로그아웃
@@ -2378,6 +2821,7 @@
           <div class="more-menu-wrapper">
             <button id="btn-more-menu" class="btn-more-dots" onclick="toggleMoreMenu(event)" aria-label="더보기 메뉴" title="더보기">⋮</button>
             <div id="more-dropdown" class="more-dropdown-menu" style="display: none;">
+              <button class="more-menu-item" onclick="openRagModal(); closeMoreMenu();"><span style="font-size: 1rem;">🤖</span> AI 학사 도우미</button>
               <button class="more-menu-item" onclick="openSettingsModal()"><span style="font-size: 1rem;">⚙️</span> 프로필 및 설정</button>
               <button class="more-menu-item" onclick="switchTab(4)"><span style="font-size: 1rem;">📖</span> 도움말</button>
               <button class="more-menu-item" onclick="alertFeedbackInfo()" style="display: none;"><span style="font-size: 1rem;">📧</span> 문의/피드백 <span style="font-size: 0.7rem; color: var(--gray-500);">(준비 중)</span></button>
@@ -9875,6 +10319,287 @@ ${rawText}`;
     }
 
     /* =========================================================================
+       7.5 AI ACADEMIC RAG ASSISTANT UI CONTROLLER (STAGE 3)
+       ========================================================================= */
+    let ragEngineInstance = null;
+
+    function escapeRagHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatRagAnswerHtml(rawAnswer) {
+      let safe = escapeRagHtml(rawAnswer);
+      safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+      return safe;
+    }
+
+    function getRagEngine() {
+      if (ragEngineInstance) return ragEngineInstance;
+      if (typeof window !== 'undefined' && window.HallymRagEngine && typeof window.HallymRagEngine.createEngine === 'function') {
+        ragEngineInstance = window.HallymRagEngine.createEngine({
+          ragIndex: window.HALLYM_RAG_INDEX || null,
+          graduationRules: (typeof graduationRulesDB !== 'undefined' && graduationRulesDB && Object.keys(graduationRulesDB).length > 0)
+            ? graduationRulesDB
+            : (window.GRADUATION_RULES || null),
+          gyoyangRules: (typeof gyoyangRulesDB !== 'undefined' && gyoyangRulesDB && Object.keys(gyoyangRulesDB).length > 0)
+            ? gyoyangRulesDB
+            : (window.GYOYANG_RULES || null),
+          courses: (typeof courseDB !== 'undefined' && Array.isArray(courseDB) && courseDB.length > 0)
+            ? courseDB
+            : (window.COURSE_DB || [])
+        });
+      }
+      return ragEngineInstance;
+    }
+
+    function renderRagContextAndChips() {
+      const badgeEl = document.getElementById('rag-profile-badge');
+      const chipsEl = document.getElementById('rag-faq-chips');
+      const eng = getRagEngine();
+
+      const u = currentUser || { major: '경영학과', admissionYear: 2025, studentType: '재학생' };
+      const courses = Array.isArray(activeUserCourses) ? activeUserCourses : [];
+      const basket = (typeof basketCourses !== 'undefined' && Array.isArray(basketCourses)) ? basketCourses : [];
+      const admYear = (typeof getUserAdmissionYear === 'function' && currentUser)
+        ? getUserAdmissionYear(currentUser)
+        : (u.admissionYear || 2025);
+
+      if (badgeEl) {
+        let progHtml = '';
+        if (currentUser && eng && typeof eng.evaluateUserProgress === 'function') {
+          const p = eng.evaluateUserProgress({ ...u, admissionYear: admYear }, courses, basket);
+          const baskNote = p.basketCount > 0 ? ` · 바구니 ${p.basketCount}과목(${p.basketValidCredits}학점)` : '';
+          if (p.hasCourses) {
+            progHtml = `<span>취득 <strong>${p.expTotal}</strong>/${p.reqTotal}학점 (잔여 <strong>${p.remainTotal}</strong>학점${p.gpa !== null ? ` · GPA ${p.gpa}` : ''}${baskNote})</span>`;
+          } else {
+            progHtml = `<span>등록 과목 0개 (기준 ${p.reqTotal}학점${baskNote})</span>`;
+          }
+        } else {
+          progHtml = `<span>비로그인 기본 기준 (로그인 시 내 성적·바구니 자동 반영)</span>`;
+        }
+
+        const doubleBadge = (u.hasDoubleMajor && u.doubleMajorName)
+          ? `<span class="rag-profile-pill">복수: ${escapeRagHtml(u.doubleMajorName)}</span>`
+          : '';
+        badgeEl.innerHTML =
+          `<span class="rag-profile-pill">🎓 ${escapeRagHtml(u.major || '경영학과')}</span>` +
+          `<span class="rag-profile-pill">${escapeRagHtml(String(admYear))}학번</span>` +
+          `<span class="rag-profile-pill">${escapeRagHtml(u.studentType || '재학생')}</span>` +
+          doubleBadge +
+          progHtml;
+      }
+
+      if (chipsEl) {
+        const faqs = (eng && typeof eng.getFaqSuggestions === 'function')
+          ? eng.getFaqSuggestions(u)
+          : [
+              '다음 학기에 무엇을 들어야 하나요?',
+              '제 졸업까지 얼마나 남았나요?',
+              '제 성적이 낮은 과목이 있나요?',
+              '교양 필수 과목은 무엇인가요?',
+              '경영학과 트랙은 무엇인가요?'
+            ];
+        chipsEl.innerHTML = '';
+        faqs.forEach(q => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'rag-faq-chip';
+          btn.textContent = q;
+          btn.onclick = () => {
+            const inp = document.getElementById('rag-query-input');
+            if (inp) inp.value = q;
+            askRagQuestion(q);
+          };
+          chipsEl.appendChild(btn);
+        });
+      }
+    }
+
+    function openRagModal() {
+      const modal = document.getElementById('rag-assistant-modal');
+      if (!modal) return;
+      renderRagContextAndChips();
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        const inp = document.getElementById('rag-query-input');
+        if (inp) inp.focus();
+      }, 80);
+    }
+
+    function closeRagModal() {
+      const modal = document.getElementById('rag-assistant-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleRagModalBackdrop(e) {
+      if (e && e.target && e.target.id === 'rag-assistant-modal') {
+        closeRagModal();
+      }
+    }
+
+    function handleRagSubmit(e) {
+      if (e && typeof e.preventDefault === 'function') e.preventDefault();
+      const inp = document.getElementById('rag-query-input');
+      const query = inp ? inp.value.trim() : '';
+      if (!query) {
+        if (inp) inp.focus();
+        return;
+      }
+      askRagQuestion(query);
+    }
+
+    let lastRagSourcesCount = 0;
+    let lastRagLabels = { viewSources: '출처 보기', hideSources: '출처 숨기기', sourcesHeading: '참고 출처 및 원문 인용' };
+
+    function toggleRagSources() {
+      const srcSecEl = document.getElementById('rag-sources-section');
+      const toggleBtn = document.getElementById('rag-sources-toggle-btn');
+      if (!srcSecEl || !toggleBtn) return;
+      const isHidden = srcSecEl.style.display === 'none' || srcSecEl.style.display === '';
+      srcSecEl.style.display = isHidden ? 'block' : 'none';
+      if (typeof toggleBtn.setAttribute === 'function') {
+        toggleBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+      }
+      toggleBtn.textContent = isHidden
+        ? `📚 ${lastRagLabels.hideSources} (${lastRagSourcesCount})`
+        : `📚 ${lastRagLabels.viewSources} (${lastRagSourcesCount})`;
+    }
+
+    function renderRagResult(result, query) {
+      const cardEl = document.getElementById('rag-answer-card');
+      const toggleWrapEl = document.getElementById('rag-sources-toggle-wrap');
+      const toggleBtnEl = document.getElementById('rag-sources-toggle-btn');
+      const srcSecEl = document.getElementById('rag-sources-section');
+      const srcHeadingEl = document.getElementById('rag-sources-heading');
+      const srcListEl = document.getElementById('rag-sources-list');
+      if (!cardEl) return;
+
+      if (srcSecEl) srcSecEl.style.display = 'none';
+      lastRagSourcesCount = 0;
+      const lbl = (result && result.labels) ? result.labels : {
+        headline: '핵심 답변',
+        nextActions: '필요한 과목 / 다음 행동',
+        remaining: '남은 학점',
+        viewSources: '출처 보기',
+        hideSources: '출처 숨기기',
+        sourcesHeading: '참고 출처 및 원문 인용',
+        ungroundedBadge: '공식 자료에서 확인할 수 없습니다 (확인 불가)'
+      };
+      lastRagLabels = lbl;
+
+      if (!result || !result.grounded) {
+        const isScopeNotice = !!(result && (result.outOfScope || result.intent === 'OUT_OF_SCOPE'));
+        cardEl.className = isScopeNotice ? 'rag-answer-card' : 'rag-answer-card rag-ungrounded';
+        const msg = (result && result.answer)
+          ? result.answer
+          : '공식 자료에서 확인할 수 없습니다. (확인 불가)';
+        const badgeText = isScopeNotice ? `ℹ️ ${lbl.outOfScopeBadge || '서비스 범위 안내'}` : `⚠️ ${lbl.ungroundedBadge || '확인 불가'}`;
+        cardEl.innerHTML =
+          `<div style="font-weight:700; font-size:0.78rem; margin-bottom:0.25rem; color:${isScopeNotice ? '#0369a1' : '#991b1b'};">${escapeRagHtml(badgeText)}</div>` +
+          `<div class="rag-answer-body">${formatRagAnswerHtml(msg)}</div>`;
+        if (toggleWrapEl) toggleWrapEl.style.display = 'none';
+        if (srcListEl) srcListEl.innerHTML = '';
+        return;
+      }
+
+      cardEl.className = 'rag-answer-card rag-grounded';
+      const sec = result.sections || {};
+
+      let bodyHtml = '';
+      if (sec.headline) {
+        bodyHtml += `<div class="rag-headline">${formatRagAnswerHtml(sec.headline)}</div>`;
+      } else {
+        bodyHtml += `<div class="rag-answer-body">${formatRagAnswerHtml(result.answer)}</div>`;
+      }
+
+      if (Array.isArray(sec.nextActions) && sec.nextActions.length > 0) {
+        bodyHtml += `<div class="rag-block-label">🎯 ${escapeRagHtml(lbl.nextActions)}</div>`;
+        bodyHtml += `<ul class="rag-action-list">` +
+          sec.nextActions.map(item => `<li>${formatRagAnswerHtml(item)}</li>`).join('') +
+          `</ul>`;
+      }
+
+      if (sec.remainingSummary) {
+        bodyHtml += `<div class="rag-remaining-bar"><strong>📊 ${escapeRagHtml(lbl.remaining)}:</strong> ${formatRagAnswerHtml(sec.remainingSummary)}</div>`;
+      }
+
+      if (sec.disclaimer) {
+        bodyHtml += `<div class="rag-disclaimer-note">🏫 ${escapeRagHtml(sec.disclaimer)}</div>`;
+      }
+
+      cardEl.innerHTML = bodyHtml;
+
+      const srcs = Array.isArray(result.sources) ? result.sources : [];
+      lastRagSourcesCount = srcs.length;
+      if (srcs.length > 0 && srcListEl) {
+        if (srcHeadingEl) srcHeadingEl.textContent = `📚 ${lbl.sourcesHeading} (${srcs.length})`;
+        srcListEl.innerHTML = srcs.map((s, idx) =>
+          `<div class="rag-source-item">` +
+            `<div class="rag-source-head">` +
+              `<span>${idx + 1}. 📄 ${escapeRagHtml(s.source)}</span>` +
+              `<span class="rag-source-loc">${escapeRagHtml(s.loc)}</span>` +
+            `</div>` +
+            `<blockquote class="rag-source-quote">"${escapeRagHtml(s.quote)}"</blockquote>` +
+          `</div>`
+        ).join('');
+        if (toggleWrapEl) toggleWrapEl.style.display = 'flex';
+        if (toggleBtnEl) {
+          toggleBtnEl.textContent = `📚 ${lbl.viewSources} (${srcs.length})`;
+          if (typeof toggleBtnEl.setAttribute === 'function') {
+            toggleBtnEl.setAttribute('aria-expanded', 'false');
+          }
+        }
+      } else {
+        if (toggleWrapEl) toggleWrapEl.style.display = 'none';
+        if (srcListEl) srcListEl.innerHTML = '';
+      }
+    }
+
+    function askRagQuestion(query) {
+      const eng = getRagEngine();
+      const cardEl = document.getElementById('rag-answer-card');
+      if (!eng) {
+        if (cardEl) {
+          cardEl.className = 'rag-answer-card rag-ungrounded';
+          cardEl.innerHTML = '⚠️ RAG 인덱스 로딩 중입니다. 잠시 후 다시 질문해주세요.';
+        }
+        return null;
+      }
+
+      const u = currentUser
+        ? {
+            major: currentUser.major || '경영학과',
+            admissionYear: (typeof getUserAdmissionYear === 'function') ? getUserAdmissionYear(currentUser) : (currentUser.admissionYear || 2025),
+            studentType: currentUser.studentType || '재학생',
+            hasDoubleMajor: !!currentUser.hasDoubleMajor,
+            doubleMajorName: currentUser.doubleMajorName || '',
+            track: currentUser.track || 'none'
+          }
+        : { major: '경영학과', admissionYear: 2025, studentType: '재학생' };
+
+      const courses = Array.isArray(activeUserCourses) ? activeUserCourses : [];
+      const basket = (typeof basketCourses !== 'undefined' && Array.isArray(basketCourses)) ? basketCourses : [];
+      const result = eng.ask(query, { user: u, courses, basket });
+      renderRagResult(result, query);
+      return result;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e && e.key === 'Escape') {
+        const ragModal = document.getElementById('rag-assistant-modal');
+        if (ragModal && ragModal.style.display === 'flex') {
+          closeRagModal();
+        }
+      }
+    });
+
+    /* =========================================================================
        8. INITIALIZATION ON DOM READY
        ========================================================================= */
     window.addEventListener('DOMContentLoaded', async () => {
@@ -9900,6 +10625,11 @@ ${rawText}`;
       }
     });
   </script>
+  <!-- Floating AI Academic Assistant Button (🤖 AI 학사 도우미) -->
+  <button id="btn-rag-fab" type="button" class="rag-fab-btn no-print" onclick="openRagModal()" aria-label="AI 학사 도우미 열기" title="한림대 공식 자료 기반 AI 학사 도우미">
+    <span>🤖</span>
+    <span>AI 학사 도우미</span>
+  </button>
   <!-- In-app Floating Toast Notifications Container -->
   <div id="app-toast-container" aria-live="polite"></div>
 </body>
