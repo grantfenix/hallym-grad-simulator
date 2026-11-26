@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
   <!-- Databases for offline & local file:// support -->
-  <script src="data/courses.js?v=20261127"></script>
-  <script src="data/graduation_rules.js?v=20261127"></script>
-  <script src="data/gyoyang_rules.js?v=20261127"></script>
-  <script src="data/tracks.js?v=20261127"></script>
+  <script src="data/courses.js?v=20261127b"></script>
+  <script src="data/graduation_rules.js?v=20261127b"></script>
+  <script src="data/gyoyang_rules.js?v=20261127b"></script>
+  <script src="data/tracks.js?v=20261127b"></script>
   <!-- Local Hybrid RAG Index & Engine (Zero external API) -->
-  <script src="data/rag_index.js?v=20261127" defer></script>
-  <script src="js/rag_engine.js?v=20261127" defer></script>
+  <script src="data/rag_index.js?v=20261127b" defer></script>
+  <script src="js/rag_engine.js?v=20261127b" defer></script>
   <!-- PDF.js Engine for offline & local PDF text layer extraction -->
   <script src="lib/pdf.min.js?v=20261122"></script>
   <!-- Tesseract.js OCR Engine for scanned PDF optical character recognition -->
@@ -2657,6 +2657,7 @@
             <option value="러시아어학과">러시아어학과</option>
             <option value="인문콘텐츠융합전공">인문콘텐츠융합전공</option>
             <option value="반도체·디스플레이스쿨">반도체·디스플레이스쿨</option>
+            <option value="글로벌비즈니스전공">글로벌비즈니스전공</option>
             <option value="융합과학수사학과">융합과학수사학과</option>
             <option value="체육학과">체육학과</option>
             <option value="화학과">화학과</option>
@@ -2895,6 +2896,7 @@
               <option value="러시아어학과">러시아어학과</option>
               <option value="인문콘텐츠융합전공">인문콘텐츠융합전공</option>
               <option value="반도체·디스플레이스쿨">반도체·디스플레이스쿨</option>
+              <option value="글로벌비즈니스전공">글로벌비즈니스전공</option>
               <option value="융합과학수사학과">융합과학수사학과</option>
               <option value="체육학과">체육학과</option>
               <option value="화학과">화학과</option>
@@ -5417,7 +5419,7 @@
       const deduplicatedCourses = [];
       const courseMap = {};
       (courses || []).forEach(c => {
-        const key = (c.code && !String(c.code).startsWith('ds_mod_') && !String(c.code).startsWith('adpr_unconf_'))
+        const key = (c.code && !String(c.code).startsWith('ds_mod_') && !String(c.code).startsWith('adpr_unconf_') && !String(c.code).startsWith('semi_unconf_'))
           ? String(c.code)
           : normTitle(c.title);
         const existing = courseMap[key];
@@ -5437,7 +5439,7 @@
 
       const matchOneCourse = (req) => {
         const reqNorm = normTitle(req.title);
-        const hasRealCode = req.code && req.codeStatus !== '미확인' && !String(req.code).startsWith('ds_mod_') && !String(req.code).startsWith('adpr_unconf_');
+        const hasRealCode = req.code && req.codeStatus !== '미확인' && !String(req.code).startsWith('ds_mod_') && !String(req.code).startsWith('adpr_unconf_') && !String(req.code).startsWith('semi_unconf_');
         const matched = deduplicatedCourses.find(c => {
           const cNorm = normTitle(c.title);
           if (hasRealCode && c.code && String(c.code) === String(req.code)) return true;
@@ -5485,7 +5487,7 @@
         };
       }
 
-      // 2. Generalized Modular Track Engine (e.g., 소프트웨어학부, 데이터사이언스학부)
+      // 2. Generalized Modular Track Engine (e.g., 소프트웨어학부, 데이터사이언스학부, 반도체·디스플레이스쿨, 글로벌비즈니스전공)
       if (trackDef.model === 'modular' && Array.isArray(trackDef.modules)) {
         const moduleResults = trackDef.modules.map(mod => {
           const courseStatuses = matchCourseList(mod.courses);
@@ -5494,20 +5496,24 @@
           const passedCount = courseStatuses.filter(c => c.status === 'PASSED').length;
           const inProgCount = courseStatuses.filter(c => c.status === 'IN_PROGRESS').length;
           const minCr = Number(mod.minCredits) || 0;
+          const minCnt = Number(mod.minCourses) || 0;
+          const metByCr = minCr > 0 ? (passedCredits >= minCr) : true;
+          const metByCnt = minCnt > 0 ? (passedCount >= minCnt) : true;
           return {
             code: mod.code,
             name: mod.name,
             minCredits: minCr,
+            minCourses: minCnt,
             courses: courseStatuses,
             passedCredits,
             inProgCredits,
             passedCount,
             inProgCount,
-            isModuleMet: minCr > 0 ? (passedCredits >= minCr) : true
+            isModuleMet: metByCr && metByCnt
           };
         });
 
-        // Deduplicated credit sum across modules
+        // Deduplicated credit/course sum across modules
         const uniqueMap = new Map();
         moduleResults.forEach(mr => {
           mr.courses.forEach(cs => {
@@ -5520,15 +5526,18 @@
         const allUnique = Array.from(uniqueMap.values());
         const earnedCredits = allUnique.filter(c => c.status === 'PASSED').reduce((s, c) => s + (Number(c.credits) || 3), 0);
         const inProgCredits = allUnique.filter(c => c.status === 'IN_PROGRESS').reduce((s, c) => s + (Number(c.credits) || 3), 0);
+        const earnedCourses = allUnique.filter(c => c.status === 'PASSED').length;
+        const inProgCourses = allUnique.filter(c => c.status === 'IN_PROGRESS').length;
 
         const minTotalCredits = Number(trackDef.minTotalCredits) || moduleResults.reduce((s, mr) => s + mr.minCredits, 0);
+        const minTotalCourses = moduleResults.reduce((s, mr) => s + (mr.minCourses || 0), 0);
         const requiredStatus = (trackDef.requiredCourses || []).map(title => {
           const foundDef = allUnique.find(c => normTitle(c.title) === normTitle(title));
           return matchOneCourse(foundDef || { title, credits: 3 });
         });
         const allRequiredMet = requiredStatus.every(r => r.status === 'PASSED');
         const allModulesMet = moduleResults.every(mr => mr.isModuleMet);
-        const isTrackComplete = allModulesMet && allRequiredMet && (earnedCredits >= minTotalCredits);
+        const isTrackComplete = allModulesMet && allRequiredMet && (minTotalCredits > 0 ? (earnedCredits >= minTotalCredits) : true);
 
         return {
           model: 'modular',
@@ -5538,7 +5547,10 @@
           requiredStatus,
           earnedCredits,
           inProgCredits,
+          earnedCourses,
+          inProgCourses,
           minTotalCredits,
+          minTotalCourses,
           allModulesMet,
           allRequiredMet,
           isTrackComplete
@@ -9418,7 +9430,7 @@ ${rawText}`;
             badgeHtml = `<span class="badge" style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1;">ℹ️ 미이수 (권장)</span>`;
           }
 
-          const codeLabel = (c.codeStatus === '미확인' || !c.code || String(c.code).startsWith('ds_mod_') || String(c.code).startsWith('adpr_unconf_'))
+          const codeLabel = (c.codeStatus === '미확인' || !c.code || String(c.code).startsWith('ds_mod_') || String(c.code).startsWith('adpr_unconf_') || String(c.code).startsWith('semi_unconf_'))
             ? '코드: 미확인'
             : `코드: ${c.code}`;
           const semLabel = c.semester || '미확인';
@@ -9539,7 +9551,10 @@ ${rawText}`;
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.4rem;">
               <strong style="font-size:0.85rem; color:#0369a1;">🧩 ${mr.name}</strong>
               <span style="font-size:0.75rem; font-weight:700; color:${mr.isModuleMet ? '#15803d' : '#0369a1'};">
-                이수 ${mr.passedCredits}학점${mr.minCredits > 0 ? ` / ${mr.minCredits}학점` : ''} ${mr.inProgCredits > 0 ? `(수강중 +${mr.inProgCredits}학점)` : ''} ${mr.minCredits > 0 && mr.isModuleMet ? '✓' : ''}
+                ${mr.minCourses > 0
+                  ? `이수 ${mr.passedCount}/${mr.minCourses}과목 (${mr.passedCredits}학점) ${mr.inProgCount > 0 ? `(수강중 +${mr.inProgCount})` : ''} ${mr.isModuleMet ? '✓' : ''}`
+                  : `이수 ${mr.passedCredits}학점${mr.minCredits > 0 ? ` / ${mr.minCredits}학점` : ''} ${mr.inProgCredits > 0 ? `(수강중 +${mr.inProgCredits}학점)` : ''} ${mr.minCredits > 0 && mr.isModuleMet ? '✓' : ''}`
+                }
               </span>
             </div>
             <div class="track-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.5rem;">
@@ -9596,7 +9611,10 @@ ${rawText}`;
 
       if (badgeSpan) {
         const statusColor = diag.isTrackComplete ? '#15803d' : '#0284c7';
-        const statusTag = diag.isTrackComplete ? '이수 충족 ✓' : `이수 ${diag.earnedCredits}/${diag.minTotalCredits}학점`;
+        const progressText = diag.minTotalCredits > 0
+          ? `이수 ${diag.earnedCredits}/${diag.minTotalCredits}학점`
+          : (diag.minTotalCourses > 0 ? `이수 ${diag.earnedCourses}/${diag.minTotalCourses}과목 (${diag.earnedCredits}학점)` : `이수 ${diag.earnedCredits}학점`);
+        const statusTag = diag.isTrackComplete ? '이수 충족 ✓' : progressText;
         badgeSpan.innerHTML = `<span style="color:${statusColor};">${statusTag}${diag.inProgCredits > 0 ? ` (+수강중 ${diag.inProgCredits})` : ''}</span>`;
       }
     }

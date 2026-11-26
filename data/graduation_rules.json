@@ -171,9 +171,39 @@
       "approved_courses": "빅데이터·콘텐츠IT·스마트IoT 세부전공별 소프트웨어캡스톤디자인(3학점) + 전공인정교과목 1과목 이상(총 2과목, 6학점) 필수 (단일·복수·부전공 동일, SW학부 내 복수전공 시 캡스톤 1회만 이수).",
       "code_sharing": "코드쉐어링 신청자에 한해 타과 인정교과목 최대 3과목(9학점)까지 전공 인정.",
       "sub_majors": {
-        "빅데이터전공": ["빅데이터개론(600005)", "데이터시각화(600008)", "데이터마이닝(600001)", "머신러닝(506209)", "자연언어처리(구 텍스트정보처리, 600002)", "클라우드컴퓨팅(600003)", "딥러닝이론및응용(600004)", "네트워크보안(602103)", "시스템보안(603130)"],
-        "콘텐츠IT전공": ["VR/AR/게임제작기초(601101)", "가상현실과증강현실(601108)", "컴퓨터그래픽스(506419)", "3차원모델링(603147)", "영상처리프로그래밍(506714)", "멀티미디어개론(601102)", "영상처리와딥러닝(601109)", "게임프로그래밍(601104)", "HCI(506836)"],
-        "스마트IoT전공": ["IoT네트워크(602106)", "모바일센서공학(602107)", "모바일프로그래밍(506812)", "디지털통신(602101)", "네트워크보안(602103)", "IoT플랫폼설계(602104)", "시스템보안(603130)", "통신네트워크시스템(603132)", "고급임베디드시스템(603133)"]
+        "빅데이터전공": [
+          "빅데이터개론(600005)",
+          "데이터시각화(600008)",
+          "데이터마이닝(600001)",
+          "머신러닝(506209)",
+          "자연언어처리(구 텍스트정보처리, 600002)",
+          "클라우드컴퓨팅(600003)",
+          "딥러닝이론및응용(600004)",
+          "네트워크보안(602103)",
+          "시스템보안(603130)"
+        ],
+        "콘텐츠IT전공": [
+          "VR/AR/게임제작기초(601101)",
+          "가상현실과증강현실(601108)",
+          "컴퓨터그래픽스(506419)",
+          "3차원모델링(603147)",
+          "영상처리프로그래밍(506714)",
+          "멀티미디어개론(601102)",
+          "영상처리와딥러닝(601109)",
+          "게임프로그래밍(601104)",
+          "HCI(506836)"
+        ],
+        "스마트IoT전공": [
+          "IoT네트워크(602106)",
+          "모바일센서공학(602107)",
+          "모바일프로그래밍(506812)",
+          "디지털통신(602101)",
+          "네트워크보안(602103)",
+          "IoT플랫폼설계(602104)",
+          "시스템보안(603130)",
+          "통신네트워크시스템(603132)",
+          "고급임베디드시스템(603133)"
+        ]
       }
     }
   },
@@ -1008,6 +1038,67 @@
     },
     "special_conditions": {
       "research_report": "자유교양 개별 연구보고서 제출 및 심사."
+    }
+  },
+  "글로벌비즈니스전공": {
+    "department": "글로벌비즈니스전공",
+    "college": "글로벌융합대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "MICROECONOMIC ANALYSIS",
+          "code": "680076",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MICROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "MACROECONOMIC ANALYSIS",
+          "code": "680078",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MACROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "MICROECONOMIC ANALYSIS",
+          "code": "680076",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MICROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "MACROECONOMIC ANALYSIS",
+          "code": "680078",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MACROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ]
+    },
+    "special_conditions": {
+      "major_foundation_6": "전공기초 6과목 필수: PRINCIPLES OF ECONOMICS(640100), MATHEMATICS FOR BUSINESS AND ECONOMICS(680095), DATA VISUALIZATION AND STATISTICAL ANALYSIS(680105), CRITICAL APPROACHES TO GLOBAL ISSUES(680107), INTERMEDIATE STATISTICS AND DATA ANALYSIS I(680092), INTERMEDIATE STATISTICS AND DATA ANALYSIS II(680093)",
+      "capstone_since_2026": "2026년 졸업 예정자부터 캡스톤디자인 2과목 필수: GLOBAL MARKET ANALYSIS(캡스톤디자인)(680104), AI-글로벌비즈니스융합연구(캡스톤디자인)(680099). 복수전공생은 전공기초6+전필2+GLOBAL MARKET ANALYSIS 1과목(총 9과목) 포함 33학점 이상.",
+      "graduation_exam": "졸업시험 2과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS) 각 70점 이상. 각 과목 B0 이상 또는 한경 TESAT 170점 이상 시 면제. 복수전공생도 졸업시험 통과 필수.",
+      "english_requirement": "TOEIC 850점 이상 (TOEFL iBT 80점 이상 / 2026.01 개편 4.5 이상 또는 IELTS 6.5 이상 대체 가능). 정규직 취업자·창업자·대학원 진학자·영어성적 입학 외국인 학부 승인 시 면제.",
+      "global_ge_note": "글로벌학부 지정 필수교양 26학점(글로벌소통 고급 1과목 포함, BASIC SPANISH 1·2 또는 중국어/일어 1·2 대체). 세부 교양 6자리 코드는 2026 대학안내책자 p.234 미기재(미확인).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.228-235]"
     }
   }
 }

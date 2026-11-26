@@ -1,6 +1,4 @@
-// Hallym University Graduation Rules DB (23 Departments)
-// Auto-generated for offline & local file:// access
-(typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_GRADUATION_RULES = {
+const HALLYM_GRADUATION_RULES = {
   "경영학과": {
     "department": "경영학과",
     "college": "경영대학",
@@ -1041,9 +1039,69 @@
     "special_conditions": {
       "research_report": "자유교양 개별 연구보고서 제출 및 심사."
     }
+  },
+  "글로벌비즈니스전공": {
+    "department": "글로벌비즈니스전공",
+    "college": "글로벌융합대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "MICROECONOMIC ANALYSIS",
+          "code": "680076",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MICROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "MACROECONOMIC ANALYSIS",
+          "code": "680078",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MACROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "MICROECONOMIC ANALYSIS",
+          "code": "680076",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MICROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "MACROECONOMIC ANALYSIS",
+          "code": "680078",
+          "credits": 3,
+          "note": "전공필수 (2023 이전 INTERMEDIATE MACROECONOMICS Ⅰ 인정)"
+        },
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ]
+    },
+    "special_conditions": {
+      "major_foundation_6": "전공기초 6과목 필수: PRINCIPLES OF ECONOMICS(640100), MATHEMATICS FOR BUSINESS AND ECONOMICS(680095), DATA VISUALIZATION AND STATISTICAL ANALYSIS(680105), CRITICAL APPROACHES TO GLOBAL ISSUES(680107), INTERMEDIATE STATISTICS AND DATA ANALYSIS I(680092), INTERMEDIATE STATISTICS AND DATA ANALYSIS II(680093)",
+      "capstone_since_2026": "2026년 졸업 예정자부터 캡스톤디자인 2과목 필수: GLOBAL MARKET ANALYSIS(캡스톤디자인)(680104), AI-글로벌비즈니스융합연구(캡스톤디자인)(680099). 복수전공생은 전공기초6+전필2+GLOBAL MARKET ANALYSIS 1과목(총 9과목) 포함 33학점 이상.",
+      "graduation_exam": "졸업시험 2과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS) 각 70점 이상. 각 과목 B0 이상 또는 한경 TESAT 170점 이상 시 면제. 복수전공생도 졸업시험 통과 필수.",
+      "english_requirement": "TOEIC 850점 이상 (TOEFL iBT 80점 이상 / 2026.01 개편 4.5 이상 또는 IELTS 6.5 이상 대체 가능). 정규직 취업자·창업자·대학원 진학자·영어성적 입학 외국인 학부 승인 시 면제.",
+      "global_ge_note": "글로벌학부 지정 필수교양 26학점(글로벌소통 고급 1과목 포함, BASIC SPANISH 1·2 또는 중국어/일어 1·2 대체). 세부 교양 6자리 코드는 2026 대학안내책자 p.234 미기재(미확인).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.228-235]"
+    }
   }
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = (typeof window !== 'undefined' && window.HALLYM_GRADUATION_RULES) ? window.HALLYM_GRADUATION_RULES : (typeof HALLYM_GRADUATION_RULES !== 'undefined' ? HALLYM_GRADUATION_RULES : {});
-}
+if (typeof window !== 'undefined') window.HALLYM_GRADUATION_RULES = HALLYM_GRADUATION_RULES;
+if (typeof globalThis !== 'undefined') globalThis.HALLYM_GRADUATION_RULES = HALLYM_GRADUATION_RULES;
+if (typeof module !== 'undefined' && module.exports) module.exports = HALLYM_GRADUATION_RULES;

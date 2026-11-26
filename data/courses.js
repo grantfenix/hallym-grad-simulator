@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,214 Courses)
+// Hallym University Course Database (1,249 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -11239,9 +11239,290 @@
     "dept": "데이터사이언스학부",
     "semester": "미확인",
     "codeStatus": "미확인"
+  },
+  {
+    "code": "469004",
+    "title": "반도체기초공정",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469006",
+    "title": "반도체디스플레이실험1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "469301",
+    "title": "반도체공학1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469008",
+    "title": "반도체디스플레이실험2",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469209",
+    "title": "반도체분석장비부품개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469011",
+    "title": "표면분석기기및응용",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469007",
+    "title": "양자역학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "502496",
+    "title": "고체물리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "469019",
+    "title": "양자정보개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469016",
+    "title": "회로이론및실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469302",
+    "title": "반도체부품개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469202",
+    "title": "디스플레이공정",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "469201",
+    "title": "디스플레이공학1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "semi_unconf_01",
+    "title": "디스플레이재료물성",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "semi_unconf_02",
+    "title": "디스플레이공학2",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "2학기",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "469009",
+    "title": "기기제어기초및실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "505550",
+    "title": "캡스톤디자인1",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "505553",
+    "title": "캡스톤디자인2",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "반도체·디스플레이스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "009068",
+    "title": "물리학및실험1",
+    "credits": 3,
+    "cat": "교양_자율선택",
+    "dept": "일송자유교양대학",
+    "semester": "1학기"
+  },
+  {
+    "code": "005021",
+    "title": "일반화학및실험1",
+    "credits": 3,
+    "cat": "교양_자율선택",
+    "dept": "일송자유교양대학",
+    "semester": "1학기"
+  },
+  {
+    "code": "640100",
+    "title": "PRINCIPLES OF ECONOMICS",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680076",
+    "title": "MICROECONOMIC ANALYSIS",
+    "credits": 3,
+    "cat": "전필",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680078",
+    "title": "MACROECONOMIC ANALYSIS",
+    "credits": 3,
+    "cat": "전필",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680105",
+    "title": "DATA VISUALIZATION AND STATISTICAL ANALYSIS",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680092",
+    "title": "INTERMEDIATE STATISTICS AND DATA ANALYSIS I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680093",
+    "title": "INTERMEDIATE STATISTICS AND DATA ANALYSIS II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "680056",
+    "title": "BUSINESS REGRESSION ANALYSIS(ECONOMETRICS)",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680082",
+    "title": "INTERNATIONAL TRADE AND ECONOMICS",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "640055",
+    "title": "MARKETING PRINCIPLES",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680064",
+    "title": "GLOBAL/INTERNATIONAL MARKETING",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680081",
+    "title": "MANAGEMENT STRATEGY",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680091",
+    "title": "EVOLVING ECONOMIES",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680098",
+    "title": "STUDIES IN REGIONAL ECONOMIES",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "680047",
+    "title": "INTERNATIONAL BUSINESS",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "680099",
+    "title": "AI-글로벌비즈니스융합연구(캡스톤디자인)",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "글로벌비즈니스전공",
+    "semester": "1학기"
   }
 ];
-
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = (typeof window !== 'undefined' && window.HALLYM_COURSES) ? window.HALLYM_COURSES : (typeof HALLYM_COURSES !== 'undefined' ? HALLYM_COURSES : []);
 }

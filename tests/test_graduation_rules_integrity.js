@@ -8,8 +8,8 @@ console.log('========================================');
 
 // 1. JSON & JS wrapper parity
 assert.deepStrictEqual(gradJs, gradJson, 'data/graduation_rules.js must match data/graduation_rules.json');
-assert.strictEqual(Object.keys(gradJson).length, 23, 'All 23 existing department keys must be preserved');
-console.log('  [PASS] graduation_rules.json & .js parity (23 departments)');
+assert.ok(Object.keys(gradJson).length >= 23, 'All 23+ existing department keys must be preserved');
+console.log(`  [PASS] graduation_rules.json & .js parity (${Object.keys(gradJson).length} departments)`);
 
 // 2. 화학과: 오디세이세미나3만 전필 (물리/유기/분석/무기 오기재 제거)
 const chem = gradJson['화학과'];

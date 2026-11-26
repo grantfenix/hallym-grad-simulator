@@ -2105,5 +2105,928 @@
         ]
       }
     }
+  },
+  "반도체·디스플레이스쿨": {
+    "department": "반도체·디스플레이스쿨",
+    "college": "반도체·디스플레이스쿨",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 반도체·디스플레이스쿨 공식 모듈형 전공트랙 6개(반도체전공 4개 + 디스플레이전공 2개, 선택제·이수증 발급)입니다. 트랙 이수는 필수가 아니며, 졸업 시에는 오디세이세미나3, 졸업발표(캡스톤디자인1·2 포함), 2025학번부터 기초교양 4과목(물리학및실험1·2, 일반화학및실험1·2) 이수가 필수입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.256-260], information/반도체·디스플레이스쿨_디스플레이전공.pdf [p.1-15]",
+    "sourceQuote": "※ 트랙 이수는 필수가 아닌 선택임. / 반도체전공(반도체소자공정전문가 a+b+c, 양자전문가 b+d, 반도체분석전문가 b+c, 반도체설계전문가 b+e) · 디스플레이전공(디스플레이소자공정전문가 a+b+c, 디스플레이분석전문가 b+c) 이수 요건 충족 시 이수증 발급",
+    "unconfirmedNote": "2026 대학안내책자 p.259 '반도체분석장비부품개론'과 p.260 '디스플레이재료물성'의 6자리 코드(469209) 중복 오기 및 p.260 '디스플레이공학2'(469205)와 기존 DB('디스플레이특성평가') 간 코드 불일치로 인해 '디스플레이재료물성'·'디스플레이공학2'는 코드 미확인으로 표시됩니다. 또한 'VLSI설계(469012)'는 2026 책자 2학점(2-0-4)과 기존 DB 3학점 간 차이가 있어 수강신청 전 확인이 필요합니다.",
+    "tracks": {
+      "반도체소자공정전문가": {
+        "id": "반도체소자공정전문가",
+        "title": "반도체소자공정전문가 트랙 (반도체전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "반도체 기초·나노공정, 소자 물리, 분석장비 실습을 아우르는 반도체 소자·공정 실무 전문가 양성 트랙",
+        "careers": "삼성전자·SK하이닉스 등 반도체 공정/소자 엔지니어, 장비·소재 기업, 국공립 연구소",
+        "recommendedDoubleMajors": "디스플레이전공, 강원형반도체융합전공, 화학과",
+        "certifications": "반도체설계산업기사, 전자산업기사, 금속재료기사",
+        "requirementSummary": "모듈 a + b + c에서 필수 2과목(반도체공학1, 반도체공학2) 포함 모듈별 2과목 이상 이수 (총 6과목 이상)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "반도체공학1",
+          "반도체공학2"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.257, p.259]",
+        "sourceQuote": "반도체소자공정전문가 | a+b+c | 필수: 반도체공학 1, 반도체공학 2 | 필수교과목 포함 모듈별 2과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 반도체공정엔지니어",
+            "courses": [
+              {
+                "code": "469004",
+                "title": "반도체기초공정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469005",
+                "title": "나노공정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469006",
+                "title": "반도체디스플레이실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 반도체소자엔지니어",
+            "courses": [
+              {
+                "code": "469301",
+                "title": "반도체공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469305",
+                "title": "반도체공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469008",
+                "title": "반도체디스플레이실험2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 반도체분석엔지니어",
+            "courses": [
+              {
+                "code": "469209",
+                "title": "반도체분석장비부품개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469303",
+                "title": "반도체분석장비",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469011",
+                "title": "표면분석기기및응용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      },
+      "양자전문가": {
+        "id": "양자전문가",
+        "title": "양자전문가 트랙 (반도체전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "반도체 소자 물성과 양자역학·고체물리학·양자정보 기초를 결합한 차세대 양자·소자 전문가 트랙",
+        "careers": "양자컴퓨팅·양자소자 연구원, 반도체 선행개발팀, 대학원 진학",
+        "recommendedDoubleMajors": "디스플레이전공, 소프트웨어학부, 데이터사이언스학부",
+        "certifications": "광학기사, 반도체설계산업기사",
+        "requirementSummary": "모듈 b + d에서 필수 2과목(양자역학, 양자정보개론) 포함 모듈별 3과목 이수 (총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "양자역학",
+          "양자정보개론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.257, p.259]",
+        "sourceQuote": "양자전문가 | b+d | 필수: 양자역학, 양자정보개론 | 필수교과목 포함 모듈별 3과목 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 반도체소자엔지니어",
+            "courses": [
+              {
+                "code": "469301",
+                "title": "반도체공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469305",
+                "title": "반도체공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469008",
+                "title": "반도체디스플레이실험2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 양자전문가",
+            "courses": [
+              {
+                "code": "469007",
+                "title": "양자역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "502496",
+                "title": "고체물리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469019",
+                "title": "양자정보개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      },
+      "반도체분석전문가": {
+        "id": "반도체분석전문가",
+        "title": "반도체분석전문가 트랙 (반도체전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "반도체 소자 이해를 바탕으로 분석장비·부품 및 표면분석 기기 응용 역량을 기르는 계측·분석 전문가 트랙",
+        "careers": "반도체 계측·불량분석(FA) 엔지니어, 분석장비 개발사(ASML·AMAT·테크윙 등), 국책연구소",
+        "recommendedDoubleMajors": "디스플레이전공, 화학과, 강원형반도체융합전공",
+        "certifications": "재료조직평가산업기사, 광학기기산업기사, 전자산업기사",
+        "requirementSummary": "모듈 b + c에서 필수 1과목(표면분석기기및응용) 포함 모듈별 3과목 이수 (총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "표면분석기기및응용"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.257, p.259]",
+        "sourceQuote": "반도체분석전문가 | b+c | 필수: 표면분석 기기 및 응용 | 필수교과목 포함 모듈별 3과목 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 반도체소자엔지니어",
+            "courses": [
+              {
+                "code": "469301",
+                "title": "반도체공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469305",
+                "title": "반도체공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469008",
+                "title": "반도체디스플레이실험2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 반도체분석엔지니어",
+            "courses": [
+              {
+                "code": "469209",
+                "title": "반도체분석장비부품개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469303",
+                "title": "반도체분석장비",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469011",
+                "title": "표면분석기기및응용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      },
+      "반도체설계전문가": {
+        "id": "반도체설계전문가",
+        "title": "반도체설계전문가 트랙 (반도체전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "반도체 소자 및 회로이론·디지털회로·부품개론·VLSI설계를 학습하는 반도체 회로·설계 전문가 트랙",
+        "careers": "팹리스·시스템반도체 설계 엔지니어(LX세미콘 등), 회로설계/검증, 임베디드 하드웨어",
+        "recommendedDoubleMajors": "강원형반도체융합전공, 소프트웨어학부",
+        "certifications": "반도체설계산업기사, 전자캐드기능사, 전자산업기사",
+        "requirementSummary": "모듈 b + e에서 필수 2과목(반도체공학1, 반도체부품개론) 포함 모듈별 3과목 이수 (총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "반도체공학1",
+          "반도체부품개론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.257, p.259]",
+        "sourceQuote": "반도체설계전문가 | b+e | 필수: 반도체공학 1, 반도체부품개론 | 필수교과목 포함 모듈별 3과목 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 반도체소자엔지니어",
+            "courses": [
+              {
+                "code": "469301",
+                "title": "반도체공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469305",
+                "title": "반도체공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469008",
+                "title": "반도체디스플레이실험2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 반도체설계엔지니어",
+            "courses": [
+              {
+                "code": "469016",
+                "title": "회로이론및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469017",
+                "title": "디지털회로및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469302",
+                "title": "반도체부품개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469012",
+                "title": "VLSI설계",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      },
+      "디스플레이소자공정전문가": {
+        "id": "디스플레이소자공정전문가",
+        "title": "디스플레이소자공정전문가 트랙 (디스플레이전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "디스플레이 공정·소자·분석 전 과정을 실습 중심으로 통합 이수하는 디스플레이 소자·공정 전문가 트랙",
+        "careers": "삼성디스플레이·LG디스플레이 소자/공정 엔지니어, 디스플레이 장비·소재 연구원",
+        "recommendedDoubleMajors": "반도체전공, 강원형반도체융합전공",
+        "certifications": "광학기사, 광학기기산업기사, Auto CAD(CAT), 금속재료기사",
+        "requirementSummary": "모듈 a + b + c(필수 디스플레이공학1, 디스플레이공정 포함) 해당 트랙 조합 내 전 과목 이수 (모듈별 3과목, 총 9과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "디스플레이공학1",
+          "디스플레이공정"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.258, p.260]",
+        "sourceQuote": "디스플레이소자공정 전문가 | a+b+c | 필수: 디스플레이공학1, 디스플레이공정 | 해당 트랙 조합 내 전 과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 디스플레이공정",
+            "courses": [
+              {
+                "code": "469006",
+                "title": "반도체디스플레이실험1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469202",
+                "title": "디스플레이공정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469207",
+                "title": "디스플레이설계/공정실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 디스플레이소자",
+            "courses": [
+              {
+                "code": "469208",
+                "title": "디스플레이개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469201",
+                "title": "디스플레이공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "semi_unconf_01",
+                "title": "디스플레이재료물성",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기",
+                "codeStatus": "미확인"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 디스플레이분석",
+            "courses": [
+              {
+                "code": "semi_unconf_02",
+                "title": "디스플레이공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "469009",
+                "title": "기기제어기초및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469206",
+                "title": "광분석기기",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      },
+      "디스플레이분석전문가": {
+        "id": "디스플레이분석전문가",
+        "title": "디스플레이분석전문가 트랙 (디스플레이전공)",
+        "dept": "반도체·디스플레이스쿨",
+        "model": "modular",
+        "desc": "디스플레이 소자 물성과 기기제어·광분석기기를 결합한 디스플레이 계측·평가 전문가 트랙",
+        "careers": "디스플레이 측정분석·품질평가 엔지니어, 광학계 설계자, 국책연구소",
+        "recommendedDoubleMajors": "반도체전공, 화학과",
+        "certifications": "광학기사, 광학기기산업기사, 재료조직평가산업기사",
+        "requirementSummary": "모듈 b + c(필수 디스플레이공학2, 광분석기기 포함) 해당 트랙 조합 내 전 과목 이수 (모듈별 3과목, 총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "디스플레이공학2",
+          "광분석기기"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.258, p.260]",
+        "sourceQuote": "디스플레이분석전문가 | b+c | 필수: 디스플레이공학2, 광분석기기 | 해당 트랙 조합 내 전 과목 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 디스플레이소자",
+            "courses": [
+              {
+                "code": "469208",
+                "title": "디스플레이개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "469201",
+                "title": "디스플레이공학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "semi_unconf_01",
+                "title": "디스플레이재료물성",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기",
+                "codeStatus": "미확인"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 디스플레이분석",
+            "courses": [
+              {
+                "code": "semi_unconf_02",
+                "title": "디스플레이공학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "469009",
+                "title": "기기제어기초및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "469206",
+                "title": "광분석기기",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.260): 전공필수 오디세이세미나3(006175, 복수전공 동일) + 졸업발표(또는 학술/산학 성과, 캡스톤디자인1·2) 필수. 2025학번 신입생부터 기초교양 '물리학및실험1(009068)·2(009069)', '일반화학및실험1(005021)·2(005022)' 4과목 필수 이수."
+      }
+    }
+  },
+  "글로벌비즈니스전공": {
+    "department": "글로벌비즈니스전공",
+    "college": "글로벌융합대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 글로벌융합대학 글로벌비즈니스전공 공식 모듈형 전공트랙 4개(이수증 발급, 선택 기준)입니다. 졸업 시에는 전공기초 6과목, 전필 3과목, 2026졸업~ 캡스톤디자인 2과목, 졸업시험(B0+ 또는 TESAT 170+ 면제), TOEIC 850점 이상 충족이 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.228-235, p.242], information/글로벌비즈니스전공.pdf [p.1-5]",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 경제정책분석 트랙(a+d), 국제통상 및 무역 트랙(d+e+f), 데이터분석 트랙(b+c), 국제경제분석 트랙(f+g)",
+    "unconfirmedNote": "3학년 교과목은 원칙적으로 해외현지수업(SAP)으로 운영되어 개설·대체인정 여부는 전공주임교수 결정에 따릅니다(p.233). 또한 글로벌학부 필수교양 교과목(CRITICAL THINKING AND ARGUMENTATION, BASIC SPANISH 1·2 등)의 6자리 코드는 2026 대학안내책자 p.234 표에 미기재되어 '미확인'으로 안내됩니다.",
+    "tracks": {
+      "경제정책분석": {
+        "id": "경제정책분석",
+        "title": "경제정책분석 트랙",
+        "dept": "글로벌비즈니스전공",
+        "model": "modular",
+        "desc": "핵심 경제원리·미시/거시분석과 실증 미시·거시정책 평가를 결합한 경제정책 분석 전문가 트랙",
+        "careers": "국책·기업 경제연구소, 국제금융·정책기관, 공기업, 대학원 진학",
+        "recommendedDoubleMajors": "경제학과, 금융재무학과, 데이터사이언스학부",
+        "certifications": "TESAT(경제이해력검증시험), 외환관리사",
+        "requirementSummary": "모듈 a 전체(3과목) + 모듈 d 1·2번(EMPIRICAL MICROECONOMICS, ECONOMIC FLUCTUATIONS AND GOVERNMENT POLICY) 이수 (총 5과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "PRINCIPLES OF ECONOMICS",
+          "MICROECONOMIC ANALYSIS",
+          "MACROECONOMIC ANALYSIS",
+          "EMPIRICAL MICROECONOMICS",
+          "ECONOMIC FLUCTUATIONS AND GOVERNMENT POLICY"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.229, p.232]",
+        "sourceQuote": "경제정책분석 트랙 | a + d | 필수: a 모듈 전체 | 이수요건: a 모듈 전체 이수, d 모듈 1, 2 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: Essential Economics",
+            "courses": [
+              {
+                "code": "640100",
+                "title": "PRINCIPLES OF ECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680076",
+                "title": "MICROECONOMIC ANALYSIS",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1학기"
+              },
+              {
+                "code": "680078",
+                "title": "MACROECONOMIC ANALYSIS",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: Economic Policy and Evaluation",
+            "courses": [
+              {
+                "code": "680077",
+                "title": "EMPIRICAL MICROECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680079",
+                "title": "ECONOMIC FLUCTUATIONS AND GOVERNMENT POLICY",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680082",
+                "title": "INTERNATIONAL TRADE AND ECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.233-235): 전공기초 6과목 + 전필 3과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS, 오디세이세미나3) + 2026졸업~ 캡스톤 2과목(GLOBAL MARKET ANALYSIS, AI-글로벌비즈니스융합연구) + 졸업시험(각 70점+, B0+/TESAT 170+ 면제) + TOEIC 850+(TOEFL iBT 80+/4.5+, IELTS 6.5+ 대체)."
+      },
+      "국제통상및무역": {
+        "id": "국제통상및무역",
+        "title": "국제통상 및 무역 트랙",
+        "dept": "글로벌비즈니스전공",
+        "model": "modular",
+        "desc": "국제무역·경제정책·글로벌마케팅·경영전략과 한국경제 역동성을 통합 학습하는 국제통상 전문가 트랙",
+        "careers": "무역·상사 기업, 외국계 기업, 국제통상 기관, 비즈니스 컨설턴트",
+        "recommendedDoubleMajors": "경영학과, 경제학과, 금융재무학과",
+        "certifications": "국제무역사, 관세사, 물류관리사, 외환관리사",
+        "requirementSummary": "모듈 d 전체(3과목) + 모듈 e 전체(3과목) + 모듈 f 3번(KOREAN ECONOMY: DYNAMICS AND FUTURE) 이수 (총 7과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "EMPIRICAL MICROECONOMICS",
+          "ECONOMIC FLUCTUATIONS AND GOVERNMENT POLICY",
+          "INTERNATIONAL TRADE AND ECONOMICS",
+          "MARKETING PRINCIPLES",
+          "GLOBAL/INTERNATIONAL MARKETING",
+          "MANAGEMENT STRATEGY",
+          "KOREAN ECONOMY: DYNAMICS AND FUTURE"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.229, p.232, p.242]",
+        "sourceQuote": "국제통상 및 무역 트랙 | d + e + f | 필수: d 모듈 전체, e 모듈 1, 2 | 이수요건: d 모듈 전체 이수, e 모듈 전체 이수, f 모듈 3 이수",
+        "modules": [
+          {
+            "code": "d",
+            "name": "모듈 d: Economic Policy and Evaluation",
+            "courses": [
+              {
+                "code": "680077",
+                "title": "EMPIRICAL MICROECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680079",
+                "title": "ECONOMIC FLUCTUATIONS AND GOVERNMENT POLICY",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680082",
+                "title": "INTERNATIONAL TRADE AND ECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: Global Marketing",
+            "courses": [
+              {
+                "code": "640055",
+                "title": "MARKETING PRINCIPLES",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680064",
+                "title": "GLOBAL/INTERNATIONAL MARKETING",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680081",
+                "title": "MANAGEMENT STRATEGY",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: Korean Economy",
+            "courses": [
+              {
+                "code": "680091",
+                "title": "EVOLVING ECONOMIES",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "691004",
+                "title": "FUNDAMENTAL ISSUES FOR INTERNATIONAL BUSINESS IN KOREA",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "691008",
+                "title": "KOREAN ECONOMY: DYNAMICS AND FUTURE",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 1
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.233-235): 전공기초 6과목 + 전필 3과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS, 오디세이세미나3) + 2026졸업~ 캡스톤 2과목(GLOBAL MARKET ANALYSIS, AI-글로벌비즈니스융합연구) + 졸업시험(각 70점+, B0+/TESAT 170+ 면제) + TOEIC 850+(TOEFL iBT 80+/4.5+, IELTS 6.5+ 대체)."
+      },
+      "데이터분석": {
+        "id": "데이터분석",
+        "title": "데이터분석 트랙",
+        "dept": "글로벌비즈니스전공",
+        "model": "modular",
+        "desc": "비즈니스 통계·데이터 시각화·계량경제학(회귀분석)과 글로벌 시장 분석 캡스톤을 결합한 비즈니스 데이터 분석 트랙",
+        "careers": "글로벌 시장조사·BI 애널리스트, 데이터 기반 마케팅/전략기획, 컨설팅 펌",
+        "recommendedDoubleMajors": "데이터사이언스학부, 소프트웨어학부, 경영학과",
+        "certifications": "ADsP, SQLD, TESAT, 빅데이터분석기사",
+        "requirementSummary": "모듈 b 1·3번(DATA VISUALIZATION..., INTERMEDIATE STATISTICS... I) + 모듈 c 전체(3과목) 이수 (총 5과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "DATA VISUALIZATION AND STATISTICAL ANALYSIS",
+          "INTERMEDIATE STATISTICS AND DATA ANALYSIS I",
+          "INTERMEDIATE STATISTICS AND DATA ANALYSIS II",
+          "BUSINESS REGRESSION ANALYSIS(ECONOMETRICS)",
+          "GLOBAL MARKET ANALYSIS(캡스톤디자인)"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.229, p.232]",
+        "sourceQuote": "데이터분석 트랙 | b + c | 필수: b 모듈 1, 3 / c 모듈 1, 2 | 이수요건: b 모듈 1, 3 이수, c 모듈 전체 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: Business Statistics-기초",
+            "courses": [
+              {
+                "code": "680105",
+                "title": "DATA VISUALIZATION AND STATISTICAL ANALYSIS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680095",
+                "title": "MATHEMATICS FOR BUSINESS AND ECONOMICS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680092",
+                "title": "INTERMEDIATE STATISTICS AND DATA ANALYSIS I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: Business Statistics-고급",
+            "courses": [
+              {
+                "code": "680093",
+                "title": "INTERMEDIATE STATISTICS AND DATA ANALYSIS II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680056",
+                "title": "BUSINESS REGRESSION ANALYSIS(ECONOMETRICS)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680104",
+                "title": "GLOBAL MARKET ANALYSIS(캡스톤디자인)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.233-235): 전공기초 6과목 + 전필 3과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS, 오디세이세미나3) + 2026졸업~ 캡스톤 2과목(GLOBAL MARKET ANALYSIS, AI-글로벌비즈니스융합연구) + 졸업시험(각 70점+, B0+/TESAT 170+ 면제) + TOEIC 850+(TOEFL iBT 80+/4.5+, IELTS 6.5+ 대체)."
+      },
+      "국제경제분석": {
+        "id": "국제경제분석",
+        "title": "국제경제분석 트랙",
+        "dept": "글로벌비즈니스전공",
+        "model": "modular",
+        "desc": "한국경제의 발전·국제비즈니스 핵심 이슈와 세계경제·SDGs·지역경제 분석을 결합한 국제경제·개발협력 트랙",
+        "careers": "국제기구·ODA/KSP 컨설턴트, 글로벌 기업 해외사업부, 경제·통상 연구기관",
+        "recommendedDoubleMajors": "경제학과, 한국학전공, 정치행정학과",
+        "certifications": "TESAT, 국제무역사, 외환관리사",
+        "requirementSummary": "모듈 f 전체(3과목) + 모듈 g 중 2과목 선택 이수 (총 5과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "EVOLVING ECONOMIES",
+          "FUNDAMENTAL ISSUES FOR INTERNATIONAL BUSINESS IN KOREA",
+          "KOREAN ECONOMY: DYNAMICS AND FUTURE"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.229, p.232, p.242]",
+        "sourceQuote": "국제경제분석 트랙 | f + g | 필수: f 모듈 2, 3 / g 모듈 택 2 | 이수요건: f 모듈 전체 이수, g 모듈 택 2 이수",
+        "modules": [
+          {
+            "code": "f",
+            "name": "모듈 f: Korean Economy",
+            "courses": [
+              {
+                "code": "680091",
+                "title": "EVOLVING ECONOMIES",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "691004",
+                "title": "FUNDAMENTAL ISSUES FOR INTERNATIONAL BUSINESS IN KOREA",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "691008",
+                "title": "KOREAN ECONOMY: DYNAMICS AND FUTURE",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 3
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: World Economy",
+            "courses": [
+              {
+                "code": "680098",
+                "title": "STUDIES IN REGIONAL ECONOMIES",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "680090",
+                "title": "SUSTAINABLE DEVELOPMENT GOALS (SDGS) AND GLOBAL PERSPECTIVES",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "680047",
+                "title": "INTERNATIONAL BUSINESS",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ],
+            "minCredits": 0,
+            "minCourses": 2
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.233-235): 전공기초 6과목 + 전필 3과목(MICROECONOMIC ANALYSIS, MACROECONOMIC ANALYSIS, 오디세이세미나3) + 2026졸업~ 캡스톤 2과목(GLOBAL MARKET ANALYSIS, AI-글로벌비즈니스융합연구) + 졸업시험(각 70점+, B0+/TESAT 170+ 면제) + TOEIC 850+(TOEFL iBT 80+/4.5+, IELTS 6.5+ 대체)."
+      }
+    }
   }
 }
