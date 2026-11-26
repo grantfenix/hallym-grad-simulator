@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>한림 수강 바구니 + 졸업 시뮬레이터</title>
   <!-- Databases for offline & local file:// support -->
-  <script src="data/courses.js?v=20261127b"></script>
-  <script src="data/graduation_rules.js?v=20261127b"></script>
-  <script src="data/gyoyang_rules.js?v=20261127b"></script>
-  <script src="data/tracks.js?v=20261127b"></script>
+  <script src="data/courses.js?v=20261127c"></script>
+  <script src="data/graduation_rules.js?v=20261127c"></script>
+  <script src="data/gyoyang_rules.js?v=20261127c"></script>
+  <script src="data/tracks.js?v=20261127c"></script>
   <!-- Local Hybrid RAG Index & Engine (Zero external API) -->
-  <script src="data/rag_index.js?v=20261127b" defer></script>
-  <script src="js/rag_engine.js?v=20261127b" defer></script>
+  <script src="data/rag_index.js?v=20261127c" defer></script>
+  <script src="js/rag_engine.js?v=20261127c" defer></script>
   <!-- PDF.js Engine for offline & local PDF text layer extraction -->
   <script src="lib/pdf.min.js?v=20261122"></script>
   <!-- Tesseract.js OCR Engine for scanned PDF optical character recognition -->
@@ -2661,6 +2661,9 @@
             <option value="융합과학수사학과">융합과학수사학과</option>
             <option value="체육학과">체육학과</option>
             <option value="화학과">화학과</option>
+            <option value="생명과학과">생명과학과</option>
+            <option value="바이오메디컬학과">바이오메디컬학과</option>
+            <option value="식품영양학과">식품영양학과</option>
             <option value="일송자유교양대학 자유교양전공">일송자유교양대학 자유교양전공</option>
           </select>
         </div>
@@ -2900,6 +2903,9 @@
               <option value="융합과학수사학과">융합과학수사학과</option>
               <option value="체육학과">체육학과</option>
               <option value="화학과">화학과</option>
+              <option value="생명과학과">생명과학과</option>
+              <option value="바이오메디컬학과">바이오메디컬학과</option>
+              <option value="식품영양학과">식품영양학과</option>
               <option value="일송자유교양대학 자유교양전공">일송자유교양대학 자유교양전공</option>
             </select>
             <div style="font-size: 0.74rem; color: var(--gray-500); margin-top: 0.35rem;">
@@ -5419,7 +5425,7 @@
       const deduplicatedCourses = [];
       const courseMap = {};
       (courses || []).forEach(c => {
-        const key = (c.code && !String(c.code).startsWith('ds_mod_') && !String(c.code).startsWith('adpr_unconf_') && !String(c.code).startsWith('semi_unconf_'))
+        const key = (c.code && !String(c.code).startsWith('ds_mod_') && !String(c.code).startsWith('adpr_unconf_') && !String(c.code).startsWith('semi_unconf_') && !String(c.code).startsWith('bmd_unconf_'))
           ? String(c.code)
           : normTitle(c.title);
         const existing = courseMap[key];
@@ -5439,7 +5445,7 @@
 
       const matchOneCourse = (req) => {
         const reqNorm = normTitle(req.title);
-        const hasRealCode = req.code && req.codeStatus !== '미확인' && !String(req.code).startsWith('ds_mod_') && !String(req.code).startsWith('adpr_unconf_') && !String(req.code).startsWith('semi_unconf_');
+        const hasRealCode = req.code && req.codeStatus !== '미확인' && !String(req.code).startsWith('ds_mod_') && !String(req.code).startsWith('adpr_unconf_') && !String(req.code).startsWith('semi_unconf_') && !String(req.code).startsWith('bmd_unconf_');
         const matched = deduplicatedCourses.find(c => {
           const cNorm = normTitle(c.title);
           if (hasRealCode && c.code && String(c.code) === String(req.code)) return true;
@@ -9430,7 +9436,7 @@ ${rawText}`;
             badgeHtml = `<span class="badge" style="background:#f1f5f9; color:#64748b; border:1px solid #cbd5e1;">ℹ️ 미이수 (권장)</span>`;
           }
 
-          const codeLabel = (c.codeStatus === '미확인' || !c.code || String(c.code).startsWith('ds_mod_') || String(c.code).startsWith('adpr_unconf_') || String(c.code).startsWith('semi_unconf_'))
+          const codeLabel = (c.codeStatus === '미확인' || !c.code || String(c.code).startsWith('ds_mod_') || String(c.code).startsWith('adpr_unconf_') || String(c.code).startsWith('semi_unconf_') || String(c.code).startsWith('bmd_unconf_'))
             ? '코드: 미확인'
             : `코드: ${c.code}`;
           const semLabel = c.semester || '미확인';
