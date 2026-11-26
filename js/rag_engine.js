@@ -268,14 +268,159 @@
     return (start > 0 ? '…' : '') + flat.slice(start, end).trim() + (end < flat.length ? '…' : '');
   }
 
+  const COLLEGE_DEFINITIONS = {
+    '인문대학': {
+      aliases: ['인문대학', '인문대', '인문학부'],
+      depts: ['국어국문학전공', '철학전공', '사학전공', '영어영문학과', '중국학과', '일본학과', '러시아학과', '인문콘텐츠융합전공'],
+      summaryKo: '**인문대학**은 공통 **총 130학점 이상**(단일전공 60 · 복수전공 33 · 교양 최소 26, 평점 2.00+)과 전공필수 **오디세이세미나3(1학점)**이 기본이며, 학과별로 졸업논문 또는 공인어학인증 요건이 달라요.',
+      bulletsKo: [
+        '인문학부(국어국문·철학·사학): **졸업논문** 필수 (사학전공은 강독 `역사학자료탐구Ⅰ·Ⅱ` 2과목 전필 추가)',
+        '영어영문학과: 기본 3과목 모두 A0+ 또는 **TOEIC 700+**(650점 +6학점 / 600점 +9학점)',
+        '중국학과: **新HSK 5급 195점+**(구간별 완화 대체) 및 **중국 연구 프레젠테이션**',
+        '일본학과: **JLPT N2 140점+ / JPT 600점+** + 3단계 수업 2과목+ / 러시아학과: **토르플(TORFL) 1급+** 또는 지정 4과목 중 2과목 B+ 대체'
+      ],
+      sourceHints: [
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['인문학부 공통', '오디세이세미나3'] },
+        { file: 'information/학과별_졸업기준/졸업기준_영어영문학과.txt', kws: ['졸업'] },
+        { file: 'information/학과별_졸업기준/졸업기준_러시아어학과.txt', kws: ['TORFL'] }
+      ],
+      hasOcrWarning: true
+    },
+    '의생명과학대학': {
+      aliases: ['의생명과학대학', '의생명과학대', '의생명대'],
+      depts: ['생명과학과', '바이오메디컬학과', '식품영양학과', '의생명과학대학 자율전공'],
+      summaryKo: '**의생명과학대학**(2026/2027 신설 개편: 생명과학과·바이오메디컬학과·식품영양학과·자율전공)은 공통 **총 130학점 이상**(단일 60 · 복수 33 · 교양 최소 26)과 **오디세이세미나3(1학점)**이 기본이에요.',
+      bulletsKo: [
+        '생명과학과: 전필 오디세이세미나3, **졸업시험·논문 없음**(19학번~), 오믹스·바이오헬스케어 7개 모듈형 트랙',
+        '바이오메디컬학과: 전필 오디세이세미나3, **졸업시험·논문 없음**, 엘리트 생명과학자 / 현장실무 전문가 2트랙',
+        '식품영양학과: 전필 오디세이세미나3 + **졸업시험**(또는 **TOEIC 700+ / 식품·영양사 자격증 / 대학원·외국인 논문** 택 1, 복수전공 33학점 이수 시 합격)'
+      ],
+      sourceHints: [
+        { file: 'information/한림대학교_2027학과소개서_단면(최종).pdf', kws: ['의생명과학대학', '생명과학과'] },
+        { file: 'information/26년 한림대학교_의생명과학대학_식품영양학과_리플릿_단면.pdf', kws: ['졸업기준', 'TOEIC'] },
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['생명과학과', '졸업기준'] }
+      ]
+    },
+    '정보과학대학': {
+      aliases: ['정보과학대학', '정보과학대', '소융대'],
+      depts: ['소프트웨어학부', '데이터사이언스학부', '인공지능융합학부', '인공지능컴퓨팅학부'],
+      summaryKo: '**정보과학대학**은 공통 **총 130학점 이상**(단일 60 · 복수 33 · 교양 최소 26)이 기본이며 학부별 캡스톤·자율역량 요건이 달라요.',
+      bulletsKo: [
+        '소프트웨어학부(빅데이터·콘텐츠IT·스마트IoT): **소프트웨어캡스톤디자인(3)**(취업연계SW실무 대체) + 전공인정 1과목(총 6학점) + 오디세이3',
+        '데이터사이언스학부: 오디세이3 + **비교과 자율역량 5개 중 택 1**(공모전·프로젝트보고서·현장실습12cr·자격증2개·TOEIC 700+)',
+        '인공지능융합학부: 오디세이3 + **인공지능융합캡스톤디자인Ⅰ(729001)** (24학번~ 필수) / 신설 **인공지능컴퓨팅학부(27학번~)**: 전공 33cr+ · **전공트랙 1개+** · 캡스톤 필수'
+      ],
+      sourceHints: [
+        { file: 'information/학과별_졸업기준/졸업기준_소프트웨어학부.pdf', kws: ['소프트웨어캡스톤디자인'] },
+        { file: 'information/26년 한림대학교_정보과학대학_인공지능컴퓨팅학부_리플릿_단면.pdf', kws: ['졸업요건', '전공트랙'] },
+        { file: 'information/학과별_졸업기준/졸업기준_데이터사이언스학부.txt', kws: ['비교과'] }
+      ]
+    },
+    '자연과학대학': {
+      aliases: ['자연과학대학', '자연과학대', '자연대'],
+      depts: ['화학과', '환경생명공학과', '언어병리학전공', '청각학전공', '체육학과', '자연과학대학 자율전공'],
+      summaryKo: '**자연과학대학**(화학과·환경생명공학과·언어청각학부·체육학과·자율전공)은 공통 **총 130학점 이상**(교양 최소 26)과 **오디세이세미나3(1학점)**이 기본이며 학과별 추가 요건이 달라요.',
+      bulletsKo: [
+        '화학과: 전필 오디세이3만, **졸업논문·시험 없음** / 환경생명공학과: 캡스톤 논문·기사1차·TOEIC 750+·공모전 중 택 1(복수 면제)',
+        '언어청각학부: 언어병리학(**졸업시험**, 언어재활사 2급 면제) / 청각학(**졸업시험**, 청능사·TOEIC 700+ 대체)',
+        '체육학과: 24학번~ 실기 전필 5과목(축구·수영·골프·테니스·태권도) + 실기 6(자격증)/8(나노디그리)/12(미취득)학점'
+      ],
+      sourceHints: [
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['화학과', '졸업기준'] },
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['환경생명공학과', '기타 졸업기준'] },
+        { file: 'information/학과별_졸업기준/졸업기준_체육학과.txt', kws: ['전공축구'] }
+      ]
+    },
+    '사회과학대학': {
+      aliases: ['사회과학대학', '사회과학대', '사회대'],
+      depts: ['심리학과', '사회학과', '사회복지학부', '정치행정학과', '광고홍보학과', '법학과', '경제학과'],
+      summaryKo: '**사회과학대학**은 공통 **총 130학점 이상**(단일 60 · 복수 33 · 교양 26)과 **오디세이세미나3(1학점)**이 기본이며 학과별 전필·졸업시험/논문 기준이 달라요.',
+      bulletsKo: [
+        '광고홍보학과: `광고홍보조사방법론` 전필(IAA 11과목 시 디플로마) / 경제학과: `미시·거시경제학Ⅰ` 전필(모두 B0+ 시 졸업시험 면제)',
+        '심리학과: `심리통계` 등 전필 + 졸업시험 4과목 / 사회복지학부: 사회복지사 1급 기준 + 졸업시험(노인복지 면제)',
+        '사회학과: 졸업논문(사조사2급·포트폴리오·공모전·TOEIC 750+ 대체) / 법학과(25.2~)·정치행정학과: 별도 논문·시험 폐지'
+      ],
+      sourceHints: [
+        { file: 'data/graduation_rules.json', kws: ['광고홍보학과'] },
+        { file: 'data/graduation_rules.json', kws: ['경제학과'] },
+        { file: 'data/graduation_rules.json', kws: ['법학과'] }
+      ]
+    },
+    '경영대학': {
+      aliases: ['경영대학', '경영대'],
+      depts: ['경영학과', '금융재무학과'],
+      summaryKo: '**경영대학**(경영학과 · 금융재무학과)은 공통 **총 130학점 이상**(단일 60 · 복수 33 · 교양 최소 26)과 **오디세이세미나3(1학점)**, 그리고 **졸업시험**(과목 성적/어학 면제)이 적용돼요.',
+      bulletsKo: [
+        '경영학과: 9개 분야 중 4개 선택(각 분야 과목 B0+ 시 면제, 캡스톤디자인 추가 1분야 면제) · 공식 6대 진로 트랙',
+        '금융재무학과: 대상 11과목 중 3과목 선택(B 이상 면제, **TOEIC 700+ / TOEFL 500+** 전면 면제) · 공식 5대 트랙'
+      ],
+      sourceHints: [
+        { file: 'data/graduation_rules.json', kws: ['경영학과'] },
+        { file: 'data/graduation_rules.json', kws: ['금융재무학과'] },
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['금융재무학과', '경영대학'] }
+      ]
+    },
+    '글로벌융합대학': {
+      aliases: ['글로벌융합대학', '글로벌융합대', '글로벌학부'],
+      depts: ['글로벌비즈니스전공', '융합과학수사학과', '글로컬MICE학과', '한중통번역전공', '문화산업전공'],
+      summaryKo: '**글로벌융합대학**(글로벌비즈니스·융합과학수사·글로컬MICE·한중통번역·문화산업)은 **총 130학점 이상**이 기본이며 전공별 어학·캡스톤 요건이 크게 달라요.',
+      bulletsKo: [
+        '글로벌비즈니스전공: 전공기초 6 + 전필 3(`MICRO/MACRO`, 오디세이3) + **캡스톤 2과목**(26졸업~) + **졸업시험**(B0+/TESAT 170+ 면제) + **TOEIC 850+**',
+        '융합과학수사학과: 전필 오디세이3, **졸업논문·시험 없음** / 한중통번역·문화산업: 전필 없음, **TOPIK 4급+** 등 한국어 졸업인증',
+        '글로컬MICE학과(신설): 경영학사 수여, 국내외 공모전 1회 이상 필수 참가'
+      ],
+      sourceHints: [
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['글로벌비즈니스전공', 'TOEIC 850'] },
+        { file: 'information/[한림대학교] 2026학년도 대학안내책자.pdf', kws: ['융합과학수사학과', '졸업기준'] },
+        { file: 'information/26년 한림대학교_글로벌융합대학_글로컬MICE학과_리플릿_단면.pdf', kws: ['글로컬MICE'] }
+      ]
+    }
+  };
+
+  function detectMentionedCollege(query) {
+    const qLower = String(query || '').toLowerCase();
+    const qNorm = normStr(query);
+    const keys = Object.keys(COLLEGE_DEFINITIONS);
+    for (let i = 0; i < keys.length; i++) {
+      const col = keys[i];
+      const aliases = COLLEGE_DEFINITIONS[col].aliases;
+      for (let j = 0; j < aliases.length; j++) {
+        const a = aliases[j].toLowerCase();
+        if (qLower.includes(a) || qNorm.includes(a.replace(/\s+/g, ''))) {
+          return col;
+        }
+      }
+    }
+    return null;
+  }
+
+  function detectSwSubMajor(query) {
+    const qNorm = normStr(query);
+    if (qNorm.includes('빅데이터전공') || (qNorm.includes('빅데이터') && !qNorm.includes('데이터사이언스'))) return '빅데이터전공';
+    if (qNorm.includes('콘텐츠it')) return '콘텐츠IT전공';
+    if (qNorm.includes('스마트iot')) return '스마트IoT전공';
+    return null;
+  }
+
   function detectMentionedDept(query) {
     const qLower = String(query || '').toLowerCase();
     const qNorm = normStr(query);
+    // Avoid false substring matches when user explicitly names a college (e.g. '의생명과학대학' != '생명과학과', '경영대학' != '경영학과')
+    const strippedForDept = qNorm
+      .replace(/의생명과학대학|의생명과학대/g, '')
+      .replace(/자연과학대학|자연과학대/g, '')
+      .replace(/사회과학대학|사회과학대/g, '')
+      .replace(/정보과학대학|정보과학대/g, '')
+      .replace(/글로벌융합대학|글로벌융합대/g, '')
+      .replace(/인문대학|인문대/g, '')
+      .replace(/경영대학|경영대/g, '');
     for (let i = 0; i < DEPT_ALIASES.length; i++) {
       const [canon, aliases] = DEPT_ALIASES[i];
       for (let j = 0; j < aliases.length; j++) {
         const a = aliases[j].toLowerCase();
-        if (qLower.includes(a) || qNorm.includes(a.replace(/\s+/g, ''))) {
+        const aNorm = a.replace(/\s+/g, '');
+        if (aNorm === '경영대학' || aNorm === '소융대') continue;
+        if (strippedForDept.includes(aNorm) || (!qNorm.includes('대학') && qLower.includes(a))) {
           return canon;
         }
       }
@@ -326,11 +471,11 @@
       else if (typeof require !== 'undefined') { try { ragIndex = require('../data/rag_index.js'); } catch (e) {} }
     }
     if (!graduationRules) {
-      if (typeof window !== 'undefined' && window.GRADUATION_RULES) graduationRules = window.GRADUATION_RULES;
+      if (typeof window !== 'undefined' && (window.HALLYM_GRADUATION_RULES || window.GRADUATION_RULES)) graduationRules = window.HALLYM_GRADUATION_RULES || window.GRADUATION_RULES;
       else if (typeof require !== 'undefined') { try { graduationRules = require('../data/graduation_rules.json'); } catch (e) {} }
     }
     if (!gyoyangRules) {
-      if (typeof window !== 'undefined' && window.GYOYANG_RULES) gyoyangRules = window.GYOYANG_RULES;
+      if (typeof window !== 'undefined' && (window.HALLYM_GYOYANG_RULES || window.GYOYANG_RULES)) gyoyangRules = window.HALLYM_GYOYANG_RULES || window.GYOYANG_RULES;
       else if (typeof require !== 'undefined') { try { gyoyangRules = require('../data/gyoyang_rules.json'); } catch (e) {} }
     }
     if (!coursesList) {
@@ -1370,6 +1515,8 @@
       cacheStats.misses++;
 
       const mentionedDept = detectMentionedDept(trimmedQuery);
+      const mentionedCollege = mentionedDept ? null : detectMentionedCollege(trimmedQuery);
+      const swSubMajor = detectSwSubMajor(trimmedQuery);
       const mentionedYear = detectMentionedAdmissionYear(trimmedQuery);
       const mentionedType = detectMentionedStudentType(trimmedQuery);
 
@@ -1377,7 +1524,7 @@
       const userYear = parseInt(user.admissionYear || (user.studentId ? String(user.studentId).slice(0, 4) : 2025), 10) || 2025;
       const userType = user.studentType || '재학생';
 
-      const targetDept = mentionedDept || userMajor;
+      const targetDept = mentionedDept || mentionedCollege || userMajor;
       const targetYear = mentionedYear || userYear;
       const targetStudentType = mentionedType || userType;
 
@@ -1393,7 +1540,16 @@
       let sections = null;
       let grounded = false;
       let sources = [];
-      const ocrNotice = getOcrNoticeForDept(targetDept, lang);
+      let ocrNotice = getOcrNoticeForDept(targetDept, lang);
+      if (!ocrNotice && mentionedCollege && COLLEGE_DEFINITIONS[mentionedCollege] && COLLEGE_DEFINITIONS[mentionedCollege].hasOcrWarning && excludedOcrPdfs.length > 0) {
+        ocrNotice = lang === 'en'
+          ? 'Note: 5 Humanities scanned PDFs (OCR not applied) are excluded; 2026 University Guidebook & text rules were used.'
+          : (lang === 'ru'
+            ? 'Примечание: 5 скан-PDF гуманитарного факультета (без OCR) исключены; использованы справочник 2026 и текстовые правила.'
+            : (lang === 'zh'
+              ? '注：5份人文学院扫描版 PDF（未做 OCR）未纳入，已依据 2026 大学指南及文字版规定作答。'
+              : '참고: 인문대학 스캔 PDF 5개는 이미지 기반 자료(OCR 미적용)이므로 2026학년도 대학안내책자 및 학과별 텍스트 기준을 참조했어요.'));
+      }
       const remSummary = buildRemainingSummary(progress, lang);
       const locType = localizeStudentType(targetStudentType, lang);
 
@@ -1895,20 +2051,38 @@
       // 10. GRADUATION_REQ / MAJOR_REQ
       // ------------------------------------------------------------------
       else if (intent === 'GRADUATION_REQ' || intent === 'MAJOR_REQ') {
-        const rule = graduationRules && graduationRules[targetDept];
-        if (rule) {
+        const collegeDef = mentionedCollege ? COLLEGE_DEFINITIONS[mentionedCollege] : null;
+        const rule = !collegeDef && graduationRules && graduationRules[targetDept];
+        if (collegeDef) {
+          sections = {
+            headline: collegeDef.summaryKo,
+            nextActions: collegeDef.bulletsKo.slice(0, 4),
+            remainingSummary: null,
+            disclaimer: null
+          };
+          const direct = [];
+          (collegeDef.sourceHints || []).forEach((h) => {
+            direct.push(...findDirectChunks(h.file, h.kws, 1));
+          });
+          if (direct.length === 0) {
+            direct.push(...findDirectChunks('information/졸업사정 기준.txt', ['130학점'], 1));
+          }
+          sources = buildCitations(direct, [mentionedCollege, ...collegeDef.depts.slice(0, 3), '졸업', ...qTok.words], 3);
+          grounded = sources.length > 0;
+        } else if (rule) {
           const mc = rule.major_credits || { single: 60, double: 33, minor: 21 };
           const totalCr = rule.total_credits || 130;
           const geCr = rule.ge_credits || 26;
           const mandList = rule.mandatory_courses
             ? (targetYear >= 2021 ? (rule.mandatory_courses.since_2021 || []) : (rule.mandatory_courses.before_2021 || []))
             : [];
+          const displayDept = swSubMajor ? `소프트웨어학부 ${swSubMajor}` : targetDept;
 
           const headline =
-            lang === 'en' ? `**${targetDept}** graduation requires **${totalCr} credits** (GPA 2.00+): Single major **${mc.single} cr** (Double ${mc.double} cr) and GE **${targetStudentType === '편입생' ? 'exempt' : geCr + ' cr'}**.` :
-            lang === 'ru' ? `Для выпуска по **${targetDept}** нужно **${totalCr} кредитов** (GPA 2.00+): спец. **${mc.single} кр.** (двойная ${mc.double} кр.) и 교양 **${targetStudentType === '편입생' ? 'необязат.' : geCr + ' кр.'}**.` :
-            lang === 'zh' ? `**${targetDept}** 毕业需 **${totalCr}学分**（GPA 2.00以上）：单专业 **${mc.single}学分**（双专业 ${mc.double}学分）、教养 **${targetStudentType === '편입생' ? '免除' : geCr + '学分'}**。` :
-            `**${targetDept}**(${targetYear}학번) 졸업에는 **총 ${totalCr}학점 이상**(평점 2.00+)이 필요해요. 단일전공 **${mc.single}학점**(복수 ${mc.double}학점)과 ${targetStudentType === '편입생' ? '교양 의무 면제 기준이 적용돼요.' : `교양 최소 **${geCr}학점**을 채워야 해요.`}`;
+            lang === 'en' ? `**${displayDept}** graduation requires **${totalCr} credits** (GPA 2.00+): Single major **${mc.single} cr** (Double ${mc.double} cr) and GE **${targetStudentType === '편입생' ? 'exempt' : geCr + ' cr'}**.` :
+            lang === 'ru' ? `Для выпуска по **${displayDept}** нужно **${totalCr} кредитов** (GPA 2.00+): спец. **${mc.single} кр.** (двойная ${mc.double} кр.) и 교양 **${targetStudentType === '편입생' ? 'необязат.' : geCr + ' кр.'}**.` :
+            lang === 'zh' ? `**${displayDept}** 毕业需 **${totalCr}学分**（GPA 2.00以上）：单专业 **${mc.single}学分**（双专业 ${mc.double}学分）、教养 **${targetStudentType === '편입생' ? '免除' : geCr + '学分'}**。` :
+            `**${displayDept}**(${targetYear}학번) 졸업에는 **총 ${totalCr}학점 이상**(평점 2.00+)이 필요해요. 단일전공 **${mc.single}학점**(복수 ${mc.double}학점)과 ${targetStudentType === '편입생' ? '교양 의무 면제 기준이 적용돼요.' : `교양 최소 **${geCr}학점**을 채워야 해요.`}`;
 
           const nextActions = [];
           if (mandList.length > 0) {
@@ -1916,20 +2090,60 @@
           }
           if (targetDept === '소프트웨어학부') {
             nextActions.push(
-              lang === 'en' ? 'Track requirement: **소프트웨어캡스톤디자인 (3 cr)** + 1 designated major course (6 cr total) & **오디세이세미나3**.' :
-              lang === 'ru' ? 'Требование факультета: **소프트웨어캡스톤디자인 (3 кр.)** + 1 профильный курс (итого 6 кр.) и **오디세이세미나3**.' :
-              lang === 'zh' ? '学部细分要求：**소프트웨어캡스톤디자인（3学分）** + 1门认定专业课（共6学分）及 **오디세이세미나3**。' :
-              '세부 전공(빅데이터·콘텐츠IT·스마트IoT): **소프트웨어캡스톤디자인(3학점)** + 전공인정 1과목(총 6학점) 및 **오디세이세미나3** 필수'
+              lang === 'en' ? 'Major requirement (Single/Double/Minor): **소프트웨어캡스톤디자인 (3 cr)** (or **취업연계SW실무 9 cr**) + 1 designated major course (6 cr total) & **오디세이세미나3**.' :
+              lang === 'ru' ? 'Требование факультета (осн./двойн.): **소프트웨어캡스톤디자인 (3 кр.)** (или **취업연계SW실무 9 кр.**) + 1 профильный курс (6 кр.) и **오디세이세미나3**.' :
+              lang === 'zh' ? '学部要求（单/双专业相同）：**소프트웨어캡스톤디자인（3学分）**（可用 **취업연계SW실무 9学分** 替代）+ 1门认定专业课（共6学分）及 **오디세이세미나3**。' :
+              '필수 이수(단일·복수·부전공 동일): **소프트웨어캡스톤디자인(3학점)**(또는 **취업연계SW실무 9학점** 대체) + 세부전공 인정과목 1과목(총 6학점) 및 **오디세이세미나3**'
             );
+            const subMap = rule.special_conditions && rule.special_conditions.sub_majors;
+            if (swSubMajor && subMap && Array.isArray(subMap[swSubMajor])) {
+              nextActions.push(`**${swSubMajor}** 인정교과목(9종 중 1과목+): ${subMap[swSubMajor].slice(0, 6).join(', ')} 등`);
+            }
+          } else if (rule.special_conditions) {
+            const sp = rule.special_conditions;
+            const priorityKeys = ['basic_ge_since_2025', 'graduation_cert', 'language_cert', 'graduation_exam', 'graduation_project', 'sports_cert', 'graduation_thesis'];
+            for (let k = 0; k < priorityKeys.length && nextActions.length < 3; k++) {
+              const val = sp[priorityKeys[k]];
+              if (typeof val === 'string' && val.trim()) {
+                nextActions.push(val.trim());
+              }
+            }
           }
 
           sections = { headline, nextActions, remainingSummary: targetDept === userMajor ? remSummary : null, disclaimer: null };
           const direct = [
             ...findDirectChunks('data/graduation_rules.json', [targetDept], 1),
-            ...findDirectChunks(`학과별_졸업기준/졸업기준_${targetDept}`, [], 2),
-            ...findDirectChunks('information/졸업사정 기준.txt', ['130학점'], 1)
+            ...findDirectChunks(`학과별_졸업기준/졸업기준_${targetDept}`, [], 2)
           ];
-          sources = buildCitations(direct, [targetDept, '130', '졸업', '필수', ...qTok.words], 3);
+          if (swSubMajor) {
+            direct.push(...findDirectChunks(`information/소프트웨어학부_${swSubMajor}.pdf`, [swSubMajor.replace('전공', '')], 1));
+          }
+          direct.push(...findDirectChunks('information/졸업사정 기준.txt', ['130학점'], 1));
+          sources = buildCitations(direct, [swSubMajor || targetDept, targetDept, '130', '졸업', '필수', ...qTok.words], 3);
+          grounded = sources.length > 0;
+        } else if (targetDept === '간호학과') {
+          sections = {
+            headline: lang === 'en'
+              ? '**Nursing (간호학과)** requires **130+ total credits**, **81 mandatory major credits**, separate **26 GE credits** (exempt from Career English & Odyssey 2/3), and **2+ mock national nursing exams**.'
+              : lang === 'ru'
+              ? '**Сестринское дело (간호학과)**: **130+ кредитов**, **81 кр. обязательных по специальности**, отдельные **26 кр. 교양** (без Career English и Odyssey 2/3) и **≥2 пробных госэкзамена**.'
+              : lang === 'zh'
+              ? '**护理学科（간호학과）**毕业需 **130学分以上**、**专业必修 81学分**、单独 **教养 26学分**（免 Career English 及 Odyssey 2·3），并参加 **2次以上护士国考模拟考**。'
+              : '**간호학과**(간호대학) 졸업에는 **총 130학점 이상**, **전공필수 81학점**, **별도 교양 26학점**과 **간호사 국가시험 모의고사 2회 이상 응시**가 필요해요.',
+            nextActions: [
+              '전공필수(81학점): 기초간호학I~III, 기본간호학I·II및실습, 성인·아동·여성·정신·지역사회·노인간호학 이론 및 임상실습, 간호관리학, 간호연구, 통합실습I·II',
+              '별도 교양(26학점): 정보소통 5 · 생애설계 1 · 의사소통 3 · 글로벌소통 6 · 스포츠웰니스 1 (**Career English 및 오디세이세미나2·3 예외**)',
+              '공식 모듈형 트랙 4개(선택): 임상간호 · 지역돌봄 · 글로벌헬스리더 · AI임상데이터리더'
+            ],
+            remainingSummary: null,
+            disclaimer: null
+          };
+          const direct = [
+            ...findDirectChunks('information/[한림대학교] 2026학년도 대학안내책자.pdf', ['전공필수 : 81학점', '모의고사 2회'], 1),
+            ...findDirectChunks('information/[한림대학교] 2026학년도 대학안내책자.pdf', ['임상간호트랙', '지역돌봄트랙'], 1),
+            ...findDirectChunks('information/[한림대학교] 2026학년도 대학안내책자.pdf', ['간호대학', '26'], 1)
+          ];
+          sources = buildCitations(direct, ['간호학과', '81학점', '모의고사', '졸업시험', ...qTok.words], 3);
           grounded = sources.length > 0;
         } else {
           const deptHits = search(`${targetDept} 졸업 학점 필수 교과목`, { dept: targetDept, topics: ['졸업요건', '전공'], topK: 3 });

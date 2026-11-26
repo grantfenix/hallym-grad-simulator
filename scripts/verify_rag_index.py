@@ -9,6 +9,7 @@ Verifies:
 4. Ground-truth evidence availability for the 5 core benchmark queries
 """
 
+import glob
 import json
 import os
 import subprocess
@@ -64,20 +65,29 @@ def main():
         fail(f"data/rag_index.js failed Node load: {node_check.stderr}")
     print(f"[PASS] {node_check.stdout.strip()}")
 
-    # 3. Verify exact source counts
-    if stats.get("txt_files_processed") != 29:
-        fail(f"Expected 29 TXT files processed, got {stats.get('txt_files_processed')}")
-    if stats.get("pdf_files_processed") != 46:
-        fail(f"Expected 46 PDF files processed, got {stats.get('pdf_files_processed')}")
-    if stats.get("pdf_files_ocr_required") != 5 or len(excluded) != 5:
-        fail(f"Expected 5 OCR-required PDFs, got {stats.get('pdf_files_ocr_required')} / {len(excluded)}")
+    # 3. Verify exact source counts dynamically against information/ on disk
+    disk_txts = glob.glob(os.path.join(ROOT_DIR, "information", "**", "*.txt"), recursive=True)
+    disk_pdfs = glob.glob(os.path.join(ROOT_DIR, "information", "**", "*.pdf"), recursive=True)
+    expected_txts = len(disk_txts)
+    expected_total_pdfs = len(disk_pdfs)
+    actual_pdfs_total = stats.get("pdf_files_processed", 0) + stats.get("pdf_files_ocr_required", 0)
+
+    if stats.get("txt_files_processed") != expected_txts:
+        fail(f"Expected {expected_txts} TXT files processed, got {stats.get('txt_files_processed')}")
+    if actual_pdfs_total != expected_total_pdfs:
+        fail(f"Expected {expected_total_pdfs} total PDFs accounted for, got {actual_pdfs_total}")
+    if stats.get("pdf_files_ocr_required") != len(excluded):
+        fail(f"Mismatch in OCR-excluded count: stats={stats.get('pdf_files_ocr_required')} vs list={len(excluded)}")
     if stats.get("json_files_processed") != 3:
         fail(f"Expected 3 JSON files processed, got {stats.get('json_files_processed')}")
 
     for ex in excluded:
         if ex.get("status") != "이미지 기반 자료(OCR 미적용)":
             fail(f"Unexpected OCR status for {ex.get('file')}: {ex.get('status')}")
-    print("[PASS] Source coverage verified: 29 TXT + 46 PDF + 3 JSON indexed, 5 OCR PDFs marked")
+    print(
+        f"[PASS] Source coverage verified: {stats.get('txt_files_processed')} TXT + "
+        f"{stats.get('pdf_files_processed')} PDF + 3 JSON indexed, {len(excluded)} OCR PDFs marked"
+    )
 
     # 4. Schema & citation metadata integrity across ALL chunks
     if not chunks:
@@ -110,13 +120,18 @@ def main():
         f"(len min={min(lengths)}, avg={avg_len:.0f}, max={max(lengths)} chars)"
     )
 
-    # 5. Benchmark ground-truth evidence presence checks (5 required questions)
+    # 5. Benchmark ground-truth evidence presence checks (core 5 + 6 IT/SW target majors)
     benchmarks = [
         ("Q1: 졸업 총 학점(130학점)", ["130학점", "졸업"]),
         ("Q2: 교양 필수 과목(정보소통·생애설계)", ["컴퓨팅사고", "오디세이세미나"]),
         ("Q3: 소프트웨어학부 졸업 요건", ["소프트웨어학부", "소프트웨어캡스톤디자인"]),
         ("Q4: 외국인 유학생 교양 요건", ["외국인", "대학한국어3"]),
         ("Q5: 경영학과 트랙(6대 트랙)", ["경영학과", "글로벌 혁신전략", "의료경영"]),
+        ("Q6: 빅데이터전공 졸업 요건", ["빅데이터", "소프트웨어캡스톤디자인"]),
+        ("Q7: 콘텐츠IT전공 졸업 요건", ["콘텐츠", "소프트웨어캡스톤디자인"]),
+        ("Q8: 스마트IoT전공 졸업 요건", ["스마트", "IoT", "소프트웨어캡스톤디자인"]),
+        ("Q9: 인공지능컴퓨팅학부 자료", ["인공지능컴퓨팅학부"]),
+        ("Q10: 데이터사이언스학부 졸업 요건", ["데이터사이언스학부", "졸업"]),
     ]
     for label, must_terms in benchmarks:
         hits = [
