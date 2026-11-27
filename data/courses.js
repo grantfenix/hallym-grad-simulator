@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,299 Courses)
+// Hallym University Course Database (1,338 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -11921,6 +11921,319 @@
     "credits": 3,
     "cat": "전선",
     "dept": "식품영양학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531222",
+    "title": "폐수처리공학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531210",
+    "title": "상하수도공학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "531342",
+    "title": "환경산화공정",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531313",
+    "title": "공정설계",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531207",
+    "title": "대기오염제어",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531110",
+    "title": "환경화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "env_unconf_01",
+    "title": "기후변화개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "531351",
+    "title": "최근환경분석화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531204",
+    "title": "폐기물처리",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531109",
+    "title": "공정양론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531341",
+    "title": "환경에너지공학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "531335",
+    "title": "생물정화기술",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531104",
+    "title": "환경독성학",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531353",
+    "title": "환경영향평가",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "531343",
+    "title": "환경유기화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "531344",
+    "title": "최근환경기술동향",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "531347",
+    "title": "캡스톤디자인:환경생명공학실험II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "환경생명공학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "543014",
+    "title": "의사소통장애개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "540034",
+    "title": "신경언어장애",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "540301",
+    "title": "삼킴장애",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "540006",
+    "title": "언어발달",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "543023",
+    "title": "영유아의사소통장애",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "543044",
+    "title": "학습장애언어재활",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "543039",
+    "title": "다문화와의사소통",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "543016",
+    "title": "특수교육학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "540031",
+    "title": "유창성장애",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "543012",
+    "title": "구개열언어재활",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "543018",
+    "title": "말과학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "언어병리학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713035",
+    "title": "AI이해의기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "713008",
+    "title": "융합형인재를위한코딩기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "713037",
+    "title": "AI디자인",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713010",
+    "title": "디지털디자인1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713043",
+    "title": "디지털디자인3",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713014",
+    "title": "UX디자인",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713044",
+    "title": "경험디자인의고급과정1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713041",
+    "title": "사회혁신디자인",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "713018",
+    "title": "인문데이터마이닝",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713046",
+    "title": "지역혁신연구방법론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "713028",
+    "title": "디지털문화콘텐츠마케팅",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "디지털인문예술전공",
     "semester": "1학기"
   }
 ];

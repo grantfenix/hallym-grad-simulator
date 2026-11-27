@@ -1204,6 +1204,109 @@ const HALLYM_GRADUATION_RULES = {
       "nano_degree": "바이오헬스케어 소재 개발 및 실무 나노디그리(9학점 선택 3: 건강기능식품개발실무 508519, 헬스케어실무 520015, 인체질환건강기능식품학 508521, 건강기능식품소재개발효능평가실무 508520).",
       "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.171-175], information/26년 한림대학교_의생명과학대학_식품영양학과_리플릿_단면.pdf [p.2-3]"
     }
+  },
+  "환경생명공학과": {
+    "department": "환경생명공학과",
+    "college": "자연과학대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ]
+    },
+    "special_conditions": {
+      "graduation_thesis_or_cert": "아래 조건 중 1개 이상 충족(단, 복수전공은 졸업논문 면제): ① 졸업논문(캡스톤디자인:환경생명공학실험Ⅰ·Ⅱ 이수) ② 전공 관련 기사 자격증 취득(1차 시험 합격 이상 인정) ③ TOEIC 750+, TOEFL 80+, TEPS 560+, OPIc IM2+ ④ 전공분야 전국규모 공모전 입상 ⑤ 학과 인정 포상 및 업적 성취.",
+      "nano_degree": "환경영향평가 나노디그리(9학점 필수: 환경영향평가 531353, 생물학적폐수처리공학 531348, 환경유기화학 531343).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.165-170]"
+    }
+  },
+  "언어병리학전공": {
+    "department": "언어병리학전공",
+    "college": "자연과학대학",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수 (복수전공필수 없음)"
+        }
+      ]
+    },
+    "special_conditions": {
+      "graduation_exam": "졸업시험 합격자에 한함(보건복지부 주관 언어재활사 2급 합격자는 면제). 복수전공생의 졸업시험 면제 여부는 2026 책자 p.178 미명시(미확인).",
+      "national_license_req": "언어재활사 국가자격 취득 요건(p.177-178): 전공학점 57학점 + 필수과목 10과목(5대 장애 5과목 + 실습 5과목) + 트랙별 교과목 9과목(총 19과목) + 언어재활관찰 30시간 + 언어진단·언어재활실습 90시간 완수 필수.",
+      "nano_degree": "음성건강케어 나노디그리(9학점 선택 3: 언어기관해부생리 540024, 말과학 543018, 음성장애 540033, 언어재활현장실무 543046).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.176-179]"
+    }
+  },
+  "디지털인문예술전공": {
+    "department": "디지털인문예술전공",
+    "college": "미래융합스쿨",
+    "total_credits": 130,
+    "major_credits": {
+      "single": 60,
+      "double": 33,
+      "minor": 21
+    },
+    "ge_credits": 26,
+    "mandatory_courses": {
+      "since_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ],
+      "before_2021": [
+        {
+          "title": "오디세이세미나3",
+          "code": "006175",
+          "credits": 1,
+          "note": "전공필수"
+        }
+      ]
+    },
+    "special_conditions": {
+      "double_major_focus": "미래융합스쿨 소속으로 복수전공 학점 33학점 이수 기준 명시(p.264). 단일전공 이수 허용 여부 및 별도 졸업시험·논문 유무는 2026 대학안내책자 p.264에 미명시되어 '미확인'으로 안내.",
+      "nano_degree": "UX 디자인(9학점, 4중 3), AI 디자인(9학점, 4중 3), AI와 길 정보 구축(9학점, 3과목+).",
+      "source_ref": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.262-266]"
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_GRADUATION_RULES = HALLYM_GRADUATION_RULES;

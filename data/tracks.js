@@ -4915,6 +4915,943 @@ const HALLYM_TRACKS = {
         "subMajorNote": "졸업 기준(p.174, 리플릿 p.3): 전공필수 오디세이세미나3(006175, 복수전공필수 없음) + ① 졸업시험(복수전공 33학점 이수 시 합격) ② 졸업논문(대학원 진학·외국인·졸업유보생) ③ 어학(TOEIC 700+, OPIc IM2+ 등) ④ 식품기사·영양사 자격증 중 택 1 충족 필수."
       }
     }
+  },
+  "환경생명공학과": {
+    "department": "환경생명공학과",
+    "college": "자연과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 자연과학대학 환경생명공학과 공식 모듈형 전공트랙 3개(수질 전문가, 대기 전문가, 환경보전 전문가 / 선택제·이수증 발급)입니다. 졸업 시에는 오디세이세미나3 및 졸업논문(캡스톤Ⅰ·Ⅱ)·기사 1차·TOEIC 750+·공모전 중 택 1 충족이 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.165-170]",
+    "sourceQuote": "2. 모듈별 교과목 구성 (이수증 발급) — 수질 전문가(a+b: a 3과목+, b 3과목+), 대기 전문가(c+d: c 3과목+, d 전체), 환경보전 전문가(e+f: e·f 전체)",
+    "unconfirmedNote": "대기 전문가 트랙 모듈 c의 '기후변화개론'은 2026 대학안내책자 p.166 모듈표에 기재되어 있으나 p.168 전공교과과정표에 6자리 교과목번호 및 개설학기가 미기재되어 '미확인'으로 표시됩니다.",
+    "tracks": {
+      "수질전문가": {
+        "id": "수질전문가",
+        "title": "수질 전문가 트랙",
+        "dept": "환경생명공학과",
+        "model": "modular",
+        "desc": "수질 및 상하수도 조사·계획·설계·시공·운전 실무 역량을 양성하는 산업체 연계 모듈형 트랙",
+        "careers": "정수·폐수처리 기관, 수질 분석 기관, 수자원 엔지니어링, 기업 수질 담당 부서",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 화학과",
+        "certifications": "수질환경기사, 수질환경산업기사, 수질관리기술사, 상하수도기술사",
+        "requirementSummary": "모듈 a(수질) 3과목 이상 + 모듈 b(상하수도) 3과목 이상 이수 (총 6과목 이상)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.166-168]",
+        "sourceQuote": "수질 전문가 | a + b | a 모듈 3과목 이상 이수, b 모듈 3과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 수질",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531222",
+                "title": "폐수처리공학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531348",
+                "title": "생물학적폐수처리공학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531203",
+                "title": "환경오염물질분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531227",
+                "title": "수질화학",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 상하수도",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531212",
+                "title": "유체역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531210",
+                "title": "상하수도공학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531342",
+                "title": "환경산화공정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531313",
+                "title": "공정설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.168): 전공필수 오디세이세미나3(복수전공필수 없음) + ① 졸업논문(캡스톤디자인:환경생명공학실험Ⅰ·Ⅱ) ② 전공기사 1차 합격+ ③ TOEIC 750+/OPIc IM2+ ④ 전국 공모전 입상 ⑤ 학과 인정 포상 중 택 1 충족(복수전공은 졸업논문 면제)."
+      },
+      "대기전문가": {
+        "id": "대기전문가",
+        "title": "대기 전문가 트랙",
+        "dept": "환경생명공학과",
+        "model": "modular",
+        "desc": "대기오염물질·기후조절가스 진단과 폐자원 순환·폐기물 처리 및 온실가스 산정 기술을 학습하는 트랙",
+        "careers": "대기질 분석 기관, 기후변화평가 기관, 폐기물 처리·폐자원 엔지니어링, 기업 대기 담당 부서",
+        "recommendedDoubleMajors": "기후변화융합전공, 화학과",
+        "certifications": "대기환경기사, 폐기물처리기사, 온실가스관리기사, 환경위해관리기사",
+        "requirementSummary": "모듈 c(대기) 3과목 이상 + 모듈 d(폐자원) 전체 3과목 이수 (총 6과목 이상)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.166-168]",
+        "sourceQuote": "대기 전문가 | c + d | c 모듈 3과목 이상 이수, d 모듈 전체 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 대기",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531207",
+                "title": "대기오염제어",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531110",
+                "title": "환경화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "env_unconf_01",
+                "title": "기후변화개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "531351",
+                "title": "최근환경분석화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 폐자원",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531204",
+                "title": "폐기물처리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531109",
+                "title": "공정양론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531341",
+                "title": "환경에너지공학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.168): 전공필수 오디세이세미나3(복수전공필수 없음) + ① 졸업논문(캡스톤디자인:환경생명공학실험Ⅰ·Ⅱ) ② 전공기사 1차 합격+ ③ TOEIC 750+/OPIc IM2+ ④ 전국 공모전 입상 ⑤ 학과 인정 포상 중 택 1 충족(복수전공은 졸업논문 면제)."
+      },
+      "환경보전전문가": {
+        "id": "환경보전전문가",
+        "title": "환경보전 전문가 트랙",
+        "dept": "환경생명공학과",
+        "model": "modular",
+        "desc": "토양·지하수 오염 복원 및 사전 환경영향평가·컨설팅 전문 역량을 양성하는 트랙",
+        "careers": "토양 복원·분석 기관, 환경영향평가 기관, 환경컨설팅사, 기업 토양·환경영향평가 부서",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 생명과학과",
+        "certifications": "토양환경기사, 환경영향평가사, 환경위해관리기사",
+        "requirementSummary": "모듈 e(토양환경) 전체 3과목 + 모듈 f(환경영향평가) 전체 3과목 이수 (총 6과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.166-168]",
+        "sourceQuote": "환경보전 전문가 | e + f | e 모듈 전체 이수, f 모듈 전체 이수",
+        "modules": [
+          {
+            "code": "e",
+            "name": "모듈 e: 토양환경",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531334",
+                "title": "토양오염제어",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531335",
+                "title": "생물정화기술",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531104",
+                "title": "환경독성학",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 환경영향평가",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "531353",
+                "title": "환경영향평가",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "531343",
+                "title": "환경유기화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "531344",
+                "title": "최근환경기술동향",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.168): 전공필수 오디세이세미나3(복수전공필수 없음) + ① 졸업논문(캡스톤디자인:환경생명공학실험Ⅰ·Ⅱ) ② 전공기사 1차 합격+ ③ TOEIC 750+/OPIc IM2+ ④ 전국 공모전 입상 ⑤ 학과 인정 포상 중 택 1 충족(복수전공은 졸업논문 면제)."
+      }
+    }
+  },
+  "언어병리학전공": {
+    "department": "언어병리학전공",
+    "college": "자연과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 자연과학대학 언어청각학부 언어병리학전공 공식 모듈형 전공트랙 3개(성인의사소통장애·아동의사소통장애·말장애 전문가 / 이수증 발급)입니다. 졸업 시 오디세이세미나3 및 졸업시험(언어재활사 2급 합격 시 면제) 통과가 필수입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.176-179]",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 성인의사소통장애 전문가트랙(a+b, 필수 신경언어장애), 아동의사소통장애 전문가트랙(c+d+e, 필수 언어발달장애), 말장애 전문가트랙(f+g, 필수 조음음운장애·유창성장애·음성장애): 모듈 해당 교과목 모두 이수시",
+    "unconfirmedNote": "복수전공생의 졸업시험 면제 여부는 2026 대학안내책자 p.178에 미명시되어 '미확인'입니다. 또한 '언어기관해부생리'(기존 DB·p.179 540024 vs p.178 543015)와 '뇌성마비언어재활'(기존 DB 543045 vs p.178 543013)은 구·신 교과목번호 병기 확인이 필요합니다.",
+    "tracks": {
+      "성인의사소통장애전문가": {
+        "id": "성인의사소통장애전문가",
+        "title": "성인의사소통장애 전문가 트랙",
+        "dept": "언어병리학전공",
+        "model": "modular",
+        "desc": "신경언어장애·노화 의사소통·삼킴장애 등 성인·노인 대상 임상 언어재활 전문가 양성 트랙",
+        "careers": "대학병원·개인병원 신경과/재활의학과, 재활병원, 노인요양병원, 노인복지관",
+        "recommendedDoubleMajors": "청각학전공, 심리학과, 사회복지학부",
+        "certifications": "언어재활사 2급 (국가자격)",
+        "requirementSummary": "모듈 a(성인언어장애) + 모듈 b(말운동삼킴장애) 해당 6과목 전 과목 이수 (필수: 신경언어장애)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "신경언어장애"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.176-178]",
+        "sourceQuote": "성인의사소통장애 전문가트랙 | a+b | 필수: 신경언어장애 | 모듈 해당 교과목 모두 이수시",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 성인언어장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "543048",
+                "title": "노화와의사소통장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "540034",
+                "title": "신경언어장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "543028",
+                "title": "언어재활실습-캡스톤디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 말운동삼킴장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "543045",
+                "title": "뇌성마비언어재활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "540301",
+                "title": "삼킴장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "540024",
+                "title": "언어기관해부생리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업·자격 기준(p.177-178): 전공필수 오디세이세미나3 + 졸업시험 합격(보건복지부 언어재활사 2급 합격 시 면제). 언어재활사 국가자격 희망자는 필수 10과목+트랙 9과목(총 19과목, 전공 57학점) + 언어재활관찰 30시간 + 언어진단·재활실습 90시간 완수 필수."
+      },
+      "아동의사소통장애전문가": {
+        "id": "아동의사소통장애전문가",
+        "title": "아동의사소통장애 전문가 트랙",
+        "dept": "언어병리학전공",
+        "model": "modular",
+        "desc": "영유아·학령기·발달장애 아동의 언어발달·진단·재활 역량을 기르는 아동 언어재활 전문가 트랙",
+        "careers": "아동발달연구소, 복지관, 병원 소아청소년정신과/재활의학과, 학교·어린이집, 다문화가족센터",
+        "recommendedDoubleMajors": "심리학과, 사회복지학부, 청각학전공",
+        "certifications": "언어재활사 2급 (국가자격)",
+        "requirementSummary": "모듈 c + d + e 해당 9과목 전 과목 이수 (필수: 언어발달장애)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "언어발달장애"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.176-178]",
+        "sourceQuote": "아동의사소통장애 전문가트랙 | c+d+e | 필수: 언어발달장애 | 모듈 해당 교과목 모두 이수시",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 영유아의사소통장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "540006",
+                "title": "언어발달",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "543023",
+                "title": "영유아의사소통장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "543027",
+                "title": "언어진단실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 학령기아동언어장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "540011",
+                "title": "언어발달장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "543044",
+                "title": "학습장애언어재활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "543039",
+                "title": "다문화와의사소통",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 발달장애의사소통",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "543042",
+                "title": "자폐범주장애언어재활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "543043",
+                "title": "지적장애언어재활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "543016",
+                "title": "특수교육학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업·자격 기준(p.177-178): 전공필수 오디세이세미나3 + 졸업시험 합격(보건복지부 언어재활사 2급 합격 시 면제). 언어재활사 국가자격 희망자는 필수 10과목+트랙 9과목(총 19과목, 전공 57학점) + 언어재활관찰 30시간 + 언어진단·재활실습 90시간 완수 필수."
+      },
+      "말장애전문가": {
+        "id": "말장애전문가",
+        "title": "말장애 전문가 트랙",
+        "dept": "언어병리학전공",
+        "model": "modular",
+        "desc": "조음음운·유창성·구개열·음성장애 및 말과학·임상현장실무에 특화된 말장애 재활 전문가 트랙",
+        "careers": "대학병원·개인병원 이비인후과 음성클리닉, 개인 언어치료실, 복지관",
+        "recommendedDoubleMajors": "청각학전공, 심리학과",
+        "certifications": "언어재활사 2급 (국가자격)",
+        "requirementSummary": "모듈 f(말장애) + 모듈 g(음성장애) 해당 6과목 전 과목 이수 (필수: 조음음운장애, 유창성장애, 음성장애)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "조음음운장애",
+          "유창성장애",
+          "음성장애"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.176-178]",
+        "sourceQuote": "말장애 전문가트랙 | f+g | 필수: 조음음운장애, 유창성장애, 음성장애 | 모듈 해당 교과목 모두 이수시",
+        "modules": [
+          {
+            "code": "f",
+            "name": "모듈 f: 말장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "540007",
+                "title": "조음음운장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "540031",
+                "title": "유창성장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "543012",
+                "title": "구개열언어재활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 음성장애",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "540033",
+                "title": "음성장애",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "543018",
+                "title": "말과학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "543046",
+                "title": "언어재활현장실무",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업·자격 기준(p.177-178): 전공필수 오디세이세미나3 + 졸업시험 합격(보건복지부 언어재활사 2급 합격 시 면제). 언어재활사 국가자격 희망자는 필수 10과목+트랙 9과목(총 19과목, 전공 57학점) + 언어재활관찰 30시간 + 언어진단·재활실습 90시간 완수 필수."
+      }
+    }
+  },
+  "디지털인문예술전공": {
+    "department": "디지털인문예술전공",
+    "college": "미래융합스쿨",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 미래융합스쿨 디지털인문예술전공 공식 모듈형 전공트랙 4개(선택제·이수증 발급, 각 필수교과목 포함 18학점 이상)입니다. 졸업 기준은 복수전공 33학점 및 오디세이세미나3 이수입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.262-266]",
+    "sourceQuote": "2. 모듈형 전공트랙 (이수증 발급) — 스마트경험디자인(a+c+d), AI콘텐츠디자인(a+b), 디자인의 사회적책임(c+d), AI서비스개발(d+e+f): 각 필수 교과목 포함 18학점 이상",
+    "unconfirmedNote": "단일전공 이수 허용 여부 및 별도 졸업시험·논문 유무는 2026 대학안내책자 p.264에 미명시되어 '미확인'입니다(복수전공 33학점 기준). 또한 4개 교과목은 기존 개설 DB 명칭과 상이하여 동일 6자리 코드로 자동 매칭됩니다(713002 인문DB설계↔AI서비스와DB, 713030 디자인씽킹기초↔디자인씽킹, 713033 경험디자인의고급과정2↔경험디자인특강, 713042 디지털디자인4↔UI디자인).",
+    "tracks": {
+      "스마트경험디자인": {
+        "id": "스마트경험디자인",
+        "title": "스마트경험디자인 트랙",
+        "dept": "디지털인문예술전공",
+        "model": "modular",
+        "desc": "AI 디자인·UX 디자인·서비스 디자인을 결합하여 혁신적인 디지털 사용자 경험을 설계하는 융합 트랙",
+        "careers": "UI/UX 디자이너, 서비스 디자이너, 경험 디자이너, 고객 경험 기반 상품 기획자",
+        "recommendedDoubleMajors": "소프트웨어학부, 미디어스쿨, 경영학과",
+        "certifications": "UX 디자인 나노디그리, AI 디자인 나노디그리, GTQ/ACA",
+        "requirementSummary": "모듈 a + c + d 교과목 중 필수 3과목(AI디자인, UX디자인, 서비스디자인) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "AI디자인",
+          "UX디자인",
+          "서비스디자인"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.263-264]",
+        "sourceQuote": "스마트경험디자인 | a+c+d | 필수: AI 디자인, UX 디자인, 서비스 디자인 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: AI 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713035",
+                "title": "AI이해의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713008",
+                "title": "융합형인재를위한코딩기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "713037",
+                "title": "AI디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: UX 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713030",
+                "title": "디자인씽킹기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713014",
+                "title": "UX디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713044",
+                "title": "경험디자인의고급과정1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 서비스 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713031",
+                "title": "서비스디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713041",
+                "title": "사회혁신디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713033",
+                "title": "경험디자인의고급과정2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.264): 미래융합스쿨 소속(복수전공 33학점 이수, 전공필수 오디세이세미나3). 나노디그리: UX 디자인·AI 디자인·AI와 길 정보 구축(각 9학점)."
+      },
+      "AI콘텐츠디자인": {
+        "id": "AI콘텐츠디자인",
+        "title": "AI콘텐츠디자인 트랙",
+        "dept": "디지털인문예술전공",
+        "model": "modular",
+        "desc": "AI 기반 창작 도구와 디지털 디자인 1~4 실습을 결합한 디지털 콘텐츠·미디어 디자인 특화 트랙",
+        "careers": "웹/앱/그래픽 디자이너, 디지털 예술·영상 창작, 전자출판, 게임/웹툰 기획",
+        "recommendedDoubleMajors": "미디어스쿨, 광고홍보학과, 소프트웨어학부",
+        "certifications": "AI 디자인 나노디그리, 컴퓨터그래픽스운용기능사",
+        "requirementSummary": "모듈 a + b 교과목 중 필수 3과목(AI디자인, 디지털디자인2, 디지털디자인3) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "AI디자인",
+          "디지털디자인2",
+          "디지털디자인3"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.263-264]",
+        "sourceQuote": "AI콘텐츠디자인 | a+b | 필수: AI 디자인, 디지털 디자인 2, 디지털 디자인 3 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: AI 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713035",
+                "title": "AI이해의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713008",
+                "title": "융합형인재를위한코딩기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "713037",
+                "title": "AI디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 디지털 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713010",
+                "title": "디지털디자인1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713007",
+                "title": "디지털디자인2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713043",
+                "title": "디지털디자인3",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713042",
+                "title": "디지털디자인4",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.264): 미래융합스쿨 소속(복수전공 33학점 이수, 전공필수 오디세이세미나3). 나노디그리: UX 디자인·AI 디자인·AI와 길 정보 구축(각 9학점)."
+      },
+      "디자인의사회적책임": {
+        "id": "디자인의사회적책임",
+        "title": "디자인의 사회적책임 트랙",
+        "dept": "디지털인문예술전공",
+        "model": "modular",
+        "desc": "디자인 씽킹·UX·서비스 디자인·사회혁신디자인으로 삶의 질 향상과 사회적 가치를 구현하는 트랙",
+        "careers": "사회혁신·공공서비스 디자이너, 문화기획·디지털 큐레이터, 사회적기업 기획자",
+        "recommendedDoubleMajors": "사회복지학부, 사회학과, 행정/정치행정학과",
+        "certifications": "UX 디자인 나노디그리, 사회조사분석사",
+        "requirementSummary": "모듈 c + d 교과목 중 필수 3과목(디자인씽킹기초, 서비스디자인, 사회혁신디자인) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "디자인씽킹기초",
+          "서비스디자인",
+          "사회혁신디자인"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.263-264]",
+        "sourceQuote": "디자인의 사회적책임 | c+d | 필수: 디자인 씽킹 기초, 서비스 디자인, 사회혁신디자인 | 18학점 이상",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: UX 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713030",
+                "title": "디자인씽킹기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713014",
+                "title": "UX디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713044",
+                "title": "경험디자인의고급과정1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 서비스 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713031",
+                "title": "서비스디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713041",
+                "title": "사회혁신디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713033",
+                "title": "경험디자인의고급과정2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.264): 미래융합스쿨 소속(복수전공 33학점 이수, 전공필수 오디세이세미나3). 나노디그리: UX 디자인·AI 디자인·AI와 길 정보 구축(각 9학점)."
+      },
+      "AI서비스개발": {
+        "id": "AI서비스개발",
+        "title": "AI서비스개발 트랙",
+        "dept": "디지털인문예술전공",
+        "model": "modular",
+        "desc": "인문데이터마이닝·생성형AI·인문DB설계·콘텐츠마케팅과 UX/서비스 디자인을 결합한 AI 서비스 기획·개발 트랙",
+        "careers": "AI 서비스 기획자(PM), 데이터 기반 마케팅·홍보, 텍스트 빅데이터 시각화·분석가",
+        "recommendedDoubleMajors": "데이터사이언스학부, 소프트웨어학부, 경영학과",
+        "certifications": "ADsP, SQLD, AI 디자인 나노디그리",
+        "requirementSummary": "모듈 d + e + f 교과목 중 필수 4과목(인문DB설계, 디지털문화콘텐츠마케팅, UX디자인, 서비스디자인) 포함 18학점 이상",
+        "minTotalCredits": 18,
+        "requiredCourses": [
+          "인문DB설계",
+          "디지털문화콘텐츠마케팅",
+          "UX디자인",
+          "서비스디자인"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.263-264]",
+        "sourceQuote": "AI서비스개발 | d+e+f | 필수: 인문DB설계, 디지털문화콘텐츠마케팅, UX디자인, 서비스 디자인 | 18학점 이상",
+        "modules": [
+          {
+            "code": "d",
+            "name": "모듈 d: 서비스 디자인",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713031",
+                "title": "서비스디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713041",
+                "title": "사회혁신디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713033",
+                "title": "경험디자인의고급과정2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 데이터&트렌드",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713018",
+                "title": "인문데이터마이닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713046",
+                "title": "지역혁신연구방법론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713045",
+                "title": "생성형AI와지역문화데이터",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: AI서비스제작",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "713002",
+                "title": "인문DB설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "713028",
+                "title": "디지털문화콘텐츠마케팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "713014",
+                "title": "UX디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.264): 미래융합스쿨 소속(복수전공 33학점 이수, 전공필수 오디세이세미나3). 나노디그리: UX 디자인·AI 디자인·AI와 길 정보 구축(각 9학점)."
+      }
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_TRACKS = HALLYM_TRACKS;
