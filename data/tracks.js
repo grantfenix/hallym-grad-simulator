@@ -5852,6 +5852,1178 @@ const HALLYM_TRACKS = {
         "subMajorNote": "졸업 기준(p.264): 미래융합스쿨 소속(복수전공 33학점 이수, 전공필수 오디세이세미나3). 나노디그리: UX 디자인·AI 디자인·AI와 길 정보 구축(각 9학점)."
       }
     }
+  },
+  "경제학과": {
+    "department": "경제학과",
+    "college": "사회과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 사회과학대학 경제학과 공식 모듈형 전공트랙 4개(기업가, 금융혁신가, 정책전문가, 연구자 / 선택제·이수증 발급)입니다. 각 트랙은 모듈 a·b와 트랙별 심화 모듈에서 각 3과목 이상 및 필수 지정 교과목 2과목 이수가 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.118-123], information/졸업기준_경제학과.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 — 기업가 트랙(a+b+c, 필수: 국제무역론·시장구조와 기업전략), 금융혁신가 트랙(a+b+d, 필수: 화폐금융론·환율과 국제금융), 정책전문가 트랙(a+b+e, 필수: 재정학·환경경제학), 연구자 트랙(a+b+f, 필수: 계량경제학·게임이론 및 응용) / 각 모듈 3과목 이수(이수증 발급)",
+    "unconfirmedNote": null,
+    "tracks": {
+      "기업가": {
+        "id": "기업가",
+        "title": "기업가 트랙",
+        "dept": "경제학과",
+        "model": "modular",
+        "desc": "기업의 시장전략·노동·인사관리·국제무역 분석을 바탕으로 기업가형 직무능력을 양성하는 모듈형 트랙",
+        "careers": "일반 기업체, 무역회사, 세무·회계·노무법인, 컨설팅·마케팅회사, 외국계 회사",
+        "recommendedDoubleMajors": "경영학과, 글로벌비즈니스전공, 법학과",
+        "certifications": "국제무역사, 전산세무·전산회계 1·2급, 세무회계 1~3급, 공인노무사",
+        "requirementSummary": "모듈 a(기초경제학) 3과목 + 모듈 b(핵심경제학) 3과목 + 모듈 c(기업경제학) 3과목 이수 (총 9과목+, 필수: 국제무역론, 시장구조와기업전략)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "국제무역론",
+          "시장구조와기업전략"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.119-122]",
+        "sourceQuote": "기업가 트랙 | a + b + c | 필수 교과목: 국제무역론, 시장구조와 기업전략 | 이수 요건(이수증 발급): a, b, c 모듈 각 3과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204102",
+                "title": "경제학원론(미시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204101",
+                "title": "경제학원론(거시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204297",
+                "title": "경제와수학적분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204299",
+                "title": "경제자료분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204506",
+                "title": "미시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204507",
+                "title": "미시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204508",
+                "title": "거시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204509",
+                "title": "거시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 기업경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204411",
+                "title": "노동시장론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204523",
+                "title": "인사관리경제학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "204317",
+                "title": "시장구조와기업전략",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "204315",
+                "title": "국제무역론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.122-123): 주전공 전필 미시경제학I(204506)·거시경제학I(204508)·오디세이세미나3(복수전공은 미시I·거시I 필수) + 졸업논문 또는 미시·거시 졸업시험 통과(22학번 이전 각 B0+ 시 면제 / 23학번 이후 기초·심화·B0+ 3과목+ 조건 충족 시 면제). 타과 전선 인정 최대 6학점(22학번~ 단일·복수 동일)."
+      },
+      "금융혁신가": {
+        "id": "금융혁신가",
+        "title": "금융혁신가 트랙",
+        "dept": "경제학과",
+        "model": "modular",
+        "desc": "화폐·금융시장·국제금융·거시경제 성장 분석을 통해 금융혁신가형 도전능력을 기르는 모듈형 트랙",
+        "careers": "은행, 증권사, 자산운용사, 종합금융사, 보험회사, 금융공기업, 국책은행",
+        "recommendedDoubleMajors": "금융재무학과, 데이터사이언스학부, 경영학과",
+        "certifications": "펀드·증권·파생상품 투자권유자문인력, 금융투자분석사, 투자자산운용사, 재무위험관리사",
+        "requirementSummary": "모듈 a(기초경제학) 3과목 + 모듈 b(핵심경제학) 3과목 + 모듈 d(금융경제학) 3과목 이수 (총 9과목+, 필수: 화폐금융론, 환율과국제금융)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "화폐금융론",
+          "환율과국제금융"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.119-122]",
+        "sourceQuote": "금융혁신가 트랙 | a + b + d | 필수 교과목: 화폐금융론, 환율과 국제금융 | 이수 요건(이수증 발급): a, b, d 모듈 각 3과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204102",
+                "title": "경제학원론(미시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204101",
+                "title": "경제학원론(거시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204297",
+                "title": "경제와수학적분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204299",
+                "title": "경제자료분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204506",
+                "title": "미시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204507",
+                "title": "미시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204508",
+                "title": "거시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204509",
+                "title": "거시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 금융경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204313",
+                "title": "화폐금융론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204316",
+                "title": "환율과국제금융",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204501",
+                "title": "경제성장론(종합설계)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "204322",
+                "title": "한국경제론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.122-123): 주전공 전필 미시경제학I(204506)·거시경제학I(204508)·오디세이세미나3(복수전공은 미시I·거시I 필수) + 졸업논문 또는 미시·거시 졸업시험 통과(22학번 이전 각 B0+ 시 면제 / 23학번 이후 기초·심화·B0+ 3과목+ 조건 충족 시 면제). 타과 전선 인정 최대 6학점(22학번~ 단일·복수 동일)."
+      },
+      "정책전문가": {
+        "id": "정책전문가",
+        "title": "정책전문가 트랙",
+        "dept": "경제학과",
+        "model": "modular",
+        "desc": "재정·조세·환경·보건 등 공공부문 응용경제 분석을 바탕으로 정책전문가형 역량을 함양하는 모듈형 트랙",
+        "careers": "중앙·지방 공무원(재경·세무·관세·국제통상직), 공기업, 국제기구(IMF·IBRD·WTO·OECD·ADB)",
+        "recommendedDoubleMajors": "정치행정학과, 법학과, 환경생명공학과",
+        "certifications": "공인회계사(CPA), 세무사(CTA)",
+        "requirementSummary": "모듈 a(기초경제학) 3과목 + 모듈 b(핵심경제학) 3과목 + 모듈 e(응용경제학) 3과목 이수 (총 9과목+, 필수: 재정학, 환경경제학(종합설계))",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "재정학",
+          "환경경제학(종합설계)"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.119-122]",
+        "sourceQuote": "정책전문가 트랙 | a + b + e | 필수 교과목: 재정학, 환경경제학 | 이수 요건(이수증 발급): a, b, e 모듈 각 3과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204102",
+                "title": "경제학원론(미시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204101",
+                "title": "경제학원론(거시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204297",
+                "title": "경제와수학적분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204299",
+                "title": "경제자료분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204506",
+                "title": "미시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204507",
+                "title": "미시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204508",
+                "title": "거시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204509",
+                "title": "거시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 응용경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204314",
+                "title": "재정학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204531",
+                "title": "조세론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "204505",
+                "title": "환경경제학(종합설계)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "204219",
+                "title": "보건경제학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.122-123): 주전공 전필 미시경제학I(204506)·거시경제학I(204508)·오디세이세미나3(복수전공은 미시I·거시I 필수) + 졸업논문 또는 미시·거시 졸업시험 통과(22학번 이전 각 B0+ 시 면제 / 23학번 이후 기초·심화·B0+ 3과목+ 조건 충족 시 면제). 타과 전선 인정 최대 6학점(22학번~ 단일·복수 동일)."
+      },
+      "연구자": {
+        "id": "연구자",
+        "title": "연구자 트랙",
+        "dept": "경제학과",
+        "model": "modular",
+        "desc": "계량경제학·게임이론·미시/거시경제학 연습을 통해 실증·이론 탐구능력을 심화하는 모듈형 트랙",
+        "careers": "경영·경제·사회과학 민간 연구소, 정부출연 연구기관, 국내외 대학원, 리서치회사",
+        "recommendedDoubleMajors": "데이터사이언스학부, 소프트웨어학부, 심리학과",
+        "certifications": "사회조사분석사 1·2급",
+        "requirementSummary": "모듈 a(기초경제학) 3과목 + 모듈 b(핵심경제학) 3과목 + 모듈 f(이론경제학) 3과목 이수 (총 9과목+, 필수: 계량경제학, 게임이론및응용)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "계량경제학",
+          "게임이론및응용"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.119-122]",
+        "sourceQuote": "연구자 트랙 | a + b + f | 필수 교과목: 계량경제학, 게임이론 및 응용 | 이수 요건(이수증 발급): a, b, f 모듈 각 3과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 기초경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204102",
+                "title": "경제학원론(미시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204101",
+                "title": "경제학원론(거시)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204297",
+                "title": "경제와수학적분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204299",
+                "title": "경제자료분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 핵심경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204506",
+                "title": "미시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204507",
+                "title": "미시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204508",
+                "title": "거시경제학I",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "204509",
+                "title": "거시경제학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 이론경제학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "204399",
+                "title": "계량경제학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204510",
+                "title": "게임이론및응용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204520",
+                "title": "미시경제학연습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "204522",
+                "title": "거시경제학연습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.122-123): 주전공 전필 미시경제학I(204506)·거시경제학I(204508)·오디세이세미나3(복수전공은 미시I·거시I 필수) + 졸업논문 또는 미시·거시 졸업시험 통과(22학번 이전 각 B0+ 시 면제 / 23학번 이후 기초·심화·B0+ 3과목+ 조건 충족 시 면제). 타과 전선 인정 최대 6학점(22학번~ 단일·복수 동일)."
+      }
+    }
+  },
+  "정치행정학과": {
+    "department": "정치행정학과",
+    "college": "사회과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 사회과학대학 정치행정학과 공식 모듈형 전공트랙 3개(일반행정, 정치입법행정, 국제협력평화 / 선택제·이수증 발급)입니다. 졸업 시 별도 졸업논문·졸업시험은 폐지되었으며 전공필수 오디세이세미나3 및 전공학점을 충족하면 됩니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.106-108], information/졸업기준_정치행정학과.txt",
+    "sourceQuote": "3. 전공역량 트랙별 교과과정 (이수증 발급) — 일반행정(a+b+c: a,b,c 중 한 과목 이상 수강), 정치입법행정(d+e: d,e 중 한 과목 이상 수강), 국제협력평화(f+g+h: f,g,h 중 한 과목 이상 수강) / - 2025학년도 2학기 기준 - 2026학년도부터 세부 과목 일부 변경 예정",
+    "unconfirmedNote": "① 모듈 g·h의 '정치와정치이념', '민주와평화의정치사상사', '한중일외교의협력,경쟁,갈등'은 p.107 모듈표에 있으나 p.108 전공교과과정표에 코드·개설학기가 없어 '미확인'으로 표시됩니다. ② 모듈 f의 '한반도의평화론'(p.108 코드 201528)은 기존 DB의 '201528 평화통일민주의이해'와 코드가 충돌하여 '미확인'으로 분리 등록했습니다. ③ p.107에 '2025학년도 2학기 기준 / 2026학년도부터 세부 과목 일부 변경 예정'으로 명시되어 있으며, 각 모듈 1과목 이상 외 추가 총학점 기준은 미기재(미확인)이므로 최신 학과 공지 확인이 필요합니다.",
+    "tracks": {
+      "일반행정": {
+        "id": "일반행정",
+        "title": "일반행정 트랙",
+        "dept": "정치행정학과",
+        "model": "modular",
+        "desc": "국정관리·공공정책·공공기관 운영을 융합 학습하여 중앙·지방 행정 및 공공부문 실무 역량을 기르는 트랙",
+        "careers": "중앙부처 및 지방자치단체 공무원, 경찰·소방 공무원, 공기업 및 준정부기관 직원, 연구직",
+        "recommendedDoubleMajors": "법학과, 경제학과, 공공인재융합전공(미확인: 책자 미명시)",
+        "certifications": "공무원 시험(행정직·경찰·소방), 공기업 NCS (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 a(국정관리)·b(공공정책)·c(공공기관) 각 1과목 이상 이수 (총 3과목 이상; 추가 총학점 기준 미확인)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.106-108]",
+        "sourceQuote": "일반행정 | a + b + c | 이수 요건(이수증 발급): a,b,c 중 한 과목 이상 수강",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 국정관리",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "201418",
+                "title": "행정학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207601",
+                "title": "인사행정론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "207603",
+                "title": "조직행정론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "201133",
+                "title": "재무행정론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 공공정책",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "207631",
+                "title": "정책학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207630",
+                "title": "정책분석론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207622",
+                "title": "행정기획론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 공공기관",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "207635",
+                "title": "공기업론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207626",
+                "title": "공공부문회계론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207654",
+                "title": "거버넌스와리더십",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.108): 전공필수 오디세이세미나3(복수전공필수 없음, 행정학 이수 권장), 학과 별도 졸업요건(논문·시험) 폐지(2025 하계졸업부터 전체 학번 적용). 단일전공 선택 시 헌법I·II, 행정법개론, 경제학원론 등 타과 지정과목 최대 6학점 인정."
+      },
+      "정치입법행정": {
+        "id": "정치입법행정",
+        "title": "정치입법행정 트랙",
+        "dept": "정치행정학과",
+        "model": "modular",
+        "desc": "민주주의·비교정치·의회와 입법과정·선거 및 정치컨설팅 역량을 함양하는 정치·입법 전문 트랙",
+        "careers": "정치인, 언론인(기자·PD), 국회의원·지방의원, 입법보좌관, 정책·정치 컨설턴트, 연구직",
+        "recommendedDoubleMajors": "미디어스쿨, 법학과, 사회학과(미확인: 책자 미명시)",
+        "certifications": "입법고시·국회직·언론고시 (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 d(정치)·e(입법) 각 1과목 이상 이수 (총 2과목 이상; 추가 총학점 기준 미확인)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.106-108]",
+        "sourceQuote": "정치입법행정 | d + e | 이수 요건(이수증 발급): d,e 중 한 과목 이상 수강",
+        "modules": [
+          {
+            "code": "d",
+            "name": "모듈 d: 정치",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "201436",
+                "title": "정치학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "201501",
+                "title": "민주주의",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "201203",
+                "title": "비교정치론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 입법",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "201434",
+                "title": "의회와입법과정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207647",
+                "title": "정책,정치컨설팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "201514",
+                "title": "선거의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.108): 전공필수 오디세이세미나3(복수전공필수 없음, 행정학 이수 권장), 학과 별도 졸업요건(논문·시험) 폐지(2025 하계졸업부터 전체 학번 적용). 단일전공 선택 시 헌법I·II, 행정법개론, 경제학원론 등 타과 지정과목 최대 6학점 인정."
+      },
+      "국제협력평화": {
+        "id": "국제협력평화",
+        "title": "국제협력평화 트랙",
+        "dept": "정치행정학과",
+        "model": "modular",
+        "desc": "한반도 평화·정치사상·국제정치와 공공외교를 아우르는 글로벌·동아시아 외교안보 전문 트랙",
+        "careers": "외교관, 국제기구 종사자, 국제 NGO 활동가, 통일·외교안보 연구직",
+        "recommendedDoubleMajors": "국제학부, 중국학과, 러시아어학과(미확인: 책자 미명시)",
+        "certifications": "외교관후보자 선발시험, 국제기구 인턴십 (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 f(한반도평화)·g(정치사상)·h(국제정치) 각 1과목 이상 이수 (총 3과목 이상; 일부 과목 코드·학기 미확인)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.106-108]",
+        "sourceQuote": "국제협력평화 | f + g + h | 이수 요건(이수증 발급): f,g,h 중 한 과목 이상 수강",
+        "modules": [
+          {
+            "code": "f",
+            "name": "모듈 f: 한반도평화",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "201513",
+                "title": "DMZ평화답사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "207653",
+                "title": "통일외교안보의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "pol_unconf_04",
+                "title": "한반도의평화론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 정치사상",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "pol_unconf_01",
+                "title": "정치와정치이념",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "pol_unconf_02",
+                "title": "민주와평화의정치사상사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "207644",
+                "title": "현대중국정치의정신사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 국제정치",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "201534",
+                "title": "국제정치의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "207649",
+                "title": "공공외교",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "pol_unconf_03",
+                "title": "한중일외교의협력,경쟁,갈등",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.108): 전공필수 오디세이세미나3(복수전공필수 없음, 행정학 이수 권장), 학과 별도 졸업요건(논문·시험) 폐지(2025 하계졸업부터 전체 학번 적용). 단일전공 선택 시 헌법I·II, 행정법개론, 경제학원론 등 타과 지정과목 최대 6학점 인정."
+      }
+    }
+  },
+  "심리학과": {
+    "department": "심리학과",
+    "college": "사회과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 사회과학대학 심리학과 공식 모듈형 전공트랙 4개(조직 및 계량심리, 인지 및 지각심리, 임상 및 상담심리, 사회 및 범죄심리 / 선택제·이수증 발급)입니다. 각 트랙은 해당 2개 모듈에서 각 6학점 이상(총 12학점+) 및 필수 지정 2과목 이수가 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.86-94], information/졸업기준_심리학과.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 조직 및 계량심리트랙(a+e, 필수: 조직과인간행동·심리측정), 인지 및 지각심리트랙(b+d, 필수: 인지심리학·감각과지각), 임상 및 상담심리트랙(c+f, 필수: 임상심리학·상담이론및실습(캡스톤디자인)), 사회 및 범죄심리트랙(a+g, 필수: 조직과인간행동·범죄심리학) / 각 모듈별 6학점 이상 이수",
+    "unconfirmedNote": "① 별도 졸업시험 시행 여부는 2026 대학안내책자 p.92 및 졸업기준_심리학과.txt에 미기재되어 '미확인'(학과 확인 필요)으로 안내합니다. ② 책자 p.86·p.90에는 자격증 연계 6개 진로 구분(일반심리사, 임상/상담심리사, 산업/조직심리사 및 조사분석사, 범죄심리사, 인지학습심리, 대학원 진학)도 병행 제시되어 있으며, 이수증이 발급되는 공식 모듈형 트랙은 p.87의 4개 트랙입니다.",
+    "tracks": {
+      "조직및계량심리": {
+        "id": "조직및계량심리",
+        "title": "조직 및 계량심리 트랙",
+        "dept": "심리학과",
+        "model": "modular",
+        "desc": "조직 내 인간 행동을 체계적으로 이해하고, 데이터 기반의 분석 역량을 갖춘 심리학 전문 인재 양성 트랙",
+        "careers": "인재개발 전문가, 조직개발 컨설턴트, 데이터 분석가 (기업 인사팀, 심리검사·리서치 회사, 연구소)",
+        "recommendedDoubleMajors": "데이터사이언스학부, 경영학과, 정치행정학과, 공공인재융합전공",
+        "certifications": "산업 및 조직심리사, 사회조사분석사 2급, 일반심리사",
+        "requirementSummary": "모듈 a(조직) 6학점 이상 + 모듈 e(계량) 6학점 이상 이수 (총 12학점+, 필수: 조직과인간행동, 심리측정)",
+        "minTotalCredits": 12,
+        "requiredCourses": [
+          "조직과인간행동",
+          "심리측정"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.87-94]",
+        "sourceQuote": "조직 및 계량심리트랙 | a + e | 필수 교과목: 조직과인간행동, 심리측정 | 이수 요건(이수증 발급): 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 조직",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208305",
+                "title": "조직과인간행동",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208344",
+                "title": "일의세계와인사심리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208401",
+                "title": "직업과인생설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 계량",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208414",
+                "title": "심리통계",
+                "credits": 3,
+                "cat": "전필",
+                "semester": "2학기"
+              },
+              {
+                "code": "208422",
+                "title": "심리측정",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208427",
+                "title": "심리학을위한데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.92): 전공필수 심리통계(208414)·오디세이세미나3 (복수전공필수: 심리통계; 심리학입문은 2021년부터 전필 제외·권장 선수과목). 별도 졸업시험 시행 여부는 2026 대학안내책자 p.92 및 졸업기준 TXT에 미기재되어 '미확인'(심리학과 사무실 확인 필요)."
+      },
+      "인지및지각심리": {
+        "id": "인지및지각심리",
+        "title": "인지 및 지각심리 트랙",
+        "dept": "심리학과",
+        "model": "modular",
+        "desc": "인간의 정보처리 과정을 과학적으로 탐구하여, 심리학적 사고와 연구·UX·AI 서비스 기획 역량을 갖춘 인재 양성 트랙",
+        "careers": "뇌과학 전문가, UX 전문가, 사용자 행동 분석가, 인공지능 서비스 기획자, 소비자 인사이트 기획자, 행동과학 연구원",
+        "recommendedDoubleMajors": "광고홍보학과, 미디어스쿨, 소프트웨어학부, 인공지능융합학부, 데이터사이언스학부, 언어병리학전공, 교직",
+        "certifications": "인지학습심리사, 일반심리사",
+        "requirementSummary": "모듈 b(인지) 6학점 이상 + 모듈 d(지각) 6학점 이상 이수 (총 12학점+, 필수: 인지심리학, 감각과지각)",
+        "minTotalCredits": 12,
+        "requiredCourses": [
+          "인지심리학",
+          "감각과지각"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.87-94]",
+        "sourceQuote": "인지 및 지각심리트랙 | b + d | 필수 교과목: 인지심리학, 감각과지각 | 이수 요건(이수증 발급): 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 인지",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208214",
+                "title": "인지심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208428",
+                "title": "인공지능과인지과학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208106",
+                "title": "학습심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 지각",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208334",
+                "title": "감각과지각",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208416",
+                "title": "심리학연구의기초기술",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208423",
+                "title": "세상을디자인하는심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.92): 전공필수 심리통계(208414)·오디세이세미나3 (복수전공필수: 심리통계; 심리학입문은 2021년부터 전필 제외·권장 선수과목). 별도 졸업시험 시행 여부는 2026 대학안내책자 p.92 및 졸업기준 TXT에 미기재되어 '미확인'(심리학과 사무실 확인 필요)."
+      },
+      "임상및상담심리": {
+        "id": "임상및상담심리",
+        "title": "임상 및 상담심리 트랙",
+        "dept": "심리학과",
+        "model": "modular",
+        "desc": "개인의 정서·행동·인지적 어려움 해결과 정신건강 증진을 위한 과학적 근거 기반 심리평가·상담·치료 전문 인재 양성 트랙",
+        "careers": "임상심리전문가, 정신건강임상심리사, 임상심리사, 상담심리사, 청소년상담사, 신경심리사 (병원·법원·스마일센터·상담센터)",
+        "recommendedDoubleMajors": "청소년학전공, 언어병리학전공",
+        "certifications": "정신보건임상심리사 2급, 임상심리사 2급, 전문상담교사 2급, 상담심리사 2급, 직업상담사 2급, 청소년상담사 3급",
+        "requirementSummary": "모듈 c(임상) 6학점 이상 + 모듈 f(상담) 6학점 이상 이수 (총 12학점+, 필수: 임상심리학, 상담이론및실습(캡스톤디자인))",
+        "minTotalCredits": 12,
+        "requiredCourses": [
+          "임상심리학",
+          "상담이론및실습(캡스톤디자인)"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.87-94]",
+        "sourceQuote": "임상 및 상담심리트랙 | c + f | 필수 교과목: 임상심리학, 상담이론및실습(캡스톤디자인) | 이수 요건(이수증 발급): 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 임상",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208215",
+                "title": "이상심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208307",
+                "title": "임상심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208205",
+                "title": "생리심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208419",
+                "title": "심리평가및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 상담",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208418",
+                "title": "심리상담의기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208342",
+                "title": "상담이론및실습(캡스톤디자인)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208420",
+                "title": "집단상담과실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.92): 전공필수 심리통계(208414)·오디세이세미나3 (복수전공필수: 심리통계; 심리학입문은 2021년부터 전필 제외·권장 선수과목). 별도 졸업시험 시행 여부는 2026 대학안내책자 p.92 및 졸업기준 TXT에 미기재되어 '미확인'(심리학과 사무실 확인 필요)."
+      },
+      "사회및범죄심리": {
+        "id": "사회및범죄심리",
+        "title": "사회 및 범죄심리 트랙",
+        "dept": "심리학과",
+        "model": "modular",
+        "desc": "인간의 사회적 행동과 집단 내 상호작용을 이해하고, 범죄와 비행의 심리적 요인을 과학적으로 분석하는 전문 인재 양성 트랙",
+        "careers": "정책연구원, 범죄심리분석관, 학대예방경찰관, 경찰 (경찰청, 한국형사법무정책연구원 등)",
+        "recommendedDoubleMajors": "사회학과, 법학과",
+        "certifications": "범죄심리사 1급, 일반심리사",
+        "requirementSummary": "모듈 a(조직) 6학점 이상 + 모듈 g(범죄) 6학점 이상 이수 (총 12학점+, 필수: 조직과인간행동, 범죄심리학)",
+        "minTotalCredits": 12,
+        "requiredCourses": [
+          "조직과인간행동",
+          "범죄심리학"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.87-94]",
+        "sourceQuote": "사회 및 범죄심리트랙 | a + g | 필수 교과목: 조직과인간행동, 범죄심리학 | 이수 요건(이수증 발급): 각 모듈별 6학점 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 조직",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208305",
+                "title": "조직과인간행동",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208344",
+                "title": "일의세계와인사심리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208401",
+                "title": "직업과인생설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 범죄",
+            "minCredits": 6,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "208337",
+                "title": "범죄심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "208421",
+                "title": "법심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "208213",
+                "title": "사회심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.92): 전공필수 심리통계(208414)·오디세이세미나3 (복수전공필수: 심리통계; 심리학입문은 2021년부터 전필 제외·권장 선수과목). 별도 졸업시험 시행 여부는 2026 대학안내책자 p.92 및 졸업기준 TXT에 미기재되어 '미확인'(심리학과 사무실 확인 필요)."
+      }
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_TRACKS = HALLYM_TRACKS;

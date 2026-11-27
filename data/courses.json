@@ -12233,5 +12233,369 @@
     "cat": "전선",
     "dept": "디지털인문예술전공",
     "semester": "1학기"
+  },
+  {
+    "code": "204297",
+    "title": "경제와수학적분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204507",
+    "title": "미시경제학II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204411",
+    "title": "노동시장론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204523",
+    "title": "인사관리경제학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "204315",
+    "title": "국제무역론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "204313",
+    "title": "화폐금융론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204316",
+    "title": "환율과국제금융",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204501",
+    "title": "경제성장론(종합설계)",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "204314",
+    "title": "재정학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204219",
+    "title": "보건경제학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204399",
+    "title": "계량경제학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204510",
+    "title": "게임이론및응용",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "204520",
+    "title": "미시경제학연습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "경제학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207601",
+    "title": "인사행정론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207603",
+    "title": "조직행정론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "201133",
+    "title": "재무행정론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207630",
+    "title": "정책분석론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207622",
+    "title": "행정기획론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207626",
+    "title": "공공부문회계론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207654",
+    "title": "거버넌스와리더십",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "201436",
+    "title": "정치학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "201501",
+    "title": "민주주의",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207647",
+    "title": "정책,정치컨설팅",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "201514",
+    "title": "선거의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "201513",
+    "title": "DMZ평화답사",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207653",
+    "title": "통일외교안보의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "201534",
+    "title": "국제정치의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207649",
+    "title": "공공외교",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "pol_unconf_01",
+    "title": "정치와정치이념",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "pol_unconf_02",
+    "title": "민주와평화의정치사상사",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "pol_unconf_03",
+    "title": "한중일외교의협력,경쟁,갈등",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "pol_unconf_04",
+    "title": "한반도의평화론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "정치행정학과",
+    "semester": "1학기",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "208305",
+    "title": "조직과인간행동",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208214",
+    "title": "인지심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208428",
+    "title": "인공지능과인지과학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208215",
+    "title": "이상심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208205",
+    "title": "생리심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208419",
+    "title": "심리평가및실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208416",
+    "title": "심리학연구의기초기술",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208423",
+    "title": "세상을디자인하는심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1·2학기"
+  },
+  {
+    "code": "208422",
+    "title": "심리측정",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208418",
+    "title": "심리상담의기초",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208337",
+    "title": "범죄심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "208421",
+    "title": "법심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "208213",
+    "title": "사회심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "심리학과",
+    "semester": "1학기"
   }
 ]
