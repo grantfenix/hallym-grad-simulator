@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,383 Courses)
+// Hallym University Course Database (1,432 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -12598,6 +12598,400 @@
     "credits": 3,
     "cat": "전선",
     "dept": "심리학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207201",
+    "title": "헌법II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207222",
+    "title": "물권법",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207214",
+    "title": "형법총론II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207229",
+    "title": "회사법I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207223",
+    "title": "채권총론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207321",
+    "title": "채권각론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207329",
+    "title": "형사소송법I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207333",
+    "title": "민사소송법II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207422",
+    "title": "개별적근로관계법(노동법I)",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207530",
+    "title": "보험법",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "207528",
+    "title": "소비자법",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "207520",
+    "title": "행정법개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "law_unconf_01",
+    "title": "회사법II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "법학과",
+    "semester": "2학기",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "202138",
+    "title": "사회학원론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202106",
+    "title": "인구와세대의사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202511",
+    "title": "사회계층론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202102",
+    "title": "사회조사방법론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202318",
+    "title": "문화사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202523",
+    "title": "놀이와여가의사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202526",
+    "title": "문화분석과현장연구:캡스톤디자인",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202439",
+    "title": "질적연구방법론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202502",
+    "title": "청소년활동",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202411",
+    "title": "종교사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202532",
+    "title": "세계지역연구",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202217",
+    "title": "젠더와사회",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202525",
+    "title": "감정사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202508",
+    "title": "도시사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "202529",
+    "title": "공간과일상의사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202303",
+    "title": "환경사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202315",
+    "title": "정치사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "202530",
+    "title": "일과직업의사회학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "203303",
+    "title": "사회보장론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203318",
+    "title": "복지국가론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203206",
+    "title": "빈곤론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203222",
+    "title": "지역사회복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203302",
+    "title": "사회복지행정론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203214",
+    "title": "사회문제론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "203412",
+    "title": "노인복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "203423",
+    "title": "노인상담론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203422",
+    "title": "노인요양보장론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203427",
+    "title": "노인소득보장론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "203315",
+    "title": "청소년복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203320",
+    "title": "학교사회복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "203316",
+    "title": "가족복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "welf_unconf_01",
+    "title": "갈등개입실천과회복적정의",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "203317",
+    "title": "의료사회복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203511",
+    "title": "정신건강론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "203221",
+    "title": "정신건강사회복지론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "203319",
+    "title": "프로그램개발과평가",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "사회복지학부",
     "semester": "1학기"
   }
 ];
