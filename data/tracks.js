@@ -10621,6 +10621,544 @@ const HALLYM_TRACKS = {
         "subMajorNote": "졸업 기준(p.246): 글로벌융합대학 소속, 전공필수 오디세이세미나3(복수전공 별도 필수 없음), 졸업논문·졸업시험 없음. 트랙 이수는 필수가 아닌 선택(이수증 발급)."
       }
     }
+  },
+  "미디어스쿨": {
+    "department": "미디어스쿨",
+    "college": "미디어스쿨",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 미디어스쿨 공식 모듈형 전공트랙 2개(AI 저널리즘 미래, AI 콘텐츠 크리에이터 / 선택제)입니다. 각 트랙은 필수 지정 6과목 이수와 함께 포트폴리오 2건 제출이 필요합니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.247-255], information/학과별_졸업기준/졸업기준_미디어스쿨.txt",
+    "sourceQuote": "2. 모듈형 전공트랙 — AI 저널리즘 미래(a+b+c: 필수교과목 6과목 이수 + 포트폴리오 2건), AI 콘텐츠 크리에이터트랙(a+d+e: 필수교과목 6과목 이수 + 포트폴리오 2건)",
+    "unconfirmedNote": "① 두 트랙 모두 '필수교과목 6과목 이수 + 포트폴리오 2건' 요건이 있으나, 포트폴리오 2건 제출 여부는 성적표로 자동 판정할 수 없어 '미확인(본인 확인 필요)'으로 안내합니다. ② 2026 대학안내책자 p.252·p.255 및 졸업기준_미디어스쿨.txt에는 별도 졸업작품·졸업논문 조항이 미기재되어 있어 최신 졸업평가 시행 여부는 '미확인'(미디어스쿨 행정실 확인 필요)입니다.",
+    "tracks": {
+      "AI저널리즘미래": {
+        "id": "AI저널리즘미래",
+        "title": "AI 저널리즘 미래 트랙",
+        "dept": "미디어스쿨",
+        "model": "modular",
+        "desc": "AI와 뉴스·취재보도·논픽션 스토리텔링·조사방법론·그래픽인포메이션을 융합하는 AI 저널리즘 트랙",
+        "careers": "신문·방송·모바일 기자, 탐사보도·데이터저널리스트, 방송 PD, 언론홍보전문가",
+        "recommendedDoubleMajors": "광고홍보학과, 데이터사이언스학부, 디지털인문예술전공(미확인: 책자 미명시)",
+        "certifications": "디지털영상편집 1·2급, 웹디자인기능사",
+        "requirementSummary": "필수 6과목(AI와뉴스의미래, 취재보도실습, AI와논픽션스토리텔링, AI활용조사방법론, AI와그래픽인포메이션, AI콘텐츠프로젝트) 이수 + 포트폴리오 2건(본인 확인 필요)",
+        "nonCurricularNote": "포트폴리오 2건 제출 여부는 시뮬레이터에서 판정할 수 없어 본인 확인이 필요합니다(미확인).",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "AI와뉴스의미래",
+          "취재보도실습",
+          "AI와논픽션스토리텔링",
+          "AI활용조사방법론",
+          "AI와그래픽인포메이션",
+          "AI콘텐츠프로젝트"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.247-251]",
+        "sourceQuote": "AI 저널리즘 미래 | a + b + c | 필수교과목 6과목 이수 + 포트폴리오 2건",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: AI와 미디어",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209736",
+                "title": "AI디지털리터러시:슬기로운미디어생활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "209729",
+                "title": "AI미디어세미나",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209737",
+                "title": "AI활용성찰적글쓰기",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: AI 저널리스트",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209803",
+                "title": "AI와뉴스의미래",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209388",
+                "title": "취재보도실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "300014",
+                "title": "AI와논픽션스토리텔링",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "209106",
+                "title": "AI활용조사방법론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: AI 뉴스제작",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209802",
+                "title": "AI와그래픽인포메이션",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209374",
+                "title": "TV뉴스와영상저널리즘",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "209666",
+                "title": "AI콘텐츠프로젝트",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209389",
+                "title": "뉴스실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.252, p.255): 전공필수 오디세이세미나3(편입생 포함), 원전공 과목 이수 의무(복수 33 중 21학점 / 단일 60 중 39학점). 미디어커뮤니케이션전공·디지털미디어콘텐츠전공 과목 상호인정. 트랙 포트폴리오 2건은 별도 확인 필요."
+      },
+      "AI콘텐츠크리에이터": {
+        "id": "AI콘텐츠크리에이터",
+        "title": "AI 콘텐츠 크리에이터 트랙",
+        "dept": "미디어스쿨",
+        "model": "modular",
+        "desc": "스마트 AI 미디어 디자인·대화형 AI 서비스·UX·AI 영상 및 그래픽 제작 역량을 기르는 크리에이터 트랙",
+        "careers": "AI 콘텐츠 크리에이터, UX/UI 디자이너, 방송·영상 제작자, 게임·디지털 콘텐츠 기획자",
+        "recommendedDoubleMajors": "디지털인문예술전공, 소프트웨어학부, 광고홍보학과(미확인: 책자 미명시)",
+        "certifications": "웹디자인기능사, 게임기획전문가, 게임그래픽전문가, 디지털영상편집 1·2급",
+        "requirementSummary": "필수 6과목(AI미디어세미나, AI스마트미디어디자인, 대화형AI서비스디자인, AI미디어사용자경험, AI영상제작실습, AI Digital Graphic Design) 이수 + 포트폴리오 2건(본인 확인 필요)",
+        "nonCurricularNote": "포트폴리오 2건 제출 여부는 시뮬레이터에서 판정할 수 없어 본인 확인이 필요합니다(미확인).",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "AI미디어세미나",
+          "AI스마트미디어디자인",
+          "대화형AI서비스디자인",
+          "AI미디어사용자경험",
+          "AI영상제작실습",
+          "AI Digital Graphic Design"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.247-254]",
+        "sourceQuote": "AI 콘텐츠 크리에이터트랙 | a + d + e | 필수교과목 6과목 이수 + 포트폴리오 2건",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: AI와 미디어",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209736",
+                "title": "AI디지털리터러시:슬기로운미디어생활",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "209729",
+                "title": "AI미디어세미나",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209737",
+                "title": "AI활용성찰적글쓰기",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 스마트 AI 미디어",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209725",
+                "title": "AI스마트미디어디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209738",
+                "title": "대화형AI서비스디자인",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209103",
+                "title": "생성형AI활용미디어프로그래밍기초실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "300031",
+                "title": "AI미디어사용자경험",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: AI 영상 미디어",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "209680",
+                "title": "AI영상제작실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209686",
+                "title": "AI Digital Graphic Design",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "209739",
+                "title": "AI그림책제작실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.252, p.255): 전공필수 오디세이세미나3(편입생 포함), 원전공 과목 이수 의무(복수 33 중 21학점 / 단일 60 중 39학점). 미디어커뮤니케이션전공·디지털미디어콘텐츠전공 과목 상호인정. 트랙 포트폴리오 2건은 별도 확인 필요."
+      }
+    }
+  },
+  "인공지능융합학부": {
+    "department": "인공지능융합학부",
+    "college": "정보과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 정보과학대학 인공지능융합학부 공식 모듈형 전공트랙 2개(의료인공지능트랙, 로봇인공지능트랙 / 선택제·이수증 발급)입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.204-212], information/학과별_졸업기준/졸업기준_인공지능융합학부.txt",
+    "sourceQuote": "5. 인공지능융합학부 모듈형 전공트랙 (이수증 발급) — 의료인공지능트랙(c+d+e+f: 모듈별 3학점 이상 및 트랙 내 15학점 이상), 로봇인공지능트랙(a+b+g: 모듈별 3학점 이상 및 트랙 내 12학점 이상)",
+    "unconfirmedNote": "p.205에 소개된 5개 세부전공(AI의료융합·AI로봇융합·AI기술경영융합·AI빅데이터정밀의료융합·디지털헬스케어융합) 중 p.211 공식 모듈형 트랙(이수증 발급)은 의료인공지능트랙과 로봇인공지능트랙 2개만 편성되어 있으며, AI기술경영융합전공 등 나머지 세부전공의 별도 모듈형 트랙 여부는 책자에 미기재되어 '미확인'입니다.",
+    "tracks": {
+      "의료인공지능트랙": {
+        "id": "의료인공지능트랙",
+        "title": "의료인공지능트랙",
+        "dept": "인공지능융합학부",
+        "model": "modular",
+        "desc": "의료인공지능·의료데이터분석·디지털헬스케어·의료정보를 융합하여 AI 의료·헬스케어 전문가를 양성하는 트랙",
+        "careers": "의료정보기술전문가, 스마트헬스케어전문가, AI 데이터 분석 전문가, 헬스케어·바이오 의약품 연구원",
+        "recommendedDoubleMajors": "바이오메디컬학과, 데이터사이언스학부(임상의학통계)(미확인: 책자 미명시)",
+        "certifications": "실전형의료인공지능 나노디그리(9학점), 데이터분석준전문가(ADsP) (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 c(의료인공지능)·d(의료데이터분석)·e(디지털헬스케어)·f(의료정보) 각 3학점 이상 + 트랙 내 총 15학점 이상 이수",
+        "minTotalCredits": 15,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.205-212]",
+        "sourceQuote": "의료인공지능트랙 | c + d + e + f | 이수 요건(이수증 발급): 모듈별 3학점 이상 이수 및 트랙 내 교과목 15학점 이상 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 의료인공지능",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "904401",
+                "title": "의료인공지능",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "768003",
+                "title": "의료영상처리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "768006",
+                "title": "의료딥러닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "768007",
+                "title": "의료텍스트마이닝",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 의료데이터분석",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "729033",
+                "title": "인공지능데이터베이스",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "729014",
+                "title": "인공지능데이터분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "904400",
+                "title": "의료데이터분석Ⅰ",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "729026",
+                "title": "의료데이터분석Ⅱ",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 디지털헬스케어",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "768004",
+                "title": "바이오신호처리및분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "710025",
+                "title": "웨어러블센서와기계학습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "768002",
+                "title": "인공지능디지털헬스케어",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 의료정보",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "729029",
+                "title": "건강과질병의측정과분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "710026",
+                "title": "의료정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "729025",
+                "title": "의학연구방법론",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "729041",
+                "title": "의생명정보학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.210): 단일전공 전필 오디세이세미나3 + 인공지능융합캡스톤디자인Ⅰ(729001, 24학번 이후 필수 / 23학번 이전 Ⅰ 또는 Ⅱ 권장), 복수전공은 캡스톤Ⅰ 필수. 실전형의료인공지능 나노디그리(9학점 선택)."
+      },
+      "로봇인공지능트랙": {
+        "id": "로봇인공지능트랙",
+        "title": "로봇인공지능트랙",
+        "dept": "인공지능융합학부",
+        "model": "modular",
+        "desc": "인공지능 프로그래밍·디지털신호처리·스마트모빌리티(로봇·센서·자율주행) 역량을 양성하는 AI 로봇 트랙",
+        "careers": "인공지능 엔지니어, AI 개발자, 로보틱스·자율주행·스마트모빌리티 연구개발자, 스타트업 창업가",
+        "recommendedDoubleMajors": "소프트웨어학부, 반도체·디스플레이스쿨(미확인: 책자 미명시)",
+        "certifications": "정보처리기사, 빅데이터분석기사 (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 a(인공지능프로그램)·b(디지털신호처리)·g(스마트모빌리티) 각 3학점 이상 + 트랙 내 총 12학점 이상 이수",
+        "minTotalCredits": 12,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.205-211]",
+        "sourceQuote": "로봇인공지능트랙 | a + b + g | 이수 요건(이수증 발급): 모듈별 3학점 이상 이수 및 트랙 내 교과목 12학점 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 인공지능프로그램",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "729016",
+                "title": "파이썬프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "729015",
+                "title": "머신러닝프로그래밍",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "729004",
+                "title": "AI+X프로젝트(종합설계)",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 디지털신호처리",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "729032",
+                "title": "신호처리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "729034",
+                "title": "디지털이미지프로세싱",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "729037",
+                "title": "디지털필터설계",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 스마트모빌리티",
+            "minCredits": 3,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "712030",
+                "title": "로봇개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "773003",
+                "title": "센서공학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "773001",
+                "title": "로봇신호처리",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "717302",
+                "title": "자율주행시스템",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.210): 단일전공 전필 오디세이세미나3 + 인공지능융합캡스톤디자인Ⅰ(729001, 24학번 이후 필수 / 23학번 이전 Ⅰ 또는 Ⅱ 권장), 복수전공은 캡스톤Ⅰ 필수. 실전형의료인공지능 나노디그리(9학점 선택)."
+      }
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_TRACKS = HALLYM_TRACKS;

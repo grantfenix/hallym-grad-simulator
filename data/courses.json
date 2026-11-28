@@ -4899,8 +4899,8 @@
     "code": "768002",
     "id": "768002",
     "title": "인공지능디지털헬스케어",
-    "credits": 1,
-    "cat": "교양_스포츠웰니스",
+    "credits": 3,
+    "cat": "전선",
     "dept": "인공지능융합학부",
     "semester": "1학기"
   },
@@ -5089,7 +5089,7 @@
     "code": "209729",
     "id": "209729",
     "title": "AI미디어세미나",
-    "credits": 1,
+    "credits": 3,
     "cat": "전선",
     "dept": "미디어스쿨",
     "semester": "1학기"
@@ -13436,5 +13436,237 @@
     "cat": "전선",
     "dept": "융합과학수사학과",
     "semester": "1학기"
+  },
+  {
+    "code": "209736",
+    "title": "AI디지털리터러시:슬기로운미디어생활",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "209803",
+    "title": "AI와뉴스의미래",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "209388",
+    "title": "취재보도실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "300014",
+    "title": "AI와논픽션스토리텔링",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "209106",
+    "title": "AI활용조사방법론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "209802",
+    "title": "AI와그래픽인포메이션",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "209666",
+    "title": "AI콘텐츠프로젝트",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "209725",
+    "title": "AI스마트미디어디자인",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "300031",
+    "title": "AI미디어사용자경험",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "2학기"
+  },
+  {
+    "code": "209686",
+    "title": "AI Digital Graphic Design",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "미디어스쿨",
+    "semester": "1학기"
+  },
+  {
+    "code": "729001",
+    "title": "인공지능융합캡스톤디자인Ⅰ",
+    "credits": 3,
+    "cat": "전필",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "729016",
+    "title": "파이썬프로그래밍",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "729015",
+    "title": "머신러닝프로그래밍",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "729037",
+    "title": "디지털필터설계",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "904401",
+    "title": "의료인공지능",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "768003",
+    "title": "의료영상처리",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "768007",
+    "title": "의료텍스트마이닝",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "729033",
+    "title": "인공지능데이터베이스",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "729014",
+    "title": "인공지능데이터분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "729026",
+    "title": "의료데이터분석Ⅱ",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "768004",
+    "title": "바이오신호처리및분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "710025",
+    "title": "웨어러블센서와기계학습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "729029",
+    "title": "건강과질병의측정과분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "710026",
+    "title": "의료정보학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "729025",
+    "title": "의학연구방법론",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "729041",
+    "title": "의생명정보학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
+  },
+  {
+    "code": "712030",
+    "title": "로봇개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "773001",
+    "title": "로봇신호처리",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "717302",
+    "title": "자율주행시스템",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인공지능융합학부",
+    "semester": "2학기"
   }
 ]
