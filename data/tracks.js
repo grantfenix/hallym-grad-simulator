@@ -8457,6 +8457,2170 @@ const HALLYM_TRACKS = {
         "subMajorNote": "졸업 기준(p.103-104): 사회복지학전공 전필 사회복지실천론(203115)·사회복지정책론(203203)·오디세이세미나3, 졸업시험(복수전공생 포함; 사회복지사 1급 과목·합격기준 동일). 노인복지학전공은 전필 오디세이세미나3, 졸업시험 없음. 모듈형 트랙은 졸업과 무관한 선택 과정입니다."
       }
     }
+  },
+  "화학과": {
+    "department": "화학과",
+    "college": "자연과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 자연과학대학 화학과 공식 모듈형 전공트랙 6개(유기합성, 의약화학, 향장화학, 진단/약물전달, 바이오소재, 분자/나노소재 / 선택제·이수증 발급)입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-152], information/학과별_졸업기준/졸업기준_화학과.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 유기합성전공(a+b+c), 의약화학전공(a+b+f+g), 향장화학전공(a+b+h+j), 진단/약물전달전공(a+b+e+f), 바이오소재전공(a+b+f+j), 분자/나노소재전공(a+d+e+i)",
+    "unconfirmedNote": "① 모듈 h·j의 '캡스톤-향수추출합성실습'과 '바이오소재화학'은 p.148-149 모듈표에 기재되어 있으나 p.151 전공교과과정표에 6자리 코드·개설학기가 없어 '미확인'으로 표시됩니다. ② 의약화학전공(a+b+f+g)의 필수 교과목으로 기재된 '유기합성'·'유무기분광학'은 p.148 모듈 c에 속해 있으며, 분자/나노소재전공의 필수 '무기화학'은 Ⅰ·Ⅱ 구분이 미명시(미확인, 시뮬레이터는 무기화학I 기준 판정)되어 학과 확인이 필요합니다.",
+    "tracks": {
+      "유기합성전공": {
+        "id": "유기합성전공",
+        "title": "유기합성전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "화학기초·유기화학·유기합성 및 분광분석 역량을 집중 양성하는 R&D 실무 트랙",
+        "careers": "제약회사, 정밀화학·중화학 기업, 국공립 연구기관",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 생명과학과(미확인: 책자 미명시)",
+        "certifications": "화학분석기사, 위험물기능사",
+        "requirementSummary": "모듈 a·b·c 각 3과목 이상 이수 (필수: 유기화학실험, 유기합성실험)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "유기화학실험",
+          "유기합성실험"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "유기합성전공 | a + b + c | 필수: 유기화학실험, 유기합성실험 | a, b, c에서 각각 3과목 이상 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 유기화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503202",
+                "title": "유기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503311",
+                "title": "유기화학III",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503006",
+                "title": "유기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503316",
+                "title": "유기반응의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 유기합성",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503397",
+                "title": "유기합성",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503417",
+                "title": "유기합성실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503315",
+                "title": "유무기분광학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      },
+      "의약화학전공": {
+        "id": "의약화학전공",
+        "title": "의약화학전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "천연물·의약화학·약물전달소재를 융합하여 신약개발 및 의약품 연구 역량을 기르는 트랙",
+        "careers": "제약회사, 의약품 개발·신약 R&D 연구기관",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 바이오메디컬학과(미확인: 책자 미명시)",
+        "certifications": "화학분석기사, 생물공학기사",
+        "requirementSummary": "모듈 a·b 각 3과목 이상 + 모듈 f·g 각 2과목 이상 이수 (필수: 유기합성, 유무기분광학)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "유기합성",
+          "유무기분광학"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "의약화학전공 | a + b + f + g | 필수: 유기합성, 유무기분광학 | a, b에서 각각 3과목 이상; f, g에서 각각 2과목 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 유기화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503202",
+                "title": "유기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503311",
+                "title": "유기화학III",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503006",
+                "title": "유기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503316",
+                "title": "유기반응의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 약물전달소재",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 의약화학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "503414",
+                "title": "천연물화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506521",
+                "title": "의약화학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503211",
+                "title": "캡스톤디자인-신약발견,설계및개발",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      },
+      "향장화학전공": {
+        "id": "향장화학전공",
+        "title": "향장화학전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "코스메틱화학·천연물·바이오소재를 기반으로 화장품·향료 연구개발 전문가를 양성하는 트랙",
+        "careers": "화장품 회사, 향료·코스메틱 R&D 연구소",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공(미확인: 책자 미명시)",
+        "certifications": "조향사 1·2·3급, 화학분석기사",
+        "requirementSummary": "모듈 a·b 각 3과목 이상 + 모듈 h·j 각 2과목 이상 이수 (필수: 유기화학I, 화학생물학개론)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "유기화학I",
+          "화학생물학개론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "향장화학전공 | a + b + h + j | 필수: 유기화학1, 화학생물학 | a, b에서 각각 3과목 이상; h, j에서 각각 2과목 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 유기화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503202",
+                "title": "유기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503311",
+                "title": "유기화학III",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503006",
+                "title": "유기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503316",
+                "title": "유기반응의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 코스메틱화학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "chem_unconf_01",
+                "title": "캡스톤-향수추출합성실습",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "503414",
+                "title": "천연물화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "chem_unconf_02",
+                "title": "바이오소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "j",
+            "name": "모듈 j: 바이오소재화학",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "chem_unconf_02",
+                "title": "바이오소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "506531",
+                "title": "나노소재및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      },
+      "진단약물전달전공": {
+        "id": "진단약물전달전공",
+        "title": "진단/약물전달전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "분석·진단화학과 약물전달소재를 결합하여 첨단의료소재·헬스케어 진단 전문가를 양성하는 트랙",
+        "careers": "첨단의료소재·진단키트 기업, 제약회사, 국공립 연구기관",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 바이오메디컬학과(미확인: 책자 미명시)",
+        "certifications": "화학분석기사, 방사성동위원소 취급자 면허",
+        "requirementSummary": "모듈 a·b·e·f 각 3과목 이상 이수 (필수: 나노소재화학, 화학생물학개론)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "나노소재화학",
+          "화학생물학개론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "진단/약물전달전공 | a + b + e + f | 필수: 나노소재화학, 화학생물학개론 | a, b, e, f에서 각각 3과목 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 유기화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503202",
+                "title": "유기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503311",
+                "title": "유기화학III",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503006",
+                "title": "유기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503316",
+                "title": "유기반응의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 분석/진단",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503509",
+                "title": "분석화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506516",
+                "title": "기기분석화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 약물전달소재",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      },
+      "바이오소재전공": {
+        "id": "바이오소재전공",
+        "title": "바이오소재전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "약물전달소재와 바이오소재화학을 집중 학습하여 바이오헬스케어 소재 R&D 인력을 양성하는 트랙",
+        "careers": "바이오소재·제약·화장품 기업, 국공립 연구기관",
+        "recommendedDoubleMajors": "바이오헬스케어융합전공, 생명과학과(미확인: 책자 미명시)",
+        "certifications": "생물공학기사, 화학분석기사",
+        "requirementSummary": "모듈 a·b·f·j 각 3과목 이상 이수 (필수: 바이오소재화학, 화학생물학개론)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "바이오소재화학",
+          "화학생물학개론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "바이오소재전공 | a + b + f + j | 필수: 바이오소재화학, 화학생물학개론 | a, b, f, j에서 각각 3과목 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 유기화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503202",
+                "title": "유기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503311",
+                "title": "유기화학III",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503006",
+                "title": "유기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503316",
+                "title": "유기반응의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 약물전달소재",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "j",
+            "name": "모듈 j: 바이오소재화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "506529",
+                "title": "화학생물학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "chem_unconf_02",
+                "title": "바이오소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              },
+              {
+                "code": "506531",
+                "title": "나노소재및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      },
+      "분자나노소재전공": {
+        "id": "분자나노소재전공",
+        "title": "분자/나노소재전공 트랙",
+        "dept": "화학과",
+        "model": "modular",
+        "desc": "물리·무기화학과 분석·나노소재화학을 결합하여 유무기 및 나노 소재 R&D 전문가를 양성하는 트랙",
+        "careers": "유무기·나노소재 기업, 반도체·디스플레이 소재 기업, 국공립 연구기관",
+        "recommendedDoubleMajors": "반도체·디스플레이스쿨, 바이오헬스케어융합전공(미확인: 책자 미명시)",
+        "certifications": "화학분석기사, 위험물기능사",
+        "requirementSummary": "모듈 a·i 각 3과목 이상 + 모듈 d·e 각 2과목 이상 이수 (필수: 무기화학I, 나노소재화학)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "무기화학I",
+          "나노소재화학"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.148-151]",
+        "sourceQuote": "분자/나노소재전공 | a + d + e + i | 필수: 무기화학, 나노소재화학 | a, i에서 각각 3과목 이상; d, e에서 각각 2과목 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 화학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "503301",
+                "title": "무기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503203",
+                "title": "물리화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503508",
+                "title": "분석화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503201",
+                "title": "유기화학I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 물리/무기",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "503312",
+                "title": "무기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506525",
+                "title": "물리화학Ⅱ",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503106",
+                "title": "무기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "503303",
+                "title": "물리화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 분석/진단",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "503509",
+                "title": "분석화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506520",
+                "title": "캡스톤디자인-유기분광실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506516",
+                "title": "기기분석화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "i",
+            "name": "모듈 i: 나노소재화학",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "506530",
+                "title": "나노소재화학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503312",
+                "title": "무기화학II",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "506531",
+                "title": "나노소재및실습",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "503106",
+                "title": "무기화학실험",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.151): 전공필수 오디세이세미나3(복수전공 필수 없음), 졸업논문·졸업시험·어학요건 없음. 바이오나노화학 나노디그리(9학점 필수: 나노소재화학·나노소재및실습·화학생물학개론)."
+      }
+    }
+  },
+  "체육학과": {
+    "department": "체육학과",
+    "college": "자연과학대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 자연과학대학 체육학과 공식 모듈형 전공트랙 3개(건강운동관리사, 스포츠지도사, 체육일반 / 선택제·이수증 발급)입니다. 각 트랙은 필수 지정 교과목 8과목 이수가 기준입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.186-190], information/학과별_졸업기준/졸업기준_체육학과.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 (이수증 발급) — 건강운동관리사(a+b+c+d+e+g+h: 필수 8과목 이수), 스포츠지도사(a+b+d+f+h+j+k+l+m: 필수 8과목 이수), 체육일반(a+b+c+g+h+i+n: 필수 8과목 이수)",
+    "unconfirmedNote": "① 모듈 l의 '아쿠아피트니스'는 p.187에 '2024-3차 폐지'로 표기되어 있으며 p.189 교과과정표에 코드가 없어 '미확인'으로 표시됩니다. ② '캡스톤디자인:스포츠현장연구I'(509415)은 p.187(2학점)과 p.189(3학점)의 학점 표기가 달라 p.189 기준 3학점으로 반영했으며, 학과 확인이 필요합니다(미확인). ③ 실기 6/8/12학점 적용 시작 학번이 p.190(2023학번~)과 졸업기준_체육학과.txt(2024학번~) 간 일부 차이가 있어 학과 확인이 필요합니다.",
+    "tracks": {
+      "건강운동관리사": {
+        "id": "건강운동관리사",
+        "title": "건강운동관리사 트랙",
+        "dept": "체육학과",
+        "model": "modular",
+        "desc": "운동생리·기능해부·체력평가·운동처방·재활 역량을 갖추어 건강운동관리사·재활운동사를 양성하는 트랙",
+        "careers": "건강운동관리사, 재활운동사, 체력측정 및 관리지도사, 임상운동사, 재활트레이너",
+        "recommendedDoubleMajors": "식품영양학과, 심리학과, 생명과학과(미확인: 책자 미명시)",
+        "certifications": "건강운동관리사, KACEP(대한운동사협회), KATA(대한선수트레이너협회)",
+        "requirementSummary": "필수 교과목 8과목 이수 (기능해부학, 운동생리학, 스포츠심리학, 건강·체력평가, 운동처방론, 병태생리학, 운동상해, 운동부하검사및체력육성)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "기능해부학",
+          "운동생리학",
+          "스포츠심리학",
+          "건강·체력평가",
+          "운동처방론",
+          "병태생리학",
+          "운동상해",
+          "운동부하검사및체력육성"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.186-189]",
+        "sourceQuote": "건강운동관리사 | a + b + c + d + e + g + h | 필수 교과목 8과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 운동과학의 기초",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509302",
+                "title": "운동생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509444",
+                "title": "병태생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509204",
+                "title": "스포츠영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 스포츠안전 및 건강교육",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509437",
+                "title": "건강교육론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509104",
+                "title": "스포츠융합과학론",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509515",
+                "title": "스포츠안전과심폐소생술",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 체력측정평가 및 운동능력검사",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509438",
+                "title": "건강·체력평가",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509401",
+                "title": "체육측정평가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509338",
+                "title": "운동부하검사및체력육성",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 스포츠와 동작분석",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509203",
+                "title": "기능해부학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509312",
+                "title": "운동역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509412",
+                "title": "운동기술분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 트레이닝 이론과 실무",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509210",
+                "title": "트레이닝론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509525",
+                "title": "웨이트트레이닝론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509526",
+                "title": "퍼스널트레이닝지도론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 운동상해 및 재활",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509246",
+                "title": "운동상해",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509311",
+                "title": "운동처방론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509521",
+                "title": "운동재활론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509504",
+                "title": "재활수중운동론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 인문학적 스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509301",
+                "title": "스포츠사회학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509430",
+                "title": "스포츠윤리",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509213",
+                "title": "스포츠문화사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509326",
+                "title": "운동건강심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509310",
+                "title": "스포츠심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.189-190): 전필 오디세이세미나3 + 24학번~ 전공축구·전공수영·전공골프·전공테니스·전공태권도. 실기 최소 학점(23/24학번~): 학과인정 자격증 1개+ 취득 시 6학점 / 스마트 퍼스널 트레이닝 나노디그리 이수 시 8학점 / 미취득 시 12학점."
+      },
+      "스포츠지도사": {
+        "id": "스포츠지도사",
+        "title": "스포츠지도사 트랙",
+        "dept": "체육학과",
+        "model": "modular",
+        "desc": "스포츠이론과 구기·라켓·실기·아웃도어 종목 실무를 겸비한 생활·전문·유소년·노인·장애인 스포츠지도사 양성 트랙",
+        "careers": "생활체육지도사, 전문체육지도사, 노인체육지도사, 유소년스포츠지도사, 장애인스포츠지도사, 전문체육선수",
+        "recommendedDoubleMajors": "사회복지학부, 심리학과(미확인: 책자 미명시)",
+        "certifications": "1·2급 전문·생활스포츠지도사, 유소년·노인·장애인스포츠지도사",
+        "requirementSummary": "필수 교과목 8과목 이수 (스포츠심리학, 스포츠사회학, 스포츠윤리, 운동생리학, 운동역학, 스포츠문화사, 건강교육론, 스포츠안전과심폐소생술)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "스포츠심리학",
+          "스포츠사회학",
+          "스포츠윤리",
+          "운동생리학",
+          "운동역학",
+          "스포츠문화사",
+          "건강교육론",
+          "스포츠안전과심폐소생술"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.186-189]",
+        "sourceQuote": "스포츠지도사 | a + b + d + f + h + j + k + l + m | 필수 교과목 8과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 운동과학의 기초",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509302",
+                "title": "운동생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509444",
+                "title": "병태생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509204",
+                "title": "스포츠영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 스포츠안전 및 건강교육",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509437",
+                "title": "건강교육론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509104",
+                "title": "스포츠융합과학론",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509515",
+                "title": "스포츠안전과심폐소생술",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 스포츠와 동작분석",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509203",
+                "title": "기능해부학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509312",
+                "title": "운동역학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509412",
+                "title": "운동기술분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 생애주기와 운동",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509517",
+                "title": "유소년스포츠지도론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509524",
+                "title": "뉴스포츠지도론",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509410",
+                "title": "특수체육론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509431",
+                "title": "운동과노화",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 인문학적 스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509301",
+                "title": "스포츠사회학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509430",
+                "title": "스포츠윤리",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509213",
+                "title": "스포츠문화사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509326",
+                "title": "운동건강심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509310",
+                "title": "스포츠심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "j",
+            "name": "모듈 j: 구기스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509520",
+                "title": "농구(기초)",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509209",
+                "title": "배구",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509303",
+                "title": "핸드볼",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509518",
+                "title": "전공축구",
+                "credits": 1,
+                "cat": "전필",
+                "semester": "1·2학기"
+              }
+            ]
+          },
+          {
+            "code": "k",
+            "name": "모듈 k: 라켓스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509323",
+                "title": "전공골프",
+                "credits": 1,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "509305",
+                "title": "배드민턴",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509307",
+                "title": "전공테니스",
+                "credits": 1,
+                "cat": "전필",
+                "semester": "1·2학기"
+              }
+            ]
+          },
+          {
+            "code": "l",
+            "name": "모듈 l: 체육실기",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509101",
+                "title": "육상I",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509102",
+                "title": "체조I",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509522",
+                "title": "필라테스",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509206",
+                "title": "전공수영",
+                "credits": 1,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "509318",
+                "title": "전공태권도",
+                "credits": 1,
+                "cat": "전필",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "pe_unconf_01",
+                "title": "아쿠아피트니스",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "m",
+            "name": "모듈 m: 아웃도어 스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509238",
+                "title": "트레킹",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509510",
+                "title": "동계스포츠(설상)",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509509",
+                "title": "동계스포츠(설상Ⅱ)",
+                "credits": 1,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.189-190): 전필 오디세이세미나3 + 24학번~ 전공축구·전공수영·전공골프·전공테니스·전공태권도. 실기 최소 학점(23/24학번~): 학과인정 자격증 1개+ 취득 시 6학점 / 스마트 퍼스널 트레이닝 나노디그리 이수 시 8학점 / 미취득 시 12학점."
+      },
+      "체육일반": {
+        "id": "체육일반",
+        "title": "체육일반 트랙",
+        "dept": "체육학과",
+        "model": "modular",
+        "desc": "스포츠경영·마케팅·산업·시설·현장연구를 바탕으로 스포츠행정·매니지먼트·과학 전문가를 양성하는 트랙",
+        "careers": "스포츠행정가, 스포츠심리상담사, 스포츠경영관리사, 스포츠마케터, 스포츠시설관리사, 스포츠기록분석사, 스포츠과학자",
+        "recommendedDoubleMajors": "경영학과, 광고홍보학과, 미디어스쿨(미확인: 책자 미명시)",
+        "certifications": "스포츠경영관리사(한국산업인력공단)",
+        "requirementSummary": "필수 교과목 8과목 이수 (운동생리학, 스포츠융합과학론, 스포츠사회학, 스포츠윤리, 스포츠산업, 스포츠경영학, 스포츠마케팅, 스포츠시설론)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "운동생리학",
+          "스포츠융합과학론",
+          "스포츠사회학",
+          "스포츠윤리",
+          "스포츠산업",
+          "스포츠경영학",
+          "스포츠마케팅",
+          "스포츠시설론"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.186-189]",
+        "sourceQuote": "체육일반 | a + b + c + g + h + i + n | 필수 교과목 8과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 운동과학의 기초",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509302",
+                "title": "운동생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509444",
+                "title": "병태생리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509204",
+                "title": "스포츠영양학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 스포츠안전 및 건강교육",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509437",
+                "title": "건강교육론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509104",
+                "title": "스포츠융합과학론",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509515",
+                "title": "스포츠안전과심폐소생술",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 체력측정평가 및 운동능력검사",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509438",
+                "title": "건강·체력평가",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509401",
+                "title": "체육측정평가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509338",
+                "title": "운동부하검사및체력육성",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 운동상해 및 재활",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509246",
+                "title": "운동상해",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509311",
+                "title": "운동처방론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509521",
+                "title": "운동재활론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509504",
+                "title": "재활수중운동론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 인문학적 스포츠",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509301",
+                "title": "스포츠사회학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509430",
+                "title": "스포츠윤리",
+                "credits": 2,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509213",
+                "title": "스포츠문화사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509326",
+                "title": "운동건강심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509310",
+                "title": "스포츠심리학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "i",
+            "name": "모듈 i: 스포츠 매니지먼트",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509411",
+                "title": "스포츠경영학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509330",
+                "title": "스포츠마케팅",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509511",
+                "title": "스포츠시설론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "509512",
+                "title": "스포츠산업",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "n",
+            "name": "모듈 n: 스포츠현장연구",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "509415",
+                "title": "캡스톤디자인:스포츠현장연구I",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "509416",
+                "title": "캡스톤디자인:스포츠현장연구Ⅱ",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.189-190): 전필 오디세이세미나3 + 24학번~ 전공축구·전공수영·전공골프·전공테니스·전공태권도. 실기 최소 학점(23/24학번~): 학과인정 자격증 1개+ 취득 시 6학점 / 스마트 퍼스널 트레이닝 나노디그리 이수 시 8학점 / 미취득 시 12학점."
+      }
+    }
+  },
+  "융합과학수사학과": {
+    "department": "융합과학수사학과",
+    "college": "글로벌융합대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 글로벌융합대학 융합과학수사학과 공식 모듈형 전공트랙 3개(경찰과학수사, AI 데이터 포렌식, 사이버보안 / 선택제·이수증 발급)입니다. 별도 졸업논문·졸업시험은 없습니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.243-246], information/학과별_졸업기준/졸업기준_융합과학수사학과.txt",
+    "sourceQuote": "4. 모듈형 전공트랙 (이수증 발급) — 경찰과학수사(a+b+c+d: a1, b1·2, c1·2, d전체), AI 데이터 포렌식(b+c+f: b1·2, c전체, f전체), 사이버보안(b+g+h: g·h전체) / ※ 트랙 이수는 필수가 아닌 선택",
+    "unconfirmedNote": "① 모듈 c의 '범죄수사절차법2'(p.246 코드 685035)는 기존 DB의 '685035 현장감식론'과 코드가 충돌하여 기존 과목을 보존하고 '미확인'으로 분리 등록했습니다. ② 모듈 f의 '가상자산추적'은 p.244 모듈표에 있으나 p.246 전공교과과정표에 6자리 코드·개설학기가 없어 '미확인'으로 표시됩니다. ③ 사이버보안 트랙의 모듈 조합은 'b + g + h'이나 p.244 이수 요건란에는 'g, h 모듈 전체'만 명시되어 있어 모듈 b 반영 여부는 '미확인'(학과 확인 필요)입니다.",
+    "tracks": {
+      "경찰과학수사": {
+        "id": "경찰과학수사",
+        "title": "경찰과학수사 트랙",
+        "dept": "융합과학수사학과",
+        "model": "modular",
+        "desc": "경찰실무·범죄수사·수사법·경찰법을 체계적으로 학습하는 과학적 증거 기반 범죄수사 전문가 양성 트랙",
+        "careers": "경찰, 수사관, 탐정, 과학수사관, 프로파일러",
+        "recommendedDoubleMajors": "법학과, 심리학과, 정치행정학과(미확인: 책자 미명시)",
+        "certifications": "민간조사사(PIA), CHFI(Computer Hacking Forensic Investigator)",
+        "requirementSummary": "a모듈 1(경찰학개론) + b모듈 1·2(범죄수사학1·2) + c모듈 1·2(범죄와형벌·범죄수사절차법1) + d모듈 전체(3과목) 이수 (총 8과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "경찰학개론",
+          "범죄수사학1",
+          "범죄수사학2",
+          "범죄와형벌",
+          "범죄수사절차법1",
+          "경찰행정법1",
+          "경찰행정법2",
+          "프라이버시와개인정보보호법"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.243-246]",
+        "sourceQuote": "경찰과학수사 | a + b + c + d | 이수 요건(이수증 발급): a 모듈 1 이수, b 모듈 1, 2 이수, c 모듈 1, 2 이수, d 모듈 전체",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 경찰실무",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "775004",
+                "title": "경찰학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "775003",
+                "title": "경찰실무1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "775002",
+                "title": "법과학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 범죄수사",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "775006",
+                "title": "범죄수사학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685038",
+                "title": "범죄수사학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "775007",
+                "title": "특수수사사례분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 수사법",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "685025",
+                "title": "범죄와형벌",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "685015",
+                "title": "범죄수사절차법1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "for_unconf_01",
+                "title": "범죄수사절차법2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 경찰법",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "775005",
+                "title": "경찰행정법1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "775008",
+                "title": "경찰행정법2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "685005",
+                "title": "프라이버시와개인정보보호법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.246): 글로벌융합대학 소속, 전공필수 오디세이세미나3(복수전공 별도 필수 없음), 졸업논문·졸업시험 없음. 트랙 이수는 필수가 아닌 선택(이수증 발급)."
+      },
+      "AI데이터포렌식": {
+        "id": "AI데이터포렌식",
+        "title": "AI 데이터 포렌식 트랙",
+        "dept": "융합과학수사학과",
+        "model": "modular",
+        "desc": "범죄수사·수사법과 범죄데이터 분석·가상자산 추적을 결합한 법집행·민간조사·산업보안 데이터 사이언티스트 양성 트랙",
+        "careers": "데이터 사이언티스트, 데이터포렌식전문가, 데이터분석가, 개발자",
+        "recommendedDoubleMajors": "데이터사이언스학부, 소프트웨어학부, 인공지능융합학부(미확인: 책자 미명시)",
+        "certifications": "데이터분석준전문가(ADsP)",
+        "requirementSummary": "b모듈 1·2(범죄수사학1·2) + c모듈 전체(3과목) + f모듈 전체(3과목) 이수 (총 8과목)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "범죄수사학1",
+          "범죄수사학2",
+          "범죄와형벌",
+          "범죄수사절차법1",
+          "범죄수사절차법2",
+          "범죄데이터분석기초",
+          "범죄데이터분석고급",
+          "가상자산추적"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.243-246]",
+        "sourceQuote": "AI 데이터 포렌식 | b + c + f | 이수 요건(이수증 발급): c 모듈 전체 이수, f 모듈 전체 이수, b 모듈 1, 2 이수",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 범죄수사",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "775006",
+                "title": "범죄수사학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685038",
+                "title": "범죄수사학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "775007",
+                "title": "특수수사사례분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "c",
+            "name": "모듈 c: 수사법",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "685025",
+                "title": "범죄와형벌",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "685015",
+                "title": "범죄수사절차법1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "for_unconf_01",
+                "title": "범죄수사절차법2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기",
+                "codeStatus": "미확인"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 데이터포렌식",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "685037",
+                "title": "범죄데이터분석기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1·2학기"
+              },
+              {
+                "code": "685039",
+                "title": "범죄데이터분석고급",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "for_unconf_02",
+                "title": "가상자산추적",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인",
+                "codeStatus": "미확인"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.246): 글로벌융합대학 소속, 전공필수 오디세이세미나3(복수전공 별도 필수 없음), 졸업논문·졸업시험 없음. 트랙 이수는 필수가 아닌 선택(이수증 발급)."
+      },
+      "사이버보안": {
+        "id": "사이버보안",
+        "title": "사이버보안 트랙",
+        "dept": "융합과학수사학과",
+        "model": "modular",
+        "desc": "디지털포렌식·보안운영체제·사이버범죄와 보안·국제공조를 아우르는 사이버보안 및 디지털포렌식 전문가 양성 트랙",
+        "careers": "디지털포렌식전문가, 정보분석가, 위험관리자, 개인정보관리자, 개발자",
+        "recommendedDoubleMajors": "소프트웨어학부, 데이터사이언스학부(미확인: 책자 미명시)",
+        "certifications": "디지털포렌식전문가 2급, 리눅스마스터 2급, 네트워크관리사 2급, CPPG, PIP, 인터넷보안관리사, 인터넷보안전문가 2급, 정보보안진단원, CCNA, CCNP, CISA",
+        "requirementSummary": "g모듈(디지털포렌식) 전체 3과목 + h모듈(사이버수사) 전체 3과목 이수 (총 6과목; 모듈 b 반영 여부 미확인)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "보안운영체제기초",
+          "디지털포렌식",
+          "디지털포렌식실무",
+          "사이버범죄와보안",
+          "Information Security Fundamentals",
+          "TRANSNATIONAL CRIME AND INTERNATIONAL COOPERATION"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.243-246]",
+        "sourceQuote": "사이버보안 | b + g + h | 필수 교과목: g, h 모듈 전체 | 이수 요건(이수증 발급): g, h 모듈 전체",
+        "modules": [
+          {
+            "code": "b",
+            "name": "모듈 b: 범죄수사",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "775006",
+                "title": "범죄수사학1",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685038",
+                "title": "범죄수사학2",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "775007",
+                "title": "특수수사사례분석",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 디지털포렌식",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "685034",
+                "title": "보안운영체제기초",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "685004",
+                "title": "디지털포렌식",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685014",
+                "title": "디지털포렌식실무",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "h",
+            "name": "모듈 h: 사이버수사",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "685019",
+                "title": "사이버범죄와보안",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685003",
+                "title": "Information Security Fundamentals",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "685023",
+                "title": "TRANSNATIONAL CRIME AND INTERNATIONAL COOPERATION",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.246): 글로벌융합대학 소속, 전공필수 오디세이세미나3(복수전공 별도 필수 없음), 졸업논문·졸업시험 없음. 트랙 이수는 필수가 아닌 선택(이수증 발급)."
+      }
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_TRACKS = HALLYM_TRACKS;

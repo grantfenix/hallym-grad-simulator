@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,432 Courses)
+// Hallym University Course Database (1,487 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -2853,7 +2853,7 @@
     "code": "509510",
     "id": "509510",
     "title": "동계스포츠(설상)",
-    "credits": 3,
+    "credits": 1,
     "cat": "전선",
     "dept": "체육학과",
     "semester": "1학기"
@@ -12992,6 +12992,451 @@
     "credits": 3,
     "cat": "전선",
     "dept": "사회복지학부",
+    "semester": "1학기"
+  },
+  {
+    "code": "503203",
+    "title": "물리화학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503508",
+    "title": "분석화학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503201",
+    "title": "유기화학I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503311",
+    "title": "유기화학III",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503316",
+    "title": "유기반응의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "503397",
+    "title": "유기합성",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "503417",
+    "title": "유기합성실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503315",
+    "title": "유무기분광학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503312",
+    "title": "무기화학II",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503106",
+    "title": "무기화학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "503303",
+    "title": "물리화학실험",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "506530",
+    "title": "나노소재화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "506516",
+    "title": "기기분석화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "506529",
+    "title": "화학생물학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "503414",
+    "title": "천연물화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "506521",
+    "title": "의약화학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "503211",
+    "title": "캡스톤디자인-신약발견,설계및개발",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "506531",
+    "title": "나노소재및실습",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "chem_unconf_01",
+    "title": "캡스톤-향수추출합성실습",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "chem_unconf_02",
+    "title": "바이오소재화학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "화학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "509444",
+    "title": "병태생리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509437",
+    "title": "건강교육론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509104",
+    "title": "스포츠융합과학론",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509438",
+    "title": "건강·체력평가",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509401",
+    "title": "체육측정평가론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509412",
+    "title": "운동기술분석",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509525",
+    "title": "웨이트트레이닝론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509431",
+    "title": "운동과노화",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509246",
+    "title": "운동상해",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509521",
+    "title": "운동재활론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509430",
+    "title": "스포츠윤리",
+    "credits": 2,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509326",
+    "title": "운동건강심리학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509411",
+    "title": "스포츠경영학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509330",
+    "title": "스포츠마케팅",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509520",
+    "title": "농구(기초)",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509303",
+    "title": "핸드볼",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "509305",
+    "title": "배드민턴",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509101",
+    "title": "육상I",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509102",
+    "title": "체조I",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509522",
+    "title": "필라테스",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509238",
+    "title": "트레킹",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "509415",
+    "title": "캡스톤디자인:스포츠현장연구I",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "pe_unconf_01",
+    "title": "아쿠아피트니스",
+    "credits": 1,
+    "cat": "전선",
+    "dept": "체육학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "775004",
+    "title": "경찰학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "775006",
+    "title": "범죄수사학1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "685015",
+    "title": "범죄수사절차법1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "for_unconf_01",
+    "title": "범죄수사절차법2",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "2학기",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "775005",
+    "title": "경찰행정법1",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "775008",
+    "title": "경찰행정법2",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "685005",
+    "title": "프라이버시와개인정보보호법",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "685039",
+    "title": "범죄데이터분석고급",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "for_unconf_02",
+    "title": "가상자산추적",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "미확인",
+    "codeStatus": "미확인"
+  },
+  {
+    "code": "685004",
+    "title": "디지털포렌식",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "685019",
+    "title": "사이버범죄와보안",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "685003",
+    "title": "Information Security Fundamentals",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "융합과학수사학과",
     "semester": "1학기"
   }
 ];
