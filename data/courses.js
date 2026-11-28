@@ -1,4 +1,4 @@
-// Hallym University Course Database (1,516 Courses)
+// Hallym University Course Database (1,544 Courses)
 // Auto-generated for offline and local file:// access
 (typeof window !== 'undefined' ? window : (typeof global !== 'undefined' ? global : this)).HALLYM_COURSES = [
   {
@@ -13670,6 +13670,230 @@
     "cat": "전선",
     "dept": "인공지능융합학부",
     "semester": "2학기"
+  },
+  {
+    "code": "102409",
+    "title": "영어교육자료개발",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "102407",
+    "title": "아동문학과영어교육",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "102422",
+    "title": "스토리텔링기반영어교육",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "2학기"
+  },
+  {
+    "code": "102204",
+    "title": "기초영어학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "102419",
+    "title": "코퍼스언어학",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "102421",
+    "title": "영미문학과네트워크",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "영어영문학과",
+    "semester": "1학기"
+  },
+  {
+    "code": "101102",
+    "title": "국어학개론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101312",
+    "title": "국어음운론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101338",
+    "title": "훈민정음의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101415",
+    "title": "한국어교육의이해",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101405",
+    "title": "한국어데이터의구축과활용",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "101407",
+    "title": "고전소설강독",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101409",
+    "title": "고전시가강독",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101318",
+    "title": "고전소설론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101406",
+    "title": "근세시가론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "101411",
+    "title": "현대소설강독",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101408",
+    "title": "중세시가론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101323",
+    "title": "현대소설론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101412",
+    "title": "현대시인론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "101414",
+    "title": "현대문학이론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "101413",
+    "title": "문학예술사론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "101336",
+    "title": "국문학세미나",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "2학기"
+  },
+  {
+    "code": "101324",
+    "title": "문예창작비평론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "국어국문학전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "655017",
+    "title": "영상서사론",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인문콘텐츠융합전공",
+    "semester": "미확인"
+  },
+  {
+    "code": "655012",
+    "title": "현대문학으로본예술과과학기술",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인문콘텐츠융합전공",
+    "semester": "미확인"
+  },
+  {
+    "code": "655020",
+    "title": "내러티브와융합장르",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인문콘텐츠융합전공",
+    "semester": "미확인"
+  },
+  {
+    "code": "655008",
+    "title": "재난의역사와치유",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인문콘텐츠융합전공",
+    "semester": "1학기"
+  },
+  {
+    "code": "655007",
+    "title": "문학과영상으로본글로컬이슈",
+    "credits": 3,
+    "cat": "전선",
+    "dept": "인문콘텐츠융합전공",
+    "semester": "미확인"
   }
 ];
 if (typeof module !== 'undefined' && module.exports) {

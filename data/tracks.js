@@ -11159,6 +11159,734 @@ const HALLYM_TRACKS = {
         "subMajorNote": "졸업 기준(p.210): 단일전공 전필 오디세이세미나3 + 인공지능융합캡스톤디자인Ⅰ(729001, 24학번 이후 필수 / 23학번 이전 Ⅰ 또는 Ⅱ 권장), 복수전공은 캡스톤Ⅰ 필수. 실전형의료인공지능 나노디그리(9학점 선택)."
       }
     }
+  },
+  "영어영문학과": {
+    "department": "영어영문학과",
+    "college": "인문대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 인문대학 영어영문학과 공식 모듈형 전공트랙(융합영어교육전문가 / 선택제)입니다. 모듈 a에서 3과목 이상 포함 총 18학점 이상 이수가 기준입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.65-68], information/학과별_졸업기준/졸업기준_영어영문학과.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 — 융합영어교육전문가(a + b) | 필수 교과목: a 모듈에서 3과목 수강 필수 | 이수 요건: 18학점 이상",
+    "unconfirmedNote": "① 학과 리플릿 '인문_영어영문_1천_0717.pdf'는 이미지 기반 스캔 PDF(OCR 미적용)이므로 본 트랙은 2026학년도 대학안내책자 p.65-68 본문 기준으로 반영했습니다. ② 졸업기준_영어영문학과.txt(2026 교과과정 변경)에 따라 010008 교과교재연구및영어지도법→영어지도법, 102409 영어교육자료개발→AI결합영어교육자료설계와개발, 102421 영미문학과네트워크→생성형AI와영미문학으로 명칭이 변경(동일과목 인정)되었으며, 이수증 발급 여부는 p.65 미명시(미확인)입니다.",
+    "tracks": {
+      "융합영어교육전문가": {
+        "id": "융합영어교육전문가",
+        "title": "융합영어교육전문가 트랙",
+        "dept": "영어영문학과",
+        "model": "modular",
+        "desc": "영어교육과 AI·코퍼스언어학·디지털 영미문학을 융합하여 (AI)영어에듀테크 및 영어교육 전문가를 양성하는 트랙",
+        "careers": "유치원·방과후 영어교사, 영어전문학원·영어도서관 창업, (AI)영어에듀테크 산업, 교재개발 전문가, 교육공무원",
+        "recommendedDoubleMajors": "디지털인문예술전공, 인문콘텐츠융합전공(미확인: 책자 미명시)",
+        "certifications": "TOEIC 700+ / TOEIC-S IM(130+) / OPIc IM3+ (책자 별도 자격증표 미명시: 미확인)",
+        "requirementSummary": "모듈 a(영어교육과 AI) 3과목 이상 필수 포함 + 모듈 a·b 합계 18학점 이상 이수",
+        "minTotalCredits": 18,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.65-66]",
+        "sourceQuote": "융합영어교육전문가 | a + b | a 모듈에서 3과목 수강 필수 | 18학점 이상",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 영어교육과 AI",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "010008",
+                "title": "영어지도법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "102409",
+                "title": "영어교육자료개발",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "102407",
+                "title": "아동문학과영어교육",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "102422",
+                "title": "스토리텔링기반영어교육",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: AI콘텐츠크리에이터",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "102204",
+                "title": "기초영어학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "102419",
+                "title": "코퍼스언어학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "102421",
+                "title": "영미문학과네트워크",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "102416",
+                "title": "디지털시대의영어영문학",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.66-67): 전필 오디세이세미나3(본 학과 분반 필수), 어학인증(전공 기본 3과목 모두 A0+ 또는 TOEIC 700+ 합격; 650점 +6학점, 600점 +9학점, 550점 +12학점, 미취득 +15학점; 졸업발표 2025 폐지)."
+      }
+    }
+  },
+  "국어국문학전공": {
+    "department": "국어국문학전공",
+    "college": "인문대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "한림대학교 인문대학 국어국문학전공 공식 모듈형 전공트랙 5개(한국어교육, 문화콘텐츠기획, 문예창작출판, 국어학 연구, 국문학 연구 / 선택제)입니다.",
+    "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-53], information/학과별_졸업기준/졸업기준_국어국문학전공.txt",
+    "sourceQuote": "3. 모듈형 전공트랙 — 한국어교육(a+b), 문화콘텐츠기획(c+d+e), 문예창작출판(e+f+g), 국어학 연구(a+b), 국문학 연구(c+d+g)",
+    "unconfirmedNote": "학과 리플릿 '인문_인문학부_2천_0717.pdf'는 이미지 기반 스캔 PDF(OCR 미적용)이므로 본 5개 트랙은 2026학년도 대학안내책자 p.48-53 본문 기준으로 반영했습니다. 트랙 이수증 발급 여부는 p.50 표에 별도 미명시되어 '미확인'입니다.",
+    "tracks": {
+      "한국어교육": {
+        "id": "한국어교육",
+        "title": "한국어교육 트랙",
+        "dept": "국어국문학전공",
+        "model": "modular",
+        "desc": "국어학 기초·심화와 한국어교육 이론을 학습하여 국내외 한국어 교원 및 교육 전문가를 양성하는 트랙",
+        "careers": "한국어 교사, 국어 교사, 세종학당·한국문화원·다문화가족지원센터·해외 대학 한국어 교육기관",
+        "recommendedDoubleMajors": "영어영문학과, 중국학과, 일본어학과(미확인: 책자 미명시)",
+        "certifications": "한국어교원자격증, KBS 한국어능력시험, 국어능력인증시험(TOKL)",
+        "requirementSummary": "모듈 a·b 각 2과목 이상 이수 (총 4과목+, 필수: 국어학개론, 한국어교육의이해)",
+        "minTotalCredits": 0,
+        "requiredCourses": [
+          "국어학개론",
+          "한국어교육의이해"
+        ],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-52]",
+        "sourceQuote": "한국어교육 | a + b | 필수: 국어학개론, 한국어교육의이해 | a, b 모듈 각 2과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 국어학기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101102",
+                "title": "국어학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101105",
+                "title": "국어학강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101312",
+                "title": "국어음운론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101219",
+                "title": "국어형태론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 국어학심화",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101338",
+                "title": "훈민정음의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101415",
+                "title": "한국어교육의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101220",
+                "title": "국어통사론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101405",
+                "title": "한국어데이터의구축과활용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.52-53): 전공필수 오디세이세미나3(복수·부전공 필수 없음), 졸업논문(지도교수 지도를 받아 졸업 전 마지막 학기 제출)."
+      },
+      "문화콘텐츠기획": {
+        "id": "문화콘텐츠기획",
+        "title": "문화콘텐츠기획 트랙",
+        "dept": "국어국문학전공",
+        "model": "modular",
+        "desc": "고전·현대문학 기초와 문학응용창작을 기반으로 방송·영화·문화콘텐츠 기획 역량을 기르는 트랙",
+        "careers": "방송·영화 기획자, 문화 사업 경영인, 문화 관련 국가기관·박물관, 스포츠·예술 기업",
+        "recommendedDoubleMajors": "인문콘텐츠융합전공, 디지털인문예술전공, 미디어스쿨(미확인: 책자 미명시)",
+        "certifications": "한자능력검정시험",
+        "requirementSummary": "모듈 c 2과목 이상 + 모듈 d 2과목 이상 + 모듈 e 1과목 이상 이수 (총 5과목+)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-52]",
+        "sourceQuote": "문화콘텐츠기획 | c + d + e | 필수: 없음 | c, d 모듈 각 2과목 이수, e 모듈 1과목 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 고전문학기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101407",
+                "title": "고전소설강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101409",
+                "title": "고전시가강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101318",
+                "title": "고전소설론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101406",
+                "title": "근세시가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 현대문학기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101111",
+                "title": "현대시강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101411",
+                "title": "현대소설강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101216",
+                "title": "현대시론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "e",
+            "name": "모듈 e: 문학응용창작",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "101408",
+                "title": "중세시가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101323",
+                "title": "현대소설론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101304",
+                "title": "현대작가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101319",
+                "title": "고전작가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.52-53): 전공필수 오디세이세미나3(복수·부전공 필수 없음), 졸업논문(지도교수 지도를 받아 졸업 전 마지막 학기 제출)."
+      },
+      "문예창작출판": {
+        "id": "문예창작출판",
+        "title": "문예창작출판 트랙",
+        "dept": "국어국문학전공",
+        "model": "modular",
+        "desc": "문학응용창작·출판연구·문학연구심화를 통해 작가·출판 편집자·카피라이터를 양성하는 트랙",
+        "careers": "시인, 소설가, 드라마·시나리오·방송·게임 작가, 문학 번역가, 출판 편집자, 언론사 기자, 카피라이터",
+        "recommendedDoubleMajors": "미디어스쿨, 광고홍보학과, 인문콘텐츠융합전공(미확인: 책자 미명시)",
+        "certifications": "전자출판기능사, 한국실용글쓰기(KLATA)",
+        "requirementSummary": "모듈 e 2과목 이상 + 모듈 f 2과목 이상 + 모듈 g 1과목 이상 이수 (총 5과목+)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-52]",
+        "sourceQuote": "문예창작출판 | e + f + g | 필수: 없음 | e, f 모듈 각 2과목 이수, g 모듈 1과목 이수",
+        "modules": [
+          {
+            "code": "e",
+            "name": "모듈 e: 문학응용창작",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101408",
+                "title": "중세시가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101323",
+                "title": "현대소설론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101304",
+                "title": "현대작가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101319",
+                "title": "고전작가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "f",
+            "name": "모듈 f: 출판연구기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101412",
+                "title": "현대시인론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101217",
+                "title": "국어정서법",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101414",
+                "title": "현대문학이론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 문학연구심화",
+            "minCredits": 0,
+            "minCourses": 1,
+            "courses": [
+              {
+                "code": "101413",
+                "title": "문학예술사론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101336",
+                "title": "국문학세미나",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101324",
+                "title": "문예창작비평론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.52-53): 전공필수 오디세이세미나3(복수·부전공 필수 없음), 졸업논문(지도교수 지도를 받아 졸업 전 마지막 학기 제출)."
+      },
+      "국어학연구": {
+        "id": "국어학연구",
+        "title": "국어학 연구 트랙",
+        "dept": "국어국문학전공",
+        "model": "modular",
+        "desc": "음운·형태·통사·훈민정음·한국어 데이터 구축을 심화 연구하는 국어학 학문 후속세대 트랙",
+        "careers": "대학원 진학, 교수, 연구원, 국립국어원·국립한글박물관 학예사·공무원",
+        "recommendedDoubleMajors": "데이터사이언스학부, 디지털인문예술전공(미확인: 책자 미명시)",
+        "certifications": "국어능력인증시험(TOKL), KBS 한국어능력시험",
+        "requirementSummary": "모듈 a 3과목 이상 + 모듈 b 2과목 이상 이수 (총 5과목+)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-52]",
+        "sourceQuote": "국어학 연구 | a + b | 필수: 없음 | a 모듈 3과목 이수, b 모듈 2과목 이수",
+        "modules": [
+          {
+            "code": "a",
+            "name": "모듈 a: 국어학기초",
+            "minCredits": 0,
+            "minCourses": 3,
+            "courses": [
+              {
+                "code": "101102",
+                "title": "국어학개론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101105",
+                "title": "국어학강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101312",
+                "title": "국어음운론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101219",
+                "title": "국어형태론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "b",
+            "name": "모듈 b: 국어학심화",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101338",
+                "title": "훈민정음의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101415",
+                "title": "한국어교육의이해",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101220",
+                "title": "국어통사론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101405",
+                "title": "한국어데이터의구축과활용",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.52-53): 전공필수 오디세이세미나3(복수·부전공 필수 없음), 졸업논문(지도교수 지도를 받아 졸업 전 마지막 학기 제출)."
+      },
+      "국문학연구": {
+        "id": "국문학연구",
+        "title": "국문학 연구 트랙",
+        "dept": "국어국문학전공",
+        "model": "modular",
+        "desc": "고전문학·현대문학·문학예술사 및 비평 연구를 심화하는 한국문학 전문가 트랙",
+        "careers": "대학원 진학, 교수, 연구원, 국립한글박물관·민속박물관 학예사, 연구소",
+        "recommendedDoubleMajors": "사학전공, 철학전공, 인문콘텐츠융합전공(미확인: 책자 미명시)",
+        "certifications": "한자능력검정시험, 한국실용글쓰기(KLATA)",
+        "requirementSummary": "모듈 c·d·g 각 2과목 이상 이수 (총 6과목+)",
+        "minTotalCredits": 0,
+        "requiredCourses": [],
+        "sourceRef": "information/[한림대학교] 2026학년도 대학안내책자.pdf [p.48-52]",
+        "sourceQuote": "국문학 연구 | c + d + g | 필수: 없음 | c, d, g 모듈 각 2과목 이수",
+        "modules": [
+          {
+            "code": "c",
+            "name": "모듈 c: 고전문학기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101407",
+                "title": "고전소설강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101409",
+                "title": "고전시가강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101318",
+                "title": "고전소설론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101406",
+                "title": "근세시가론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "d",
+            "name": "모듈 d: 현대문학기초",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101111",
+                "title": "현대시강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101411",
+                "title": "현대소설강독",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "101216",
+                "title": "현대시론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              }
+            ]
+          },
+          {
+            "code": "g",
+            "name": "모듈 g: 문학연구심화",
+            "minCredits": 0,
+            "minCourses": 2,
+            "courses": [
+              {
+                "code": "101413",
+                "title": "문학예술사론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101336",
+                "title": "국문학세미나",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "2학기"
+              },
+              {
+                "code": "101324",
+                "title": "문예창작비평론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "졸업 기준(p.52-53): 전공필수 오디세이세미나3(복수·부전공 필수 없음), 졸업논문(지도교수 지도를 받아 졸업 전 마지막 학기 제출)."
+      }
+    }
+  },
+  "인문콘텐츠융합전공": {
+    "department": "인문콘텐츠융합전공",
+    "college": "인문대학",
+    "model": "modular",
+    "isMandatory": false,
+    "bannerNote": "인문콘텐츠융합전공은 국문·사학·철학·영문·중국·일본·러시아·디지털인문예술 참여학과가 함께 운영하는 융합전공(복수전공 33학점, 필수과목 없음)입니다. 공식 모듈형 트랙 편성 여부는 '미확인'입니다.",
+    "sourceRef": "information/학과별_졸업기준/졸업기준_인문콘텐츠융합전공.txt, information/[한림대학교] 2026학년도 대학안내책자.pdf [p.53, p.64, p.68]",
+    "sourceQuote": "융합전공 이수조건: 본 융합전공 교과목 중 33학점 이상 이수. 필수과목 없음. 제1전공 최대 9학점 + 타 참여학과 최대 9학점(총 18학점) 대체이수 인정.",
+    "unconfirmedNote": "① 2026학년도 대학안내책자 본문 및 졸업기준_인문콘텐츠융합전공.txt에 인문콘텐츠융합전공의 별도 모듈형 전공트랙표가 수록되어 있지 않으며(인문_인문학부_2천_0717.pdf는 스캔 PDF로 OCR 미적용), 트랙 운영 여부는 '미확인'입니다. ② 아래 교과목은 책자 p.53·p.64·p.68 코드쉐어링 표에서 확인된 공식 655xxx 과목 일부이며, 전체 개설 교과목·개설학기·졸업프로젝트 요건은 인문대학 교학팀(033-248-1500) 확인이 필요합니다(미확인).",
+    "tracks": {
+      "융합전공이수안내": {
+        "id": "융합전공이수안내",
+        "title": "인문콘텐츠융합전공 이수 안내 (트랙 미확인)",
+        "dept": "인문콘텐츠융합전공",
+        "model": "modular",
+        "desc": "공식 모듈형 트랙 편성 여부가 미확인 상태이므로, 확인된 33학점 융합전공 이수 기준(제1전공 9 + 타 참여학과 9 대체인정)과 공식 655xxx 코드쉐어링 교과목을 안내합니다.",
+        "careers": "미확인(책자 본문 미수록 — 문화·미디어·인문콘텐츠 기획 분야)",
+        "recommendedDoubleMajors": "참여학과: 국어국문·사학·철학·영어영문·중국·일본·러시아·디지털인문예술전공",
+        "certifications": "미확인(책자 미명시)",
+        "requirementSummary": "융합전공 33학점 이상 이수(필수과목 없음; 제1전공 최대 9 + 타 참여학과 최대 9 = 최대 18학점 대체인정 / 별도 트랙 기준 미확인)",
+        "nonCurricularNote": "공식 모듈형 트랙 및 전체 교과과정표는 '미확인'이므로 인문대학 교학팀(033-248-1500) 확인이 필요합니다.",
+        "minTotalCredits": 33,
+        "requiredCourses": [],
+        "sourceRef": "information/학과별_졸업기준/졸업기준_인문콘텐츠융합전공.txt, information/[한림대학교] 2026학년도 대학안내책자.pdf [p.53, p.64, p.68]",
+        "sourceQuote": "본 융합전공 교과목 중 33학점 이상 이수. 필수과목 없음. 참여학과: 국문, 사학, 철학, 영문, 중국, 일본, 러시아, 디지털인문예술전공",
+        "modules": [
+          {
+            "code": "a",
+            "name": "공식 코드쉐어링 확인 교과목 (p.53·64·68)",
+            "minCredits": 0,
+            "minCourses": 0,
+            "courses": [
+              {
+                "code": "655017",
+                "title": "영상서사론",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인"
+              },
+              {
+                "code": "655012",
+                "title": "현대문학으로본예술과과학기술",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인"
+              },
+              {
+                "code": "655020",
+                "title": "내러티브와융합장르",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인"
+              },
+              {
+                "code": "655026",
+                "title": "현대소설과OTT드라마",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "655005",
+                "title": "미디어로본한국사",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "655008",
+                "title": "재난의역사와치유",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "1학기"
+              },
+              {
+                "code": "655007",
+                "title": "문학과영상으로본글로컬이슈",
+                "credits": 3,
+                "cat": "전선",
+                "semester": "미확인"
+              }
+            ]
+          }
+        ],
+        "subMajorNote": "융합전공 이수 기준(졸업기준_인문콘텐츠융합전공.txt): 본 융합전공 33학점 이상(필수과목 없음). 제1전공 최대 9학점 + 제1전공 외 참여학과(국문·사학·철학·영문·중국·일본·러시아·디지털인문예술) 최대 9학점 = 총 18학점 대체인정 가능."
+      }
+    }
   }
 };
 if (typeof window !== 'undefined') window.HALLYM_TRACKS = HALLYM_TRACKS;
